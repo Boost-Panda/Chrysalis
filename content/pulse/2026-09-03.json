@@ -31,14 +31,6 @@
         "source": "arxiv"
       },
       {
-        "id": "2609.02246",
-        "title": "LLM-as-a-Judge Is Not an Oracle: Why Self-Improving Agents Need Deterministic Guardrails",
-        "url": "https://arxiv.org/abs/2609.02246",
-        "summary": "A position paper: when a prompt optimizer is scored by an LLM judge, the judge becomes the thing being gamed, so self-improving pipelines need deterministic checks beside it.",
-        "why": "SalesKick grading and our eval loops use LLM judges; read this before the next optimizer run, and note the wehshi verifier pass is exactly the kind of guardrail it argues for.",
-        "source": "arxiv"
-      },
-      {
         "id": "2609.02783",
         "title": "EarlyEval: Cheaper Agent Evaluation via Early Outcome Prediction",
         "url": "https://arxiv.org/abs/2609.02783",
@@ -52,6 +44,14 @@
         "url": "https://arxiv.org/abs/2609.01723",
         "summary": "Black-box membership inference against fine-tuned text-to-speech models, showing that private voice data used for personalisation can be exposed.",
         "why": "EverRaise voices are built from customer recordings; any TTS fine-tuning we adopt needs this threat model in the vendor conversation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.02074",
+        "title": "CHIME: Credit-Aware Hierarchical Memory Evolution for Long-Horizon Agentic Planning",
+        "url": "https://arxiv.org/abs/2609.02074",
+        "summary": "A self-evolving memory for agents that accumulates reusable experience from interaction outcomes and credits the memories that actually helped planning, avoiding the cost of test-time search or retraining.",
+        "why": "Long-horizon agent memory is our problem too — Botterfly's recall and any SalesKick agent that learns across calls face the same question of which stored experience to trust.",
         "source": "arxiv"
       }
     ],
@@ -112,7 +112,10 @@
       }
     ]
   },
-  "closing": "First issue, seeded by hand from the collector's output to prove the pipeline end to end. Botterfly takes over from the next weekday. Python.org and Z.ai had nothing new in the window.",
-  "window": {"since": "2026-09-02T16:51:32+00:00", "until": "2026-09-03T16:51:32+00:00"},
-  "generated_by": "claude-code/seed"
+  "closing": "First issue. Python.org and Z.ai had nothing new in the window; everything else ran clean.",
+  "window": {
+    "since": "2026-09-02T16:51:32+00:00",
+    "until": "2026-09-03T16:51:32+00:00"
+  },
+  "generated_by": "botterfly/pulse"
 }

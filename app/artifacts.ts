@@ -1,5 +1,6 @@
 // Registry of published artifacts. Every artifact adds an entry here;
-// the homepage renders this list as the table of contents.
+// the homepage renders this list as the table of contents. A series
+// (a dated publication) registers once; its issues do not.
 
 export type Artifact = {
   slug: string;
@@ -13,7 +14,7 @@ export const artifacts: Artifact[] = [
     slug: "pulse",
     title: "The Pulse",
     description:
-      "Botterfly's weekday morning briefing on AI and engineering: models, research, releases, and Hacker News, with why each matters for us.",
+      "Botterfly's weekday morning briefing on AI and engineering — models, research, releases, and Hacker News, with one line per item on why it matters for us.",
     published: "2026-09-03",
   },
   {

@@ -1,27 +1,23 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Breadcrumb,
   BreadcrumbItem,
   Column,
   Grid,
-  Stack,
   Tag,
   Tile,
 } from "@carbon/react";
-import { ArrowRight } from "@carbon/icons-react";
-import { formatDate, listIssueDates, loadIssue } from "@/app/lib/pulse";
+import { loadIssue, listIssueDates } from "../../lib/pulse";
 
 export const metadata: Metadata = {
-  title: "The Pulse — Botterfly's morning briefing",
+  title: "The Pulse — Botterfly's weekday briefing",
   description:
-    "Botterfly's weekday briefing on AI and engineering: models, research, releases, and Hacker News, with why each matters for BoostPanda.",
+    "A weekday morning briefing on AI and engineering, with one line per item on why it matters for BoostPanda.",
 };
 
 export default function PulseArchive() {
-  const issues = listIssueDates()
-    .map((d) => loadIssue(d))
-    .filter((i): i is NonNullable<typeof i> => i !== null);
+  const dates = listIssueDates();
 
   return (
     <main>
@@ -35,39 +31,46 @@ export default function PulseArchive() {
             The Pulse
           </h1>
           <Tag type="blue" style={{ marginBottom: "1.5rem" }}>
-            weekdays, 07:30 Istanbul
+            weekday briefing · series
           </Tag>
-          <p style={{ fontSize: "1.25rem", fontWeight: 300, lineHeight: 1.5, maxWidth: "48rem", marginBottom: "2rem" }}>
-            Botterfly&apos;s morning briefing for the BoostPanda team: what changed
-            overnight in models, research, the tools we build with, and what
-            engineers are talking about, with one line per item on why it
-            matters for our work. Four minutes to read. Every item links to its
-            primary source.
+        </Column>
+      </Grid>
+      <Grid>
+        <Column lg={8} md={6} sm={4}>
+          <p style={{ fontSize: "1.25rem", fontWeight: 300, lineHeight: 1.5, marginBottom: "2rem" }}>
+            What changed overnight in models, research, the tools we build
+            with, and what engineers are talking about — with one line per item
+            on why it matters for BoostPanda&apos;s work. Published every
+            weekday morning, Istanbul time.
           </p>
         </Column>
       </Grid>
       <Grid style={{ paddingBottom: "4rem" }}>
-        {issues.length === 0 && (
-          <Column lg={8} md={6} sm={4}>
-            <p style={{ color: "#525252" }}>No issues yet. The first one lands on the next weekday morning.</p>
-          </Column>
-        )}
-        {issues.map((issue) => (
-          <Column lg={8} md={6} sm={4} key={issue.date} style={{ marginBottom: "1rem" }}>
-            <Tile>
-              <Stack gap={3}>
-                <Tag type="blue" size="sm">{issue.date}</Tag>
-                <h2 style={{ fontSize: "1.25rem", fontWeight: 600, margin: 0 }}>
-                  {formatDate(issue.date)}
-                </h2>
-                <p style={{ color: "#525252", margin: 0 }}>{issue.tldr}</p>
-                <Link href={`/pulse/${issue.date}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                  Read the issue <ArrowRight size={16} />
-                </Link>
-              </Stack>
-            </Tile>
-          </Column>
-        ))}
+        <Column lg={12} md={6} sm={4}>
+          <h2 style={{ fontWeight: 600, marginBottom: "1rem" }}>Issues</h2>
+          {dates.length === 0 ? (
+            <p>No issues published yet.</p>
+          ) : (
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {dates.map((d) => {
+                const issue = loadIssue(d);
+                return (
+                  <li key={d} style={{ marginBottom: "1rem" }}>
+                    <Tile style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
+                      <Tag type="blue" size="sm">
+                        {d}
+                      </Tag>
+                      <h3 style={{ fontWeight: 600, margin: "0.5rem 0" }}>
+                        <Link href={`/pulse/${d}`}>{issue?.title ?? d}</Link>
+                      </h3>
+                      <p style={{ color: "#525252", margin: 0 }}>{issue?.tldr}</p>
+                    </Tile>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </Column>
       </Grid>
     </main>
   );
