@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-03",
+  "title": "The Pulse, Thursday 3 September 2026",
+  "tldr": "Meta's Muse Spark 1.3 and Google's Gemini 3.8 Flash landed within a day of each other, both pitched at long-running agentic work. On arXiv, two papers put numbers on things we lean on daily: code-embedding retrieval and LLM-as-a-judge. And Nvidia says it is acquiring Hugging Face.",
+  "sections": {
+    "models": [
+      {
+        "id": "meta/muse-spark-1.3-20260902",
+        "title": "Meta: Muse Spark 1.3",
+        "url": "https://openrouter.ai/meta/muse-spark-1.3",
+        "summary": "Meta's multimodal reasoning model for long-running agentic, multi-agent, and coding workflows, listed on OpenRouter with a 1M-token context at $1.25 in and $4.25 out per million tokens, plus a Contributor tier at $0.10 and $0.20.",
+        "why": "A 1M-context agentic model with a near-free contributor tier is worth a run through the wehshi review panel and the SalesKick grading evals before we decide it is just another launch.",
+        "source": "openrouter"
+      },
+      {
+        "id": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
+        "title": "Introducing Gemini 3.8 Flash and 3.8 Flash Cyber",
+        "url": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
+        "summary": "Google's next Flash generation, pitched at agentic workflows, with a cyber-defence variant offered to governments and partners through a limited-access program (vendor claims).",
+        "why": "Flash-class models are what we run for high-volume calls; a new generation is a candidate for the EverRaise call-disposition classifier and the cheaper lanes of the review panel.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.01865",
+        "title": "ExecRetrieval: Measuring the Functional-Correctness Gap in Code-Embedding Retrieval",
+        "url": "https://arxiv.org/abs/2609.01865",
+        "summary": "A benchmark that plants controlled functional bugs to test whether code-embedding retrieval returns correct code rather than lexically similar code.",
+        "why": "Our coding agents and the review panel's full-file context both rest on retrieval; this is a way to check whether an embedding model is fooled by near-duplicates.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.02246",
+        "title": "LLM-as-a-Judge Is Not an Oracle: Why Self-Improving Agents Need Deterministic Guardrails",
+        "url": "https://arxiv.org/abs/2609.02246",
+        "summary": "A position paper: when a prompt optimizer is scored by an LLM judge, the judge becomes the thing being gamed, so self-improving pipelines need deterministic checks beside it.",
+        "why": "SalesKick grading and our eval loops use LLM judges; read this before the next optimizer run, and note the wehshi verifier pass is exactly the kind of guardrail it argues for.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.02783",
+        "title": "EarlyEval: Cheaper Agent Evaluation via Early Outcome Prediction",
+        "url": "https://arxiv.org/abs/2609.02783",
+        "summary": "Predicts an agent's final outcome from its early trajectory to cut evaluation cost, which the authors put at hundreds to thousands of dollars per pass over an agentic benchmark.",
+        "why": "Agent evals are where our OpenRouter spend goes; early-outcome prediction is a cheap trick to try on the review-panel calibration runs.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.01723",
+        "title": "Hearing the Whispers: Black-Box Membership Inference Attacks on Finetuned TTS Models",
+        "url": "https://arxiv.org/abs/2609.01723",
+        "summary": "Black-box membership inference against fine-tuned text-to-speech models, showing that private voice data used for personalisation can be exposed.",
+        "why": "EverRaise voices are built from customer recordings; any TTS fine-tuning we adopt needs this threat model in the vendor conversation.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "382142326",
+        "title": "langchain-anthropic 1.7.1",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.1",
+        "summary": "Adds Claude Fable 5.1 support and stops sending middleware trace inputs, a small performance fix.",
+        "why": "The services that reach Anthropic through LangChain should bump to this before anyone tries Fable 5.1 through them.",
+        "source": "github"
+      },
+      {
+        "id": "381911533",
+        "title": "Langfuse v4.28.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.28.0",
+        "summary": "Evals now track judge prompt metadata, ClickHouse query outcomes are counted for read SLIs, and experiments get a search bar.",
+        "why": "Judge prompt metadata per eval run is what the grading calibration work wanted to see; worth upgrading the Langfuse instance before the next round.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49548952",
+        "title": "Nvidia to Acquire Hugging Face",
+        "url": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/",
+        "hn_url": "https://news.ycombinator.com/item?id=49548952",
+        "summary": "Nvidia's own announcement that it is acquiring Hugging Face, the hub most open-weight models are published through.",
+        "why": "Half the models we evaluate arrive via Hugging Face; the questions in the thread about hosting, licensing, and neutrality are ours too.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49546753",
+        "title": "Pre-Release of Polars 2.0",
+        "url": "https://pola.rs/posts/announcing-polars-2/",
+        "hn_url": "https://news.ycombinator.com/item?id=49546753",
+        "summary": "The Polars team's pre-release notes for 2.0, the first major since the dataframe library took over a good share of pandas workloads.",
+        "why": "Our data-prep scripts for grading and call analytics are pandas today; a 2.0 pre-release is the moment to test a Polars port on one of them.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49549676",
+        "title": "Claude outage – Resolved",
+        "url": "https://status.claude.com/incidents/461yvfrzpwtt",
+        "hn_url": "https://news.ycombinator.com/item?id=49549676",
+        "summary": "Anthropic's status page for yesterday's Claude outage, which hit Hacker News the same day as a ChatGPT outage.",
+        "why": "Both major providers dropped within hours of each other; the review panel's OpenRouter routing and the cron jobs need their fallbacks exercised, not assumed.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49548395",
+        "title": "Audacity 4.0",
+        "url": "https://github.com/audacity/audacity/releases/tag/Audacity-4.0.0",
+        "hn_url": "https://news.ycombinator.com/item?id=49548395",
+        "summary": "The first major Audacity release in years, and the day's top story by points.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "hackernews"
+      }
+    ]
+  },
+  "closing": "First issue, seeded by hand from the collector's output to prove the pipeline end to end. Botterfly takes over from the next weekday. Python.org and Z.ai had nothing new in the window.",
+  "window": {"since": "2026-09-02T16:51:32+00:00", "until": "2026-09-03T16:51:32+00:00"},
+  "generated_by": "claude-code/seed"
+}
