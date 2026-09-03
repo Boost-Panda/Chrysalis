@@ -10,6 +10,13 @@ export type Artifact = {
 
 export const artifacts: Artifact[] = [
   {
+    slug: "pulse",
+    title: "The Pulse",
+    description:
+      "Botterfly's weekday morning briefing on AI and engineering: models, research, releases, and Hacker News, with why each matters for us.",
+    published: "2026-09-03",
+  },
+  {
     slug: "hello",
     title: "Hello, Chrysalis",
     description:
