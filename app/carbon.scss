@@ -1,7 +1,85 @@
-// Carbon styles with Plex fonts served from the installed @ibm/plex package.
-// $font-path is resolved relative to @carbon/styles, so point it up to
-// node_modules explicitly.
+// Chrysalis — Carbon Design System, white (g10) theme.
+// $font-path is resolved relative to @carbon/styles; point it at the
+// installed @ibm/plex package. See wiki chrysalis.md for the rubric.
 @use "@carbon/styles/scss/config" with (
   $font-path: "../../../../@ibm/plex"
 );
+@use "@carbon/styles/scss/theme" with (
+  $fallback: null
+);
+@use "@carbon/themes/scss/themes";
+@use "@carbon/themes/scss/theme" as carbon-theme;
 @use "@carbon/react";
+
+// White theme (Gray 10) — Carbon's default light theme. Emits the
+// --cds-* custom properties that every Carbon component reads.
+:root {
+  @include carbon-theme.theme(themes.$white);
+}
+
+// ---- Site-level styles -----------------------------------------------------
+
+// Hero: full-bleed dark band with asymmetric blue accent column —
+// Carbon's signature banding, like ibm.com section headers.
+.chrysalis-hero {
+  background-color: #161616;
+  color: #f4f4f4;
+  padding: 5rem 0;
+}
+
+// Thin blue rule that anchors the hero, Carbon editorial style.
+.chrysalis-hero-rule {
+  background-color: #0f62fe;
+  height: 4px;
+  width: 5rem;
+  margin-bottom: 2rem;
+}
+
+.chrysalis-hero h1 {
+  font-size: 3.75rem; // Display 01
+  font-weight: 300; // light — the expressive Carbon tension
+  line-height: 1.17;
+  margin: 0 0 1rem 0;
+}
+
+.chrysalis-hero .chrysalis-hero-sub {
+  font-size: 1.25rem;
+  font-weight: 300;
+  max-width: 38rem;
+  color: #c6c6c6;
+}
+
+.chrysalis-hero .chrysalis-hero-kicker {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.16px;
+  color: #78a9ff;
+  margin-bottom: 1.5rem;
+}
+
+// Artifact index section on the light surface.
+.chrysalis-index {
+  padding: 4rem 0 6rem 0;
+}
+
+.chrysalis-index h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 0 0.5rem 0;
+}
+
+.chrysalis-index .chrysalis-index-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.32px;
+  color: #6f6f6f;
+  margin-bottom: 2rem;
+}
+
+// Footer strip.
+.chrysalis-footer {
+  background-color: #161616;
+  color: #8d8d8d;
+  font-size: 0.75rem;
+  letter-spacing: 0.32px;
+  padding: 2rem 0;
+}
