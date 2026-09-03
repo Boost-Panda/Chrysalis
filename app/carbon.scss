@@ -1,0 +1,7 @@
+// Carbon styles with Plex fonts served from the installed @ibm/plex package.
+// $font-path is resolved relative to @carbon/styles, so point it up to
+// node_modules explicitly.
+@use "@carbon/styles/scss/config" with (
+  $font-path: "../../../../@ibm/plex"
+);
+@use "@carbon/react";
