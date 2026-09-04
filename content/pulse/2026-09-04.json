@@ -1,121 +1,157 @@
 {
-  "date": "2026-09-04",
-  "title": "The Pulse, Friday 4 September 2026",
-  "tldr": "OpenAI shipped GPT-6 Astra, its first model rated Critical for cybersecurity capability. Evals show substantial coding and reasoning gains, plus a recurrent architecture that makes long tasks cheaper. Yesterday's simultaneous ChatGPT, Claude, and Grok outages are still unexplained, and Hacker News is full of theories.",
-  "sections": {
-    "models": [
-      {
-        "id": "openai/gpt-6-astra",
-        "title": "OpenAI: GPT-6 Astra",
-        "url": "https://openai.com/index/gpt-6-astra/",
-        "summary": "OpenAI's GPT-6 Astra, the first model rated Critical under its Preparedness Framework, launched September 3 with 53.6% on ARC-AGI-3 (public; up from 28.6% on the prior task version), a recurrent architecture that lowers long-task cost, and cyber-specific case studies.",
-        "why": "Critical capability means we need the wehshi panel to review it for client-facing work and the coding-agent benchmarks to run it against Codex and Claude Code before we route production traffic to it.",
-        "source": "vendor"
-      },
-      {
-        "id": "deepmind/weathernext-3",
-        "title": "Google DeepMind: WeatherNext 3",
-        "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
-        "summary": "Google DeepMind's most accurate global weather forecast model, WeatherNext 3, with improved accuracy on extreme events (vendor claim).",
-        "why": "Worth knowing, no direct use for us yet.",
-        "source": "vendor"
-      }
-    ],
-    "research": [
-      {
-        "id": "2609.03423",
-        "title": "DuplexSpeechBench-IFEval: Evaluating Implicit Instruction Following in Full-Duplex Voice Agents",
-        "url": "https://arxiv.org/abs/2609.03423",
-        "summary": "A benchmark for full-duplex voice agents testing implicit turn management (when to interrupt, backchannel, yield, handle overlaps) derived from roles or personas, not explicit instructions.",
-        "why": "EverRaise's Vapi agents handle turn-taking through configuration; a benchmark that measures implicit instruction following from role prompts is a way to test whether they know when to shut up.",
-        "source": "arxiv"
-      },
-      {
-        "id": "2609.03467",
-        "title": "When Users Don't Ask: Benchmarking Context-Driven Memory Retrieval in Conversational Agents",
-        "url": "https://arxiv.org/abs/2609.03467",
-        "summary": "LOCOMO-CONV, a conversational memory benchmark that tests in-situ memory use rather than QA-style probing, measuring whether agents retrieve and apply context without being explicitly asked.",
-        "why": "Botterfly's recall and SalesKick's nurturing agents both rely on knowing when to pull context; a benchmark for unprompted memory use is a direct eval for that behavior.",
-        "source": "arxiv"
-      },
-      {
-        "id": "2609.03915",
-        "title": "RuleMem: Active Rule Memory for Long-Term Conversational Agents",
-        "url": "https://arxiv.org/abs/2609.03915",
-        "summary": "A rule-based memory framework for long-term agents that treats past information as active rules rather than passive facts, addressing semantic gaps and unreliable reasoning over dispersed dialogue histories.",
-        "why": "Long-horizon nurturing agents and Botterfly's own memory span weeks; active rule memory is a pattern worth testing against the current passive episodic approach.",
-        "source": "arxiv"
-      },
-      {
-        "id": "2609.04167",
-        "title": "SWE-Gate: Passing Functional Tests Is Not Enough for Software Engineering Agents",
-        "url": "https://arxiv.org/abs/2609.04167",
-        "summary": "A benchmark showing that coding agents pass functional tests but violate review-derived acceptance constraints (style, idioms, maintainability) that block real PRs.",
-        "why": "The wehshi review panel already catches some of this, but SWE-Gate's acceptance constraints are the missing layer between 'tests pass' and 'PR merges.'",
-        "source": "arxiv"
-      }
-    ],
-    "releases": [
-      {
-        "id": "382191568",
-        "title": "LangChain 1.4.0",
-        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.0",
-        "summary": "Introduces the langchain.mcp namespace and MCPAdapter, plus a middleware trace input perf fix from the anthropic integration.",
-        "why": "MCP (Model Context Protocol) is Anthropic's server-side context pattern; an official LangChain adapter is the first time we can try it in a Pipeline service without writing the glue ourselves.",
-        "source": "github"
-      },
-      {
-        "id": "382223498",
-        "title": "Langfuse v4.28.1",
-        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.28.1",
-        "summary": "Refactors notifications and public-api into feature front doors, expands timeline rows to show labels without shrinking time, and fixes filter-bar display for non-default environment values.",
-        "why": "Timeline-row legibility is a daily grading-review annoyance; the fix is worth the upgrade before the next SalesKick calibration session.",
-        "source": "github"
-      }
-    ],
-    "hackernews": [
-      {
-        "id": "49554643",
-        "title": "GPT-6 Astra",
-        "url": "https://openai.com/index/gpt-6-astra/",
-        "hn_url": "https://news.ycombinator.com/item?id=49554643",
-        "summary": "The top Hacker News story by comments: 1,250 in twelve hours, discussing the Critical capability rating, the recurrent architecture, and what 53.6% on ARC-AGI-3 means for general reasoning.",
-        "why": "The thread is the fastest way to see what the engineering community thinks broke through and what is hype; worth skimming before we decide how to route it.",
-        "source": "hackernews"
-      },
-      {
-        "id": "49551096",
-        "title": "Ask HN: Why were OpenAI, Claude, and Grok simultaneously down?",
-        "url": "https://news.ycombinator.com/item?id=49551096",
-        "hn_url": "https://news.ycombinator.com/item?id=49551096",
-        "summary": "Ask HN with 531 comments speculating on common upstream dependencies (cloud regions, DNS, CDN providers) after ChatGPT, Claude, and Grok dropped within hours on September 3.",
-        "why": "Multi-vendor failures expose shared infrastructure risks; the review panel and the cron jobs route through OpenRouter, but that is one more hop, not immunity.",
-        "source": "hackernews"
-      },
-      {
-        "id": "49557206",
-        "title": "Which tools do Claude, Codex and Cursor choose? We measured 17k runs to find out",
-        "url": "https://armature.tech/blog/which-tools-coding-agents-install",
-        "hn_url": "https://news.ycombinator.com/item?id=49557206",
-        "summary": "Armature's analysis of 17,000 coding-agent runs showing which tools Claude Code, Codex, and Cursor install most often, with pytest, ruff, and black dominating Python workflows.",
-        "why": "Our own coding agents and the review panel spawn environments and install dependencies; knowing what the leading agents reach for is a sanity check on our tool-use prompts.",
-        "source": "hackernews"
-      },
-      {
-        "id": "49550375",
-        "title": "Porting my 1993 Amiga game to Godot, with an LLM reading the 68000 assembly",
-        "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
-        "hn_url": "https://news.ycombinator.com/item?id=49550375",
-        "summary": "A developer's writeup of porting a 1993 Amiga game to Godot by feeding 68000 assembly to an LLM, which generated working C code from the disassembly.",
-        "why": "Assembly-to-higher-level porting is edge-case work for us, but the post is a clear example of LLMs on legacy code that the team will enjoy.",
-        "source": "hackernews"
-      }
-    ]
-  },
-  "closing": "Python, Node, Next, DSPy, OpenRouter models, Hugging Face orgs, and Z.ai had nothing new in the window.",
-  "window": {
-    "since": "2026-09-03T04:30:39+00:00",
-    "until": "2026-09-04T04:30:39+00:00"
-  },
-  "generated_by": "botterfly/pulse"
+ "date": "2026-09-04",
+ "title": "The Pulse, Friday 4 September 2026",
+ "tldr": "OpenAI shipped GPT-6 Astra, its first model rated Critical for cybersecurity capability, and Chollet's first look says the leap is real. Anthropic opened Claude Code up to custom tool extensions, and Nous Research shipped one-click local models in Hermes Desktop. Yesterday's simultaneous ChatGPT, Claude, and Grok outages are still unexplained.",
+ "sections": {
+  "models": [
+   {
+    "id": "openai/gpt-6-astra",
+    "title": "OpenAI: GPT-6 Astra",
+    "url": "https://openai.com/index/gpt-6-astra/",
+    "summary": "OpenAI's new flagship: recurrent architecture for cheaper long tasks, first model rated Critical for cybersecurity capability (vendor claim).",
+    "why": "Our agent stacks run on models like this via OpenRouter; the Critical rating also means review discipline matters more on anything it touches.",
+    "source": "vendor"
+   },
+   {
+    "id": "deepmind/weathernext-3",
+    "title": "Google DeepMind: WeatherNext 3",
+    "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
+    "summary": "DeepMind's most accurate global weather model yet, in production with partners.",
+    "why": "No direct use for us yet",
+    "source": "vendor"
+   }
+  ],
+  "research": [
+   {
+    "id": "2609.03423",
+    "title": "DuplexSpeechBench-IFEval: Evaluating Implicit Instruction Following in Speech",
+    "url": "https://arxiv.org/abs/2609.03423",
+    "summary": "Benchmark for whether voice agents follow instructions that are implied rather than stated, the case our Vapi flows live in.",
+    "why": "Directly relevant to EverRaise voice agents: implicit instruction following is where call flows break.",
+    "source": "arxiv"
+   },
+   {
+    "id": "2609.03467",
+    "title": "When Users Don't Ask: Benchmarking Context-Driven Memory Retrieval in Conversation",
+    "url": "https://arxiv.org/abs/2609.03467",
+    "summary": "Benchmarks retrieving the right memory when the user never explicitly asks, keyed off conversation context.",
+    "why": "Applies to our CRM and sales agents: surfacing the right lead context without being prompted is the whole game.",
+    "source": "arxiv"
+   },
+   {
+    "id": "2609.03915",
+    "title": "RuleMem: Active Rule Memory for Long-Term Conversational Agents",
+    "url": "https://arxiv.org/abs/2609.03915",
+    "summary": "A memory layer that keeps standing rules active across long conversations instead of letting them decay into context.",
+    "why": "Maps to how we keep agent behaviour stable across multi-week client deployments.",
+    "source": "arxiv"
+   },
+   {
+    "id": "2609.04167",
+    "title": "SWE-Gate: Passing Functional Tests Is Not Enough for Software Engineering Agents",
+    "url": "https://arxiv.org/abs/2609.04167",
+    "summary": "Shows coding agents that pass test suites still fail real task requirements; proposes a harder gate.",
+    "why": "Calibrates how much we trust green tests from delegated agent work, which is most of our review burden.",
+    "source": "arxiv"
+   }
+  ],
+  "releases": [
+   {
+    "id": "382191568",
+    "title": "LangChain 1.4.0",
+    "url": "https://github.com/langchain-ai/langchain/releases/tag/v1.4.0",
+    "summary": "Stable LangChain release with graph and streaming refinements.",
+    "why": "We build client agents on LangChain; worth bumping on the next touch of each service.",
+    "source": "github"
+   },
+   {
+    "id": "382223498",
+    "title": "Langfuse v4.28.1",
+    "url": "https://github.com/langfuse/langfuse/releases/tag/v4.28.1",
+    "summary": "Patch release for the v4 line of our tracing stack.",
+    "why": "We run Langfuse for agent observability; patches get picked up on deploy.",
+    "source": "github"
+   }
+  ],
+  "hackernews": [
+   {
+    "id": "49551096",
+    "title": "Ask HN: Why were OpenAI, Claude, and Grok simultaneously down?",
+    "url": "https://news.ycombinator.com/item?id=49551096",
+    "hn_url": "https://news.ycombinator.com/item?id=49551096",
+    "summary": "All three major providers went down in the same window yesterday; no shared root cause confirmed yet.",
+    "why": "Our multi-provider routing via OpenRouter is exactly the hedge for this; a reminder to keep provider fallbacks configured.",
+    "source": "hackernews"
+   },
+   {
+    "id": "49557206",
+    "title": "Which tools do Claude, Codex and Cursor choose? We measured 17k runs to find out",
+    "url": "https://armature.tech/blog/which-tools-coding-agents-install",
+    "hn_url": "https://news.ycombinator.com/item?id=49557206",
+    "summary": "Measured which CLI tools coding agents actually install across 17k runs.",
+    "why": "Direct input for how we scope delegated agent work and what tool access matters.",
+    "source": "hackernews"
+   },
+   {
+    "id": "49550375",
+    "title": "Porting my 1993 Amiga game to Godot, with an LLM reading the 68000 assembly",
+    "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
+    "hn_url": "https://news.ycombinator.com/item?id=49550375",
+    "summary": "A real-world account of using an LLM to port 68000 assembly to Godot, with honest notes on where it needed human correction.",
+    "why": "A good calibration read for our own agent-delegation boundaries.",
+    "source": "hackernews"
+   },
+   {
+    "id": "49554520",
+    "title": "Qwen 3.8 27B available on Cerebras at 1500 tokens/s",
+    "url": "https://cerebras.ai/blog/qwen3-8-27b-on-cerebras",
+    "hn_url": "https://news.ycombinator.com/item?id=49554520",
+    "summary": "Qwen's new 27B open model served on Cerebras wafer-scale hardware at 1500 tokens per second.",
+    "why": "Open-weight models at that speed change what we can run client-side; worth a benchmark pass against our API defaults.",
+    "source": "hackernews"
+   }
+  ],
+  "x_posts": [
+   {
+    "id": "2095605239269519771",
+    "title": "François Chollet: frontier models vs ARC-AGI-3",
+    "url": "https://x.com/fchollet/status/2095605239269519771",
+    "summary": "Chollet notes frontier models still score near zero on ARC-AGI-3, released in March, and puts today's capability leaps in that context.",
+    "why": "The calibration counterweight to launch-week claims: ARC's author on where the frontier actually stands.",
+    "source": "x"
+   },
+   {
+    "id": "2095572891941351550",
+    "title": "ClaudeDevs: extending Claude Code with custom tools",
+    "url": "https://x.com/ClaudeDevs/status/2095572891941351550",
+    "summary": "Anthropic is exploring a new way to extend and customize Claude Code with custom tools.",
+    "why": "Our whole delegation workflow runs through Claude Code; custom tools could replace several glue scripts.",
+    "source": "x"
+   },
+   {
+    "id": "2095602995874410664",
+    "title": "Nous Research: Hermes Desktop one-click local models",
+    "url": "https://x.com/NousResearch/status/2095602995874410664",
+    "summary": "Hermes Desktop now sets up local models in one click, reading config and wiring the runtime automatically.",
+    "why": "The box we run on is Hermes-first; local inference is now a one-liner for client demos without API spend.",
+    "source": "x"
+   },
+   {
+    "id": "2095651107645145538",
+    "title": "ClaudeDevs: `ant apply` for Managed Agents",
+    "url": "https://x.com/ClaudeDevs/status/2095651107645145538",
+    "summary": "New `ant apply` command declares Claude Managed Agents declaratively from the CLI.",
+    "why": "Declarative agent config is the shape we want for repeatable client setups.",
+    "source": "x"
+   }
+  ]
+ },
+ "thin_sections": [],
+ "closing": "Python, Node, Next, DSPy, OpenRouter models, Hugging Face orgs, and Z.ai had nothing new in the window.",
+ "window": {
+  "since": "2026-09-03T12:00:00+00:00",
+  "until": "2026-09-04T12:30:00+00:00",
+  "hours": 24.5
+ },
+ "generated_by": "botterfly/pulse"
 }
