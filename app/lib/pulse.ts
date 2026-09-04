@@ -22,6 +22,7 @@ export type PulseIssue = {
     research: PulseItem[];
     releases: PulseItem[];
     hackernews: PulseItem[];
+    x_posts?: PulseItem[];
   };
   closing?: string;
   window?: { since: string; until: string };
@@ -34,6 +35,7 @@ const SECTION_ORDER: (keyof PulseIssue["sections"])[] = [
   "research",
   "releases",
   "hackernews",
+  "x_posts",
 ];
 
 export function listIssueDates(): string[] {

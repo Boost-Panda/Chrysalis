@@ -16,6 +16,7 @@ const SECTION_TITLES: Record<string, string> = {
   research: "Research",
   releases: "Releases",
   hackernews: "Hacker News",
+  x_posts: "People on X",
 };
 
 export async function generateMetadata({
