@@ -1,7 +1,7 @@
 {
  "date": "2026-09-04",
  "title": "The Pulse, Friday 4 September 2026",
- "tldr": "OpenAI shipped GPT-6 Astra, its first model rated Critical for cybersecurity capability, and Chollet's first look says the leap is real. Anthropic opened Claude Code up to custom tool extensions, and Nous Research shipped one-click local models in Hermes Desktop. Yesterday's simultaneous ChatGPT, Claude, and Grok outages are still unexplained.",
+ "tldr": "OpenAI shipped GPT-6 Astra, its first model rated Critical for cybersecurity capability, with strong eval gains across coding and reasoning. Anthropic opened Claude Code to custom tool extensions and Nous Research shipped one-click local models in Hermes Desktop. Yesterday's simultaneous ChatGPT, Claude, and Grok outages are still unexplained.",
  "sections": {
   "models": [
    {
