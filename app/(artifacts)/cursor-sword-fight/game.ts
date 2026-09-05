@@ -237,7 +237,7 @@ export function startGame(opts: {
   me.x = rect().width / 2;
   me.y = rect().height / 2;
 
-  function onMove(e: MouseEvent) {
+  function onMove(e: PointerEvent) {
     const r = rect();
     const nx = e.clientX - r.left;
     const ny = e.clientY - r.top;
@@ -258,8 +258,10 @@ export function startGame(opts: {
       broadcast({ t: "lunge", id: me.id, vx: me.vx, vy: me.vy });
     }
   }
-  canvas.parentElement!.addEventListener("mousemove", onMove);
-  canvas.parentElement!.addEventListener("mousedown", onDown);
+  const arena = canvas.parentElement!;
+  arena.addEventListener("pointermove", onMove);
+  arena.addEventListener("pointerdown", onDown);
+  arena.style.touchAction = "none"; // stop the page scrolling under the fight
 
   // ---- collision + scoring ----
   function checkHits() {
@@ -410,8 +412,8 @@ export function startGame(opts: {
   return () => {
     disposed = true;
     cancelAnimationFrame(raf);
-    canvas.parentElement?.removeEventListener("mousemove", onMove);
-    canvas.parentElement?.removeEventListener("mousedown", onDown);
+    canvas.parentElement?.removeEventListener("pointermove", onMove);
+    canvas.parentElement?.removeEventListener("pointerdown", onDown);
     for (const c of conns) c.close();
     peer?.destroy();
   };
