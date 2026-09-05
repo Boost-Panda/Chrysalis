@@ -177,9 +177,11 @@ export default function CursorSwordFightPage() {
             style={{
               position: "relative",
               height: "70vh",
+              minHeight: 320,
               border: "1px solid var(--cds-border-subtle)",
               cursor: "none",
               overflow: "hidden",
+              touchAction: "none",
             }}
           >
             <canvas
