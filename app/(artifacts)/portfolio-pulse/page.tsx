@@ -16,8 +16,10 @@ import {
   TableBody,
   TableCell,
   TextInput,
+  Button,
+  InlineNotification,
 } from "@carbon/react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Holding = {
   ticker: string;
@@ -68,6 +70,39 @@ export default function PortfolioPulsePage() {
   const [prices, setPrices] = useState<Record<string, string>>(
     Object.fromEntries(HOLDINGS.map((h) => [h.ticker, h.lastPrint.toString()]))
   );
+  const [asOf, setAsOf] = useState<string | null>(null);
+  const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  const refresh = useCallback(async () => {
+    setFetching(true);
+    setFetchError(null);
+    try {
+      const res = await fetch("/api/prices", { cache: "no-store" });
+      if (!res.ok) throw new Error(`API ${res.status}`);
+      const json = await res.json();
+      const next: Record<string, string> = {};
+      let fetchedAt: string | null = null;
+      for (const p of json.prices ?? []) {
+        if (typeof p.price === "number") {
+          next[p.symbol] = p.price.toString();
+          if (p.marketTime) fetchedAt = p.marketTime;
+        }
+      }
+      if (Object.keys(next).length === 0) throw new Error("no prices returned");
+      setPrices((prev) => ({ ...prev, ...next }));
+      setAsOf(fetchedAt ?? json.fetchedAt ?? null);
+    } catch (e) {
+      setFetchError(e instanceof Error ? e.message : "refresh failed");
+    } finally {
+      setFetching(false);
+    }
+  }, []);
+
+  // Fetch latest prices once on load.
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   const rows = useMemo(() => {
     return HOLDINGS.map((h) => {
@@ -119,12 +154,26 @@ export default function PortfolioPulsePage() {
         <Column lg={8} md={6} sm={4}>
           <p style={{ fontSize: "1.25rem", fontWeight: 300, lineHeight: 1.5, marginBottom: "2rem" }}>
             A ~$5k personal account: $4k in SpaceX, $1k in Nasdaq (QQQ).
-            Edit the price fields to re-price the book against the latest
-            print — figures below update live. Markets closed when published,
-            so prices are Friday&apos;s close.
+            Prices are fetched live (Yahoo Finance) on load and via the
+            Refresh button; the price fields stay editable if you want to
+            re-price manually.
           </p>
         </Column>
       </Grid>
+
+      {fetchError && (
+        <Grid style={{ marginBottom: "1rem" }}>
+          <Column lg={10} md={6} sm={4}>
+            <InlineNotification
+              kind="error"
+              title="Couldn't fetch live prices"
+              subtitle={`${fetchError} — showing the last known prices; use Refresh to retry.`}
+              hideCloseButton
+              lowContrast
+            />
+          </Column>
+        </Grid>
+      )}
 
       <Grid style={{ marginBottom: "2rem" }}>
           {[
@@ -153,7 +202,14 @@ export default function PortfolioPulsePage() {
         <Column lg={10} md={6} sm={4}>
           <DataTable rows={rows} headers={headers} size="md">
             {({ rows: tableRows, headers: tableHeaders, getTableProps, getHeaderProps, getRowProps, getTableContainerProps }) => (
-              <TableContainer title="Holdings" description={`Prices as of 2026-09-05; edit below to re-price`}>
+              <TableContainer
+                title="Holdings"
+                description={
+                  asOf
+                    ? `Prices as of ${new Date(asOf).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })} (US market time); edit below to re-price`
+                    : "Fetching latest prices…"
+                }
+              >
                 <Table {...getTableProps()} {...getTableContainerProps()}>
                   <TableHead>
                     <TableRow>
@@ -193,6 +249,14 @@ export default function PortfolioPulsePage() {
                   }
                 />
               ))}
+              <Button
+                kind="primary"
+                onClick={refresh}
+                disabled={fetching}
+                style={{ maxWidth: "100%" }}
+              >
+                {fetching ? "Refreshing…" : "Refresh prices"}
+              </Button>
             </div>
             <p style={{ fontSize: "0.75rem", color: "var(--cds-text-secondary)", marginTop: "1rem" }}>
               Cash on hand: {usd(CASH)}. Commissions paid: {usd(COMMISSIONS)}.
@@ -204,10 +268,10 @@ export default function PortfolioPulsePage() {
       <Grid style={{ paddingBottom: "4rem" }}>
         <Column lg={10} md={6} sm={4}>
           <p style={{ fontSize: "0.875rem", color: "var(--cds-text-secondary)" }}>
-            Static snapshot published 2026-09-05; no live market data — this
-            page has no backend. Re-enter the latest prices in the Re-price
-            panel to refresh the numbers. Personal account, not investment
-            advice.
+            Live prices via Yahoo Finance, fetched through this site&apos;s own
+            /api/prices route (Yahoo blocks direct browser calls). Market
+            days the figures track the latest print; weekends show Friday&apos;s
+            close. Personal account, not investment advice.
           </p>
         </Column>
       </Grid>
