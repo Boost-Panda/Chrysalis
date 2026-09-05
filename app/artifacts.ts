@@ -18,6 +18,13 @@ export const artifacts: Artifact[] = [
     published: "2026-09-03",
   },
   {
+    slug: "portfolio-pulse",
+    title: "Portfolio Pulse",
+    description:
+      "P&L dashboard for a ~$5k personal account ($4k SpaceX, $1k QQQ): holdings, cost basis, unrealized loss, and a re-price panel.",
+    published: "2026-09-05",
+  },
+  {
     slug: "hello",
     title: "Hello, Chrysalis",
     description:
