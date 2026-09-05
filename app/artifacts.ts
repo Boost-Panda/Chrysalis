@@ -24,4 +24,11 @@ export const artifacts: Artifact[] = [
       "First artifact: proves the Carbon setup and the publish flow end to end.",
     published: "2026-09-03",
   },
+  {
+    slug: "cursor-sword-fight",
+    title: "Cursor Sword Fight",
+    description:
+      "Multiplayer cursor swords: everyone on the page becomes a fencer, lunge with a click, clash in shared rooms over PeerJS.",
+    published: "2026-09-05",
+  },
 ];
