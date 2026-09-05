@@ -204,7 +204,7 @@ export default function PortfolioPulsePage() {
                 title="Holdings"
                 description={
                   asOf
-                    ? `Prices as of ${new Date(asOf).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })} (US market time); edit below to re-price`
+                    ? `Prices as of ${new Date(asOf).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })} (US market time)`
                     : "Fetching latest prices…"
                 }
               >
