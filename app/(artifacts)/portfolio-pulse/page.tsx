@@ -165,15 +165,11 @@ export default function PortfolioPulsePage() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {tableRows.map((r) => (
-                      <TableRow {...getRowProps({ row: r })} key={r.id}>
-                        {Object.keys(r)
-                          .filter((k) => !k.startsWith("_") && k !== "id" && k !== "name")
-                          .map((k) => (
-                            <TableCell key={k}>
-                              {String((r as unknown as Record<string, unknown>)[k])}
-                            </TableCell>
-                          ))}
+                    {rows.map((r) => (
+                      <TableRow key={r.id}>
+                        {headers.map((h) => (
+                          <TableCell key={h.key}>{r[h.key as keyof typeof r] as string}</TableCell>
+                        ))}
                       </TableRow>
                     ))}
                   </TableBody>
