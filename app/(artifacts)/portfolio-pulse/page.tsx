@@ -15,7 +15,6 @@ import {
   TableHeader,
   TableBody,
   TableCell,
-  TextInput,
   Button,
   InlineNotification,
 } from "@carbon/react";
@@ -154,9 +153,8 @@ export default function PortfolioPulsePage() {
         <Column lg={8} md={6} sm={4}>
           <p style={{ fontSize: "1.25rem", fontWeight: 300, lineHeight: 1.5, marginBottom: "2rem" }}>
             A ~$5k personal account: $4k in SpaceX, $1k in Nasdaq (QQQ).
-            Prices are fetched live (Yahoo Finance) on load and via the
-            Refresh button; the price fields stay editable if you want to
-            re-price manually.
+            Prices are fetched live (Yahoo Finance) on load or via the
+            Refresh button.
           </p>
         </Column>
       </Grid>
@@ -236,28 +234,19 @@ export default function PortfolioPulsePage() {
         </Column>
         <Column lg={4} md={2} sm={4}>
           <Tile>
-            <p style={{ fontWeight: 600, margin: "0 0 1rem 0" }}>Re-price</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              {HOLDINGS.map((h) => (
-                <TextInput
-                  key={h.ticker}
-                  id={`price-${h.ticker}`}
-                  labelText={`${h.ticker} price`}
-                  value={prices[h.ticker]}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setPrices((p) => ({ ...p, [h.ticker]: e.target.value }))
-                  }
-                />
-              ))}
-              <Button
-                kind="primary"
-                onClick={refresh}
-                disabled={fetching}
-                style={{ maxWidth: "100%" }}
-              >
-                {fetching ? "Refreshing…" : "Refresh prices"}
-              </Button>
-            </div>
+            <p style={{ fontWeight: 600, margin: "0 0 1rem 0" }}>Prices</p>
+            <p style={{ fontSize: "0.875rem", margin: "0 0 1rem 0" }}>
+              Fetched from Yahoo Finance when the page loads and whenever you
+              refresh.
+            </p>
+            <Button
+              kind="primary"
+              onClick={refresh}
+              disabled={fetching}
+              style={{ maxWidth: "100%" }}
+            >
+              {fetching ? "Refreshing…" : "Refresh prices"}
+            </Button>
             <p style={{ fontSize: "0.75rem", color: "var(--cds-text-secondary)", marginTop: "1rem" }}>
               Cash on hand: {usd(CASH)}. Commissions paid: {usd(COMMISSIONS)}.
             </p>
