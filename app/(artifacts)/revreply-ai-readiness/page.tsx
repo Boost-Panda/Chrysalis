@@ -241,6 +241,34 @@ function Assessment({ data, onLock }: { data: Assessment; onLock: () => void }) 
         </Grid>
       </section>
 
+      <section id="botterfly" className="rr-section rr-promo">
+        <Grid>
+          <Column lg={10} md={8} sm={4}>
+            <Reveal>
+              <p className="rr-eyebrow">{a.selfPromo.eyebrow}</p>
+              <h2 id="promo-title">{a.selfPromo.title}</h2>
+              <p className="rr-body">{a.selfPromo.body}</p>
+            </Reveal>
+          </Column>
+          <Column lg={16} md={8} sm={4}>
+            <Grid className="rr-promo-points">
+              {a.selfPromo.points.map((point, i) => (
+                <Column key={point.slice(0, 30)} lg={5} md={8} sm={4}>
+                  <Reveal delay={i * 110}>
+                    <Tile className="rr-promo-card"><Checkmark size={20} /><p>{point}</p></Tile>
+                  </Reveal>
+                </Column>
+              ))}
+            </Grid>
+          </Column>
+          <Column lg={16} md={8} sm={4}>
+            <Reveal delay={300}>
+              <p className="rr-promo-closing">{a.selfPromo.closing}</p>
+            </Reveal>
+          </Column>
+        </Grid>
+      </section>
+
       <section id="access" className="rr-section rr-closing">
         <Grid>
           <Column lg={10} md={8} sm={4}><Reveal><p className="rr-eyebrow">{a.access.eyebrow}</p><h2 id="closing-title">{a.access.title}</h2><p className="rr-lead">{a.access.lead}</p>
@@ -427,6 +455,12 @@ export default function RevReplyReadinessPage() {
         .rr-trace-failed .rr-trace-status { color: var(--cds-support-error); }
         .rr-trace-improvised .rr-trace-status { color: var(--cds-support-warning); }
         .rr .rr-access-list { margin: 1.5rem 0 2rem 1rem; }
+        .rr-promo { border-block: 1px solid var(--cds-border-subtle-01); background: linear-gradient(180deg, var(--cds-layer-02), var(--cds-background)); }
+        .rr-promo-points { margin-top: 2.5rem; row-gap: 1.5rem; }
+        .rr .rr-promo-card { padding: 1.5rem; height: 100%; border-top: 2px solid var(--rr-blue); }
+        .rr-promo-card svg { color: var(--rr-blue); margin-bottom: 1rem; }
+        .rr-promo-card p { font-size: 0.875rem; line-height: 1.6; color: var(--cds-text-secondary); }
+        .rr-promo-closing { font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 300; line-height: 1.3; margin-top: 3.5rem; color: var(--rr-blue); animation: rr-enter 900ms both; }
         .rr .rr-access-list .cds--list__item { color: var(--cds-text-secondary); font-size: 0.875rem; line-height: 1.6; padding-bottom: 0.6rem; }
         .rr-closing { background: var(--cds-layer-01); border-top: 1px solid var(--cds-border-subtle-01); }
         .rr-closing .cds--btn { margin-top: 2rem; }
