@@ -241,6 +241,55 @@ function Assessment({ data, onLock }: { data: Assessment; onLock: () => void }) 
         </Grid>
       </section>
 
+      <section id="speed" className="rr-section rr-speed">
+        <Grid>
+          <Column lg={10} md={8} sm={4}>
+            <Reveal>
+              <p className="rr-eyebrow">{a.speed.eyebrow}</p>
+              <h2 id="speed-title">{a.speed.title}</h2>
+              <p className="rr-body">{a.speed.body}</p>
+            </Reveal>
+          </Column>
+          <Column lg={16} md={8} sm={4}>
+            <Grid className="rr-speed-race">
+              <Column lg={8} md={8} sm={4}>
+                <Reveal>
+                  <Tile className="rr-speed-card rr-speed-before">
+                    <Tag type="red">{a.speed.before.label}</Tag>
+                    <div className="rr-speed-steps">
+                      {a.speed.before.items.map((item, i) => (
+                        <div className="rr-speed-step" key={item} style={{ "--rr-delay": `${i * 200}ms` } as CSSProperties}>
+                          <span className="rr-speed-dot" /><span>{item}</span><span className="rr-speed-days">+{[1, 4, 9, 14, 17][i]}d</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="rr-speed-total">~17 days per fix</p>
+                  </Tile>
+                </Reveal>
+              </Column>
+              <Column lg={8} md={8} sm={4}>
+                <Reveal delay={160}>
+                  <Tile className="rr-speed-card rr-speed-after">
+                    <Tag type="green">{a.speed.after.label}</Tag>
+                    <div className="rr-speed-steps">
+                      {a.speed.after.items.map((item, i) => (
+                        <div className="rr-speed-step rr-speed-step-fast" key={item} style={{ "--rr-delay": `${400 + i * 120}ms` } as CSSProperties}>
+                          <span className="rr-speed-dot" /><span>{item}</span><span className="rr-speed-days">{["2m", "3m", "4m", "8m", "11m"][i]}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="rr-speed-total rr-speed-total-fast">~11 minutes per fix</p>
+                  </Tile>
+                </Reveal>
+              </Column>
+            </Grid>
+            <Reveal delay={400}>
+              <p className="rr-promo-closing">{a.speed.closing}</p>
+            </Reveal>
+          </Column>
+        </Grid>
+      </section>
+
       <section id="botterfly" className="rr-section rr-promo">
         <Grid>
           <Column lg={10} md={8} sm={4}>
@@ -455,6 +504,18 @@ export default function RevReplyReadinessPage() {
         .rr-trace-failed .rr-trace-status { color: var(--cds-support-error); }
         .rr-trace-improvised .rr-trace-status { color: var(--cds-support-warning); }
         .rr .rr-access-list { margin: 1.5rem 0 2rem 1rem; }
+        .rr-speed-race { row-gap: 1.5rem; margin-top: 1rem; }
+        .rr .rr-speed-card { padding: 1.75rem; height: 100%; }
+        .rr-speed-before { border-top: 3px solid var(--cds-support-error); }
+        .rr-speed-after { border-top: 3px solid var(--cds-support-success); }
+        .rr-speed-steps { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+        .rr-speed-step { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--cds-text-secondary); opacity: 0; animation: rr-slide-in 500ms both; animation-delay: var(--rr-delay); }
+        .rr-speed-dot { flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--cds-support-error); }
+        .rr-speed-step-fast .rr-speed-dot { background: var(--cds-support-success); }
+        .rr-speed-step-fast { animation-duration: 350ms; }
+        .rr-speed-days { margin-left: auto; font-variant-numeric: tabular-nums; font-size: 0.75rem; color: var(--cds-text-secondary); }
+        .rr-speed-total { margin-top: 1.75rem; font-size: 1.5rem; font-weight: 300; color: var(--cds-text-primary); }
+        .rr-speed-total-fast { color: var(--cds-support-success); }
         .rr-promo { border-block: 1px solid var(--cds-border-subtle-01); background: linear-gradient(180deg, var(--cds-layer-02), var(--cds-background)); }
         .rr-promo-points { margin-top: 2.5rem; row-gap: 1.5rem; }
         .rr .rr-promo-card { padding: 1.5rem; height: 100%; border-top: 2px solid var(--rr-blue); }
@@ -479,7 +540,7 @@ export default function RevReplyReadinessPage() {
         @keyframes rr-slide-in { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
         @media (min-width: 66rem) { .rr-gate-card { position: relative; top: 1rem; } }
         @media (max-width: 65.99rem) { .rr-orbit-wrap { margin-top: 3rem; } .rr-nav { gap: 1rem; flex-wrap: wrap; } .rr-masthead { flex-wrap: wrap; } .rr-closing-note { margin-top: 3rem; } .rr-trace-step { grid-template-columns: 3.5rem 1fr; } .rr-trace-detail { grid-column: 1 / -1; } .rr-trace-status { text-align: left; } }
-        @media (max-width: 41.99rem) { .rr-masthead, .rr-nav { padding: 1rem; } .rr-tags { gap: 0; } .rr-section { padding: 3.5rem 0; } .rr-gate { padding-top: 2rem; } .rr .rr-gate-card { padding: 1.5rem; margin-top: 0; } .rr-gate-footer, .rr-footer { flex-direction: column; margin-inline: 1rem; } .rr-hero-actions { align-items: flex-start; flex-direction: column; } .rr .rr-disclaimer { flex-direction: column; align-items: flex-start; gap: 0.75rem; } .rr .rr-seat { padding: 1.5rem; flex-direction: column-reverse; } .rr-seat-score, .rr-seat-wide .rr-seat-score { flex-basis: auto; align-self: flex-start; padding-top: 0; } .rr-gauge { width: 110px; height: 110px; } .rr .rr-finding { flex-direction: column; gap: 1rem; padding: 2rem 0; } .rr-stats { grid-template-columns: repeat(2, 1fr); } .rr-nav .cds--btn { margin-left: 0; } .rr-nav a { padding-block: 0.5rem; } }
+        @media (max-width: 41.99rem) { .rr-masthead, .rr-nav { padding: 1rem; } .rr-tags { gap: 0; } .rr-section { padding: 3.5rem 0; } .rr-gate { padding-top: 2rem; } .rr .rr-gate-card { padding: 1.5rem; margin-top: 0; } .rr-gate-footer, .rr-footer { flex-direction: column; margin-inline: 1rem; } .rr-hero-actions { align-items: flex-start; flex-direction: column; } .rr .rr-disclaimer { flex-direction: column; align-items: flex-start; gap: 0.75rem; } .rr .rr-seat { padding: 1.5rem; flex-direction: column-reverse; } .rr-seat-score, .rr-seat-wide .rr-seat-score { flex-basis: auto; align-self: flex-start; padding-top: 0; } .rr-gauge { width: 110px; height: 110px; } .rr .rr-finding { flex-direction: column; gap: 1rem; padding: 2rem 0; } .rr-stats { grid-template-columns: repeat(2, 1fr); } .rr-nav .cds--btn { margin-left: 0; } .rr-nav a { padding-block: 0.5rem; } .rr .rr-speed-card { padding: 1.25rem; } .rr-speed-step { font-size: 0.8125rem; gap: 0.6rem; } .rr-speed-days { font-size: 0.6875rem; flex-shrink: 0; } .rr .rr-trace-step { grid-template-columns: 3rem 1fr; gap: 0.6rem; } }
         @media (prefers-reduced-motion: no-preference) { html:has(.rr) { scroll-behavior: smooth; } }
         @media (prefers-reduced-motion: reduce) { .rr *, .rr *::before, .rr *::after { animation: none !important; transition: none !important; } .rr-reveal[data-motion] { opacity: 1; transform: none; } }
         @media print { .rr-nav, .rr-closing .cds--btn { display: none; } .rr-reveal[data-motion] { opacity: 1; transform: none; } .rr-section { padding-block: 2rem; } .rr-trace-step, .rr-finding { break-inside: avoid; } }
