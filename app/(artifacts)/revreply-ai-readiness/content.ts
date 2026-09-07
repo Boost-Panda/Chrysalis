@@ -216,6 +216,20 @@ export const ASSESSMENT = {
       ["Anything already built", "toward a harness or the classifier, so I do not rebuild what exists"],
     ],
   },
+  speed: {
+    eyebrow: "The difference this makes",
+    title: "From days to minutes.",
+    body: "Today a misclassified ticket can sit for days: someone notices, reproduces it, finds the similar case they half-remember, waits for a fix, and hopes the fix reaches production safely. With the shared layer, the same ticket is triaged against every past case in seconds, the fix is proposed as a pull request with the trace attached, and a human approves it — the whole loop in minutes, not days.",
+    before: {
+      label: "Today",
+      items: ["Ticket noticed by a person", "Manually reproduced", "Similar case hunted from memory", "Fix queued behind other work", "Unverified push to production"],
+    },
+    after: {
+      label: "With the shared layer",
+      items: ["Agent triages on arrival", "Reproduction started automatically", "Similar cases attached in seconds", "Fix proposed as a pull request", "Human approves, gate verified"],
+    },
+    closing: "Triage and fix, measured in minutes. That is the difference a shared memory makes.",
+  },
   selfPromo: {
     eyebrow: "One more thing",
     title: "This page is the demo.",
