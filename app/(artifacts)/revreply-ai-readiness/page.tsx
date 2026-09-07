@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { Button, Column, Grid, ListItem, PasswordInput, Stack, Tag, Tile, UnorderedList } from "@carbon/react";
 import { ArrowRight, Checkmark, Locked, Renew } from "@carbon/icons-react";
 import type { Assessment } from "./content";
+import { SharedLayerDiagram, WikiFlowDiagram, AgentFlowDiagram } from "./diagrams";
 
 const PUBLISHED = "2026-09-07";
 
@@ -192,21 +193,7 @@ function Assessment({ data, onLock }: { data: Assessment; onLock: () => void }) 
           ))}
         </Grid>
 
-        <Grid className="rr-layers">
-          <Column lg={8} md={8} sm={4}>
-            <Reveal><Tile className="rr-layer rr-layer-today">
-              <Tag type="red">{a.layers.today.title}</Tag>
-              <UnorderedList>{a.layers.today.items.map(([name, note]) => <ListItem key={name}><strong>{name}</strong> — {note}</ListItem>)}</UnorderedList>
-            </Tile></Reveal>
-          </Column>
-          <Column lg={8} md={8} sm={4}>
-            <Reveal delay={140}><Tile className="rr-layer rr-layer-proposed">
-              <Tag type="green">{a.layers.proposed.title}</Tag>
-              <UnorderedList>{a.layers.proposed.items.map(([name, note]) => <ListItem key={name}><strong>{name}</strong> — {note}</ListItem>)}</UnorderedList>
-            </Tile></Reveal>
-          </Column>
-          <Column lg={16} md={8} sm={4}><Reveal><p className="rr-caption rr-layers-caption">{a.layers.caption}</p></Reveal></Column>
-        </Grid>
+        <Reveal><Tile className="rr-diagram-tile"><SharedLayerDiagram /></Tile></Reveal>
       </section>
 
       <section id="plan" className="rr-section rr-plan">
@@ -215,6 +202,8 @@ function Assessment({ data, onLock }: { data: Assessment; onLock: () => void }) 
           <Column lg={16} md={8} sm={4}><Reveal><Tile className="rr-plan-block"><Tag type="blue">{a.plan.first.label}</Tag><h3>{a.plan.first.title}</h3><UnorderedList>{a.plan.first.items.map(item => <ListItem key={item.slice(0, 40)}>{item}</ListItem>)}</UnorderedList></Tile></Reveal></Column>
           <Column lg={16} md={8} sm={4}><Reveal delay={120}><Tile className="rr-plan-block"><Tag type="blue">{a.plan.repos.label}</Tag><h3>{a.plan.repos.title}</h3>{a.plan.repos.items.map(repo => <div key={repo.name} className="rr-plan-item"><h4>{repo.name}</h4><p className="rr-body">{repo.body}</p></div>)}</Tile></Reveal></Column>
           <Column lg={16} md={8} sm={4}><Reveal delay={200}><Tile className="rr-plan-block"><Tag type="blue">{a.plan.agent.label}</Tag><h3>{a.plan.agent.title}</h3><UnorderedList>{a.plan.agent.items.map(item => <ListItem key={item.slice(0, 40)}>{item}</ListItem>)}</UnorderedList></Tile></Reveal></Column>
+          <Column lg={16} md={8} sm={4}><Reveal><Tile className="rr-diagram-tile"><WikiFlowDiagram /></Tile></Reveal></Column>
+          <Column lg={16} md={8} sm={4}><Reveal delay={120}><Tile className="rr-diagram-tile"><AgentFlowDiagram /></Tile></Reveal></Column>
         </Grid>
       </section>
 
@@ -257,7 +246,7 @@ function Assessment({ data, onLock }: { data: Assessment; onLock: () => void }) 
           <Column lg={10} md={8} sm={4}><Reveal><p className="rr-eyebrow">{a.access.eyebrow}</p><h2 id="closing-title">{a.access.title}</h2><p className="rr-lead">{a.access.lead}</p>
             <UnorderedList className="rr-access-list">{a.access.items.map(([name, note]) => <ListItem key={name}><strong>{name}</strong> — {note}</ListItem>)}</UnorderedList>
             <Button renderIcon={ArrowRight} aria-expanded={agendaOpen} aria-controls="discovery-agenda" onClick={() => setAgendaOpen(!agendaOpen)}>{agendaOpen ? "Hide the conversation guide" : "Prepare our first conversation"}</Button>
-            {agendaOpen && <Tile id="discovery-agenda" className="rr-agenda"><h3>Your discovery conversation</h3><p>Reply to Ali with these three things:</p><UnorderedList><ListItem>One repetitive workflow and the person who owns it.</ListItem><ListItem>A description of the tools and data involved — no sensitive records.</ListItem><ListItem>What a better outcome would look like, and what must not go wrong.</ListItem></UnorderedList></Tile>}
+            {agendaOpen && <Tile id="discovery-agenda" className="rr-agenda"><h3>Your discovery conversation</h3><p>Reply to Ali to arrange it.</p></Tile>}
           </Reveal></Column>
           <Column lg={6} md={8} sm={4}><Reveal delay={180} className="rr-closing-note"><Renew size={32} /><p>Fix the process.<br />Build the shared layer.<br />Then generate responses.</p></Reveal></Column>
         </Grid>
@@ -391,6 +380,37 @@ export default function RevReplyReadinessPage() {
         .rr-plan { background: var(--cds-layer-01); border-block: 1px solid var(--cds-border-subtle-01); }
         .rr-plan .rr-cards, .rr-plan .cds--css-grid { row-gap: 1.5rem; }
         .rr .rr-plan-block { padding: 2rem; height: 100%; }
+        .rr-diagram-tile { padding: 1.5rem; background: var(--cds-background); overflow-x: auto; }
+        .rr-diagram-tile svg { width: 100%; min-width: 640px; height: auto; display: block; }
+        .rr-diagram-title { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; fill: var(--cds-text-secondary); }
+        .rr-diagram-title-blue { fill: var(--rr-blue); }
+        .rr-diagram-note { font-size: 11px; fill: var(--cds-text-secondary); }
+        .rr-node rect { fill: var(--cds-layer-01); stroke: var(--cds-border-subtle-01); stroke-width: 1; }
+        .rr-node-title { font-size: 13px; font-weight: 600; fill: var(--cds-text-primary); text-anchor: middle; }
+        .rr-node-sub { font-size: 11px; fill: var(--cds-text-secondary); text-anchor: middle; }
+        .rr-node-sub-left { text-anchor: start; }
+        .rr-node { opacity: 0; animation: rr-node-in 600ms both; animation-delay: var(--rr-delay, 0ms); transition: transform 200ms; }
+        .rr-node:hover { transform: translateY(-2px); }
+        .rr-node rect { transition: stroke 200ms, fill 200ms; }
+        .rr-node-today rect { stroke: var(--cds-support-error); fill: var(--cds-layer-02); }
+        .rr-node-today .rr-node-title, .rr-node-today ~ .rr-node-title { fill: var(--cds-text-secondary); }
+        .rr-node-repo rect { stroke: var(--rr-blue); stroke-width: 1.5; fill: var(--cds-layer-01); }
+        .rr-node-repo .rr-node-title { fill: var(--rr-blue); }
+        .rr-node-source rect { fill: var(--cds-layer-02); stroke-dasharray: 3 2; }
+        .rr-node-consumer rect { fill: var(--cds-layer-02); }
+        .rr-node-hub rect { stroke: var(--rr-blue); stroke-width: 2; }
+        .rr-node-event rect { fill: var(--cds-layer-02); }
+        .rr-node-action rect { stroke: var(--cds-support-success); }
+        .rr-wire { stroke: var(--cds-border-interactive); stroke-width: 1.5; stroke-dasharray: 6 5; opacity: 0; animation: rr-wire-draw 900ms both, rr-wire-flow 1.6s linear infinite 1.6s; animation-delay: var(--rr-delay, 0ms), 1.8s; }
+        .rr-wire-strong { stroke-width: 2.5; stroke-dasharray: none; }
+        .rr-wire-return { stroke: var(--cds-support-success); }
+        .rr-arrowhead { fill: var(--cds-border-interactive); }
+        .rr-arrowhead-return { fill: var(--cds-support-success); }
+        .rr-fix-arrow, .rr-return-flow { opacity: 0; animation: rr-node-in 600ms both; animation-delay: var(--rr-delay, 0ms); }
+        @keyframes rr-node-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        @keyframes rr-wire-draw { from { stroke-dashoffset: 200; opacity: 0.4; } to { stroke-dashoffset: 0; opacity: 1; } }
+        @keyframes rr-wire-flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -22; } }
+        @media (prefers-reduced-motion: reduce) { .rr-node, .rr-wire, .rr-fix-arrow, .rr-return-flow { animation: none; opacity: 1; } .rr-wire { stroke-dasharray: none; } }
         .rr-plan-block h3 { margin: 1rem 0 1.5rem; }
         .rr .rr-plan-block .cds--list--unordered { margin-left: 1rem; }
         .rr .rr-plan-block .cds--list__item { color: var(--cds-text-secondary); font-size: 0.875rem; line-height: 1.6; padding-bottom: 0.6rem; }
