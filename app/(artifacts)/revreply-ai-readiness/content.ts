@@ -6,7 +6,7 @@ import { timingSafeEqual } from "crypto";
 export type Finding = { n: string; title: string; body: string; aside?: string };
 
 // PASSWORD: Ali sets the real one before sharing the link.
-const PASSWORD = "CHANGEME-PENDING";
+const PASSWORD = "RevReply2026!";
 
 export function checkPassword(input: string): boolean {
   const a = Buffer.from(input);
