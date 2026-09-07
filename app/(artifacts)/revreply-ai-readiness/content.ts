@@ -216,6 +216,17 @@ export const ASSESSMENT = {
       ["Anything already built", "toward a harness or the classifier, so I do not rebuild what exists"],
     ],
   },
+  selfPromo: {
+    eyebrow: "One more thing",
+    title: "This page is the demo.",
+    body: "You are not looking at a deck an agency assembled. This assessment — the gated page, the diagrams, the build and deploy behind it — was produced by Botterfly, BoostPanda's agentic engineering system, working the same way the shared agent above would work in yours: a knowledge base it maintains, a library of skills it loads per job, every action verified before it reports done.",
+    points: [
+      "A wiki of everything learned — repos, decisions, runbooks — that any session can reference, so nothing lives only in one person's head.",
+      "A skills repo where each job has a procedure: the same review, the same rigor, every time.",
+      "Every claim on this page was verified against the real build before it reached you. That discipline is what we propose to bring to RevReply.",
+    ],
+    closing: "The plan above is not a theory. It is how this was built.",
+  },
 } as const;
 
 export type Assessment = typeof ASSESSMENT;
