@@ -1,0 +1,81 @@
+{
+  "date": "2026-09-08",
+  "title": "The Pulse — September 8, 2026",
+  "tldr": "Quiet overnight in models and research. What moved: bzip3 compression hitting HN with strong numbers, vLLM shipping speculative decoding on AMD, and François Chollet drawing a line on what AGI actually means — invention, not just pattern matching.",
+  "thin_sections": ["models", "research", "releases"],
+  "closing": "Models, Research, and Releases: nothing notable in the window.",
+  "sections": {
+    "models": [],
+    "research": [],
+    "releases": [],
+    "hackernews": [
+      {
+        "id": "49598291",
+        "title": "bzip3",
+        "url": "https://github.com/iczelia/bzip3",
+        "summary": "Better-than-bzip2 compression with stronger ratios and faster decompression, hitting 392 points and real discussion on HN.",
+        "why": "File transfer and storage matter for every service we run; a drop-in upgrade that saves bandwidth is worth testing.",
+        "source": "hackernews",
+        "hn_url": "https://news.ycombinator.com/item?id=49598291"
+      },
+      {
+        "id": "49596054",
+        "title": "Speculative Decoding in vLLM on AMD GPUs",
+        "url": "https://vllm.ai/blog/2026-08-23-speculative-decoding-amd-gpus",
+        "summary": "vLLM now supports speculative decoding on AMD MI300X, cutting inference latency for drafting + verification flows.",
+        "why": "Speculative decoding is how we speed up long-context and constrained generation; vLLM on AMD opens non-NVIDIA paths for our inference stack.",
+        "source": "hackernews",
+        "hn_url": "https://news.ycombinator.com/item?id=49596054"
+      },
+      {
+        "id": "49604150",
+        "title": "TALA Is Open-Source",
+        "url": "https://d2lang.com/blog/tala-is-open-source/",
+        "summary": "D2's auto-layout engine TALA is now open-source, the code behind programmatic diagram layout.",
+        "why": "Chrysalis uses programmatic diagrams; a production-grade layout engine is a candidate for architecture and flow visualizations.",
+        "source": "hackernews",
+        "hn_url": "https://news.ycombinator.com/item?id=49604150"
+      },
+      {
+        "id": "49601338",
+        "title": "AI models ran real businesses: They sent $12,431 in fake invoices, lost $3,200",
+        "url": "https://www.bottlenecklabs.com/blog/benchmarking-7-autonomous-businesses",
+        "summary": "Bottleneck Labs benchmarked 7 frontier models running autonomous businesses with real money; all failed, some spectacularly.",
+        "why": "We ship agentic tools; this is a reality check on what current models can and cannot handle unsupervised, and where the human gate stays mandatory.",
+        "source": "hackernews",
+        "hn_url": "https://news.ycombinator.com/item?id=49601338"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2097058741325881442",
+        "title": "François Chollet on declaring AGI",
+        "url": "https://x.com/fchollet/status/2097058741325881442",
+        "summary": "Chollet: AGI's bar is invention — conceptual breakthroughs, novel insights — not just scaling pattern matching.",
+        "why": "Shapes how we think about agent capabilities and what 'reasoning' actually means when we design systems that need to generalize beyond training.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097011536367931596",
+        "title": "shadcn on agentic coding with personal component libraries",
+        "url": "https://x.com/shadcn/status/2097011536367931596",
+        "summary": "Maintaining a personal component library (starting with shadcn/ui) is a force multiplier for agentic coding — agents customize them well, and every project starts with your defaults.",
+        "why": "We scaffold Next.js apps constantly; a BoostPanda component library seeded from shadcn/ui would let Botterfly and Claude Code start every build with our house style baked in.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097027173941141799",
+        "title": "Addy Osmani on multi-agent code review",
+        "url": "https://x.com/addyosmani/status/2097027173941141799",
+        "summary": "Osmani's review flow: every PR gets a multi-agent first pass (find bugs, verify, rank, suggest fixes); human approval stays the gate for anything that matters.",
+        "why": "Directly mirrors our wehshi panel and the pushback learning loop; validates the approach and confirms the gate placement.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "window": {
+    "since": "2026-09-07T04:30:29+00:00",
+    "until": "2026-09-08T04:30:29+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
