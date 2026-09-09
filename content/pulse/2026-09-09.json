@@ -1,0 +1,156 @@
+{
+  "date": "2026-09-09",
+  "title": "The Pulse, Tuesday 9 September 2026",
+  "tldr": "OpenAI claims a solution to the Navier-Stokes Millennium Prize problem with an AI-generated proof in Lean, drawing immediate scrutiny from mathematicians. Mistral raised €3B, the largest equity round in European tech history. Meta launched Muse, a personal AI agent with long-term memory; Addy Osmani joined Anthropic to work on Claude Code.",
+  "sections": {
+    "models": [
+      {
+        "id": "inception/mercury-2.5",
+        "title": "Inception: Mercury 2.5",
+        "url": "https://openrouter.ai/inception/mercury-2.5",
+        "summary": "Diffusion LLM that generates and refines multiple tokens in parallel rather than sequentially, 4¢/M prompt tokens.",
+        "why": "Parallel token generation could reduce latency for longer agent responses if the approach generalizes beyond the vendor's benchmarks.",
+        "source": "openrouter"
+      },
+      {
+        "id": "nex-agi/nex-n2.5-pro",
+        "title": "Nex AGI: Nex-N2.5-Pro",
+        "url": "https://openrouter.ai/nex-agi/nex-n2.5-pro",
+        "summary": "Free agentic coding model with visual feedback loop, multimodal input, 262k context.",
+        "why": "Another free agentic coder joins the Claude Code / Codex competitive space; worth testing against our coding workflows.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.05441",
+        "title": "When Does Memory Help? A Cost-Aware Evaluation of Long-Term Memory in Tool-Using LLM Agents",
+        "url": "https://arxiv.org/abs/2609.05441",
+        "summary": "MERIT benchmark measures whether remembered facts change what an agent does, not just conversational recall accuracy.",
+        "why": "Directly relevant to our agent memory work in Hermes and Botterfly—evaluates if memory improves decisions, not just recall.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.08273",
+        "title": "MemForest: Efficient Agent Memory Management via EventTree Partitioning and Progressive Merging",
+        "url": "https://arxiv.org/abs/2609.08273",
+        "summary": "Memory compression framework to reduce storage and retrieval costs during long-term agent inference.",
+        "why": "Compression that preserves retrieval quality matters for production agents with accumulated context; applicable to our memory layer.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.06702",
+        "title": "PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents",
+        "url": "https://arxiv.org/abs/2609.06702",
+        "summary": "Decouples document reading from reasoning, processing chunks in parallel to reduce latency and evidence-placement sensitivity.",
+        "why": "Parallel reading would help our retrieval-heavy flows in Pipeline's clients and SalesKick's call grading where documents are long.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.08887",
+        "title": "Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems",
+        "url": "https://arxiv.org/abs/2609.08887",
+        "summary": "Benchmark pairing large-scale corpus with agent-reformulated search queries based on real conversations.",
+        "why": "Tests retrieval in the way we actually use it—agents reformulating queries across conversation turns in production RAG.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "385086343",
+        "title": "Node.js v24.21.0 'Krypton' (LTS)",
+        "url": "https://github.com/nodejs/node/releases/tag/v24.21.0",
+        "summary": "LTS release with NSS 3.126 root certificates, OpenSSL 3.5.8, Undici 7.29.1, and performance improvements to net.BlockList.",
+        "why": "Our Next.js services and edge functions depend on current Node LTS; certificate and dependency updates matter for security.",
+        "source": "github"
+      },
+      {
+        "id": "384796673",
+        "title": "langchain-openai 1.6.1",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.1",
+        "summary": "Fixes Azure AD auth with OpenAI 3.8, adds async tools support and configuration_update, routes gpt-5.6-sol correctly.",
+        "why": "We use LangChain's OpenAI integration for SalesKick; async tools and routing fixes reduce integration friction.",
+        "source": "github"
+      },
+      {
+        "id": "384728311",
+        "title": "Langfuse v4.32.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.32.0",
+        "summary": "Alerts when a labeled preview is not serving, export data freshness metrics, fixes dataset metric reads when preview enabled.",
+        "why": "We rely on Langfuse observability for agent calls; alerting on broken previews and export freshness helps catch stale monitoring.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49613262",
+        "title": "On the Navier–Stokes Millennium Prize Problem",
+        "url": "https://openai.com/index/navier-stokes-solution",
+        "hn_url": "https://news.ycombinator.com/item?id=49613262",
+        "summary": "OpenAI claims an AI-generated solution to the Navier-Stokes problem with a formal proof in Lean; 1022 comments, significant mathematician skepticism.",
+        "why": "If verified, this reshapes what reasoning models can tackle; if not, it's a cautionary tale for publishing AI-generated proofs without peer review.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49605767",
+        "title": "Mistral raises €3B",
+        "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
+        "hn_url": "https://news.ycombinator.com/item?id=49605767",
+        "summary": "Series D at €21B post-money valuation, three years after launch, largest equity round in European tech history.",
+        "why": "Mistral's open-weight models are on our evaluation list for cost-sensitive workloads; continued funding keeps them in the race.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49615537",
+        "title": "Muse – Meta's personal AI agent",
+        "url": "https://ai.meta.com/muse",
+        "hn_url": "https://news.ycombinator.com/item?id=49615537",
+        "summary": "Personal agent with long-term memory and proactive task suggestions, powered by Muse Spark 1.3.",
+        "why": "Meta entering personal agent space with memory shows the category maturing; patterns here apply to our assistant and scheduling work.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49610631",
+        "title": "I-have-ADHD: A skill to stop coding agents from burying the answer",
+        "url": "https://github.com/ayghri/i-have-adhd",
+        "hn_url": "https://news.ycombinator.com/item?id=49610631",
+        "summary": "Hermes skill forcing agents to lead with the answer and put context second; 360 points, resonated with agent users.",
+        "why": "This is a Hermes skill gaining traction in the wild—validates our agent framework and shows what users actually want from output structure.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2097210828659564642",
+        "title": "Addy Osmani joins Anthropic",
+        "url": "https://x.com/addyosmani/status/2097210828659564642",
+        "summary": "Addy Osmani (ex-Google Chrome, developer tooling) announced he joined Anthropic to work on Claude Code.",
+        "why": "High-profile dev tooling hire signals Anthropic is deepening Claude Code investment; we track that product closely for coding workflows.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097399255975813387",
+        "title": "GPT-Image-2.5 Flare and Sunburst",
+        "url": "https://x.com/OpenAIDevs/status/2097399255975813387",
+        "summary": "New image models in the OpenAI API with sharper detail, stronger style adherence, more control over edits.",
+        "why": "We use OpenAI's image models for content generation in campaigns; better style adherence reduces iteration cycles.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097403926072987986",
+        "title": "Hermes in Omarchy",
+        "url": "https://x.com/NousResearch/status/2097403926072987986",
+        "summary": "Hermes Agent now has first-class support in Omarchy, DHH's Arch-based agentic Linux distribution, with desktop app and CLI.",
+        "why": "Hermes is our agent framework; seeing it ship in a distro validates the approach and grows the ecosystem we're building on.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-09-08T04:30:29+00:00",
+    "until": "2026-09-09T04:30:29+00:00"
+  },
+  "generated_by": "botterfly/pulse",
+  "thin_sections": []
+}
