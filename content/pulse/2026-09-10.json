@@ -1,0 +1,158 @@
+{
+  "date": "2026-09-10",
+  "title": "The Pulse, Wednesday 10 September 2026",
+  "tldr": "OpenAI launched GPT-6 Astra with looped transformers, computer use, and reasoning effort controls—it's their new flagship for work and a direct shot at Claude's agent niche. Shopify acquired Tailwind CSS. OpenRouter launched US in-region routing alongside their existing EU option, keeping inference inside national borders.",
+  "sections": {
+    "models": [],
+    "research": [
+      {
+        "id": "2609.09404",
+        "title": "An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks",
+        "url": "https://arxiv.org/abs/2609.09404",
+        "summary": "MMPIBench evaluates image-based prompt injection on multi-modal agents that can call tools and access files; agents frequently obey instructions hidden in images.",
+        "why": "Multi-modal agents are a next step for voice workflows; knowing the image-injection surface matters before we put images into agent context.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.09875",
+        "title": "AgentAudit: An Open, Extensible Framework for Full-Lifecycle Trust Evaluation of AI Agents",
+        "url": "https://arxiv.org/abs/2609.09875",
+        "summary": "Evaluation framework covering the complete agent pipeline—planning, tool selection, execution, memory, reasoning—instead of just task completion.",
+        "why": "Our agent QA needs to pinpoint where failures happen; this offers a structured way to test each stage separately.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.10266",
+        "title": "KVShareArena: KV-Cache Reuse Across Contexts and Model Checkpoints",
+        "url": "https://arxiv.org/abs/2609.10266",
+        "summary": "Reuses KV caches when retrieved chunks appear mid-prompt instead of only at the start, targeting RAG and multi-agent report reading.",
+        "why": "RAG with dynamic chunk order is our Pipeline retrieval pattern; cache reuse here would cut prefill costs noticeably.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.09233",
+        "title": "Subagents vs Agent Skills: Executing Reusable Knowledge for Long-Horizon Agentic Tasks",
+        "url": "https://arxiv.org/abs/2609.09233",
+        "summary": "Compares multi-file skill packages with spawning subagents for reusable capabilities; finds skills more reliable for deterministic subtasks.",
+        "why": "Hermes uses skill packages heavily; this validates the approach and tells us when to prefer skills over delegation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.10441",
+        "title": "ConvMem: Convolutional Memory for Long-Context Reasoning",
+        "url": "https://arxiv.org/abs/2609.10441",
+        "summary": "Parallel memory updates instead of sequential segment reading to handle extremely long contexts more efficiently.",
+        "why": "Long context appears in our legislative research and call transcripts; faster memory updates would help agents stay under latency budgets.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "385666184",
+        "title": "Node.js v26.8.2 (Current)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.8.2",
+        "summary": "Current release with OpenSSL 3.5.8, Undici 8.10.2, and riscv64 build improvements.",
+        "why": "We track Current for upcoming LTS features; this brings security updates we'll inherit when 26 becomes LTS.",
+        "source": "github"
+      },
+      {
+        "id": "385855336",
+        "title": "langchain-openai 1.6.2",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.2",
+        "summary": "Adds GPT-6 Astra reasoning effort support and bumps httpx2 to 2.12.0.",
+        "why": "LangChain catching up to GPT-6 Astra's new API means we can test reasoning effort in our SalesKick flows today.",
+        "source": "github"
+      },
+      {
+        "id": "385663591",
+        "title": "Langfuse v4.33.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.33.0",
+        "summary": "Optional startTime on observation GET, has/-has: filter hints, prompt name in playground, and performance improvements.",
+        "why": "Langfuse observability covers our agent calls; the playground prompt-name feature helps debug chains faster.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49627370",
+        "title": "GPT-6 Astra, looped transformers, and hidden reasoning",
+        "url": "https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and",
+        "hn_url": "https://news.ycombinator.com/item?id=49627370",
+        "summary": "Sebastian Raschka's deep dive on GPT-6 Astra's looped transformer architecture, cost tradeoffs, and whether reasoning traces remain visible.",
+        "why": "GPT-6 Astra is OpenAI's new flagship; understanding the architecture matters when we evaluate it against Claude for agent work.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49626190",
+        "title": "Shopify acquires Tailwind",
+        "url": "https://tailwindcss.com/blog/tailwind-is-joining-shopify",
+        "hn_url": "https://news.ycombinator.com/item?id=49626190",
+        "summary": "Adam Wathan and the Tailwind team join Shopify; Tailwind CSS remains MIT-licensed and development continues.",
+        "why": "We use Tailwind across Pipeline, SalesKick, and our internal tools; this keeps it resourced but shifts governance to Shopify.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49624603",
+        "title": "DeepSeek launching v4.1 flash cheaper and more capable than v4 pro",
+        "url": "https://news.ycombinator.com/item?id=49624603",
+        "hn_url": "https://news.ycombinator.com/item?id=49624603",
+        "summary": "DeepSeek v4.1 flash beats v4 pro on benchmarks at lower cost; discussion on whether the pro tier still makes sense.",
+        "why": "We evaluate DeepSeek for cost-sensitive production workloads; a cheaper model that beats the expensive one shifts our testing priorities.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49623754",
+        "title": "Claude, change the \"Add to Cart\" button to blue",
+        "url": "https://opusfived.dev/",
+        "hn_url": "https://news.ycombinator.com/item?id=49623754",
+        "summary": "Live demo of Claude editing a running e-commerce site via natural language commands; 1065 points, strong execution discussion.",
+        "why": "Direct UI manipulation with NL commands is a pattern we're exploring for campaign editing; this shows a polished version of that interaction.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49630026",
+        "title": "Qwen 3.8 follows GPT-5.5 Pro reasoning prefills",
+        "url": "https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3",
+        "hn_url": "https://news.ycombinator.com/item?id=49630026",
+        "summary": "Qwen 3.8 appears to use a reasoning prefill structure similar to GPT-5.5 Pro; gist analyzes the prompt format.",
+        "why": "Reasoning prefills shape how we structure agent prompts; knowing Qwen adopted this pattern helps us write portable prompts.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2097786823909192140",
+        "title": "François Chollet: ZeroModels",
+        "url": "https://x.com/fchollet/status/2097786823909192140",
+        "summary": "François Chollet announced ZeroModels—100+ model families with pretrained weights in Keras 3, backend-agnostic.",
+        "why": "ZeroModels plus KerasHub gives us a unified interface to run foundation models across backends; simplifies model eval and switching.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097639365644279857",
+        "title": "Coding agent setup with shared brain",
+        "url": "https://x.com/Av1dlive/status/2097639365644279857",
+        "summary": "Thread on setting up Agentic Stack as a local shared knowledge layer across multiple coding agents to avoid re-explaining the project.",
+        "why": "Our agents (Claude Code, Codex, Hermes) all re-learn the same project context; a shared brain pattern would cut onboarding token costs.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2097763537447973112",
+        "title": "OpenAI DevDay Exchange events",
+        "url": "https://x.com/OpenAIDevs/status/2097763537447973112",
+        "summary": "OpenAI announced DevDay Exchange—local builder meetups with OpenAI team participation in multiple cities.",
+        "why": "Worth tracking for learning about GPT-6 Astra usage patterns from early adopters and OpenAI's developer strategy.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: no new releases on OpenRouter or Hugging Face in the window.",
+  "window": {
+    "since": "2026-09-09T04:30:30+00:00",
+    "until": "2026-09-10T04:30:30+00:00"
+  },
+  "generated_by": "botterfly/pulse",
+  "thin_sections": [
+    "models"
+  ]
+}
