@@ -1,0 +1,142 @@
+{
+  "date": "2026-09-11",
+  "title": "The Pulse — September 11, 2026",
+  "tldr": "OpenAI shipped two production APIs yesterday: GPT-Live-1 for full-duplex voice agents and the Agents API with managed Codex orchestration. DeepSeek V4.1 Flash switched to an encoder-decoder architecture. Cognition's SWE-2 model rivals Fable and GPT-Astra on coding benchmarks.",
+  "sections": {
+    "models": [
+      {
+        "id": "deepseek/deepseek-v4.1-flash-20260910",
+        "title": "DeepSeek V4.1 Flash",
+        "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash",
+        "summary": "Sparse MoE model (8B active on input, 16B on output) using a new Causal Encoder-Decoder architecture.",
+        "why": "First encoder-decoder in the V4 line; architectural shift worth tracking when eval results land.",
+        "source": "openrouter"
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-vl-20260910",
+        "title": "InclusionAI Ling 3.0 Flash VL",
+        "url": "https://openrouter.ai/inclusionai/ling-3.0-flash-vl",
+        "summary": "124B total / 5.5B active MoE adding native visual perception to the Ling 3.0 Flash base.",
+        "why": "Free tier multimodal option on OpenRouter; worth testing for budget-conscious vision tasks.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.11141",
+        "title": "Can LLMs Normalize Databases? A Benchmark and Multi-Agent Framework for Schema Normalization",
+        "url": "https://arxiv.org/abs/2609.11141",
+        "summary": "Benchmark measuring LLM ability to reason about functional dependencies and lossless join decompositions for database normalization.",
+        "why": "Tests structured-output reliability when outputs must satisfy database constraints; relevant for schema generation work.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.11209",
+        "title": "REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving",
+        "url": "https://arxiv.org/abs/2609.11209",
+        "summary": "Post-retrieval compression that reuses compressed views across queries to reduce latency and KV cache cost.",
+        "why": "Addresses the cost side of RAG serving; relevant for EverRaise and Mackinac where retrieval volume is high.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.11758",
+        "title": "RAG-Safety-Bench: Reliable Evaluation of Retrieval-Augmented LLM Safety",
+        "url": "https://arxiv.org/abs/2609.11758",
+        "summary": "Benchmark showing RAG can degrade safety when prompted for harmful content if retrieved documents introduce risk.",
+        "why": "Safety evaluation gap for RAG systems; worth knowing before deploying user-query-driven retrieval.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.10964",
+        "title": "Decoupling Readiness from Release for Tail-Aware Scheduling of Agentic LLM Workflows",
+        "url": "https://arxiv.org/abs/2609.10964",
+        "summary": "Agent-turn scheduling policy that delays release of ready turns to reduce tail latency under contention.",
+        "why": "Agentic workflow optimization; applies when we run multi-turn agent jobs under load.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "langchain-anthropic==1.7.2",
+        "title": "LangChain Anthropic 1.7.2",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.2",
+        "summary": "Preserves invalid tool-use blocks instead of dropping them.",
+        "why": "Relevant for EverRaise and SalesKick if we're using Anthropic models through LangChain.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49643982",
+        "title": "Shopify is moving from React Native back to Swift and Kotlin",
+        "url": "https://shopify.engineering/back-to-native",
+        "hn_url": "https://news.ycombinator.com/item?id=49643982",
+        "summary": "After years of React Native, Shopify is rewriting mobile apps in native code citing performance and platform integration.",
+        "why": "Signals trade-offs in cross-platform mobile stacks; relevant if client projects consider React Native.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49645443",
+        "title": "Cognition launches SWE-2 model, rivaling Fable 5.1 and GPT-Astra",
+        "url": "https://cognition.com/blog/swe-2",
+        "hn_url": "https://news.ycombinator.com/item?id=49645443",
+        "summary": "Cognition's new coding model claims performance on par with Fable 5.1 and GPT-Astra on SWE-bench and coding evals.",
+        "why": "Another strong coding model entering production; worth benchmarking against Claude Code and Codex for PR review and feature work.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49649213",
+        "title": "OpenAI Agents API",
+        "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+        "hn_url": "https://news.ycombinator.com/item?id=49649213",
+        "summary": "Managed agent service with Codex harness, orchestration, long-running sessions, and context management.",
+        "why": "Competes with Claude Managed Agents; relevant for SalesKick and Pipeline's agent workloads if we want fully managed execution.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49645686",
+        "title": "Neki – Sharded Postgres",
+        "url": "https://planetscale.com/blog/introducing-neki",
+        "hn_url": "https://news.ycombinator.com/item?id=49645686",
+        "summary": "PlanetScale's new sharded Postgres offering for horizontal scaling without application rewrites.",
+        "why": "Scaling option for Postgres-backed projects when single-node limits are hit; worth watching for Pipeline clients.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2098099269551149398",
+        "title": "OpenAI: GPT-Live-1 in the API",
+        "url": "https://x.com/OpenAIDevs/status/2098099269551149398",
+        "summary": "Full-duplex voice API that listens while speaking, with custom voices and telephony support.",
+        "why": "Production voice-agent primitive; relevant for EverRaise's Vapi integration and any future voice work.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2098130570048045453",
+        "title": "OpenAI: Agents API public beta",
+        "url": "https://x.com/OpenAIDevs/status/2098130570048045453",
+        "summary": "Cloud agent orchestration with the Codex harness, handling sessions and context management.",
+        "why": "Competes with Claude Managed Agents; worth evaluating for long-running agent workflows.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2098071687145365632",
+        "title": "Nous Research: Hermes Agent subagent UI",
+        "url": "https://x.com/NousResearch/status/2098071687145365632",
+        "summary": "Hermes now shows live subagent activity with manual steering and stop controls in CLI and desktop.",
+        "why": "We run Hermes Agent for Botterfly; the subagent visibility helps debug multi-agent workflows.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2098090911137972271",
+        "title": "ClaudeDevs: Desktop app pane management",
+        "url": "https://x.com/ClaudeDevs/status/2098090911137972271",
+        "summary": "Claude Code desktop app lets you pop out diffs and terminals into separate windows.",
+        "why": "Quality-of-life for Claude Code workflows; multi-screen sessions become easier to manage.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python, Node.js, DSPy, and Langfuse: no notable releases in the window. Next.js v16.4.0-canary.26 is out but skipped per the canary rule."
+}
