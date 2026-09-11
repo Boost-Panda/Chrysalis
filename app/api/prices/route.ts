@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getBoostPandaUser } from "@/app/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,11 @@ type PriceResult = {
 // Proxy Yahoo's free chart endpoint: the browser can't call Yahoo directly
 // (no CORS headers), so this route fetches server-side per request.
 export async function GET() {
+  const user = await getBoostPandaUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
   const results = await Promise.all(
     SYMBOLS.map(async (symbol): Promise<PriceResult> => {
       try {
