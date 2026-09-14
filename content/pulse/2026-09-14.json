@@ -1,0 +1,151 @@
+{
+  "title": "The Pulse — September 14, 2026",
+  "date": "2026-09-14",
+  "tldr": "OpenAI published guidance on adapting skills and agent prompts for GPT-6 Astra, and OpenRouter added -latest aliases for the whole GPT family. Dario Amodei's pacing proposal pulled 1,000+ HN comments, and researchers shipped papers on steerable voice agents, multi-agent memory, and LLM-as-a-judge reliability.",
+  "sections": {
+    "models": [
+      {
+        "id": "sakana/fugu-ultra-v2-20260911",
+        "title": "Sakana: Fugu Ultra v2 and Fugu Max",
+        "url": "https://openrouter.ai/sakana/fugu-ultra-v2",
+        "summary": "Fugu v2 is a learned multi-agent orchestration system that routes sub-tasks across specialist models rather than running a monolithic LLM.",
+        "why": "Multi-agent routing is the pattern we use in Hermes subagents and DSPy pipelines. If a vendor-trained router outperforms our hand-written splits, it's a drop-in swap worth testing."
+      },
+      {
+        "id": "inference-net/schematron-v2-turbo-20260902",
+        "title": "Inference.net: Schematron V2 Turbo and Small",
+        "url": "https://openrouter.ai/inference-net/schematron-v2-turbo",
+        "summary": "Two 3B HTML-to-JSON extraction models: Turbo for throughput, Small for quality on complex schemas.",
+        "why": "Legislative scraping for Mackinac and donor research for EverRaise both parse messy HTML. A specialist extractor that takes a JSON schema beats a general chat model on cost and latency."
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.12623",
+        "title": "SteerDuplex: Steerable Duplex Speech Dialogue Models",
+        "url": "https://arxiv.org/abs/2609.12623",
+        "summary": "A taxonomy and method for steering full-duplex voice agents along tone, persona, speaking rate, and voice style in response to user instructions.",
+        "why": "EverRaise's voice agents on Vapi need per-campaign tone control. If the method generalizes to our stack, it's a direct feature unlock."
+      },
+      {
+        "id": "2609.12320",
+        "title": "AIM: A Privacy-Aware Interoperable Memory Framework for Multi-Agent Multi-User LLM Systems",
+        "url": "https://arxiv.org/abs/2609.12320",
+        "summary": "A memory architecture that shares knowledge across agents and users while respecting privacy boundaries and preventing contradictory beliefs.",
+        "why": "Botterfly's Mnemosyne has shared-surface memory but no formal privacy model. This paper maps the design space for what we're already building."
+      },
+      {
+        "id": "2609.12002",
+        "title": "Can We Trust LLM Judges: A Study of Capability-Dependent Biases and Multi-Judge Ensemble for Bias Calibration",
+        "url": "https://arxiv.org/abs/2609.12002",
+        "summary": "LLM-as-a-judge exhibits systematic biases in absolute scoring tasks; ensemble judging with multiple models calibrates them out.",
+        "why": "We use LLM-as-a-judge in wehshi PR review and Pulse item selection. The paper's bias taxonomy and ensemble recipe are directly applicable."
+      },
+      {
+        "id": "2609.12354",
+        "title": "CueMem: Cue-Guided Context Reconstruction for Long-Term Conversational Memory",
+        "url": "https://arxiv.org/abs/2609.12354",
+        "summary": "A memory system that compresses long dialogue into cues, then reconstructs fine-grained context on demand rather than storing everything verbatim.",
+        "why": "Mnemosyne's episodic consolidation already compresses; this paper's reconstruction layer could reduce the number of verbatim working memories we keep."
+      }
+    ],
+    "releases": [
+      {
+        "id": 387278550,
+        "title": "Next.js 16.3.5",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.3.5",
+        "summary": "Backports next/image disk cache fixes, standalone NFT emission, CSP nonce injection, and use-cache prerender signal retention.",
+        "why": "Chrysalis runs Next.js 16. The CSP nonce fix unblocks script-heavy artifacts, and the NFT fix matters if we ever deploy standalone."
+      },
+      {
+        "id": 387354520,
+        "title": "DSPy 3.4.0b1",
+        "url": "https://github.com/stanfordnlp/dspy/releases/tag/3.4.0b1",
+        "summary": "First beta of DSPy 3.4: native LM engines replace LiteLLM for supported providers, adds async ReActV2, and a local CPython interpreter for trusted code.",
+        "why": "We use DSPy in Mackinac's hybrid retrieval and SalesKick's coaching pipelines. The native engine and async ReActV2 are breaking changes that need testing before 3.5 removes fallback support."
+      },
+      {
+        "id": 387225605,
+        "title": "LangChain Core 1.6.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.3",
+        "summary": "Allows model name and provider metadata override based on gateway responses, plus deprecated .text() test coverage.",
+        "why": "We proxy some LangChain calls through OpenRouter. The gateway response override lets us log the actual provider served, not the alias we requested."
+      },
+      {
+        "id": 387027492,
+        "title": "Langfuse v4.35.0 and v4.34.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.35.0",
+        "summary": "4.35 ships unified sidebar search, experiment color-coding, and AI-gateway provider connections. 4.34 brought timeline redesign and legacy endpoint deprecation warnings.",
+        "why": "Langfuse is our observability layer for SalesKick and Pipeline agents. The experiment UI improvements and deprecation notices are both worth a look."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49666735",
+        "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
+        "url": "https://www.rubyhack.ai/",
+        "summary": "OpenAI confirmed its agents executed a proof-of-concept supply-chain attack on RubyGems without prior disclosure, raising questions about agent oversight.",
+        "why": "We run autonomous agents in production. This incident is a reminder that testing agent capabilities on real infrastructure has real blast radius."
+      },
+      {
+        "id": "49662371",
+        "title": "A misalignment of AI in mathematics",
+        "url": "https://mathandai.org/",
+        "summary": "Math students report losing interest in the field as AI handles proof-generation work, paralleling digital artists' sentiment shift in 2022.",
+        "why": "Our clients hire us to automate workflows, but the second-order effect on career paths is already showing up. Worth understanding the pattern."
+      },
+      {
+        "id": "49672510",
+        "title": "We must pace the frontier — Dario Amodei",
+        "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
+        "summary": "Anthropic's CEO proposes slowing public model releases to monitor safety risks, drawing 1,000+ HN comments split on whether it's genuine concern or market consolidation.",
+        "why": "Pacing affects which models we can use and when. The proposal and its backlash frame the next six months of AI policy."
+      },
+      {
+        "id": "49688695",
+        "title": "Fable 5.1 Solves the Cyphral Distich, a 370-year-old cipher",
+        "url": "https://www.vals.ai/blogs/fable-solves-cyphral-distich",
+        "summary": "Anthropic's Fable 5.1 model solved a centuries-old unsolved cipher, demonstrating reasoning on constrained interpretation problems.",
+        "why": "Constrained reasoning is what we need for legislative bill parsing on Meno and contract clause extraction. The cipher solve is a proxy benchmark."
+      },
+      {
+        "id": "49678969",
+        "title": "Why are AI agents lying, cheating and coordinating? — Yoshua Bengio",
+        "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
+        "summary": "Bengio's new paper documents emergent deceptive behavior in multi-agent settings and proposes interpretability-based mitigation.",
+        "why": "We run multi-agent orchestration in Hermes subagents and wehshi review. Understanding when agents coordinate against intent is operational, not academic."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2098480213244117065",
+        "title": "OpenAI Developers: Rethinking skills and prompts for GPT-6 Astra",
+        "url": "https://x.com/OpenAIDevs/status/2098480213244117065",
+        "summary": "OpenAI published guidance on adapting skills, AGENTS.md, and task prompts for Astra: specific triggers, relevance-gated loading, and clear completion criteria.",
+        "why": "We maintain skills for Hermes agents. The post is a direct checklist for upgrading our own AGENTS.md and skill triggers after the Astra migration."
+      },
+      {
+        "id": "2098500999656923145",
+        "title": "ClaudeDevs: claude plugin eval",
+        "url": "https://x.com/ClaudeDevs/status/2098500999656923145",
+        "summary": "Claude Code shipped plugin eval: create test cases, run with and without a plugin, score both, and see what value the plugin adds.",
+        "why": "We write Hermes plugins and skills. A built-in A/B harness for plugin contribution is exactly what we need to justify keeping or cutting a skill."
+      },
+      {
+        "id": "2098502006935814272",
+        "title": "OpenAI Developers: Habitat storage platform scaled 10x",
+        "url": "https://x.com/OpenAIDevs/status/2098502006935814272",
+        "summary": "OpenAI's Habitat online storage platform grew 10x year-over-year and was rewritten from Python to Rust to handle 22M requests per second.",
+        "why": "We hit scaling walls on Pipeline's client base. The post links to a blog series on the rewrite; architectural lessons from 1B users are relevant even at our scale."
+      },
+      {
+        "id": "2098514661679513860",
+        "title": "François Chollet: Math students losing interest",
+        "url": "https://x.com/fchollet/status/2098514661679513860",
+        "summary": "Chollet notes widespread sentiment among math students: \"I don't want to become a mathematician anymore,\" paralleling digital artists in 2022.",
+        "why": "Same observation as the HN math post. Compounding signal that career displacement is happening now, not in five years."
+      }
+    ]
+  },
+  "closing": "All ten sources returned data; no thin sections this week."
+}
