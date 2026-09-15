@@ -22,6 +22,6 @@ export async function getBoostPandaUser(): Promise<{ email: string } | null> {
 
   const { data } = await supabase.auth.getUser();
   const email = data.user?.email ?? "";
-  if (!data.user || !email.endsWith("@boostpanda.com")) return null;
+  if (!data.user || !email.endsWith("@boostpanda.ai")) return null;
   return { email };
 }

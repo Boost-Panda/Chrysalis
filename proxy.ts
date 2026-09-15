@@ -42,7 +42,7 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/auth/login")) {
     // Already signed in with an allowed email? straight to the page.
     const email = data.user?.email ?? "";
-    if (data.user && email.endsWith("@boostpanda.com")) {
+    if (data.user && email.endsWith("@boostpanda.ai")) {
       return NextResponse.redirect(new URL("/portfolio-pulse", request.url));
     }
     return response;
@@ -54,7 +54,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (!data.user.email?.endsWith("@boostpanda.com")) {
+  if (!data.user.email?.endsWith("@boostpanda.ai")) {
     return NextResponse.redirect(new URL("/auth/login?error=not-boostpanda", request.url));
   }
 

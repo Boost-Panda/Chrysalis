@@ -58,7 +58,7 @@ export default function LoginPage() {
                 <TextInput
                   id="login-email"
                   labelText="Email"
-                  placeholder="you@boostpanda.com"
+                  placeholder="you@boostpanda.ai"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -80,7 +80,7 @@ export default function LoginPage() {
                 title="Sign-in failed"
                 subtitle={
                   error === "not-boostpanda"
-                    ? "Only @boostpanda.com addresses can access this page."
+                    ? "Only @boostpanda.ai addresses can access this page."
                     : error
                 }
                 hideCloseButton

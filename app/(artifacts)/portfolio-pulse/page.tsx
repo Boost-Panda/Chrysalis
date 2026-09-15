@@ -1,6 +1,6 @@
 // Server gate for the portfolio dashboard. The holdings data lives in
 // data.ts (server-only); this page checks the session for real and renders
-// the client shell only for @boostpanda.com users.
+// the client shell only for @boostpanda.ai users.
 import { getBoostPandaUser } from "@/app/lib/auth";
 import { HOLDINGS, CASH, COMMISSIONS, STARTED } from "./data";
 import PortfolioPulseClient from "./PortfolioPulseClient";
