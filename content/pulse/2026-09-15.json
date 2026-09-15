@@ -1,0 +1,157 @@
+{
+  "date": "2026-09-15",
+  "title": "The Pulse — September 15, 2026",
+  "tldr": "Anthropic's Claude now writes 80% of their code, with engineers shipping 8x more per quarter. Meanwhile, the agent memory gap is getting defined: three new papers benchmark cross-session risks, inference budget constraints, and multi-agent orchestration trade-offs we're hitting in production.",
+  "thin_sections": ["models"],
+  "sections": {
+    "models": [
+      {
+        "id": "~deepseek/deepseek-pro-latest",
+        "title": "DeepSeek Pro Latest and Flash Latest on OpenRouter",
+        "url": "https://openrouter.ai/~deepseek/deepseek-pro-latest",
+        "summary": "DeepSeek's latest routing handles on OpenRouter: Pro at $0.66/$1.98 per million tokens, Flash (multimodal) at $0.15/$0.60, both with 1M context.",
+        "why": "Competitive long-context pricing for retrieval and document agents where we route to the cheapest capable model.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.14976",
+        "title": "MemRiskBench: Trace-Aware Risk-Preserving Evaluation for Long-Horizon LLM Agents",
+        "url": "https://arxiv.org/abs/2609.14976",
+        "summary": "Benchmark for memory-specific risks in long-running agents: stale facts, conflicting updates, cross-user leakage, and constraint decay, with per-risk failure rates instead of aggregate scores.",
+        "why": "Addresses exactly the durability and isolation issues we're architecting around in Pipeline's multi-tenant voice agents.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.14066",
+        "title": "GraMRAG: Orchestrating Multi-Agent Multi-Step Reasoning via Graph Memory with Reinforcement Learning",
+        "url": "https://arxiv.org/abs/2609.14066",
+        "summary": "Graph-structured memory for multi-agent RAG with RL-driven orchestration; addresses state blindness in knowledge-intensive multi-step tasks.",
+        "why": "Relevant pattern for coordinating document agents and maintaining shared retrieval state across turns.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.14138",
+        "title": "LIMBO: Lifelong Inference-Time Memory and Budget Optimization for LLM Agents",
+        "url": "https://arxiv.org/abs/2609.14138",
+        "summary": "Balances what to replay from memory against per-call token budget; lifelong agents can't afford unbounded context growth.",
+        "why": "The inference budget problem for stateful agents we hit every time context windows fill up mid-session.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.15066",
+        "title": "Salesforce Koa: An Enterprise Language Model for Agentic Tool Use",
+        "url": "https://arxiv.org/abs/2609.15066",
+        "summary": "Salesforce fine-tuned Nemotron-3-Super-120B with GRPO on public and synthetic data for tool use and agentic workflows; no customer data used.",
+        "why": "Tool-calling benchmark and training recipe relevant for SalesKick's agent stack.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.14992",
+        "title": "MTAC-IFBench: Benchmarking Instruction-Following in Multi-Turn Agentic Coding",
+        "url": "https://arxiv.org/abs/2609.14992",
+        "summary": "Tests whether coding agents follow process constraints (no library X, test coverage above Y) across turns, not just functional correctness.",
+        "why": "Exactly what we gate in PR review: adherence to repo rules and conventions, not just passing tests.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "388496269",
+        "title": "Langfuse v4.36.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.36.0",
+        "summary": "AI gateway now relays authenticated OpenAI Realtime API requests; filter UI moved to inline suggestions; session timeline toggle; configurable event propagation block sizes.",
+        "why": "Langfuse is our observability layer; Realtime API support matters for Pipeline's voice agents, and event tuning helps with high-throughput logging.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49700477",
+        "title": "Pion, an agent designed to run any company autonomously",
+        "url": "https://andonlabs.com/blog/why-we-built-pion",
+        "hn_url": "https://news.ycombinator.com/item?id=49700477",
+        "summary": "Andon Labs' autonomous company management agent pitch: cross-functional orchestration, continuous operation, and delegated decision-making.",
+        "why": "Worth knowing where the agent hype is pointing; no direct application yet, but instructive for scoping what 'autonomous' doesn't mean in practice.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49695876",
+        "title": "OpenAI bots knew about the RubyGems caching vulnerability",
+        "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
+        "hn_url": "https://news.ycombinator.com/item?id=49695876",
+        "summary": "Public post describing how OpenAI's web crawler accessed and likely indexed a disclosed but not yet widely announced RubyGems cache poisoning bug.",
+        "why": "Reminder that scraping and training cut both ways: agents inherit knowledge, including security gotchas we haven't patched yet.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49696125",
+        "title": "How to write an effective software design document",
+        "url": "https://refactoringenglish.com/excerpts/write-an-effective-design-doc/",
+        "hn_url": "https://news.ycombinator.com/item?id=49696125",
+        "summary": "Practical guide: problem, constraints, options, decision, and why; skip the filler, write it before the PR, update it when reality diverges.",
+        "why": "Reinforces the design-first workflow we're enforcing on larger features; agents can draft these now, and this is the template to hand them.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49697014",
+        "title": "Notes on gotchas while migrating 35kb preprompts from Opus to self-hosted Ollama",
+        "url": "https://patrickmccanna.net/notes-on-migrating-large-prompts-away-from-anthropic-openai-to-self-hosted-llms/",
+        "hn_url": "https://news.ycombinator.com/item?id=49697014",
+        "summary": "Field notes from a real migration: chunking, quality drop on reasoning, latency trade-offs, and which open models held up under production load.",
+        "why": "Relevant if we consider self-hosted fallback for high-volume low-margin endpoints; the gotchas are the actually useful part.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49703003",
+        "title": "GPT-5.6 Luna vs. GPT-6 Astra: Is a $1.20 Model Good Enough for Code Review?",
+        "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+        "hn_url": "https://news.ycombinator.com/item?id=49703003",
+        "summary": "Benchmark comparing Luna and Astra on code review tasks: Luna acceptable for routine checks, Astra better for architectural insight and subtle bugs.",
+        "why": "Directly applicable: we run wehshi with multi-model panels; knowing where cheaper models suffice saves us real money.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2099577600159158765",
+        "title": "Addy Osmani on Anthropic's agentic coding scale",
+        "url": "https://x.com/addyosmani/status/2099577600159158765",
+        "summary": "Addy Osmani on Anthropic's internal CI scaling: Claude writes 80% of the code, engineers ship 8x more per quarter, tests grew 10x, CI jobs up 25x in six months.",
+        "why": "Real production numbers on agentic coding's blast radius; we're seeing the same test explosion and build time pressure.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2099534231114314145",
+        "title": "shadcn/lint: agent-first Tailwind linter",
+        "url": "https://x.com/shadcn/status/2099534231114314145",
+        "summary": "shadcn/lint announcement: agent-first linter for Tailwind; errors explain what broke and how to fix it using your design system's components and theme.",
+        "why": "Solves the agent-breaks-design-system problem we hit when agents freestyle CSS; constraint enforcement at lint time, not in PR review.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2099542875713532097",
+        "title": "Cline desktop app launch",
+        "url": "https://x.com/svpino/status/2099542875713532097",
+        "summary": "Santiago on Cline's desktop app launch: agentic coding tools moving away from TUIs toward desktop apps with better affordances for multi-file, multi-step workflows.",
+        "why": "Pattern shift worth watching; we lean on terminal agents for CI and deploy, but richer UX might reduce the handoff friction.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2099599032037388404",
+        "title": "Hermes Business accounts",
+        "url": "https://x.com/NousResearch/status/2099599032037388404",
+        "summary": "Nous Research announces Hermes Business: team accounts with shared balance, per-member caps, and shared skills that compound into proprietary IP.",
+        "why": "We're Hermes users; team accounts with shared skill libraries would centralize the runbooks and agent workflows we're building per client.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: quiet day, only DeepSeek routing handles worth carrying. Next.js and Python: nothing notable in the window. DSPy, LangChain, Node: silent. Google's DevFest announcement and OpenAI's Fyxer and Perplexity case studies were vendor posts without new technical surface.",
+  "window": {
+    "since": "2026-09-14T04:30:50+00:00",
+    "until": "2026-09-15T04:30:50+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
