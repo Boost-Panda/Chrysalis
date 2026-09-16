@@ -1,0 +1,152 @@
+{
+  "date": "2026-09-16",
+  "title": "The Pulse — September 16, 2026",
+  "tldr": "Google shipped Gemini 3.8 Live with extended thinking, bringing reasoning models to voice. Nous scaled Hermes Agent to 1,393 parallel subagents and cleaned a million-line codebase in 19 hours. The models section is thin: no new releases in the window, but the extended-thinking voice model is the first time a reasoning trace runs under real-time conversation.",
+  "sections": {
+    "models": [
+      {
+        "id": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+        "title": "Gemini 3.8 Live and 3.8 Live Extended Thinking",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+        "summary": "Google's extended-thinking model now runs in live voice conversations.",
+        "why": "Our voice agents on Vapi and call-grading flows run on live models; extended thinking in real-time conversations opens a path to reasoning traces without breaking the latency budget.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.16053",
+        "title": "Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents",
+        "url": "https://arxiv.org/abs/2609.16053",
+        "summary": "Memory systems that update on retrieval feedback, not just on write: when a memory is retrieved, the system reorganizes it for future access.",
+        "why": "Hermes uses Mnemosyne for agent memory; this paper's retrieval-as-consolidation-trigger pattern could inform how we age and compact working memories into episodic summaries.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.16091",
+        "title": "Distilling Foundation Models for Agentic What-If Reasoning",
+        "url": "https://arxiv.org/abs/2609.16091",
+        "summary": "TabPFN distilled into a fast feed-forward student for low-latency agentic loops; cuts inference time without sacrificing predictive performance on tabular data.",
+        "why": "Shows the distillation recipe for hot-path agent decision backends when a foundation model is too slow; applies to any agent loop where inference latency blocks the next action.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.17475",
+        "title": "JustFit: 200K-Token LLM Serving on a 24 GiB Laptop",
+        "url": "https://arxiv.org/abs/2609.17475",
+        "summary": "MLX-based inference runtime with compressed KV execution and just-in-time state management; runs 200K-context models on consumer hardware.",
+        "why": "Local reasoning on client machines is part of Hermes's design; this paper's KVExec and state-swapping techniques could extend what context size we can serve on a laptop.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.16095",
+        "title": "RAG-CT: Mitigating Privacy Risks on Retrieval-Augmented Generation Systems",
+        "url": "https://arxiv.org/abs/2609.16095",
+        "summary": "Adversaries can poison RAG retrieval by manipulating prompt distributions; the paper introduces a scanning method to detect and mitigate these attacks.",
+        "why": "Our Pipeline clients use hybrid retrieval over legislative and policy documents; understanding the attack surface on RAG systems helps us harden retrieval paths before they're exploited.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.16268",
+        "title": "Spurious Tool Use: When RL Agents Learn the Wrong Reason to Act",
+        "url": "https://arxiv.org/abs/2609.16268",
+        "summary": "RL-trained LLM agents learn shortcuts in tool-use policies, calling tools for correlated-but-wrong reasons; the paper identifies when and why this happens.",
+        "why": "We build agents that call tools; this diagnostic applies directly to understanding when RL fine-tuning on tool traces amplifies spurious correlations instead of the causal reasoning we want.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "389538460",
+        "title": "Next.js v16.4.0-canary.32",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.32",
+        "summary": "Canary with Turbopack fixes, verified deploy test enablement, and query-parameter handling for adapter deployments.",
+        "why": "We deploy Next.js apps to Vercel; canaries with deploy-test fixes are worth tracking when they touch the adapter layer we rely on.",
+        "source": "github"
+      },
+      {
+        "id": "388998362",
+        "title": "Langfuse v4.36.1",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.36.1",
+        "summary": "Stability release: column order fix, metadata equality prefilter performance boost, and table migration to TanStack React Table.",
+        "why": "We use Langfuse for trace observability; the metadata equality acceleration applies to our filter-heavy trace queries.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49711544",
+        "title": "Show HN: An e-ink frame that hears birds and draws them as 1800s illustrations",
+        "url": "https://github.com/arnegiacomo/fugleramme",
+        "hn_url": "https://news.ycombinator.com/item?id=49711544",
+        "summary": "Arduino-based e-ink display listens to bird calls, identifies the species, and generates period-accurate illustrations in real time.",
+        "why": "Creative hardware build combining audio classification, generative art, and low-power display; the ambient-sensing-to-artifact pipeline is a template for physical agent projects.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49717558",
+        "title": "Introducing System One Models and Jev",
+        "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+        "hn_url": "https://news.ycombinator.com/item?id=49717558",
+        "summary": "TypeSafe.ai's structured decision models return probabilities and confidence scores; designed for parallel multi-question answering with explicit uncertainty.",
+        "why": "Confidence thresholds for human-in-the-loop handoff are part of our agent designs; a model that natively returns calibrated confidence changes what we can automate safely.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49716476",
+        "title": "We got admin access to Baseten's production GitHub",
+        "url": "https://www.strix.ai/blog/baseten-harbor-github-pat-takeover",
+        "hn_url": "https://news.ycombinator.com/item?id=49716476",
+        "summary": "Harbor's GitHub PAT exposed in a public Docker image gave full repo access; the post details the discovery and the responsible disclosure.",
+        "why": "We build and deploy containerized services; this is a reminder to audit every Dockerfile and CI config for tokens before they reach a registry.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49712278",
+        "title": "Show HN: Capsule – Single-file web apps that save their data into SQLite",
+        "url": "https://withcapsule.app/",
+        "hn_url": "https://news.ycombinator.com/item?id=49712278",
+        "summary": "One HTML file, embedded SQLite via WASM, fully offline; the entire app and its data travel as a single artifact.",
+        "why": "We prototype a lot of internal tools; single-file deployable apps with embedded storage solve the quick-build/no-backend problem cleanly.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49713024",
+        "title": "The Inference Hardware Revolution of 2026",
+        "url": "https://spectrum.ieee.org/inference-hardware-revolution",
+        "hn_url": "https://news.ycombinator.com/item?id=49713024",
+        "summary": "IEEE Spectrum piece on specialized inference ASICs shipping in 2026; highlights the shift from training-focused to inference-first silicon.",
+        "why": "We price models from OpenRouter and run inference-heavy agent loops; understanding the hardware roadmap helps predict where token costs and latency are heading.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2099984561451028913",
+        "title": "Nous Research: 1,393 subagents refactored a million-line codebase in 19 hours",
+        "url": "https://x.com/NousResearch/status/2099984561451028913",
+        "summary": "Hermes Agent spawned 1,393 parallel subagents to clean up a Python codebase, reducing it by 34.4% and saving nearly $2M in engineering time.",
+        "why": "We build on Hermes; this is the highest-scale multi-agent coordination example shipped to date, and it's running on the same orchestration primitives we use for code review and sweep tasks.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2099954342170067174",
+        "title": "OpenAI: GPT-5.5 remains available via API and Codex",
+        "url": "https://x.com/OpenAIDevs/status/2099954342170067174",
+        "summary": "GPT-5.5 continues to be accessible through the OpenAI API Platform and authenticated Codex sessions.",
+        "why": "We route models through OpenRouter, which proxies OpenAI; knowing which model versions stay available prevents silent breakage when a model is delisted from the web UI but kept in the API.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2099846949377585659",
+        "title": "Sebastian Raschka: Computer-use benchmark comparison between GPT-5.6 Astra and Qwen3.8 Max",
+        "url": "https://x.com/rasbt/status/2099846949377585659",
+        "summary": "Visual benchmark: the two models recreate an image using Paint; different LLMs and harnesses lead to very different approaches and success rates.",
+        "why": "Benchmark design matters when we evaluate computer-use agents; this comparison shows how harness and model together define what 'success' looks like, which feeds into how we test our own agent evals.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: thin section — no new model releases from OpenRouter, Anthropic, Hugging Face tracked orgs, or vendor announcements (OpenAI, Mistral) in the 24-hour window; the Gemini 3.8 Live extended-thinking launch is the sole model story.",
+  "thin_sections": ["models"]
+}
