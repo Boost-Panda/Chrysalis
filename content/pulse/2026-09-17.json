@@ -1,0 +1,155 @@
+{
+  "date": "2026-09-17",
+  "title": "The Pulse — September 17, 2026",
+  "tldr": "Mistral partnered with Mozilla to embed privacy-focused multilingual AI into Firefox. Node v26.9 shipped FFI enabled by default and a new crypto MAC API. Claude Design, Slides, and Docs now work inside Claude Code.",
+  "sections": {
+    "models": [
+      {
+        "id": "stealth/union-alpha",
+        "title": "Union Alpha (OpenRouter)",
+        "url": "https://openrouter.ai/stealth/union-alpha",
+        "summary": "A new stealth multimodal model appeared on OpenRouter, free for a week with zero data retention, positioned for research, coding, and agentic workflows.",
+        "why": "Free tier with no logging makes it worth testing for SalesKick prototypes and Pipeline's agent experiments before committing to a vendor.",
+        "source": "openrouter"
+      },
+      {
+        "id": "nvidia/DeepSeek-V4.1-Flash-NVFP4",
+        "title": "DeepSeek V4.1 Flash NVFP4",
+        "url": "https://huggingface.co/nvidia/DeepSeek-V4.1-Flash-NVFP4",
+        "summary": "NVIDIA released an FP4-quantized version of DeepSeek V4.1 Flash optimized with ModelOpt.",
+        "why": "FP4 quantization could let us run capable models on smaller infrastructure for local prototyping and edge inference experiments.",
+        "source": "huggingface"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.17564",
+        "title": "Beyond Static RAG: An Adaptive, Tri-Metric Routing Framework for Efficient Long-Context Inference on Commodity GPUs",
+        "url": "https://arxiv.org/abs/2609.17564",
+        "summary": "A routing framework that decides when to compress prompts and when to skip compression to avoid the paradox where compression adds more KV-cache overhead than it saves on a 16GB GPU.",
+        "why": "We run RAG on T4 instances for Pipeline's retrieval flows; this addresses the exact compression-versus-memory tradeoff we hit on commodity hardware.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.17983",
+        "title": "Contiguity, Not Importance: Budgeted Repair of Stale KV Caches After Document Edits",
+        "url": "https://arxiv.org/abs/2609.17983",
+        "summary": "When a retrieved doc or memory fragment is edited, naive selective re-prefill wastes tokens; this paper shows contiguous re-prefill from the edit forward is cheaper and more correct.",
+        "why": "Botterfly's working memory edits and Pipeline's dynamic context updates need cheaper re-prefill strategies than full cache invalidation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.18182",
+        "title": "WFM: Wiki Foundation Model for Complex Agentic Reasoning",
+        "url": "https://arxiv.org/abs/2609.18182",
+        "summary": "A foundation model trained on Wikipedia's dense graph structure for persistent memory, structured evidence retrieval, and agentic reasoning.",
+        "why": "Structured knowledge graphs are part of Pipeline's legislative research backend; methods that preserve graph semantics for LLM reasoning are directly applicable to our Pinecone-MongoDB hybrid.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.18461",
+        "title": "Disentangling Long-Term Memory via Latent Neuro-Symbolic Reasoning",
+        "url": "https://arxiv.org/abs/2609.18461",
+        "summary": "Replaces flat retrieval and static memory graphs with query-adaptive neuro-symbolic structures that infer distributed facts from long-term interaction history.",
+        "why": "Botterfly's Mnemosyne memory and SalesKick's call history retrieval both need better ways to surface implicit patterns from long agent histories without re-encoding every session.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "nodejs/node/v26.9.0",
+        "title": "Node.js v26.9.0",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.9.0",
+        "summary": "FFI is enabled by default, crypto gained a generic MAC API and discovers ciphers and hashes from OpenSSL providers, and node:bench was added for microbenchmarking.",
+        "why": "FFI unlocks native integrations without writing C++ addons; the bench module is useful for profiling our edge function cold starts and DSPy retrieval paths.",
+        "source": "github"
+      },
+      {
+        "id": "langchain%3D%3D1.4.1",
+        "title": "LangChain 1.4.1",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.1",
+        "summary": "Fixes MCP object argument preservation and corrects InterruptOnConfig documentation.",
+        "why": "We use LangChain in Pipeline's agent orchestration; MCP object-argument bugs were breaking tool calls in the Mackinac research chain.",
+        "source": "github"
+      },
+      {
+        "id": "langfuse/v4.37.0",
+        "title": "Langfuse v4.37.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.37.0",
+        "summary": "AI gateway now captures response debugging logs, adds batchUpsertDatasetItems MCP tool, and introduces trace batch locality selection for cloud deployments.",
+        "why": "Langfuse is our observability backend for SalesKick and Pipeline; the AI gateway improvements and batch upsert tool directly support our eval dataset workflows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49723408",
+        "title": "Mistral X Mozilla: Private, Multilingual AI Browsing",
+        "url": "https://mistral.ai/news/mistral-x-mozilla/",
+        "hn_url": "https://news.ycombinator.com/item?id=49723408",
+        "summary": "Mistral and Mozilla are embedding open, privacy-focused, multilingual AI directly into Firefox.",
+        "why": "Browser-native AI with privacy guarantees could change how we prototype user-facing agents; understanding this integration helps us think about where SalesKick's coaching UI could live.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49731285",
+        "title": "Training a 4B model to produce 81% faster query plans than Postgres",
+        "url": "https://rohanbansal.com/qorl",
+        "hn_url": "https://news.ycombinator.com/item?id=49731285",
+        "summary": "A 4B-parameter model was trained with RL to generate query plans that execute 81% faster than the Postgres optimizer on a real workload.",
+        "why": "Pipeline's legislative search hits Postgres query planning limits at scale; ML-driven optimization is a concrete alternative to hand-tuning indexes and joins.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49724881",
+        "title": "Nvidia announces native GPU programming in Rust",
+        "url": "https://developer.nvidia.com/blog/introducing-cuda-rust-two-tracks-for-writing-gpu-kernels/",
+        "hn_url": "https://news.ycombinator.com/item?id=49724881",
+        "summary": "NVIDIA introduced two paths for writing GPU kernels in Rust: a high-level cuda crate and direct kernel authoring.",
+        "why": "Rust GPU programming opens a safer path for custom DSPy or RAG kernels if we need to optimize retrieval or embedding at the CUDA level.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49729412",
+        "title": "Claude Cowork and chat are now one Claude",
+        "url": "https://claude.com/blog/cowork-is-now-claude",
+        "hn_url": "https://news.ycombinator.com/item?id=49729412",
+        "summary": "Anthropic merged Claude Cowork into the main Claude experience, unifying chat, artifacts, and collaborative editing.",
+        "why": "We prototype with Claude artifacts for client demos; the unified experience simplifies the handoff from conversation to shareable prototype.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2100270861555228770",
+        "title": "ClaudeDevs on Claude Design in Claude Code",
+        "url": "https://x.com/ClaudeDevs/status/2100270861555228770",
+        "summary": "Claude Design, Slides, and Docs now work inside Claude Code: ask for a design review deck or a UI mockup, point it at repo files and RFCs, iterate in the conversation, and share the link.",
+        "why": "We use Claude Code for PR prototyping; embedding design artifacts in the same session means we can generate UI mocks from actual schema and API contracts without context-switching.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2100153489787633694",
+        "title": "Mistral AI announces Mozilla partnership",
+        "url": "https://x.com/MistralAI/status/2100153489787633694",
+        "summary": "Mistral announced the Mozilla partnership tweet, directing to their blog post on private, multilingual AI browsing.",
+        "why": "Same story as the HN item; the X thread has initial developer reactions worth watching for integration patterns.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2100266421020152114",
+        "title": "Nous Research Plugin Catalog",
+        "url": "https://x.com/NousResearch/status/2100266421020152114",
+        "summary": "Hermes Agent launched a plugin catalog with 4 official plugins and 96 community-contributed ones, covering desktop mods, platforms, browsing, and specialized tools.",
+        "why": "We run Botterfly on Hermes; the catalog expands what skills and integrations are available without building from scratch.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-09-16T04:30:48+00:00",
+    "until": "2026-09-17T04:30:48+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
