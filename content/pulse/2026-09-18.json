@@ -1,0 +1,176 @@
+{
+  "date": "2026-09-18",
+  "title": "The Pulse — September 18, 2026",
+  "tldr": "Claude Code ships Projects: one conversation splits work into parallel cloud threads and keeps running when you're offline. Qwen3.8-Omni-Flash debuts as Alibaba's first natively multimodal agent model with tool use. The arXiv overnight was strong on voice agents, inference optimizations, and agentic eval frameworks.",
+  "sections": {
+    "models": [
+      {
+        "id": "unbiased/pareto-20260917",
+        "title": "Pareto (OpenRouter)",
+        "url": "https://openrouter.ai/unbiased/pareto",
+        "summary": "Multimodal composite (text+image→text) built for research, coding, and agentic workflows, 256K context at $2.50 / $7.50 per million.",
+        "why": "No direct use for us yet; model composites remain an interesting engineering pattern, but Pareto has no public evaluation or architecture details to guide a trial.",
+        "source": "openrouter"
+      },
+      {
+        "id": "2100785962414702599",
+        "title": "Qwen3.8-Omni-Flash",
+        "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+        "summary": "Alibaba's first omni-modal model with native audio-video understanding, reasoning, and tool use in one model.",
+        "why": "Could inform our EverRaise Vapi agents if it beats GPT-Live-1 on call understanding and tool invocation latency; worth benchmarking if an API becomes available on OpenRouter.",
+        "source": "x_posts"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.19334",
+        "title": "A frontend-backend architecture for tool calls in full-duplex speech models",
+        "url": "https://arxiv.org/abs/2609.19334",
+        "summary": "A speech-to-text frontend emits a delegation token and streams ASR to a backend text LLM for tool execution.",
+        "why": "Relevant pattern for EverRaise voice agents: if the backend can stream tool results back through TTS while the caller keeps speaking, we cut perceived latency on long database lookups.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.20152",
+        "title": "MTVA-Bench: Evaluating the Language Model Inside Cascaded Voice Agents",
+        "url": "https://arxiv.org/abs/2609.20152",
+        "summary": "Eval framework that isolates the language model inside cascaded voice agents (ASR → LLM → TTS), measuring decision quality rather than end-to-end audio fidelity.",
+        "why": "We eval our EverRaise agents end-to-end; this framework's LLM-only gate could speed iteration and isolate where a failure lives—transcription, reasoning, or synthesis.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.19657",
+        "title": "PrefixBench-H100: Characterizing Prefix Reuse and Time-to-First-Token in H100 LLM Serving",
+        "url": "https://arxiv.org/abs/2609.19657",
+        "summary": "Characterizes prefix reuse and TTFT in vLLM and TensorRT-LLM on H100s, showing KV-cache reuse can reduce TTFT by 3–8× when system prompts and RAG context repeat.",
+        "why": "Every SalesKick and Pipeline call carries a multi-kilotoken system prompt; if our OpenRouter providers reuse prefixes transparently, we already benefit—if not, this is the argument for a dedicated inference box.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.19391",
+        "title": "MAGS: Multi-agent Auto-formalization Guarantees Safety for Agentic Outputs",
+        "url": "https://arxiv.org/abs/2609.19391",
+        "summary": "Multi-agent auto-formalization for coding agents; uses formal verification to guarantee safety and correctness at a scale that makes human review insufficient.",
+        "why": "Wehshi and Botterfly generate code autonomously; formal verification would catch edge-case safety bugs before tests run, though the paper assumes Coq/F* toolchains we don't yet have.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.20734",
+        "title": "On-Demand Attention: Language Models Know When to Recall",
+        "url": "https://arxiv.org/abs/2609.20734",
+        "summary": "Models' decoding states predict when reading the full context will help the next token, enabling selective KV-cache reads and cutting inference cost on long agentic traces.",
+        "why": "Long Botterfly and wehshi runs read growing tool-result histories at every step; selective attention could halve token cost if the technique transfers to production inference runtimes.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "langchain-typesafe==0.0.1a2",
+        "title": "LangChain-TypeSafe 0.0.1a2",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-typesafe%3D%3D0.0.1a2",
+        "summary": "Experimental alpha introducing AutoModeMiddleware, ModelRouterMiddleware, and TypeSafeClassifier.",
+        "why": "Worth watching if it stabilizes—typed LangChain chains could catch routing bugs at build time—but alpha means the API will churn, so not for production yet.",
+        "source": "github"
+      },
+      {
+        "id": "v4.38.0",
+        "title": "Langfuse v4.38.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.38.0",
+        "summary": "Rejects legacy GET endpoints for new orgs, isolates AI Gateway caller tracing, correlates coding-agent requests, adds transcript generation from observations, and a persistent trace summary strip with tags in the UI.",
+        "why": "We trace SalesKick and Pipeline agent calls through Langfuse; the coding-agent correlation and transcript generation directly improve our debugging and post-call review workflows.",
+        "source": "github"
+      },
+      {
+        "id": "v16.4.0-canary.35",
+        "title": "Next.js v16.4.0-canary.35",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.35",
+        "summary": "Adds `next upgrade --ai` for agents, nudges for latest and security upgrades, fixes PPF unnecessary runtime prefetch, expands Turbopack GC config and loader dependency tracking.",
+        "why": "Canary; the `next upgrade --ai` path is interesting once it stabilizes, but we don't run canaries in production and the PPF fix doesn't apply to our current prefetch patterns.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49743097",
+        "title": "Hister: A private search engine for the pages you visit and the files you keep",
+        "url": "https://github.com/asciimoo/hister",
+        "hn_url": "https://news.ycombinator.com/item?id=49743097",
+        "summary": "Private local search engine for pages you visit and files you keep, 515 points, 139 comments.",
+        "why": "No direct use for us yet; local search is a solved problem for our team with existing tools, but the privacy-first design is worth noting if a client asks for on-premise semantic search.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49745940",
+        "title": "Astra for Law",
+        "url": "https://openai.com/index/astra-for-law/",
+        "hn_url": "https://news.ycombinator.com/item?id=49745940",
+        "summary": "OpenAI's vertical offering for law firms, 395 points, 421 comments.",
+        "why": "Worth knowing: first major vertical product from OpenAI with legal-grade controls; the comments discuss accuracy and liability, relevant if a client in a regulated vertical asks for similar assurances.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49737922",
+        "title": "How GLM built its own inference infrastructure",
+        "url": "https://z.ai/blog/glm-built-its-inference-infrastructure",
+        "hn_url": "https://news.ycombinator.com/item?id=49737922",
+        "summary": "384 points, 265 comments.",
+        "why": "Informative on self-hosting at scale; we proxy through OpenRouter today, but if a client's token volume justifies dedicated infrastructure, this is the reference architecture.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49746163",
+        "title": "Bend – A language that blocks AI mistakes via proof, on CPU and GPU",
+        "url": "https://bend-lang.com/",
+        "hn_url": "https://news.ycombinator.com/item?id=49746163",
+        "summary": "360 points, 182 comments.",
+        "why": "Experimental; the proof-based correctness story is interesting for agentic code generation, but Bend has no ecosystem and the performance claims need independent verification before we'd try it.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49746618",
+        "title": "Bonsai 2 27B: Near-Lossless Compression in a 9x Smaller Footprint",
+        "url": "https://prismml.com/news/bonsai-2-27b",
+        "hn_url": "https://news.ycombinator.com/item?id=49746618",
+        "summary": "310 points, 102 comments.",
+        "why": "Model compression at 9× with minimal quality loss could matter for edge deployments; worth a benchmark if a client's use case requires on-device models with limited VRAM.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2100633571543367691",
+        "title": "Claude Code Projects",
+        "url": "https://x.com/ClaudeDevs/status/2100633571543367691",
+        "summary": "Claude Code rolls out Projects: one conversation, Claude splits the work into parallel cloud threads, passes context between them, and keeps running when you leave.",
+        "why": "This is the feature we've been waiting for—Projects let us start a multi-repo refactor Friday night and review Saturday's progress; beta for select users, we should request access.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2100677280297324759",
+        "title": "Codex voice agent",
+        "url": "https://x.com/OpenAIDevs/status/2100677280297324759",
+        "summary": "Codex adds voice agent powered by GPT-Live-1: talk to the agent, it handles the repo.",
+        "why": "Voice-driven coding could speed up EverRaise agent prototyping when sketching call flows is faster spoken than typed; worth testing in a spike before committing workflow to it.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2100726653366534560",
+        "title": "ChatGPT Appshots for Windows",
+        "url": "https://x.com/OpenAIDevs/status/2100726653366534560",
+        "summary": "Give ChatGPT context from the apps you're working in, less copy-pasting.",
+        "why": "Useful if it works reliably—debugging a UI issue or pulling data from another app without alt-tabbing and pasting saves time; Windows-only limits immediate team use (mostly macOS), but worth watching.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2100625342520262709",
+        "title": "Union Alpha + DeepSeek-v4.1 Flash",
+        "url": "https://x.com/Av1dlive/status/2100625342520262709",
+        "summary": "Avid switches to Union Alpha (free on OpenCode) paired with DeepSeek-v4.1 Flash subagents, claims it matches GPT-6 Astra performance at 18× lower cost and faster speed.",
+        "why": "If the claim holds under our workloads, this would materially cut coding-agent costs; we should replicate the setup on a few wehshi PRs and compare output quality before switching default profiles.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": []
+}
