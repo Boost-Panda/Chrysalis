@@ -1,0 +1,152 @@
+{
+  "date": "2026-09-22",
+  "title": "The Pulse — September 22, 2026",
+  "tldr": "Xiaomi ships MiMo v2.6: a 1T flagship for demanding work, a 309B MoE Flash variant at 14¢ per million tokens, and an UltraSpeed edition delivering 10× throughput. Grok 4.7 arrives for coding and agentic tasks. The overnight arXiv was strong on agent memory systems, multilingual benchmarks, and security evaluation frameworks.",
+  "sections": {
+    "models": [
+      {
+        "id": "xiaomi/mimo-v2.6-20260921",
+        "title": "Xiaomi MiMo v2.6",
+        "url": "https://mimo.xiaomi.com/mimo-v2-6",
+        "summary": "Xiaomi ships three MiMo v2.6 variants: Pro (1T+ parameters, $0.435 prompt / $0.87 completion per M tokens), Flash (309B total, 15B active MoE, $0.14/$0.28), and Pro UltraSpeed (same 1T checkpoint as Pro, 10× throughput at 10× the price). All three: 1M context, multimodal (text+image+audio+video→text).",
+        "why": "Flash at 14¢ prompt undercuts our MoE stack—test it on high-volume extraction. Pro's 1M multimodal context could consolidate tooling if quality matches Claude. UltraSpeed matters if call grading latency is the bottleneck.",
+        "source": "openrouter"
+      },
+      {
+        "id": "x-ai/grok-4.7-20260916",
+        "title": "SpaceXAI Grok 4.7",
+        "url": "https://x.ai/news/grok-4-7",
+        "summary": "SpaceXAI's flagship for coding, agentic tasks, and knowledge work, succeeding Grok 4.6; strong at long-running software engineering tasks and self-verification, 500K context.",
+        "why": "The self-verification claim and 500K context could improve Botterfly's multi-file PR work and wehshi panel runs; Nous Portal is offering it 50% off for one week.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.23490",
+        "title": "BabelArena: A Large-Scale Multilingual Benchmark for LLM Agents",
+        "url": "https://arxiv.org/abs/2609.23490",
+        "summary": "Benchmark for multilingual agentic workflows adapting existing English agent benchmarks into 23 languages, evaluating tool use and multi-turn interaction robustness across languages.",
+        "why": "Life International and EverRaise agents handle Spanish and other languages—this benchmark would let us measure how model and prompt quality degrades outside English before deploying to production.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.23570",
+        "title": "VibeMemBench: Evaluating Memory Systems for Coding Agents on Real Repository Coding Tasks",
+        "url": "https://arxiv.org/abs/2609.23570",
+        "summary": "Benchmark isolating whether persistent memory systems actually improve executable repository work, unlike existing memory benchmarks that score recall without measuring downstream task success.",
+        "why": "Botterfly uses Mnemosyne for cross-session memory—this benchmark would tell us whether the memory actually improves code generation quality or just adds retrieval overhead.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.22200",
+        "title": "PII-TRACE: A Benchmark for Context-Aware PII Detection in Multi-Turn LLM Conversations",
+        "url": "https://arxiv.org/abs/2609.22200",
+        "summary": "Benchmark for PII detection across multi-turn conversations; most PII detectors target self-contained records, this evaluates cross-turn detection for long agent logs.",
+        "why": "We log agent conversations for debugging and review—this benchmark would help us evaluate whether our current PII masking catches identifiable information spread across multiple turns before client audits do.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.23894",
+        "title": "Connecting the Dots in Agentic AI Security: A Cross-Dimensional Threat Taxonomy",
+        "url": "https://arxiv.org/abs/2609.23894",
+        "summary": "Threat taxonomy for agentic AI covering persistent state, autonomous actions, tool use, and multi-agent interactions, exposing connections among entry points, affected components, and security consequences.",
+        "why": "Botterfly and wehshi act autonomously with tool access and memory—this taxonomy would help us audit threat surfaces we haven't explicitly considered before security reviews or client onboarding.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "langchain-openai==1.6.3",
+        "title": "LangChain OpenAI 1.6.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.3",
+        "summary": "Exposes inferred Responses API routing at initialization and supports GPT-6 request constraints.",
+        "why": "We route to GPT-6 Astra through LangChain in a few flows—exposing the routing logic at init lets us log and verify which endpoint is selected before the first call, catching misrouting earlier.",
+        "source": "github"
+      },
+      {
+        "id": "langchain-core==1.6.4",
+        "title": "LangChain Core 1.6.4",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.4",
+        "summary": "Deprecates chat message history; dependency bumps for anyio and soupsieve.",
+        "why": "The chat message history deprecation means any code still using it will break in the next major release—worth auditing our LangChain usage to migrate off it before the removal ships.",
+        "source": "github"
+      },
+      {
+        "id": "langfuse/langfuse==v4.41.0",
+        "title": "Langfuse v4.41.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.41.0",
+        "summary": "Encodes v4 native blocks and event bytes in Rust, filters prompt events by tags, and fixes score alert filtering, oversized JSON field preservation, and IME composition duplication in search.",
+        "why": "We use Langfuse for tracing agent runs—the Rust encoding change could improve ingestion throughput on high-volume flows, and filtering prompt events by tags lets us isolate specific experiments faster.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49792730",
+        "title": "MiMo v2.6",
+        "url": "https://mimo.xiaomi.com/mimo-v2-6",
+        "hn_url": "https://news.ycombinator.com/item?id=49792730",
+        "summary": "669 points, 321 comments: discussion covers the three MiMo variants, pricing compared to GPT-5 and Claude, and early benchmarks from commenters who ran it overnight.",
+        "why": "The comments section has numbers on coding eval performance and real latency measurements we can use to decide whether to test MiMo in our stack before committing to the evaluation work.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49788838",
+        "title": "Grok 4.7",
+        "url": "https://x.ai/news/grok-4-7",
+        "hn_url": "https://news.ycombinator.com/item?id=49788838",
+        "summary": "523 points, 446 comments: engineers discussing the self-verification claim, coding benchmark numbers, and whether 500K context holds quality through the full window.",
+        "why": "The thread has side-by-side PR review comparisons with Claude Sonnet 4.5 and notes on where Grok 4.7 catches correctness bugs the others miss—directly relevant to wehshi and Botterfly workflows.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49787142",
+        "title": "Python Workers are now generally available",
+        "url": "https://blog.cloudflare.com/python-workers-ga/",
+        "hn_url": "https://news.ycombinator.com/item?id=49787142",
+        "summary": "198 points, 32 comments: Cloudflare Workers now support Python in GA; the thread covers package support, cold start times, and pricing compared to Deno and AWS Lambda.",
+        "why": "We run Python edge functions on Deno for EverRaise and other Pipeline clients—if Cloudflare's cold start and package ecosystem match Deno, it's an alternative worth testing for cost or regional latency improvements.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49792067",
+        "title": "AI coding has made CI a bottleneck, so we reworked ours to keep up",
+        "url": "https://linear.app/now/ci-bottleneck-reworked",
+        "hn_url": "https://news.ycombinator.com/item?id=49792067",
+        "summary": "172 points, 180 comments: Linear reworked their CI pipeline because AI coding agents generate more PRs faster than their test suite could handle; the post details how they sharded tests and cut run time.",
+        "why": "Botterfly and Claude Code generate PRs autonomously—we're not at Linear's scale yet, but the CI sharding and caching techniques they describe could prevent the same bottleneck once agent output volume grows.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2101921871092658655",
+        "title": "Claude plugin eval workflow",
+        "url": "https://x.com/addyosmani/status/2101921871092658655",
+        "summary": "Addy Osmani reminds: Claude Code can test if a skill or plugin actually improves Claude's answers with 'claude plugin eval init'—Claude writes the test cases for you.",
+        "why": "We maintain skills and plugins for Hermes and would benefit from automated eval when we update one—this workflow would let us verify a skill change actually improves answers before shipping.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2102166631439053014",
+        "title": "Delegate coding, never delegate understanding",
+        "url": "https://x.com/fchollet/status/2102166631439053014",
+        "summary": "François Chollet: if code was your source of truth for managing understanding, you need a new source of truth artifact; if code-centric workflows developed that understanding, you need new workflows.",
+        "why": "Directly relevant to how we use Botterfly and Claude Code—the point about needing a new source of truth when code isn't it anymore is worth discussing with the team as agent code generation scales up.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2102079445607629260",
+        "title": "Grok 4.7 50% off in Hermes Agent via Nous Portal",
+        "url": "https://x.com/NousResearch/status/2102079445607629260",
+        "link_url": "https://portal.nousresearch.com/models",
+        "summary": "Nous Research: Grok 4.7 is 50% off for one week in Hermes Agent via Nous Portal.",
+        "why": "Timing matters—if we're testing Grok 4.7 for Botterfly or wehshi, doing it this week cuts the eval cost in half; worth running a few PR review panels and autonomous tasks on it before the discount ends.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": []
+}
