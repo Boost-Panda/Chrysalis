@@ -1,0 +1,138 @@
+{
+  "date": "2026-09-23",
+  "title": "The Pulse — September 23, 2026",
+  "tldr": "OpenAI and Anthropic both shipped overnight: GPT-6 Sol and Luna bring frontier intelligence at half the API price of GPT-5.6, while Claude Opus 5.5 matches Fable 5.1 performance for 40% less. Both launches arrived with real caching improvements—agents just got cheaper to run at scale.",
+  "sections": {
+    "models": [
+      {
+        "id": "openai/gpt-6-sol-20260922",
+        "title": "OpenAI: GPT-6 Sol and Luna",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "summary": "Two new models in OpenAI's GPT-6 series: Sol for demanding work (same tier as GPT-5.6, 50% cheaper API pricing at $2/$10 per million tokens), Luna for high-volume and latency-sensitive tasks ($0.1/$0.5 per million tokens). Both ship with 1M+ context and improved prompt caching.",
+        "why": "Every production agent we run routes through OpenRouter; these pricing cuts and caching improvements directly reduce token spend on SalesKick grading, Pipeline's retrieval agents, and Botterfly's own code review panels."
+      },
+      {
+        "id": "anthropic/claude-opus-5.5-20260921",
+        "title": "Anthropic: Claude Opus 5.5",
+        "url": "https://www.anthropic.com/claude-opus-5-5",
+        "summary": "Anthropic's new flagship reasoning and coding model performs at the level of Claude Fable 5.1 on most tasks, 40% cheaper than Opus 5 ($4/$20 per million tokens vs. Opus 5's $6.67/$33.33), 30% faster per task, and ships with 60% cheaper cache reads.",
+        "why": "We route multi-step coding work to Claude Code with Opus; this price cut extends session budgets by 25% and makes Opus viable for the wehshi review panel where Fable 5.1 was previously gated by cost."
+      },
+      {
+        "id": "cohere/command-a-plus-05-2026",
+        "title": "Cohere: Command A+",
+        "url": "https://openrouter.ai/cohere/command-a-plus",
+        "summary": "Cohere's flagship model for enterprise agentic workflows, text+image inputs with a 192K context window, native tool calling with strict schemas, priced at $0.3/$1.5 per million tokens.",
+        "why": "Positioned for the same agentic tier as Claude Opus and GPT-6 Sol but at 1/7th the completion cost; worth testing for EverRaise's Vapi call agents and SalesKick grading where tool schemas are already defined."
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.25176",
+        "title": "Qwen-Audio-3.1-Realtime: Towards Reliable Agentic Voice Interaction",
+        "url": "https://arxiv.org/abs/2609.25176",
+        "summary": "Real-time voice assistant model from Qwen with Think, Act, Speak and Coordinate capabilities, trained via Core-Cocktail SFT and Multimodality/Multi-Teacher On-Policy Distillation.",
+        "why": "EverRaise runs voice agents on Vapi; this paper's separation of reasoning, action execution, and conversational rules directly applies to our prompt architecture and could inform how we structure turn-taking in live calls."
+      },
+      {
+        "id": "2609.26086",
+        "title": "CoVeR: Coverage-Based Routing of Verifier Calls in Agentic Retrieval",
+        "url": "https://arxiv.org/abs/2609.26086",
+        "summary": "Routing LLM verifier calls by coverage instead of reprocessing all evidence after every retrieval step, reducing repeated verification costs in multi-step search.",
+        "why": "Mackinac's legislative research and EverRaise's context retrieval both issue multi-step queries and verify when to stop; this routing approach would cut verifier token spend without sacrificing stopping reliability."
+      },
+      {
+        "id": "2609.26777",
+        "title": "SWE-Serve: Benchmarking Agentic Engineering For Production Inference Serving",
+        "url": "https://arxiv.org/abs/2609.26777",
+        "summary": "A benchmark for evaluating agents on production inference engineering tasks—implementing features across the serving stack, coordinating model support, runtime execution, and public APIs.",
+        "why": "Botterfly ships inference-layer changes across client projects; this benchmark covers the exact coordination problem we face when an agent must touch model serving, runtime config, and API contracts in one PR."
+      },
+      {
+        "id": "2609.26204",
+        "title": "WatchPoint: Executable User Feedback for Real-World Agentic Web Development",
+        "url": "https://arxiv.org/abs/2609.26204",
+        "summary": "Replaces screenshots and LLM-as-a-judge scoring with executable feedback: opening the app in a browser, clicking buttons, inspecting computed styles, running diagnostic commands to understand what went wrong.",
+        "why": "Wehshi review panels catch bugs but don't verify UX; this executable feedback pattern would let us verify that an invoice renders, a form validates, or a dropdown populates—the kinds of behavior dogfood currently checks by hand."
+      },
+      {
+        "id": "2609.25396",
+        "title": "Passes Alone, Fails Together: Benchmarking Semantic Coordination in Parallel LLM-Agent Development",
+        "url": "https://arxiv.org/abs/2609.25396",
+        "summary": "Parallel coding agents produce patches that work alone but fail when merged—one agent changes an interface another relies on. The stale benchmark counts only failures that appear after merging, not in isolated tests.",
+        "why": "We run multiple panel agents in parallel for wehshi reviews; this benchmark defines the exact coordination failure mode we'd hit if two agents refactor the same interface in different PRs without awareness of each other."
+      }
+    ],
+    "releases": [
+      {
+        "id": "nodejs-v26.10.0",
+        "title": "Node.js v26.10.0 (Current)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.10.0",
+        "summary": "Current release with crypto.parsePKCS12(), fs.openAsBlobSync(), net.BoundSocket transferability to threads and child processes, and new perf_hooks histogram features.",
+        "why": "SalesKick backend, Pipeline's Deno-adjacent services, and Chrysalis all run Node; crypto.parsePKCS12() unblocks certificate parsing without openssl shelling, and transferable BoundSocket helps with worker-pool architectures."
+      },
+      {
+        "id": "nextjs-v16.3.6",
+        "title": "Next.js v16.3.6 (Security)",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.3.6",
+        "summary": "Security fix for remote code execution in next/og ImageResponse (GHSA-vcvr-r3jv-pc5j). v15.5.26 also ships additional hardening.",
+        "why": "Chrysalis, the SalesKick demo site, and every Pipeline frontend run Next.js; this RCE in next/og is a direct exposure if any of those apps use dynamic OG image generation—upgrade immediately."
+      },
+      {
+        "id": "langchain-anthropic-1.7.3",
+        "title": "langchain-anthropic 1.7.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.3",
+        "summary": "Refreshed model profile data for Opus 5.5, auto-routes with_structured_output to method=json_schema for Fable and Opus 5.5, sends mid-conversation SystemMessages in place.",
+        "why": "SalesKick grading and Mackinac retrieval both use langchain-anthropic; the structured-output auto-routing and mid-conversation SystemMessage support unlock cleaner prompt flows without manual method selection."
+      },
+      {
+        "id": "langfuse-v3.225.9",
+        "title": "Langfuse v3.225.9",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v3.225.9",
+        "summary": "Evicts the API key cache after deleting a row, fixing a stale-key bug.",
+        "why": "We instrument SalesKick and Mackinac with Langfuse; this cache-eviction fix prevents deleted API keys from continuing to authenticate until cache expiry, closing a narrow auth window."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49801324",
+        "title": "OpenAI GPT-6 Astra breaks Enigma message that has resisted solution since 2005",
+        "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
+        "summary": "601 points, 373 comments. GPT-6 Astra solved a 21-year-old Enigma ciphertext through sustained reasoning over configuration space.",
+        "why": "Not directly applicable to our work, but demonstrates Astra's reasoning depth on search problems; worth knowing when a client asks what frontier models can do that older ones couldn't."
+      },
+      {
+        "id": "49802871",
+        "title": "I asked Meta's Muse for its filesystem and it sent me 6.8GB",
+        "url": "https://mouse.dev/blog/muse-runtime-export/",
+        "summary": "298 points, 146 comments. A prompt-injection vulnerability in Meta's Muse assistant allowed exfiltration of its entire runtime filesystem.",
+        "why": "Muse has privileged system access; the vulnerability pattern—too much trust in user input, insufficiently sandboxed tool execution—applies to any agent we build with file or shell access, including Botterfly's own terminal use."
+      },
+      {
+        "id": "49803085",
+        "title": "Writing Rust code that's fast by asking agents to make the code faster",
+        "url": "https://minimaxir.com/2026/09/agentic-iteration/",
+        "summary": "96 points, 49 comments. Iterative optimization loop: agent writes Rust, benchmarks, rewrites based on profile results.",
+        "why": "The pattern—generate, measure, refine—generalizes to any performance-sensitive code; we could apply it to DSPy compilation steps, LangChain retrieval latency, or Next.js bundle sizes where the agent has a profiler in the loop."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2102506476401258678",
+        "title": "@OpenAIDevs on improved prompt caching",
+        "url": "https://x.com/OpenAIDevs/status/2102506476401258678",
+        "summary": "Improved prompt caching in the GPT-6 API helps agents run faster and cost less, with higher cache-hit rates by default and up to 90% discounts on cached input tokens.",
+        "why": "EverRaise agents and SalesKick grading both send repeated context (call transcripts, rubrics); higher default cache hits reduce token spend without prompt engineering."
+      },
+      {
+        "id": "2102535041532186709",
+        "title": "@XDevelopers on X Livestream API rebuild",
+        "url": "https://x.com/XDevelopers/status/2102535041532186709",
+        "summary": "X Livestream API rebuilt from the ground up: go live, schedule broadcasts, run and moderate chat, get live events for overlays.",
+        "why": "Not currently in scope, but worth knowing if a client asks about live social integrations or if we explore real-time content pipelines—X now exposes the full broadcast lifecycle via API."
+      }
+    ]
+  },
+  "closing": "Next.js security release (RCE in next/og) affects every frontend we ship—upgrade today. Both major launches drew massive HN discussion: Opus 5.5 at 1,328 points, GPT-6 Sol/Luna at 1,318; threads surfaced real benchmarks and early routing recommendations worth reading before we shift production traffic.",
+  "thin_sections": []
+}
