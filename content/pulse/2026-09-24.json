@@ -1,0 +1,164 @@
+{
+  "date": "2026-09-24",
+  "title": "The Pulse — September 24, 2026",
+  "tldr": "Anthropic announced Claude discovered a novel enzyme system with CRISPR-like repeats through frontier-model biological reasoning, landing as the top HN story (562 points). Meanwhile, Claude Code shipped cloud sessions so work persists when your laptop closes, and Qwen released Audio-3.1 with upgraded ASR, TTS, and real-time models across its audio stack.",
+  "sections": {
+    "models": [
+      {
+        "id": "qwen/qwen3.8-max-prime-20260923",
+        "title": "Qwen: Qwen3.8 Max Prime",
+        "url": "https://openrouter.ai/qwen/qwen3.8-max-prime",
+        "summary": "Higher-throughput variant of Qwen3.8 Max with text, image, and video input, priced at $4/$12 per million tokens and a 1M-token context window.",
+        "why": "The throughput boost and multimodal input are appealing for SalesKick where we currently route high-volume grading through GPT-6 Luna; video input could eventually replace screenshots+transcript pairs for call review.",
+        "source": "openrouter"
+      },
+      {
+        "id": "upstage/solar-mini4-20260922",
+        "title": "Upstage: Solar Mini 4",
+        "url": "https://openrouter.ai/upstage/solar-mini4",
+        "summary": "Compact 35B mixture-of-experts model with 3B active parameters, 524K context, and $0.05/$0.2 per million token pricing, built for agentic use cases.",
+        "why": "Its agentic design and low price make it a candidate for EverRaise's Vapi agents where low-latency tool calling matters more than reasoning depth; worth testing against GPT-6 Luna on structured grading tasks.",
+        "source": "openrouter"
+      },
+      {
+        "id": "z-ai/glm-5.3-prime-20260921",
+        "title": "Z.ai: GLM 5.3 Prime",
+        "url": "https://openrouter.ai/z-ai/glm-5.3-prime",
+        "summary": "High-speed variant of GLM-5.3 with 1.5–2× throughput via inference acceleration, 1M-token context, priced at $2.8/$8.8 per million tokens.",
+        "why": "Comparable pricing to GPT-6 Sol but with higher throughput claims; if the acceleration holds under load, it's a strong candidate for Mackinac's legislative retrieval where we currently pay latency overhead on large document context.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.27814",
+        "title": "LabourCrew: A Multi-Agent RAG Framework for Trustworthy Adversarial Deliberation and Statutory Reasoning over Labour Law",
+        "url": "https://arxiv.org/abs/2609.27814",
+        "summary": "Multi-agent debate system for statutory QA where every claim is grounded in evidence and agents cite sources, not just relevance—treating grounding as a deliberative structure rather than a prompting convention.",
+        "why": "Mackinac's legislative research requires citation and verifiable claims; this multi-agent adversarial structure would let us ground every answer in statute text and detect when evidence is insufficient to answer.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.27307",
+        "title": "Learn How to Act from Your Own Interactions: On-Policy Self-Distillation for GUI Agents",
+        "url": "https://arxiv.org/abs/2609.27307",
+        "summary": "On-policy self-distillation method for GUI agents that improves step-wise reasoning and long-horizon memory by learning from the agent's own successful trajectories.",
+        "why": "Botterfly uses computer-use for desktop tasks; this training approach would let us distill successful session traces into a smaller model specialized for the BoostPanda toolchain without external labeled data.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.27334",
+        "title": "Just-in-Time Memory: Learning to Curate Task-Adaptive Memory for LLM Agents",
+        "url": "https://arxiv.org/abs/2609.27334",
+        "summary": "Agentic memory system that curates memory at read time rather than write time, deciding what's worth remembering based on the current task instead of distilling fixed artifacts after task completion.",
+        "why": "Hermes uses Mnemosyne for memory; this read-time curation approach is closer to how we currently rank memories by relevance, and the paper's adaptive mechanism could inform how we weight importance dynamically per query.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.27588",
+        "title": "The Capability Manifold and ML Scaling Laws",
+        "url": "https://arxiv.org/abs/2609.27588",
+        "summary": "Extends scaling laws beyond predictive loss to model capabilities in reasoning, retrieval, planning, and adaptation—arguing that loss alone is insufficient to characterize downstream agentic performance.",
+        "why": "When we evaluate models for routing decisions (wehshi review panels, grading agents), we care about task success, not perplexity; this capability-aware framing helps us pick the right model tier without over-indexing on loss benchmarks.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "394939147",
+        "title": "Node.js v22.23.3 (LTS)",
+        "url": "https://github.com/nodejs/node/releases/tag/v22.23.3",
+        "summary": "LTS update with root certificates updated to NSS 3.125, Corepack 0.36.0, npm 10.9.9, ICU 78.3, OpenSSL 3.5.8, Undici 6.28.1, and SharedArrayBuffer support in napi_create_typedarray.",
+        "why": "SalesKick backend, Pipeline services, and Chrysalis all depend on Node LTS; the OpenSSL and Undici updates patch several CVEs, and the root certificate refresh prevents TLS failures against renewed CAs.",
+        "source": "github"
+      },
+      {
+        "id": "394920349",
+        "title": "langchain-anthropic 1.7.4",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.4",
+        "summary": "Adds Opus 5.5 and GPT-6 profile augmentations, fixes integration test cassettes, and enables mid-conversation tool changes via SystemMessage.",
+        "why": "SalesKick grading and Mackinac retrieval use langchain-anthropic; Opus 5.5 profile support means routing to the new model works without manual config, and mid-conversation tool changes unlock cleaner multi-turn agent flows.",
+        "source": "github"
+      },
+      {
+        "id": "394669866",
+        "title": "Langfuse v4.43.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.43.0",
+        "summary": "Adds role filtering for project/org members, annotation sidebar score creation, TypeSafe decision-model routing through OpenRouter or Vercel AI Gateway, and fixes SCIM user scoping and trace page rendering.",
+        "why": "We instrument SalesKick and Mackinac with Langfuse; the eval router integration means we can gate high-stakes decisions through a separate model without leaving Langfuse's annotation workflow.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49820134",
+        "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+        "hn_url": "https://news.ycombinator.com/item?id=49820134",
+        "summary": "562 points, 584 comments. Anthropic used Claude to identify a previously unknown enzyme system through sustained reasoning over biological datasets.",
+        "why": "Not directly applicable to engineering work, but demonstrates what frontier models can do with domain-specific reasoning when given access to structured data—relevant when clients ask what's possible with agentic research pipelines.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49814947",
+        "title": "Claude Code reads AGENTS.md only when telemetry is on [fixed]",
+        "url": "https://blog.szypowi.cz/p/claude-code-reads-agents.md-only-when-telemetry-is-on/",
+        "hn_url": "https://news.ycombinator.com/item?id=49814947",
+        "summary": "460 points, 261 comments. Claude Code was loading project instructions only when telemetry was enabled; bug now fixed, but thread discusses trust and observability in agentic tools.",
+        "why": "Hermes uses AGENTS.md the same way; the thread's discussion on opt-in telemetry vs. correctness is relevant to how we instrument Botterfly's own sessions—users want visibility without surrendering data.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49812769",
+        "title": "Jev in 25 Lines of Python",
+        "url": "https://www.nobodywho.ai/posts/jev-in-25-lines/",
+        "hn_url": "https://news.ycombinator.com/item?id=49812769",
+        "summary": "636 points, 200 comments. Step-by-step walkthrough building Jev (a moderation classifier) in 25 lines: gradient descent on synthetic examples, binary predictions from log-odds.",
+        "why": "Jev's simplicity—no training data, just a prompt and an optimizer—makes it appealing for one-off classification tasks in Pulse collection (keeping/rejecting sources) or wehshi review triage where labeled data doesn't exist.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49817615",
+        "title": "Gemini 3.8 text-to-speech",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+        "hn_url": "https://news.ycombinator.com/item?id=49817615",
+        "summary": "274 points, 124 comments. Google launched Gemini 3.8 Flash-Lite TTS and Flash TTS, their most expressive audio models, with real-time streaming and low-latency variants.",
+        "why": "EverRaise runs voice agents on Vapi; Gemini 3.8 TTS is a new option for call synthesis if we want to move away from ElevenLabs or test Google's expressiveness claims against our current stack.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2102871550974427462",
+        "title": "@ClaudeDevs on cloud sessions launch",
+        "url": "https://x.com/ClaudeDevs/status/2102871550974427462",
+        "summary": "Claude Code cloud sessions are out of research preview: work persists when your laptop closes. Existing Pro subscribers get $100 credit, Max gets $250.",
+        "why": "Claude Code is one of the coding agents we delegate to; cloud sessions remove the local-machine dependency, which matters for long-running builds or when switching devices mid-task.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2102687258990026993",
+        "title": "@Alibaba_Qwen on Qwen-Audio-3.1",
+        "url": "https://x.com/Alibaba_Qwen/status/2102687258990026993",
+        "summary": "Qwen released Audio-3.1: upgraded ASR, TTS, and Realtime models, plus TTS-Next for audio creation and ASR-Next for understanding. Five models, one complete audio stack, with price cuts across the board.",
+        "why": "EverRaise's Vapi agents use ASR and TTS; Qwen's Audio-3.1 stack is a new self-hosted option if we want to move inference in-house or benchmark Qwen's real-time model against OpenAI's GPT-Live.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2102873234819698877",
+        "title": "@NousResearch on Hermes Desktop screen streaming",
+        "url": "https://x.com/NousResearch/status/2102873234819698877",
+        "summary": "Hermes Desktop now streams agent screens in real time: watch your agents drive a browser, type into a terminal, or open windows, and take over anytime to interact or hand control back.",
+        "why": "Botterfly runs on Hermes; live screen streaming lets us observe what computer-use agents are doing without waiting for traces to land, which helps debugging long-running desktop workflows.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Releases: Python had no interpreter updates in the window. The Claude enzyme discovery and Claude Code telemetry bug both drew large HN threads worth skimming for the trust and observability discussion.",
+  "thin_sections": [],
+  "window": {
+    "since": "2026-09-23T04:31:10+00:00",
+    "until": "2026-09-24T04:31:10+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
