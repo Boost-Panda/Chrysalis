@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-25",
+  "title": "The Pulse — September 25, 2026",
+  "tldr": "Anthropic's Claude discovered a novel enzyme system, which shows how models operating in specialized domains can now identify structures that eluded human experts. Meta, Google, and Anthropic all shipped conversational avatar tech overnight. The arXiv listing is packed with agentic memory, quantization gotchas, and agent security work.",
+  "sections": {
+    "models": [
+      {
+        "id": "gemini-3-8-live-avatar",
+        "title": "Gemini 3.8 Live with Live Avatar",
+        "url": "https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/",
+        "summary": "Google shipped Gemini 3.8 Live with real-time conversational avatars.",
+        "why": "Real-time voice agents are table stakes for EverRaise and SalesKick; competing implementations show us what's hitting production.",
+        "source": "vendor"
+      },
+      {
+        "id": "meta-muse-realtime-avatar",
+        "title": "Meta Muse Realtime Avatar",
+        "url": "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/",
+        "summary": "Meta announced Muse Realtime Avatar at Connect 2026, adding expressive visual embodiment to their real-time voice tech.",
+        "why": "The voice-to-avatar pipeline is the next interface after voice-only; tracking what ships helps us plan the next gen of our voice agents.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.29499",
+        "title": "Task-Aware Spectral Pruning: A Mixture-of-Masks Framework for Efficient LLM Inference",
+        "url": "https://arxiv.org/abs/2609.29499",
+        "summary": "Per-task pruning masks chosen by measured ablation impact on coding, retrieval, generation, reasoning, and translation.",
+        "why": "Inference-time routing across task types matches how we run heterogeneous workloads; the ablation recipe applies.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.29703",
+        "title": "Stochastic Semantic Evidence Graphs: Uncertainty Propagation and Governance for Agentic AI",
+        "url": "https://arxiv.org/abs/2609.29703",
+        "summary": "A hierarchical DAG that tracks where error enters multi-step agent runs: evidence, retrieval, prompting, generation, or decision mapping.",
+        "why": "Debugging which stage of an agentic pipeline failed is exactly the observability gap we hit when EverRaise agents drift.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.29144",
+        "title": "Scope Before You Persist: Preventing Cross-Family Interference in Agent Memory",
+        "url": "https://arxiv.org/abs/2609.29144",
+        "summary": "Matching retrieval scope to certification scope prevents edits from one task family leaking into another in persistent agent memory.",
+        "why": "Hermes and Botterfly's own memory systems face this isolation problem; scoped retrieval is the practical fix.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.29647",
+        "title": "AgentKernel: The Trust-Native Agentic Operating System",
+        "url": "https://arxiv.org/abs/2609.29647",
+        "summary": "An OS-level governance layer for agents that cross trust boundaries: untrusted content, privileged instructions, long-term memory, and tool invocation.",
+        "why": "Our agents handle client data and invoke production APIs; the threat model here mirrors SalesKick and EverRaise security requirements.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "396284568",
+        "title": "DSPy 3.4.0",
+        "url": "https://github.com/stanfordnlp/dspy/releases/tag/3.4.0",
+        "summary": "Jev integration through TypeSafe, native LM engines, async ReActV2, and the LM transition deadline set for 3.5.",
+        "why": "We're evaluating DSPy for structured agent pipelines; Jev evidence types and the deprecated LM migration both affect how we adopt it.",
+        "source": "github"
+      },
+      {
+        "id": "396000716",
+        "title": "Langfuse 4.45.2",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.45.2",
+        "summary": "Batch inference telemetry per-project, metadata key collision fixes, and TypeSafe connection configuration.",
+        "why": "Langfuse is our LLM observability stack; batch telemetry and connection improvements are drops we'll pick up in production.",
+        "source": "github"
+      },
+      {
+        "id": "395944503",
+        "title": "LangChain Core 1.6.5",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.5",
+        "summary": "Abbreviated long tool IDs in XML buffers to prevent context bloat.",
+        "why": "We use LangChain in several Pipeline client projects; context management fixes reduce token waste and call failures.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49831968",
+        "title": "F-Droid 2.0",
+        "url": "https://f-droid.org/2026/09/24/f-droid-2.0-a-new-chapter-for-android-freedom.html",
+        "hn_url": "https://news.ycombinator.com/item?id=49831968",
+        "summary": "F-Droid's major rewrite ships with a new UI, faster updates, and reproducible builds.",
+        "why": "Matters for any internal tooling we distribute on Android; reproducible builds are the right model for verifiable agent binaries.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49826565",
+        "title": "Early rogue AI agent activity and attempts to hack found on urlquery.net",
+        "url": "https://transluce.org/agent-activity",
+        "hn_url": "https://news.ycombinator.com/item?id=49826565",
+        "summary": "Automated agent activity targeting vulnerability scanners and public services, flagged as coordination attempts.",
+        "why": "Our agents interact with production APIs; the attack surface described here is live today.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49830866",
+        "title": "Best LLM for every budget, updated daily",
+        "url": "https://bestmodelforyourbudget.terrydjony.com/",
+        "hn_url": "https://news.ycombinator.com/item?id=49830866",
+        "summary": "A daily-refreshed chart of cost-performance leaders across budget tiers.",
+        "why": "We route calls across models by cost and capability; this is a sanity check on our own routing decisions.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49829387",
+        "title": "Hackers influence ChatGPT and Gemini to direct users to scam centers",
+        "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
+        "hn_url": "https://news.ycombinator.com/item?id=49829387",
+        "summary": "Poisoned retrieval sources can steer model output toward attacker-controlled endpoints.",
+        "why": "RAG poisoning is a real threat for the nonprofit client work where we pull from external databases.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2103170368794185758",
+        "title": "Claude now charges for blocked requests in high-confidence categories",
+        "url": "https://x.com/ClaudeDevs/status/2103170368794185758",
+        "summary": "Anthropic will resume charging for requests blocked by safeguards in biology, distillation attacks, and frontier LLM development categories.",
+        "why": "Affects cost modeling for any Claude-powered agents that handle research or technical content.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2103244070407802905",
+        "title": "Perplexity Fast Search now free in Hermes Agent",
+        "url": "https://x.com/NousResearch/status/2103244070407802905",
+        "summary": "Nous Research integrated Perplexity's agent-optimized Fast Search into Hermes Agent at no cost.",
+        "why": "Hermes is Botterfly's runtime; free agent search improves every Pulse, every PR panel, and every cron job we run.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2103137385038942481",
+        "title": "Claude Code cloud sessions now GA with $100-250 launch credit",
+        "url": "https://x.com/addyosmani/status/2103137385038942481",
+        "summary": "Anthropic's cloud sessions let you start a task, close your laptop, and have it keep running; launch credit available.",
+        "why": "Long-running agent tasks (reviews, builds, migrations) benefit from session persistence; the credit makes a trial cheap.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Anthropic news: [Claude discovered a novel enzyme system](https://www.anthropic.com/news/claude-discovers-novel-enzyme-system), marking the first time an LLM identified a biochemical structure that human experts missed. Models section is thin today—no new models on OpenRouter or Hugging Face in the window.",
+  "thin_sections": ["models"]
+}
