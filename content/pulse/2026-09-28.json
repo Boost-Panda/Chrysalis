@@ -1,0 +1,189 @@
+{
+  "date": "2026-09-28",
+  "title": "The Pulse — Monday, September 28, 2026",
+  "tldr": "OpenAI DevDay is in 48 hours and the agent security story is heating up: the SwarmTraces disclosure showed how OpenAI agents hacked Hugging Face, and an appeals court upheld Anthropic's supply-chain-risk designation. On the technical side, arXiv is full of production lessons—real-time voice agent evaluation, KV cache reuse gotchas, and agent memory isolation. Fireworks shipped Ember-1, a post-trained model built on Llama 4.",
+  "sections": {
+    "models": [
+      {
+        "id": "typesafe/jev-router",
+        "title": "TypeSafe Jev Router",
+        "url": "https://openrouter.ai/typesafe/jev-router",
+        "summary": "A router that picks the model and reasoning effort for each request, balancing quality, speed, and cost.",
+        "why": "Routing logic is what we build for client workloads; seeing a vendor ship it as a service shows the problem is general.",
+        "source": "openrouter"
+      },
+      {
+        "id": "perceptron/perceptron-mk1.5",
+        "title": "Perceptron Mk1.5",
+        "url": "https://openrouter.ai/perceptron/perceptron-mk1.5",
+        "summary": "Embodied reasoning model for physical agents, accepting text, image, video, and audio, with structured outputs for points, boxes, and tracks.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.30798",
+        "title": "Evaluating Real-Time Voice Agents: From Component Quality to Grounded Outcomes",
+        "url": "https://arxiv.org/abs/2609.30798",
+        "summary": "A framework for voice-agent evaluation that unifies speech models, turn-taking, and end-to-end task success.",
+        "why": "EverRaise's voice agents sit exactly in this gap between component metrics and real outcomes; the proposed metrics apply.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.30471",
+        "title": "CARGO: Context-Aware Retrieval-Gated Evaluation of Agentic AI in Production",
+        "url": "https://arxiv.org/abs/2609.30471",
+        "summary": "LLM-as-a-judge for deployed agents, where the reference answer applies the correct procedure to a different entity.",
+        "why": "Our agents operate over real support cases and accounts; this evaluation approach fits that domain better than exact-match judges.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.31395",
+        "title": "ActKV: Efficient LLM Agents through Action-Guided KV Cache Management",
+        "url": "https://arxiv.org/abs/2609.31395",
+        "summary": "Compresses agent KV caches by prioritizing actions over observations in iterative loops.",
+        "why": "Long agentic runs blow up cache size; action-weighted compression is a practical fix for any agent hitting memory limits.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.31415",
+        "title": "Evaluating the accuracy of KV cache reuse techniques",
+        "url": "https://arxiv.org/abs/2609.31415",
+        "summary": "Shows that current KV cache reuse evaluations inflate effectiveness by missing accuracy loss from reuse.",
+        "why": "We rely on prompt caching; this paper warns that the reported gains may not hold when you measure the right thing.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.30289",
+        "title": "Not All Memories Are Equal: Hierarchical Collaborative Memory for Validity-Aware Retrieval in LLM Agents",
+        "url": "https://arxiv.org/abs/2609.30289",
+        "summary": "Separates team memory (decisions, protocols) from individual memory (observations, traces) with validity-aware retrieval.",
+        "why": "Botterfly and Hermes both need this isolation between shared context and agent-specific state; the validity model applies.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "396671530",
+        "title": "Langfuse 4.46.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.46.0",
+        "summary": "Streamlined experiment comparison, basic skill management, 100-row page size for tracing tables, and retention fixes.",
+        "why": "Langfuse is our LLM observability stack; skill management and larger table views improve our production workflow.",
+        "source": "github"
+      },
+      {
+        "id": "396484142",
+        "title": "Langfuse 4.45.4 and 4.45.3",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.45.4",
+        "summary": "LLM connection fixes for TypeSafe base URLs, eval model selection fixes, and assistant data-retention compliance.",
+        "why": "Connection and eval fixes land in the version we run; these are maintenance drops we'll pick up on the next deploy.",
+        "source": "github"
+      },
+      {
+        "id": "396605330",
+        "title": "LangChain Fireworks 1.6.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-fireworks%3D%3D1.6.3",
+        "summary": "Declares native PDF inputs unsupported and preserves malformed tool arguments as diagnostic JSON.",
+        "why": "We use LangChain with Fireworks models; the tool-argument fix prevents silent data loss when a model returns invalid JSON.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49849985",
+        "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
+        "url": "https://swarmtraces.org/",
+        "hn_url": "https://news.ycombinator.com/item?id=49849985",
+        "summary": "SwarmTraces disclosure of how autonomous OpenAI agents exploited Hugging Face in a red team exercise.",
+        "why": "Our agents call production APIs and handle sensitive data; the attack surface here is the one we defend against.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49845977",
+        "title": "U.S. appeals court upholds designation of Anthropic as supply chain risk",
+        "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+        "hn_url": "https://news.ycombinator.com/item?id=49845977",
+        "summary": "Appeals court decision affirms Anthropic's classification as a supply chain risk for U.S. defense work.",
+        "why": "We rely on Claude for production work; supply-chain restrictions affect vendor availability and compliance requirements.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49868830",
+        "title": "Ember-1",
+        "url": "https://fireworks.ai/blog/ember-1",
+        "hn_url": "https://news.ycombinator.com/item?id=49868830",
+        "summary": "Fireworks' Ember-1 is a post-trained Llama 4 model, shipping instruction-tuned and claiming competitive quality.",
+        "why": "Fireworks is in our vendor rotation; a new model from them means updated routing decisions and cost comparisons.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49859112",
+        "title": "DeepSeek Elastic Compute (DSec)",
+        "url": "https://arxiv.org/abs/2609.22978",
+        "hn_url": "https://news.ycombinator.com/item?id=49859112",
+        "summary": "DeepSeek's elastic inference scheduler that adapts compute allocation during decoding based on measured uncertainty.",
+        "why": "Dynamic compute allocation is the next step after static routing; this shows a production implementation of the idea.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49841563",
+        "title": "Dutch governments builds alternative for Microsoft based on NixOS",
+        "url": "https://www.dawo.community/en/",
+        "hn_url": "https://news.ycombinator.com/item?id=49841563",
+        "summary": "A public-sector effort to build a sovereign alternative to Microsoft 365 on NixOS.",
+        "why": "Shows NixOS reaching production scale outside tech startups; relevant if we ever deploy infrastructure for public-sector clients.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2103561342057943314",
+        "title": "Claude Code wraps up tasks at the 5-hour limit",
+        "url": "https://x.com/ClaudeDevs/status/2103561342057943314",
+        "summary": "Claude Code now finds a stopping point when you hit the 5-hour limit mid-task, using a small fixed allowance to wrap up.",
+        "why": "We hit time limits on long PR reviews and migrations; graceful wrap-up saves work and makes restarts cleaner.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2103929727761137940",
+        "title": "72 hours to OpenAI DevDay",
+        "url": "https://x.com/OpenAIDevs/status/2103929727761137940",
+        "summary": "OpenAI's DevDay announcement countdown.",
+        "why": "Major vendor events often bring API changes, new models, or pricing shifts that land in our production workloads.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2103548467729887677",
+        "title": "Opus 5.5 pricing and task cost calculator",
+        "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+        "summary": "Opus 5.5 is 20% cheaper per token and 60% cheaper on cache reads; Claude Code published a task cost calculator.",
+        "why": "Opus 5.5 powers most of our Claude-based workflows; the price drop extends our limits by 25%.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2104252306447544447",
+        "title": "GPT-6 vision bug fixed",
+        "url": "https://x.com/OpenAIDevs/status/2104252306447544447",
+        "summary": "OpenAI fixed a bug degrading image understanding in GPT-6 Sol and Luna, improving visual tasks including computer use.",
+        "why": "We use GPT-6 for code review and artifact inspection; the vision fix improves screenshot-based verification.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2103577007938228300",
+        "title": "Claude plugin portal now live",
+        "url": "https://x.com/ClaudeDevs/status/2103577007938228300",
+        "summary": "New portal to submit Claude plugins, track review, and see usage; MCP usage is up 110x this year.",
+        "why": "We build MCP servers for internal tooling; the plugin portal is the distribution path once they're production-ready.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": [],
+  "window": {
+    "since": "2026-09-25T04:30:58+00:00",
+    "until": "2026-09-28T04:30:58+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
