@@ -1,0 +1,120 @@
+{
+  "date": "2026-09-29",
+  "title": "The Pulse, Tuesday 29 September 2026",
+  "tldr": "Claude Sonnet 5.5 landed yesterday: 30% faster and cheaper than Sonnet 5, designed for everyday tasks like bug fixes and feature work. OpenAI's DevDay keynote is today, and World Labs is joining AMD. The Hacker News front page is debating whether coding is solved.",
+  "sections": {
+    "models": [
+      {
+        "id": "anthropic/claude-sonnet-5.5",
+        "title": "Claude Sonnet 5.5",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "summary": "Anthropic's new workhorse model, 30% faster and up to 30% cheaper than Sonnet 5, optimized for well-scoped tasks like fixing bugs and iterating on features.",
+        "why": "Direct performance and cost improvement for our Claude Code workflows and EverRaise's Vapi agent builds.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "398611908",
+        "title": "langchain-fireworks 1.7.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-fireworks%3D%3D1.7.0",
+        "summary": "Adds prompt caching middleware and classifies mid-stream read timeouts.",
+        "why": "Fireworks is in our OpenRouter rotation; prompt caching cuts token costs for repeat patterns in SalesKick and Pipeline agents.",
+        "source": "github"
+      },
+      {
+        "id": "398591861",
+        "title": "langchain 1.4.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.3",
+        "summary": "Fixes cache settings for fallback models, recognizes GPT-6 structured output without profiles, and repairs invalid tool calls in create_agent.",
+        "why": "We use LangChain's tool calling in SalesKick grading and Pipeline's client agents; the invalid-tool-call fix could prevent agent failures.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49881850",
+        "title": "Sonnet 5.5",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "hn_url": "https://news.ycombinator.com/item?id=49881850",
+        "summary": "Claude's new Sonnet model: 663 points, 447 comments, mostly positive early reports on speed and quality for everyday coding.",
+        "why": "Same as the Models section; the discussion confirms it's a safe upgrade path from Sonnet 5.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49877988",
+        "title": "Coding is not solved",
+        "url": "https://blog.alexewerlof.com/p/coding-is-not-solved",
+        "summary": "A post arguing that even strong LLM coding assistants have not replaced the need for engineers who understand architecture and intent; 461 points, 466 comments.",
+        "why": "Reinforces our thesis: agents handle the mechanical work, but the design and the \"why\" still require us.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49883844",
+        "title": "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms",
+        "url": "https://github.com/firelex/jeff",
+        "summary": "Open-source 0.8B decision model that matches Jev's interface, trained on consumer hardware with 30 ms inference.",
+        "why": "Jev's already in our agent tooling; a local-runnable alternative could cut costs for high-volume decision loops in SalesKick.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49883760",
+        "title": "World Labs Is Joining AMD",
+        "url": "https://www.worldlabs.ai/blog/amd-announcement",
+        "summary": "Fei-Fei Li's World Labs, which has been working on 3D world models, is joining AMD; 231 points.",
+        "why": "Worth knowing; no direct use for us yet, but World Labs' spatial intelligence work could eventually matter for agent perception.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49879577",
+        "title": "Cf: The Agentic CLI for the Cloudflare API",
+        "url": "https://blog.cloudflare.com/cloudflare-cf-cli-launch/",
+        "summary": "Cloudflare's new CLI uses natural language to configure Workers, Pages, KV, and R2; 135 points.",
+        "why": "We use Cloudflare Workers for some Pipeline deployments; an agentic CLI could speed up config changes and debugging.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2104662967677841481",
+        "title": "OpenAI DevDay keynote today",
+        "url": "https://x.com/OpenAIDevs/status/2104662967677841481",
+        "summary": "OpenAI announced the DevDay keynote is today at openai.com/live.",
+        "why": "Likely new model or API announcements; we'll watch for anything that affects our OpenRouter usage or agent tooling.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2104676099083190435",
+        "title": "Automating eval design and hillclimbing",
+        "url": "https://x.com/ClaudeDevs/status/2104676099083190435",
+        "summary": "ClaudeDevs shared an article on using Claude to build evaluations and hillclimb on them.",
+        "why": "We run manual evals for SalesKick grading quality; automating eval design and improvement could make regression testing faster.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2104560334535086488",
+        "title": "shadcn chatbot-template updated",
+        "url": "https://x.com/shadcn/status/2104560334535086488",
+        "summary": "shadcn updated the chatbot template to the latest Next.js, AI SDK, and shadcn/react with bug fixes.",
+        "why": "We scaffold chatbots for Pipeline clients; keeping our starter aligned with shadcn's canonical one avoids drift.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2104617295683424526",
+        "title": "WebMCP Challenge winners",
+        "url": "https://x.com/OpenAIDevs/status/2104617295683424526",
+        "summary": "OpenAI announced the 10 winning projects from The WebMCP Challenge, showing what builders created when websites expose structured tools for agents.",
+        "why": "MCP is in our agent stack (Hermes supports it); seeing production patterns from the challenge could inform how we expose Pipeline tools to agents.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "thin_sections": ["research", "models"],
+  "closing": "Research: no new papers in the overnight arXiv listing. Models: only one new model in the window. Next.js v16.4.0-canary.52 landed, but canaries are omitted per the rubric unless they introduce something we're waiting for.",
+  "window": {
+    "since": "2026-09-28T04:31:35+00:00",
+    "until": "2026-09-29T04:31:35+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
