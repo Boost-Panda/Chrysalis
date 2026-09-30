@@ -1,0 +1,148 @@
+{
+  "date": "2026-09-30",
+  "title": "The Pulse, Monday 30 September 2026",
+  "tldr": "OpenAI's DevDay brought GPT-6.1 Sol (near-Astra performance at 1/5th the cost, purpose-built for coding agents), always-on Dots assistants, and Codex cloud environments. The big shift: agents can now close the laptop and keep working — exactly the direction our Botterfly and EverRaise workflows need.",
+  "sections": {
+    "models": [
+      {
+        "id": "openai/gpt-6.1-sol",
+        "title": "GPT-6.1 Sol",
+        "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+        "summary": "OpenAI's new model delivers near-Astra intelligence for coding, computer use, and professional work at one-fifth of Astra's API prices, with 95% cached input discount.",
+        "why": "Directly relevant to our wehshi PR review panels and Botterfly coding tasks — we can run stronger agents without blowing the budget, and reuse PR context across multiple review rounds.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.36576",
+        "title": "Divide and Inject: Can Agents Reconstruct an Indirect Prompt Injection from Fragments?",
+        "url": "https://arxiv.org/abs/2609.36576",
+        "summary": "Agentic systems that orchestrate tools and reason over long contexts face a new attack surface: indirect prompt injection spread across retrieved document fragments.",
+        "why": "Our RAG systems for Mackinac and EverRaise retrieve untrusted content — this shows attackers don't need a complete malicious instruction in one place.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.35820",
+        "title": "τ-Multilingual: Benchmarking Voice Agents Across Languages",
+        "url": "https://arxiv.org/abs/2609.35820",
+        "summary": "Extends τ-Voice benchmark to Spanish, Portuguese, Hindi, Korean, and Mandarin with native-speaker evaluation of full-duplex voice agent calls.",
+        "why": "EverRaise voice agents on Vapi speak English only right now — if we expand to Spanish-speaking campaigns this benchmark is the eval we'd run.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.35791",
+        "title": "FD-VAD: Semantic Endpoint Detection for Streaming Full-Duplex Speech",
+        "url": "https://arxiv.org/abs/2609.35791",
+        "summary": "Determines from partial speech whether a pause reflects hesitation or completed intent, without cascading through ASR.",
+        "why": "EverRaise voice campaigns need natural turn-taking — this gives us a semantic detector to avoid cutting callers off mid-thought.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.36700",
+        "title": "Lost in Conversation or Lost in Translation? Diagnosing Multi-Turn Degradation in RAG",
+        "url": "https://arxiv.org/abs/2609.36700",
+        "summary": "Multi-turn RAG conversations degrade as follow-up questions build toward multi-hop queries; paper proposes diagnostics to separate retrieval from reasoning failures.",
+        "why": "Mackinac's legislative research involves long multi-turn back-and-forth — if recall collapses after turn three we need to see whether it's retrieval or reasoning.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.38021",
+        "title": "Auditable Long-Term Memory: A Deterministic Retrieval Chain Measured at 479/475 of 500 on LongMemEval-S",
+        "url": "https://arxiv.org/abs/2609.38021",
+        "summary": "Hybrid candidate retrieval, cross-encoder reranking, coverage-first compilation, and deterministic scaffolds; LLM used only as a replaceable final reader.",
+        "why": "Our Hermes Mnemosyne memory system uses a similar chain — this validates the architecture and shows reranking before packing context is table stakes.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "399277565",
+        "title": "LangChain Anthropic 1.7.5",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.5",
+        "summary": "Adds Claude Sonnet 5.5 compatibility and fixes invalid tool call serialization on replay.",
+        "why": "We use LangChain for some Pipeline client flows — the Sonnet 5.5 compat means we can test it without waiting for upstream fixes.",
+        "source": "github"
+      },
+      {
+        "id": "398948156",
+        "title": "Langfuse 4.47.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.47.0",
+        "summary": "Native JS events through NAPI, ClickHouse write strategy, AI gateway trace environment control, and transcript turn nesting exposure.",
+        "why": "We use Langfuse to trace EverRaise and SalesKick production calls — the ClickHouse write path and transcript turn introspection both land in our observability stack.",
+        "source": "github"
+      },
+      {
+        "id": "398969605",
+        "title": "Next.js 16.3.7",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.3.7",
+        "summary": "Backports a turbo-tasks-backend fix for strongly consistent read hanging on canceled tasks.",
+        "why": "Chrysalis and the Pipeline client dashboards run Next.js — canceled task hangs in turbo-tasks mean broken deploys.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49896604",
+        "title": "Dots: Always-on agents",
+        "url": "https://openai.com/index/introducing-dots/",
+        "hn_url": "https://news.ycombinator.com/item?id=49896604",
+        "summary": "OpenAI's always-on assistants with their own cloud computers that keep working after you close the laptop, powered by GPT-6 Astra.",
+        "why": "Close fit to what Botterfly is becoming — we want the agent to triage PRs, file issues, and run long tasks without babysitting.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49890226",
+        "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
+        "url": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf",
+        "hn_url": "https://news.ycombinator.com/item?id=49890226",
+        "summary": "Academic study of privacy leakage in conversational AI agents across web and mobile, with 412 points and engineering-focused discussion.",
+        "why": "EverRaise voice agents and Botterfly integrations both handle user data — this flags what trackers and third parties see in production conversation flows.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49897075",
+        "title": "GLM-5.3 and the spread of advanced cyber capabilities",
+        "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
+        "hn_url": "https://news.ycombinator.com/item?id=49897075",
+        "summary": "Anthropic research on how GLM-5.3's release lowers the barrier to advanced cyber capabilities and what that means for model deployment policy.",
+        "why": "We use Claude across SalesKick and Pipeline work — understanding Anthropic's threat model helps us reason about what guardrails to expect in future releases.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49901736",
+        "title": "Livenerf: Has Opus 5.5 been nerfed yet?",
+        "url": "https://github.com/ninjahawk/livenerf",
+        "hn_url": "https://news.ycombinator.com/item?id=49901736",
+        "summary": "Community-run tracker that monitors whether Anthropic's Claude Opus 5.5 behavior has changed since release, with 364 points overnight.",
+        "why": "We pin wehshi to Opus — if Anthropic silently nerfs the model, this tracker catches it before we spend a sprint debugging phantom regressions.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2104997619152130278",
+        "title": "Codex cloud environments (OpenAI Developers)",
+        "url": "https://x.com/OpenAIDevs/status/2104997619152130278",
+        "summary": "OpenAI launched persistent Codex cloud environments: reusable setups with repo, dependencies, scripts, and settings already in place so agents keep working when you close the laptop.",
+        "why": "Exactly what we want for Botterfly long-running reviews and DSPy optimization loops — no more keeping a session open to babysit the agent.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2104996715501904173",
+        "title": "Nous Research partners with OpenAI for ChatGPT sign-in",
+        "url": "https://x.com/NousResearch/status/2104996715501904173",
+        "summary": "Nous Research integrated ChatGPT sign-in for the Nous Portal, letting users apply their ChatGPT plan to Hermes Agent with visibility in ChatGPT settings.",
+        "why": "We run Botterfly on Hermes Agent — this means our team can use their existing ChatGPT plans instead of managing separate billing.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: Only one new model family in the window (GPT-6.1 Sol), but it's the one that matters.",
+  "thin_sections": ["models"],
+  "window": {
+    "since": "2026-09-29T04:31:35+00:00",
+    "until": "2026-09-30T04:31:35+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
