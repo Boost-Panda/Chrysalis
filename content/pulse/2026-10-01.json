@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-01",
+  "title": "The Pulse, Tuesday 1 October 2026",
+  "tldr": "Gemini 4 Argon lands as Google's frontier model for real-world coding, enterprise work, and cyber defense. Next.js patched critical security holes (SSRF, cache poisoning, draft mode leaks) across three releases. Agent benchmarks dominated the overnight listing with evaluation frameworks for voice interfaces, agentic harnesses, and multi-agent coordination.",
+  "sections": {
+    "models": [
+      {
+        "id": "google/gemini-4-argon",
+        "title": "Gemini 4 Argon: our next era of frontier intelligence",
+        "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+        "summary": "Google's frontier model targeting real-world coding, enterprise knowledge work, and cyber defense, rolling out soon.",
+        "why": "A frontier coding model is directly relevant for our Claude Code workflows and multimodal agent tooling; we'll test it in OpenRouter as soon as the catalog lists it.",
+        "source": "vendor"
+      },
+      {
+        "id": "anthropic/claude-sonnet-4.5",
+        "title": "Claude Sonnet 4.5 deprecation",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#september-30-2026",
+        "summary": "Anthropic announced the deprecation of Claude Sonnet 4.5 (claude-sonnet-4-5-20250929), retiring from the API on November 30, 2026, recommending migration to Claude Sonnet 5.5.",
+        "why": "We route through OpenRouter but track model lifecycles; if any client hardcodes Sonnet 4.5, we have two months to migrate them to 5.5.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2609.38512",
+        "title": "VAmoS Part Deux: Harder, More Realistic Voice-Agent Simulation",
+        "url": "https://arxiv.org/abs/2609.38512",
+        "summary": "A benchmark of 100 voice-agent calls about utility billing and payment assistance, combining multiple requests per call, background speech, and impatient customers, with sixteen tools backed by a stateful Stripe billing twin.",
+        "why": "EverRaise runs voice agents on Vapi for sales and support; a realistic eval with Stripe simulation and multiple requests per call is a direct template for testing their flows.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.38867",
+        "title": "Talk2Agent: Benchmarking Voice Interfaces for Text Agents",
+        "url": "https://arxiv.org/abs/2609.38867",
+        "summary": "A benchmark that evaluates text agents given speech input, measuring how transcription errors alter task-critical entities and constraints before the agent begins reasoning.",
+        "why": "Speech-to-text errors breaking agent behavior is a risk for EverRaise's voice flows; a benchmark that isolates transcription failure modes would let us measure and mitigate it.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.38652",
+        "title": "AgBench: Agentic AI Benchmarks for Personal AI Devices",
+        "url": "https://arxiv.org/abs/2609.38652",
+        "summary": "A benchmark for agentic systems executing locally on personal devices with limited resources, focusing on planning, tool use, and iterative execution without relying on cloud-hosted LLMs.",
+        "why": "Hermes runs locally on pandybot and Ali's Mac; a benchmark designed for resource-constrained agentic execution would help us profile and tune our own agents.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.38891",
+        "title": "Consistent Plan-Act for Long-Horizon Agentic Tasks",
+        "url": "https://arxiv.org/abs/2609.38891",
+        "summary": "A framework decoupling high-level planning from low-level execution with structured state assertions from both planner and actor agents, investigating coordination failures in long-horizon tasks.",
+        "why": "Long-horizon tasks with separate planning and execution roles mirror our multi-turn PR review panels and scheduled job agents; coordination failures and state consistency are recurring issues.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2609.39284",
+        "title": "EngramBench: A Capability-Grounded Benchmark for Skill-Evolution Harnesses",
+        "url": "https://arxiv.org/abs/2609.39284",
+        "summary": "A benchmark for skill evolution in autonomous agents, addressing the identifiability problem in evaluations: structural improvements that don't transfer to other domains.",
+        "why": "Botterfly's skill system is a skill-evolution harness; a benchmark that checks whether learned abstractions transfer across domains would validate our skill authoring and promotion workflows.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "https://github.com/vercel/next.js/releases/tag/v16.3.8",
+        "title": "Next.js v16.3.8 and v15.5.27 (security releases)",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.3.8",
+        "summary": "Coordinated security releases for v16 and v15. High: SSRF in image optimization (v16 only). Medium: cache poisoning of SSG and ISR pages, dynamicParams bypass in metadata image routes, draft mode leaks through 'use cache' deduplication, cross-user content substitution. Low: information disclosure in the dev server's MCP endpoint (v16 only).",
+        "why": "We run Next.js for EverRaise's dashboard, Life International's CRM frontend, and internal Botterfly tools across both version lines; SSRF and cache poisoning are must-patch, especially on self-hosted stacks.",
+        "source": "github"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-3148/",
+        "title": "Python 3.14.8",
+        "url": "https://www.python.org/downloads/release/python-3148/",
+        "summary": "Interpreter release for Python 3.14.",
+        "why": "SalesKick services run Python 3.14; we'll update the base images after the release notes confirm stability.",
+        "source": "python.org"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-31316/",
+        "title": "Python 3.13.16",
+        "url": "https://www.python.org/downloads/release/python-31316/",
+        "summary": "Interpreter release for Python 3.13.",
+        "why": "Worth knowing for clients running 3.13; we primarily target 3.14 and 3.11.",
+        "source": "python.org"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-31117/",
+        "title": "Python 3.11.17",
+        "url": "https://www.python.org/downloads/release/python-31117/",
+        "summary": "Interpreter release for Python 3.11.",
+        "why": "Our ai-service runs 3.11 on Railway; we'll update once the release notes are reviewed.",
+        "source": "python.org"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49906637",
+        "title": "You said no MCP",
+        "url": "https://earendil.com/posts/you-said-no-mcp/",
+        "hn_url": "https://news.ycombinator.com/item?id=49906637",
+        "summary": "A post-mortem on why a team rejected the Model Context Protocol after initial adoption, citing configuration complexity, brittle integrations, and debugging opacity when a tool call fails across the MCP boundary.",
+        "why": "We've discussed MCP for Hermes tool extensions and client agent integrations; this post's rejection reasons (config complexity, debugging opacity) are the exact failure modes we'd hit.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49911995",
+        "title": "Launch HN: Magnitude (YC S25) – Self-optimizing inference engine for agents",
+        "url": "https://github.com/magnitudedev/magnitude",
+        "hn_url": "https://news.ycombinator.com/item?id=49911995",
+        "summary": "An open-source inference engine that profiles agent workloads and auto-tunes batching, prefill chunking, and KV-cache eviction policies per-agent, aiming to reduce latency and cost without manual configuration.",
+        "why": "We run long-context agents with Hermes and could benefit from auto-tuned inference policies; worth a spike to see if it profiles and optimizes our OpenRouter backend usage patterns.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49912444",
+        "title": "5x faster Edge Functions: V8 isolates to Firecracker MicroVMs",
+        "url": "https://www.netlify.com/blog/edge-functions-firecracker-microvms/",
+        "hn_url": "https://news.ycombinator.com/item?id=49912444",
+        "summary": "Netlify moved edge functions from V8 isolates to Firecracker MicroVMs and reports 5x faster cold starts and better resource isolation, at the cost of higher memory overhead per function.",
+        "why": "EverRaise uses Supabase edge functions (Deno on isolates); understanding the isolate-to-MicroVM tradeoff helps us reason about cold-start latency and memory limits in their flows.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49909056",
+        "title": "What TLA+ can and can't check",
+        "url": "https://buttondown.com/hillelwayne/archive/what-tla-can-and-cant-check/",
+        "hn_url": "https://news.ycombinator.com/item?id=49909056",
+        "summary": "A guide to TLA+'s verification boundaries: it checks state-space invariants and temporal properties but cannot verify performance, liveness under unfair scheduling, or properties that depend on real-time behavior.",
+        "why": "We've discussed TLA+ for modeling multi-agent coordination and cron job scheduling; knowing its boundaries (no real-time, no unfair scheduling) sets realistic expectations for what it can prove.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49913192",
+        "title": "EDG C++ front-end goes public",
+        "url": "https://edgcpp.org/#transition",
+        "hn_url": "https://news.ycombinator.com/item?id=49913192",
+        "summary": "The EDG C++ front-end, used by many commercial compilers, is now publicly available, offering a standardized parsing and semantic analysis layer for C++ tooling.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2105391694741119047",
+        "title": "Claude.dev is Anthropic's new developer hub",
+        "url": "https://x.com/ClaudeDevs/status/2105391694741119047",
+        "summary": "Anthropic launched Claude.dev as the home for developers building with Claude, featuring engineering deep dives, Claude Code and API guides, and tips from the teams building Claude.",
+        "why": "We use Claude Code for client work and Hermes orchestration; a dedicated developer hub with API guides and engineering deep dives is a primary reference for troubleshooting and optimization.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2105341340213002698",
+        "title": "Models understand shadcn/ui deeply",
+        "url": "https://x.com/shadcn/status/2105341340213002698",
+        "summary": "shadcn reports that models now understand shadcn/ui's architecture: the open code format, the registry, design tokens, CLI, and presets, not just knowing about the library.",
+        "why": "We scaffold Next.js apps with shadcn/ui for client frontends; models understanding its registry and preset system means Claude Code can generate and modify components with less manual correction.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2105256053403508849",
+        "title": "Qwen3.8-27B now on Nebius",
+        "url": "https://x.com/Alibaba_Qwen/status/2105256053403508849",
+        "summary": "Qwen3.8-27B, a 27B dense model designed for multi-step workflows and agent tasks, is now accessible via Nebius.",
+        "why": "A 27B agent-focused model is in the sweet spot for our workloads (cheaper than frontier, smarter than 7B); worth testing through OpenRouter if Nebius is listed.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python 3.12.15 and 3.10.22 also released; full list in releases.",
+  "window": {
+    "since": "2026-09-30T04:31:33+00:00",
+    "until": "2026-10-01T04:31:33+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
