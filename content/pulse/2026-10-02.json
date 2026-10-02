@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-02",
+  "title": "The Pulse, Thursday 2 October 2026",
+  "tldr": "Claude Code gets mods—TypeScript plugins that change behavior and UI, built by Claude or handwritten. Cloudflare's Clef decision models launch with an RL fine-tuning platform on Workers. arXiv delivered overnight: voice-agent document grounding, agentic coding under RL, and agent memory.",
+  "sections": {
+    "models": [
+      {
+        "id": "apodex/apodex-1.1-mini",
+        "title": "Apodex 1.1 Mini (free)",
+        "url": "https://openrouter.ai/apodex/apodex-1.1-mini",
+        "summary": "Reasoning-first model for long-horizon research and forecasting, works with files, data, code, and tools, 262k context, free.",
+        "why": "Free 262k reasoning model: fits Mackinac legislative research before we pay for a bigger one.",
+        "source": "openrouter"
+      },
+      {
+        "id": "unbiased/pareto-26.10-preview",
+        "title": "Pareto 26.10 Preview",
+        "url": "https://openrouter.ai/unbiased/pareto-26.10-preview",
+        "summary": "Composite multimodal model: runs several models per request, evaluates answers, returns the best one. 1M context, $0.80 / $3.20 per million tokens.",
+        "why": "Multi-model voting behind one call: could replace a DSPy judge ensemble with one model that does it internally.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.00316",
+        "title": "DuplexSpeechBench-Document Grounding: Benchmarking Document Grounding and Hallucinations in Voice Agents",
+        "url": "https://arxiv.org/abs/2610.00316",
+        "summary": "Benchmark for document grounding in voice agents across five professional domains, tests three failure modes (context saturation, instruction conflict, fabrication).",
+        "why": "We grade EverRaise voice agents on grounding accuracy; a specialized benchmark tells us whether the general eval is missing anything.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.00890",
+        "title": "Cross-Benchmark Transfer from RL on Agentic Coding Tasks",
+        "url": "https://arxiv.org/abs/2610.00890",
+        "summary": "RL on expert-built agentic coding tasks closes the last-mile gap: dropped requirements, incomplete test coverage, broken behavior. Tests cross-benchmark transfer.",
+        "why": "Coding agents that test themselves incompletely and break existing behavior are the current bottleneck for autonomous PRs.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.00872",
+        "title": "MemFit: Efficient Long-Term Agentic Memory",
+        "url": "https://arxiv.org/abs/2610.00872",
+        "summary": "Long-term memory system for conversational agents: bypasses costly LLM-driven memory organization and consolidation, optimizes write operations.",
+        "why": "Botterfly's Mnemosyne does exactly this; a paper on memory consolidation costs validates the design target.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.00954",
+        "title": "Beyond Leaderboards: Tokenomics of Agentic Small Language Model Ensembles",
+        "url": "https://arxiv.org/abs/2610.00954",
+        "summary": "Evaluates SLM-judge-mediated agentic ensembles on operational reliability, cost, latency, and token efficiency, not just accuracy.",
+        "why": "Our wehshi PR review panel runs three models with a judge; a tokenomics framework tells us where the cost is and whether cheaper models change it.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.01027",
+        "title": "LawCompass: Navigating from Legal QA to Multi-Agent Deep Research with Grounded Evidence",
+        "url": "https://arxiv.org/abs/2610.01027",
+        "summary": "Multi-agent system for legal research: systematic evidence retrieval, multi-step reasoning, grounded answers. Moves beyond conversational QA.",
+        "why": "Pipeline's nonprofit clients need grounded policy research; a legal multi-agent pattern is one model for similar legislative workflows.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "400838220",
+        "title": "Langfuse v4.49.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.49.0",
+        "summary": "Org-level analytics view, ingestion overview route, tool filters on session table, evaluator onboarding tracking.",
+        "why": "We trace SalesKick and EverRaise flows through Langfuse; org-level ingestion stats and tool filters make debugging multi-service flows faster.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49923692",
+        "title": "Clef: Open-weight decision models, and new RL fine-tuning platform",
+        "url": "https://blog.cloudflare.com/clef-decision-models/",
+        "hn_url": "https://news.ycombinator.com/item?id=49923692",
+        "summary": "Cloudflare launches Clef, open-weight decision models (Yes/No/Confidence), and an RL fine-tuning platform on Workers.",
+        "why": "Decision models can gate agent actions live; an RL fine-tuning platform on Workers fits our serverless edge deployment pattern.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49923466",
+        "title": "RIP, vector database",
+        "url": "https://turbopuffer.com/blog/rip-vector-database",
+        "hn_url": "https://news.ycombinator.com/item?id=49923466",
+        "summary": "Turbopuffer argues vector databases are becoming unnecessary: purpose-built compute plus object storage beats them on cost and latency.",
+        "why": "We run Pinecone for Mackinac; if the economics flipped we could swap it for cheaper cloud-native storage before we scale further.",
+        "source": "hackernews"
+      },
+
+      {
+        "id": "49919910",
+        "title": "GPT-Synopsys: Frontier Intelligence to Revolutionize Chip Design",
+        "url": "https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design",
+        "hn_url": "https://news.ycombinator.com/item?id=49919910",
+        "summary": "OpenAI and Synopsys announce GPT-Synopsys, frontier models for chip design workflows.",
+        "why": "No direct use for us yet, but another vertical reasoning model worth watching: if chip design can ship one, legal and policy research will too.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2105721434807083061",
+        "title": "Claude Code mods",
+        "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
+        "summary": "Claude Code now supports mods: TypeScript plugins that customize behavior, UI, and features. Write them by hand or have Claude build them.",
+        "why": "Hermes and Claude Code are both agent runtimes; mods are the same extensibility layer we built with skills, but shipped as a first-class plugin system.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2105539239949877335",
+        "title": "claude.dev launches",
+        "url": "https://x.com/addyosmani/status/2105539239949877335",
+        "summary": "Anthropic launched claude.dev: developer docs, performance deep dives (made the web app 3x faster), Opus 5.5 effectiveness guide, eval hillclimbing.",
+        "why": "Performance optimization and eval automation guides: both apply to Chrysalis and our own agent evals.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2105652858788175990",
+        "title": "Fine-tuned Qwen3 4B beats Claude Sonnet 4.6",
+        "url": "https://x.com/svpino/status/2105652858788175990",
+        "summary": "Fine-tuned Qwen3 4B on AWS outperforms both the base model and Claude Sonnet 4.6 on a specific task, cheaper and faster.",
+        "why": "We run Sonnet for SalesKick grading; task-specific fine-tuning at 4B could drop cost and latency if the quality holds on our own evals.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python releases: nothing in the window.",
+  "thin_sections": ["releases"],
+  "window": {
+    "since": "2026-10-01T04:31:35+00:00",
+    "until": "2026-10-02T04:31:35+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
