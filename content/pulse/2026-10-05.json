@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-05",
+  "title": "The Pulse, Monday 5 October 2026",
+  "tldr": "Aleph Alpha released Kolibri, a sovereign open-weight German LLM with real traction on HN. Claude Code added the \"You Should Know\" plugin to catch important output you might miss. DuplexJev proposes batched speech decisions without decoding — 80 decisions per second on an 8-GPU node, directly useful for full-duplex voice agents.",
+  "sections": {
+    "models": [
+      {
+        "id": "inclusionai/ling-3.1-flash-20261002",
+        "title": "inclusionAI: Ling 3.1 Flash",
+        "url": "https://openrouter.ai/inclusionai/ling-3.1-flash",
+        "summary": "A hybrid reasoning mixture-of-experts model with 25B active parameters out of 560B total, now on OpenRouter.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "openrouter"
+      },
+      {
+        "id": "google/DiarizationLM-Gemma-4-E4B-v1",
+        "title": "Google DiarizationLM-Gemma-4-E4B-v1",
+        "url": "https://huggingface.co/google/DiarizationLM-Gemma-4-E4B-v1",
+        "summary": "A Gemma-4 based speaker diarization model released on Hugging Face.",
+        "why": "EverRaise's voice agents on Vapi need accurate speaker identification in multi-party calls.",
+        "source": "huggingface"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.02638",
+        "title": "Batched Speech Decisions Without Decoding: Single-Token Supervision Lets a Frozen LLM Hear Beyond the Transcript",
+        "url": "https://arxiv.org/abs/2610.02638",
+        "summary": "DuplexJev feeds ASR-encoder hidden states through a small connector into a frozen LLM and reads each question as a single-token distribution over options, answering 80 decisions per second on an 8-GPU node without any decoding.",
+        "why": "EverRaise's full-duplex voice agents make many small real-time decisions; this approach could drastically cut latency.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.02563",
+        "title": "OpenGameEval: Benchmarking Agentic Programming and Exploration in a Stateful Game Engine",
+        "url": "https://arxiv.org/abs/2610.02563",
+        "summary": "A benchmark that turns Roblox Studio into an executable planning environment with reproducible, stateful game-engine sessions and executable checks.",
+        "why": "Relevant benchmark structure for our own agentic code evaluation work and wehshi review panels.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.02404",
+        "title": "Trained Agentic Context Management",
+        "url": "https://arxiv.org/abs/2610.02404",
+        "summary": "Fine-tunes Qwen3.6-35B-A3B with tools to call itself with any prompt and read tokens from input context in a range, treating context management as an agentic skill rather than a native model capability.",
+        "why": "Hermes's context management for long tasks could benefit from this approach rather than packing everything into one window.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.02472",
+        "title": "APDMem: Agent-Controlled Progressive Disclosure for Query-Adaptive Long-Term Memory",
+        "url": "https://arxiv.org/abs/2610.02472",
+        "summary": "A hierarchical long-term memory architecture that applies progressive disclosure to memory retrieval, adapting to query complexity rather than using flat Top-K.",
+        "why": "Botterfly's Mnemosyne memory system could benefit from hierarchical retrieval rather than always returning fixed-count results.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "python-3150rc3",
+        "title": "Python 3.15.0rc3",
+        "url": "https://www.python.org/downloads/release/python-3150rc3/",
+        "summary": "Release candidate 3 for Python 3.15.0, published October 2.",
+        "why": "Every Python interpreter release matters for our services; we test release candidates before production upgrades.",
+        "source": "python.org"
+      },
+      {
+        "id": "langchain-text-splitters-1.1.3",
+        "title": "langchain-text-splitters 1.1.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-text-splitters%3D%3D1.1.3",
+        "summary": "Dependency updates including tornado, urllib3, anyio, soupsieve, and lxml.",
+        "why": "EverRaise and Mackinac both use LangChain for retrieval pipelines; dependency updates sometimes fix memory leaks or security issues.",
+        "source": "github"
+      },
+      {
+        "id": "langfuse-v4.50.0",
+        "title": "Langfuse v4.50.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.50.0",
+        "summary": "Adds facet type evaluators, built-in protection, rule idle time, seven-day execution health in evaluator status, and various fixes.",
+        "why": "We use Langfuse for observability across SalesKick and Pipeline clients; evaluator health monitoring is directly useful.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49942706",
+        "title": "Kolibri: A Sovereign Open-Weight Model",
+        "url": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+        "hn_url": "https://news.ycombinator.com/item?id=49942706",
+        "summary": "Aleph Alpha released Kolibri, an open-weight German LLM with 659 points and 326 comments on HN.",
+        "why": "Worth knowing; no direct use yet, but sovereign models show how regional players are competing outside the big three.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49953495",
+        "title": "Run Qwen 3.8 Flash Next (125B) on consumer hardware (RTX 4090) at 100T/s",
+        "url": "https://github.com/Niko1221/Strata",
+        "hn_url": "https://news.ycombinator.com/item?id=49953495",
+        "summary": "A project demonstrating 125B parameter model inference at 100 tokens per second on a single RTX 4090.",
+        "why": "On-premises inference for clients with data residency requirements; shows what's now feasible on consumer hardware.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49949235",
+        "title": "We're going to need default hard budget caps on pretty much everything",
+        "url": "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
+        "hn_url": "https://news.ycombinator.com/item?id=49949235",
+        "summary": "Simon Willison argues for default hard spend limits on API services to prevent runaway costs from agentic systems.",
+        "why": "SalesKick's agentic flows and EverRaise's voice agents could rack up unexpected bills; budget caps deserve a place in our deployment checklist.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49946567",
+        "title": "Getting the most out of Opus 5.5 in Claude and Claude Code",
+        "url": "https://claude.dev/blog/getting-the-most-out-of-opus-5-5/",
+        "hn_url": "https://news.ycombinator.com/item?id=49946567",
+        "summary": "Official guide on using Opus 5.5, with 232 points and 157 comments.",
+        "why": "Our team uses Claude Code daily; knowing how to get the best results from Opus 5.5 improves everyone's coding speed.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49945933",
+        "title": "Agents don't need memory, they need documentation",
+        "url": "https://liao.gg/blog/agents-dont-need-memory",
+        "hn_url": "https://news.ycombinator.com/item?id=49945933",
+        "summary": "A post arguing structured documentation beats memory for agent context, with 354 points and 238 comments.",
+        "why": "Challenges our investment in Mnemosyne; the counter-argument is worth reading and the HN thread has smart takes on when each approach wins.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2106118517447876618",
+        "title": "Claude Code's \"You Should Know\" plugin",
+        "url": "https://x.com/ClaudeDevs/status/2106118517447876618",
+        "summary": "ClaudeDevs announced a new plugin that scans Claude's output for important information you might miss, enabled with /plugin enable cc-plugin-you-should-know@builtin.",
+        "why": "We use Claude Code on every project; this plugin helps catch decisions and warnings we'd otherwise scroll past.",
+        "source": "x"
+      },
+      {
+        "id": "2106497770236387496",
+        "title": "Linus Tech Tips discusses Hermes Agent",
+        "url": "https://x.com/NousResearch/status/2106497770236387496",
+        "summary": "Nous Research noted that Linus Sebastian discussed his Hermes setup experience on their latest podcast.",
+        "why": "Hermes is our agent runtime; seeing it reach mainstream tech creators means support and plugin ecosystems will grow.",
+        "source": "x"
+      },
+      {
+        "id": "2106369670680871031",
+        "title": "Sebastian Raschka: Reasoning from Scratch, Round 6",
+        "url": "https://x.com/rasbt/status/2106369670680871031",
+        "summary": "An introduction and implementation of RLVR and GRPO for reasoning models.",
+        "why": "Reasoning traces underpin our code review workflows; GRPO is worth understanding if we ever fine-tune a reasoning model ourselves.",
+        "source": "x"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-02T04:31:25+00:00",
+    "until": "2026-10-05T04:31:25+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
