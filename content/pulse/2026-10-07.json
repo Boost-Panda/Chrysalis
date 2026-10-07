@@ -1,0 +1,171 @@
+{
+  "date": "2026-10-07",
+  "title": "The Pulse, Monday 7 October 2026",
+  "tldr": "Mistral launched Large 4, a 1T-parameter MoE with 49B active that leads European benchmarks and runs on OpenRouter now. OpenAI published math progress on open problems from an internal frontier model with Lean proofs on GitHub. Nous shipped Hermes Index, a composite benchmark measuring model performance inside Hermes Agent.",
+  "sections": {
+    "models": [
+      {
+        "id": "mistralai/mistral-large-4-0",
+        "title": "Mistral Large 4",
+        "url": "https://mistral.ai/news/mistral-large-4/",
+        "summary": "A 1-trillion-parameter natively multimodal MoE with 49B active parameters, leading European open-weights models on aggregated benchmarks.",
+        "why": "Available on OpenRouter now; we route requests through it for reasoning and agentic workloads where context and cost matter more than raw speed.",
+        "source": "openrouter"
+      },
+      {
+        "id": "google/gemini-nano-banana-2.1",
+        "title": "Google: Nano Banana 2.1",
+        "url": "https://openrouter.ai/google/gemini-nano-banana-2.1",
+        "summary": "Google's newest image generation and editing model on the Flash tier, succeeding Nano Banana 2 with improved product recontextualization.",
+        "why": "Available on OpenRouter; we generate and edit images for client-facing flows when DALL-E 3 latency is too high.",
+        "source": "openrouter"
+      },
+      {
+        "id": "https://www.anthropic.com/news/cyber-verification-program",
+        "title": "Anthropic cyber verification program",
+        "url": "https://www.anthropic.com/news/cyber-verification-program",
+        "summary": "Anthropic announced a cyber verification program; details on the page.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.08452",
+        "title": "Agentic AutoRAG: RAG Pipeline Optimization through Reasoning-Driven Agents",
+        "url": "https://arxiv.org/abs/2610.08452",
+        "summary": "Orchestrates LLM agents to optimize RAG pipeline hyperparameters—chunking, embedding model, reranking, generation—framing it as a reasoning problem rather than grid search.",
+        "why": "EverRaise legislative research and Mackinac's hybrid retrieval are RAG pipelines where we tune these same knobs; agent-driven search could ship faster decisions.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.08125",
+        "title": "Conversation Is a Two-Body Problem: Dyadic Evaluation of Full-Duplex Dialogue Models",
+        "url": "https://arxiv.org/abs/2610.08125",
+        "summary": "Proposes dyadic evaluation where two agents converse, measuring whether full-duplex models handle turn-taking, interruptions, and backchanneling better than sequential models.",
+        "why": "SalesKick's coaching flows and EverRaise's Vapi voice agents are conversational; this eval framework fits how we measure natural dialogue.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.07311",
+        "title": "Understanding and Mitigating Inference-Time Overreliance Using Agentic Memory",
+        "url": "https://arxiv.org/abs/2610.07311",
+        "summary": "Shows that LLMs overrely on stale patterns from their context during inference, and introduces agentic memory—a retrieval buffer—to mitigate it.",
+        "why": "Botterfly's Mnemosyne memory and our agents' context pattern; this paper's findings could inform when we flush or refresh stored context.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.07782",
+        "title": "Persistent Memory in Multi-Agent LLM Inference: What It Costs, What It Buys, and When You Can Tell",
+        "url": "https://arxiv.org/abs/2610.07782",
+        "summary": "Quantifies the cost and return of persistent memory across multi-agent LLM runs, showing when shared state is worth the storage and latency overhead.",
+        "why": "We spawn agent panels for PR review and parallel coding tasks; this tells us when shared memory pays and when it's drag.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": 404899674,
+        "title": "LangChain Core 1.6.7",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.7",
+        "summary": "Fixes Bedrock Converse redacted_content in v1 output and Python 3.14 signature hardening.",
+        "why": "We use LangChain Core in SalesKick's coaching and EverRaise's campaign flows; stability and Python 3.14 readiness matter for our upgrade path.",
+        "source": "github"
+      },
+      {
+        "id": 404679528,
+        "title": "Langfuse v4.53.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.53.0",
+        "summary": "Exposes resolution context in AI Gateway response headers, spans, and logs; visual refinements to tokens, tabs, and trace tree rows.",
+        "why": "We trace SalesKick and Pipeline client flows through Langfuse; gateway context in headers helps debug routing decisions without opening the UI.",
+        "source": "github"
+      },
+      {
+        "id": 404465446,
+        "title": "Langfuse v4.52.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.52.0",
+        "summary": "Bounds trace batches by weight and excludes oversized traces; shows organization usage breakdown on every deployment; remembers last SSO email.",
+        "why": "Same tracing path; batch bounds keep our ingestion pipeline from choking on large traces.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49977979",
+        "title": "Mistral Large 4",
+        "url": "https://mistral.ai/news/mistral-large-4/",
+        "hn_url": "https://news.ycombinator.com/item?id=49977979",
+        "summary": "982 comments on Mistral's 1T-parameter release, covering benchmark placement, EU vs US open-weights competition, and MoE architecture tradeoffs.",
+        "why": "Same model we route through; the thread surfaces real usage and gotchas before we hit them.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49984923",
+        "title": "Sharing AI progress in mathematics",
+        "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+        "hn_url": "https://news.ycombinator.com/item?id=49984923",
+        "summary": "536 comments on OpenAI's published results from an internal frontier model solving open math problems, with Lean formalizations on GitHub.",
+        "why": "Formal reasoning benchmarks are the next gate for our agent use cases; this is a data source we can pull and verify against.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49977177",
+        "title": "Polars 2.0",
+        "url": "https://pola.rs/",
+        "hn_url": "https://news.ycombinator.com/item?id=49977177",
+        "summary": "97 comments on Polars 2.0; the thread covers migration from Pandas and lazy execution patterns.",
+        "why": "We process call transcripts and campaign CSVs in Python; Polars 2.0 could replace Pandas where memory and speed are tight.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49980487",
+        "title": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
+        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/",
+        "hn_url": "https://news.ycombinator.com/item?id=49980487",
+        "summary": "31 comments on Google's lightweight multimodal embedding model; open weights, text and image inputs.",
+        "why": "Mackinac and EverRaise retrieval pipelines embed documents; an open multimodal embedding could replace vendor calls where cost piles up.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2107457414387622310",
+        "title": "Mistral AI on Large 4",
+        "url": "https://x.com/MistralAI/status/2107457414387622310",
+        "summary": "Mistral's launch post: 1T parameters, 49B active, best open-weights model from US or Europe on aggregated benchmarks, leads on cyber, manufacturing, finance workloads.",
+        "why": "Same model; this is the vendor's framing, and it matches what we care about—reasoning and domain-specific performance.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2107573382229188645",
+        "title": "OpenAI Decisions API in public beta",
+        "url": "https://x.com/OpenAIDevs/status/2107573382229188645",
+        "summary": "OpenAI's Decisions API is now in public beta; it routes app logic to the right model, tool, or action up to 10x faster than GPT-6 Luna through the Responses API.",
+        "why": "We route requests across models in SalesKick and Pipeline; a faster decision layer could cut latency where we branch on user input.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2107592255124951360",
+        "title": "Nous Research Hermes Index",
+        "url": "https://x.com/NousResearch/status/2107592255124951360",
+        "summary": "Nous launched Hermes Index, a composite benchmark measuring model performance inside Hermes Agent across agent, RAG, and tool use tasks.",
+        "why": "Botterfly runs on Hermes; this benchmark tells us which models perform best in the environment where we ship, not on generic evals.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2107542087243907506",
+        "title": "Claude Code cloud sessions field guide",
+        "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+        "summary": "ClaudeDevs published a field guide for cloud sessions: Claude Code runs on a fresh VM per task, keeps going when you close your laptop, and can run several at once.",
+        "why": "We use Claude Code for feature branches and PR work; cloud sessions mean we can kick off parallel builds without blocking local work.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Saturday and Sunday were quiet; this issue covers 72 hours.",
+  "window": {
+    "since": "2026-10-06T04:31:29+00:00",
+    "until": "2026-10-07T04:31:29+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
