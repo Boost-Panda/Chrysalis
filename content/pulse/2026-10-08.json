@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-08",
+  "title": "The Pulse, Tuesday 8 October 2026",
+  "tldr": "Claude Haiku 5.5 and GPT-6 both dropped yesterday. Haiku 5.5 costs 75% less than Haiku 4.5 with a 1M context window, tuned for subagents and high-volume work. GPT-6 rolls out with Intelligent UI, delivering interactive visual experiences in ChatGPT.",
+  "sections": {
+    "models": [
+      {
+        "id": "anthropic/claude-haiku-5.5-20261007",
+        "title": "Claude Haiku 5.5",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#october-7-2026",
+        "summary": "Anthropic's small, fast model for high-volume work with 1M context window, 75% cheaper than Haiku 4.5.",
+        "why": "Ideal subagent for our LangChain pipelines, code review compactions, and EverRaise high-volume SMS/call summaries.",
+        "source": "openrouter"
+      },
+      {
+        "id": "openai/gpt-6",
+        "title": "GPT-6 and Intelligent UI for everyone",
+        "url": "https://openai.com/index/gpt-6-for-everyone",
+        "summary": "OpenAI's GPT-6 rolls out globally in ChatGPT with Intelligent UI, delivering faster responses with interactive visual experiences.",
+        "why": "Worth knowing for customer conversations and benchmarking our DSPy chains against frontier models, no direct use for us yet.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.08900",
+        "title": "Humanize: Judgement Engineering for Agentic Coding",
+        "url": "https://arxiv.org/abs/2610.08900",
+        "summary": "Multi-agent orchestration workflow for agentic coding built around explicit, mechanically enforced decisions at planning and implementation boundaries.",
+        "why": "Directly applicable to our Claude Code and Hermes workflows—the judgement boundary pattern addresses the weak-judge problem we see in code review panels.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.09624",
+        "title": "How Do Agentic LLMs Decide to Call Tools? A Tool-Call Vector Shaped by Suppression",
+        "url": "https://arxiv.org/abs/2610.09624",
+        "summary": "Identifies a tool-call decision vector shaped by suppression mechanisms in agentic prompts with tool schemas.",
+        "why": "Explains tool-calling behavior in our DSPy programs and Hermes; understanding suppression can improve prompt design for Vapi agents and LangChain tools.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.09008",
+        "title": "Whose Memory Is It? Scope-Aware Commit Rules for Long-Term LLM Memory",
+        "url": "https://arxiv.org/abs/2610.09008",
+        "summary": "Persistent memory with scope-aware commit rules to prevent deliberation artifacts from becoming durable facts.",
+        "why": "Hermes memory (Mnemosyne) and SalesKick conversation state both need this—prevents simulated tool results or rejected plans from polluting long-term context.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.09163",
+        "title": "ToolRACER: A Robust Agentic Conversation Emulation Resource for Agent Training and Evaluation",
+        "url": "https://arxiv.org/abs/2610.09163",
+        "summary": "Benchmark for function-calling agents emphasizing adversarial and non-cooperative conversation trajectories.",
+        "why": "EverRaise agents on Vapi handle real users who don't follow scripts; ToolRACER's adversarial eval matches what we need for SalesKick coaching quality.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "405867934",
+        "title": "Node.js v26.11.0 (Current)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.11.0",
+        "summary": "Notable additions include Buffer.isLatin1, Buffer.stringLength(), and http isValidHeaderName() and isValidHeaderValue() methods.",
+        "why": "Current release for our Node services; the new Buffer and HTTP validation methods are useful for EverRaise API handlers and Vapi webhooks.",
+        "source": "github"
+      },
+      {
+        "id": "405487486",
+        "title": "Next.js v16.4.0",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.0",
+        "summary": "Stable release with bundle analyzer historical snapshots, proxy detection fixes, and Turbopack resolveAlias improvements.",
+        "why": "Stable upgrade path for SalesKick dashboard and Chrysalis; bundle analyzer snapshots will help track client bundle growth over time.",
+        "source": "github"
+      },
+      {
+        "id": "405567968",
+        "title": "Langfuse v4.54.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.54.0",
+        "summary": "Adds trace topic classification, external media storage integration, and session transcript views.",
+        "why": "We use Langfuse to trace DSPy programs and LangChain pipelines; topic classification will help us segment SalesKick call types and Pipeline retrieval patterns.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "49998895",
+        "title": "Margaret Hamilton has died",
+        "url": "https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007",
+        "hn_url": "https://news.ycombinator.com/item?id=49998895",
+        "summary": "Margaret Hamilton, who led Apollo software development and coined 'software engineering,' has died.",
+        "why": "Worth remembering the engineer who built the systems that got us to the moon; her rigor shaped what we still call software engineering.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49996259",
+        "title": "Docker Agent",
+        "url": "https://github.com/docker/docker-agent",
+        "hn_url": "https://news.ycombinator.com/item?id=49996259",
+        "summary": "Docker's official agent for container orchestration and management automation.",
+        "why": "Relevant for Pipeline's Railway deployments and potential local dev automation in our Docker-based services.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49991227",
+        "title": "Shipping JPEG XL in Chrome",
+        "url": "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
+        "hn_url": "https://news.ycombinator.com/item?id=49991227",
+        "summary": "Chrome ships JPEG XL support, offering better compression and quality than legacy formats.",
+        "why": "Reduces image bandwidth for SalesKick dashboard and Chrysalis; JPEG XL can improve load times for media-heavy pages.",
+        "source": "hackernews"
+      },
+      {
+        "id": "49988230",
+        "title": "Hackers obtain counterfeit TLS certificates for Google and other large services",
+        "url": "https://arstechnica.com/security/2026/10/hackers-obtain-counterfeit-tls-certificates-for-google-and-other-large-services/",
+        "hn_url": "https://news.ycombinator.com/item?id=49988230",
+        "summary": "Attackers obtained counterfeit TLS certificates for major services, exposing certificate authority compromise.",
+        "why": "Security reminder for our services on Railway and Vercel; certificate pinning and monitoring become more critical.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2107895955144208813",
+        "title": "ClaudeDevs on Haiku 5.5 availability",
+        "url": "https://x.com/ClaudeDevs/status/2107895955144208813",
+        "summary": "Haiku 5.5 is now available in Claude Platform and Claude Code, costs 75% less than Haiku 4.5, pairs well with Opus or Sonnet as a subagent.",
+        "why": "Confirms subagent use case for Hermes and our multi-model code review panels; the cost savings make high-volume tracing and compaction viable.",
+        "source": "x"
+      },
+      {
+        "id": "2107874963382538469",
+        "title": "Nous Research raises Series B",
+        "url": "https://x.com/NousResearch/status/2107874963382538469",
+        "summary": "Nous Research raised a Series B to bring Hermes Agent to new frontiers and build a mobile app, reported in the Wall Street Journal.",
+        "why": "Hermes is our primary agent tool; the funding and mobile roadmap signal continued investment in the platform we rely on for code review and automation.",
+        "source": "x"
+      },
+      {
+        "id": "2107925762720326090",
+        "title": "ClaudeDevs on computer use in SDKs",
+        "url": "https://x.com/ClaudeDevs/status/2107925762720326090",
+        "summary": "Computer use and browser use toolsets are now built into Claude's Python and TypeScript SDKs with a managed loop for clicks and keystrokes.",
+        "why": "Simplifies browser automation for our Hermes desktop workflows and any future Claude-powered testing or scraping tasks.",
+        "source": "x"
+      },
+      {
+        "id": "2107896466522222699",
+        "title": "Addy Osmani on Haiku 5.5 as subagent",
+        "url": "https://x.com/addyosmani/status/2107896466522222699",
+        "summary": "Addy Osmani's team uses Haiku 5.5 as a subagent alongside Opus 5.5 for cheap, fast, capable small-model work.",
+        "why": "Validates the subagent pattern we use in code review panels; confirms Haiku 5.5 + Opus 5.5 is a viable pair for multi-tier agent architectures.",
+        "source": "x"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-07T04:30:54+00:00",
+    "until": "2026-10-08T04:30:54+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
