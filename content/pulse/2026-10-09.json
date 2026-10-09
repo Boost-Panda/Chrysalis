@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-09",
+  "title": "The Pulse, Thursday 9 October 2026",
+  "tldr": "OpenAI withdrew three math papers after community pushback, while Anthropic cut Sonnet 5.5 cache reads in half and announced API credits for Max/Team plans. Claude Code is being used to discover planets, and a 16.9 MB speech model just showed up on Hacker News.",
+  "sections": {
+    "models": [
+      {
+        "id": "stepfun/step-5-preview",
+        "title": "StepFun Step 5 Preview",
+        "url": "https://openrouter.ai/stepfun/step-5-preview",
+        "summary": "A 27B active / 600B sparse MoE with 1M context, optimized for agentic work and software engineering, now on OpenRouter.",
+        "why": "Large context and agentic focus fits our Hermes workflows; if it runs well on agent tasks it's worth testing against Sonnet and Sol for code and analysis work.",
+        "source": "openrouter"
+      },
+      {
+        "id": "gpt-6.1-sol-ultrafast",
+        "title": "OpenAI GPT-6.1 Sol Ultrafast",
+        "url": "https://x.com/OpenAIDevs/status/2108262812489531498",
+        "summary": "Near-Astra intelligence at up to 8x faster speeds than Sol Standard, rolling out to the API, Codex, and ChatGPT Work.",
+        "why": "8x faster Sol means our Codex and Claude Code jobs finish sooner, cutting latency on reviews, code generation, and agent work.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.11314",
+        "title": "From Retrieval to Reconstruction: Constructing Evolvable Cognitive Memory for Long-Term Dialogue",
+        "url": "https://arxiv.org/abs/2610.11314",
+        "summary": "A memory system that distinguishes source-attributed beliefs from unattributed facts, enabling long-term dialogue agents to reason reliably over extended interactions.",
+        "why": "EverRaise voice agents and our own Mnemosyne work could benefit from separating what the agent learned from what the user stated, especially for multi-session calls.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.11299",
+        "title": "DuplexAgent-RSI: Recursive Harness Improvement for Full-Duplex Voice Agent Collaboration",
+        "url": "https://arxiv.org/abs/2610.11299",
+        "summary": "A full-duplex model stays on the live channel while complex reasoning and tool use are delegated asynchronously, solving the latency-vs-capability trade-off in voice agents.",
+        "why": "EverRaise runs Vapi voice agents, and this pattern—lightweight duplex front-end plus async delegation—maps directly to what we build for call grading and lead nurturing.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.12083",
+        "title": "All Verdicts are Not Equal: Rethinking LLM Judge Reliability",
+        "url": "https://arxiv.org/abs/2610.12083",
+        "summary": "A comprehensive reliability audit of LLM-as-a-Judge across six models, four benchmarks, and varying prompts, showing systemic variance often treated as ground truth.",
+        "why": "We use LLM judges in the wehshi review panel and for evaluating prompt outputs; understanding their brittleness helps us calibrate confidence in automated verdicts.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.11559",
+        "title": "SWE-Journey: Towards More Realistic Evaluation of Coding Assistants through Long-Horizon, Multi-Turn Interaction",
+        "url": "https://arxiv.org/abs/2610.11559",
+        "summary": "A benchmark for coding assistants that spans long chains of development work in evolving repositories, with repeated requirement clarification—closer to real-world Codex and Claude Code use.",
+        "why": "Our team uses Claude Code and Codex daily; a benchmark that mirrors actual multi-turn, evolving-repo workflows is a better calibration tool than one-shot tasks.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "407305230",
+        "title": "LangChain 1.4.4",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.4",
+        "summary": "Fixes retry logic for summarization middleware on context overflow, plus dependency bumps.",
+        "why": "We use LangChain for retrieval and agent flows in Pipeline's clients; retry on overflow is a common edge case in longer documents.",
+        "source": "github"
+      },
+      {
+        "id": "407222964",
+        "title": "LangChain Core 1.6.9",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.9",
+        "summary": "Adds support for passing a callable to with_retry.",
+        "why": "Custom retry logic is useful for rate-limited APIs; if we're hitting OpenRouter or vendor endpoints with dynamic backoff, this gives us the hook.",
+        "source": "github"
+      },
+      {
+        "id": "406868315",
+        "title": "Langfuse 4.55.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.55.0",
+        "summary": "Adds support for OpenAI decision models in evals, FIPS-mode base images, skill imports from ZIPs, and batch score processing.",
+        "why": "We trace with Langfuse; batch score processing and decision model support fit our review and agent eval workflows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50003107",
+        "title": "OpenAI Withdraws 3 Math Papers",
+        "url": "https://github.com/openai/math/blob/main/history.md",
+        "hn_url": "https://news.ycombinator.com/item?id=50003107",
+        "summary": "OpenAI retracted three mathematical results from its public repo after community scrutiny.",
+        "why": "When we rely on vendor benchmarks or published research for model selection, this is a reminder to verify claims ourselves before betting production work on them.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50008427",
+        "title": "Whistle: Speech to Text in 16.9 MB",
+        "url": "https://cactuscompute.com/blog/whistle",
+        "hn_url": "https://news.ycombinator.com/item?id=50008427",
+        "summary": "A 16.9 MB speech-to-text model, tiny enough to run anywhere, with competitive accuracy.",
+        "why": "EverRaise voice agents process transcripts in real time; a model this small could run on-device or in edge functions with near-zero latency.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50002665",
+        "title": "I think I found a planet nobody knew existed. I used Claude Code to find it",
+        "url": "https://www.reddit.com/r/ClaudeAI/s/mbe5IY2LF9",
+        "hn_url": "https://news.ycombinator.com/item?id=50002665",
+        "summary": "A user claims Claude Code helped discover a previously unknown planet through data analysis.",
+        "why": "This is one data point on how far coding agents have come—enabling domain work (astronomy data crunching) for non-domain experts.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50008187",
+        "title": "OpenAI annualised revenues $20B less than previously signalled",
+        "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
+        "hn_url": "https://news.ycombinator.com/item?id=50008187",
+        "summary": "OpenAI's annualized revenue is $20 billion below earlier projections.",
+        "why": "No direct use for us yet—but it's the talk of the day and signals the AI market's volatility matters for pricing and vendor stability.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2108228391404966005",
+        "title": "Anthropic adds monthly API credits to Max and Team plans",
+        "url": "https://x.com/ClaudeDevs/status/2108228391404966005",
+        "summary": "$100 on Max 5x, $200 on Max 20x, and up to $500 pooled on Team, usable on any Claude model.",
+        "why": "Our team runs on Claude subscriptions; API credits let us script more work without separate billing, useful for cron jobs and Hermes automations.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108287358374482381",
+        "title": "Anthropic cuts Sonnet 5.5 cache reads in half",
+        "url": "https://x.com/ClaudeDevs/status/2108287358374482381",
+        "summary": "Cache reads now $0.10 per million tokens (was $0.20), making Sonnet 5.5 ~20% cheaper on agentic work.",
+        "why": "We use Sonnet 5.5 for agent work and PR reviews; 20% cheaper cache reads means our wehshi panel runs cost less per review.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108231536772596193",
+        "title": "Hermes Agent now in the Microsoft Store",
+        "url": "https://x.com/NousResearch/status/2108231536772596193",
+        "summary": "One-click install for Hermes Agent on Windows, with more updates for the Windows ecosystem coming.",
+        "why": "We run Hermes Agent as Botterfly; easier distribution helps onboard clients and partners who want to try the agent on their own machines.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108320296323477683",
+        "title": "Building effective agent automations with Claude Managed Agents",
+        "url": "https://x.com/ClaudeDevs/status/2108320296323477683",
+        "summary": "A guide to deploying agents that read Slack/GitHub on a schedule with credentials and memory, using Claude Code and the new API credits.",
+        "why": "This is the same pattern we use for The Pulse and other cron jobs; the official guide might have shortcuts we missed.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Releases: Next.js shipped only canaries in the window, so the three LangChain and Langfuse releases above are the notable ones.",
+  "window": {
+    "since": "2026-10-08T04:30:58+00:00",
+    "until": "2026-10-09T04:30:58+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
