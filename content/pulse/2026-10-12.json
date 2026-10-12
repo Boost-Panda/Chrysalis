@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-12",
+  "title": "The Pulse, Monday 12 October 2026",
+  "window": {
+    "since": "2026-10-09T04:30:55+00:00",
+    "until": "2026-10-12T04:30:55+00:00",
+    "hours": 72.0
+  },
+  "tldr": "Cloudflare acquires Deno, a direct signal for our EverRaise edge work. Claude rolled out dynamic workflows for Managed Agents and opened Code Projects to all Pro/Max users. The weekend brought 40 arXiv papers including a sales-agent benchmark that tests objection handling and a Friday research haul on coding agents.",
+  "sections": {
+    "models": [
+      {
+        "id": "Qwen/Qwen-Image-2.1-Turbo",
+        "title": "Qwen-Image-2.1-Turbo",
+        "url": "https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo",
+        "summary": "Qwen released an accelerated image generation checkpoint that creates and edits images in 8 denoising steps, open weights on HuggingFace.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "huggingface"
+      },
+      {
+        "id": "https://platform.claude.com/docs/en/release-notes/overview#october-9-2026",
+        "title": "Claude Managed Agents dynamic workflows",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#october-9-2026",
+        "summary": "Anthropic shipped dynamic workflows in beta: a lead agent writes a plan that runs across many agents in phases and combines results at the end.",
+        "why": "Multi-agent orchestration pattern for large tasks. Relevant to Botterfly's own review panels and any SalesKick workflows that need parallel evidence gathering.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.12975",
+        "title": "SmartSalesBench: A Resistance-Aware Multi-Turn Benchmark for Evaluating LLM Sales Agents",
+        "url": "https://arxiv.org/abs/2610.12975",
+        "summary": "First multi-turn conversational benchmark designed to evaluate sales agents against psychologically grounded, resistant buyer personas instead of cooperative ones.",
+        "why": "Directly relevant to SalesKick. Objection handling and non-cooperative conversations are the hard part of sales coaching; we can run this benchmark against our own agent designs.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.12757",
+        "title": "MADS: Multi-Agent Dialog Simulation for Robust Conversational Agents",
+        "url": "https://arxiv.org/abs/2610.12757",
+        "summary": "Framework for simulating adversarial conversation trajectories to train robust task-oriented conversational agents under non-cooperative user behavior.",
+        "why": "Training data generation for EverRaise voice agents and SalesKick call simulations. Our Vapi agents need to handle off-script user behavior; this gives us a method to generate those test cases.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.13438",
+        "title": "Rollout-Time Intervention: Unlocking Agentic Reinforcement Learning Beyond Policy Limits",
+        "url": "https://arxiv.org/abs/2610.13438",
+        "summary": "RL method that lets agents improve reasoning and tool-use during rollout by intervening when tasks exceed the model's current capability boundary.",
+        "why": "Potential improvement path for agents that get stuck. Relevant to Botterfly's autonomous coding workflows and any long-running SalesKick coaching sessions.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.12569",
+        "title": "SWE-Duel: Towards a Self-Scaling Arena for Coding Agents",
+        "url": "https://arxiv.org/abs/2610.12569",
+        "summary": "Self-scaling benchmark where tasks and oracles are created at evaluation time so content never leaks into training data, and difficulty adapts to participating agents.",
+        "why": "Prevents benchmark saturation for Botterfly and our coding eval pipeline. If we're evaluating agent improvements, this gives us a benchmark that won't go stale.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "https://www.python.org/downloads/release/python-3150/",
+        "title": "Python 3.15.0",
+        "url": "https://www.python.org/downloads/release/python-3150/",
+        "summary": "Python 3.15.0 stable released.",
+        "why": "Our entire backend stack. SalesKick services, Pipeline's ai-service, Botterfly scripts, and every agent harness we run.",
+        "source": "python.org"
+      },
+      {
+        "id": "407793015",
+        "title": "Langfuse v4.56.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.56.0",
+        "summary": "Langfuse v4.56.0 adds syntax highlighting to session tool previews, adaptive map exploration for topics, revamped eval decision model results, and spend alerts for ClickHouse-billed orgs.",
+        "why": "Observability for SalesKick and EverRaise agents. We rely on Langfuse for tracing multi-turn voice and coaching sessions.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50019911",
+        "title": "Cloudflare acquires Deno",
+        "url": "https://deno.com/blog/cloudflare",
+        "hn_url": "https://news.ycombinator.com/item?id=50019911",
+        "summary": "Cloudflare acquired Deno, the TypeScript-first runtime and edge platform.",
+        "why": "EverRaise edge functions run on Deno Deploy. This consolidates our edge stack under one vendor and signals continued investment in the Deno runtime we're already committed to.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50029123",
+        "title": "Telegram Desktop vulnerability allowed any user's file to be stolen",
+        "url": "https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover/",
+        "hn_url": "https://news.ycombinator.com/item?id=50029123",
+        "summary": "Telegram Desktop had a one-click account takeover vulnerability that allowed arbitrary file exfiltration from any user's machine.",
+        "why": "Reminder to audit file-access patterns in any client app. Relevant to tooling and integrations we build with filesystem access.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50033407",
+        "title": "Bitwarden Dual License Model",
+        "url": "https://community.bitwarden.com/t/published-version-update-in-app-stores/102750",
+        "hn_url": "https://news.ycombinator.com/item?id=50033407",
+        "summary": "Bitwarden announced a dual license model in its latest update, moving portions of the codebase away from GPL.",
+        "why": "License risk for any self-hosted password management we consider. Not blocking but worth tracking if we ever recommend or integrate Bitwarden for client projects.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50018350",
+        "title": "OpenAI fires three safety researchers for \"mishandling research information\"",
+        "url": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/",
+        "hn_url": "https://news.ycombinator.com/item?id=50018350",
+        "summary": "OpenAI fired three safety researchers for alleged misconduct; the researchers dispute the claims and warn of a chilling effect on safety work.",
+        "why": "Industry signal on safety team dynamics at a vendor we rely on for SalesKick and EverRaise. No immediate impact but relevant to vendor risk.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2108621476538781878",
+        "handle": "ClaudeDevs",
+        "title": "Claude Code Projects now available to all Pro and Max users",
+        "url": "https://x.com/ClaudeDevs/status/2108621476538781878",
+        "summary": "Claude Code Projects is now available to all Pro and Max users, with a 4-minute walkthrough for getting started.",
+        "why": "The agent tooling we're already using for Botterfly and client work. Projects mode keeps related tasks coordinated across sessions.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108455147986923829",
+        "handle": "shadcn",
+        "title": "shadcn on reading as the most important coding skill",
+        "url": "https://x.com/shadcn/status/2108455147986923829",
+        "summary": "The most important coding skill: read. Read the agent output, the blog post, the paper, the code. Don't summarize.",
+        "why": "Craft reminder for our own agent workflows. When Botterfly or any of us review agent output, reading the raw result beats asking for a summary.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108951977904517409",
+        "handle": "fchollet",
+        "title": "François Chollet on AI paradigm shift",
+        "url": "https://x.com/fchollet/status/2108951977904517409",
+        "summary": "AI shifted from transductive (token-by-token completion) to inductive (on-the-fly reasoning chain synthesis). This paradigm shift is what made coding agents work.",
+        "why": "Explains why agents like Claude Code and our own Botterfly work now when they didn't a year ago. Reasoning chains synthesized at inference time are the unlock.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2109012611555840069",
+        "handle": "NousResearch",
+        "title": "Nous Research teases MISSINGNO model",
+        "url": "https://x.com/NousResearch/status/2109012611555840069",
+        "summary": "Nous Research announced MISSINGNO, a coding and agentic reasoning model that is highly token efficient, free for limited time on Nous Portal.",
+        "why": "New coding model from Nous, relevant to our Hermes Agent work and worth testing against Botterfly's own tasks.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2108908657786355788",
+        "handle": "rasbt",
+        "title": "Sebastian Raschka on RLVR (Reinforcement Learning with Verifiable Rewards)",
+        "url": "https://x.com/rasbt/status/2108908657786355788",
+        "summary": "Sebastian Raschka's second RLVR tutorial covers clipped policy ratios, KL loss term, format rewards, and other GRPO tips and tricks.",
+        "why": "Training technique for reasoning models. Relevant if we experiment with post-training for SalesKick coaching models or Botterfly's own reasoning improvements.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Next.js had only canaries in the window; nothing notable to report. OpenAI vendor feed announced Sophos and Asana case studies but no model or API changes relevant to our work.",
+  "thin_sections": [],
+  "generated_by": "botterfly/pulse"
+}
