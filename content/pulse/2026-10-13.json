@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-13",
+  "title": "The Pulse, Monday 13 October 2026",
+  "tldr": "Meta ships Muse Wonder, their first frontier agentic model with 1M context and multimodal input. Anthropic's Claude discovers a novel enzyme system. Codex CLI's persistent daemon sparks backlash.",
+  "sections": {
+    "models": [
+      {
+        "id": "meta/muse-wonder",
+        "title": "Meta: Muse Wonder",
+        "url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+        "summary": "Meta's first frontier agentic model, 1M context, multimodal (text, image, video, audio, PDF), available via Meta API and OpenRouter at $4/$20 per million tokens.",
+        "why": "Directly usable in our agent stack for long-context agentic tasks with multimodal input; pricing competitive with Claude for complex workflows.",
+        "source": "vendor"
+      },
+      {
+        "id": "anthropic/claude-enzyme",
+        "title": "Claude discovers novel enzyme system",
+        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+        "summary": "Anthropic announces Claude has independently discovered a novel enzyme system through research assistant work.",
+        "why": "Signals Claude's capability boundary for autonomous research; relevant to our use of Claude in code review and technical research tasks.",
+        "source": "vendor"
+      },
+      {
+        "id": "z.ai/glm-legal",
+        "title": "GLM-Legal",
+        "url": "https://z.ai/blog/glm-legal",
+        "summary": "Z.ai's specialized legal reasoning model, trained on case law and statutory interpretation.",
+        "why": "Relevant to Mackinac's legislative research work and any future compliance or contract analysis needs.",
+        "source": "vendor"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "411066498",
+        "title": "DSPy 3.4.1",
+        "url": "https://github.com/stanfordnlp/dspy/releases/tag/3.4.1",
+        "summary": "GEPA's structured InstructionProposer is now default, RLM can build DSPy sub-agents from REPL, Python 3.15 support, streaming and adapter fixes.",
+        "why": "We use DSPy for prompt optimization; the new default proposer and sub-agent support could improve our agent scaffolding.",
+        "source": "github"
+      },
+      {
+        "id": "410845204",
+        "title": "Langfuse v4.57.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.57.0",
+        "summary": "FIPS mode support, API key expiration, Cloudflare Turnstile captcha restored, score persistence metrics.",
+        "why": "We use Langfuse for observability; API key expiration and score persistence metrics add security and monitoring depth.",
+        "source": "github"
+      },
+      {
+        "id": "411019318",
+        "title": "Langfuse v3.225.12",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v3.225.12",
+        "summary": "V3 deployments now show upgrade hints pointing to v4.",
+        "why": "Maintenance signal for our own Langfuse instances if we're still on v3.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50060694",
+        "title": "Codex CLI installs a persistent, self-updating background daemon by default",
+        "url": "https://github.com/openai/codex/issues/48195",
+        "hn_url": "https://news.ycombinator.com/item?id=50060694",
+        "summary": "Community backlash over Codex CLI's undocumented persistent daemon; 497 points, 255 comments.",
+        "why": "We use Codex via our coding-profiles skill; this affects trust and deployment decisions for autonomous agent tooling.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50059523",
+        "title": "AI coding agents generate more code, but not more software",
+        "url": "https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/",
+        "hn_url": "https://news.ycombinator.com/item?id=50059523",
+        "summary": "Ars Technica analysis of productivity data showing AI agents increase LOC but not delivered features; 320 points, 276 comments.",
+        "why": "Directly relevant to our evaluation of Claude Code and Codex effectiveness; validates our focus on outcome metrics over LOC.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50054751",
+        "title": "QGIS enacts moratorium on AI contributions",
+        "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+        "hn_url": "https://news.ycombinator.com/item?id=50054751",
+        "summary": "QGIS project votes to block AI-generated code contributions; 370 points, 398 comments.",
+        "why": "Trend to watch for OSS contribution policies; affects how we position agent-generated PRs upstream.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50055304",
+        "title": "Hackers activate automatic defrosting in supermarket fridges across Europe",
+        "url": "https://www.tomshardware.com/tech-industry/cyber-security/unprecedented-cyberattack-cripples-supermarket-fridges-across-europe-as-hackers-activate-automatic-defrosting-delivery-and-store-prices-also-impacted-by-incident",
+        "hn_url": "https://news.ycombinator.com/item?id=50055304",
+        "summary": "Coordinated cyberattack on European supermarket chains turned on defrost systems remotely; 511 points, 705 comments.",
+        "why": "IoT security case study relevant to any future work with connected systems or infrastructure clients.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50058528",
+        "title": "A Modern Web App in C",
+        "url": "https://prophitt.me/writing/a-modern-web-app-in-c",
+        "hn_url": "https://news.ycombinator.com/item?id=50058528",
+        "summary": "Full web app implementation in C with templating, routing, and SQLite; 453 points, 181 comments.",
+        "why": "Worth knowing for performance-critical service layers, though not directly applicable to our Python/Node stack.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2109633085658808515",
+        "title": "QwenGyre: elastic RL for agents",
+        "handle": "Alibaba_Qwen",
+        "name": "Qwen",
+        "url": "https://x.com/Alibaba_Qwen/status/2109633085658808515",
+        "summary": "QwenGyre: elastic RL for extreme-long-horizon agent training, reallocates GPUs between rollout and training without interrupting executions, up to 1.85× speedup.",
+        "why": "New training architecture for long-horizon agents; could inform our own agent training loops if we move beyond prompt-based approaches.",
+        "source": "x"
+      },
+      {
+        "id": "2109687906751086628",
+        "title": "Mistral Le Chonk visual grounding",
+        "handle": "MistralAI",
+        "name": "Mistral AI",
+        "url": "https://x.com/MistralAI/status/2109687906751086628",
+        "summary": "Le Chonk (Mistral's latest) achieves 42% on Dense 200 visual grounding benchmark, ahead of frontier closed models.",
+        "why": "Visual grounding capability relevant to any future work extracting structured data from documents or UI screenshots.",
+        "source": "x"
+      },
+      {
+        "id": "2109716341490106869",
+        "title": "OpenAI WebMCP annotations",
+        "handle": "OpenAIDevs",
+        "name": "OpenAI Developers",
+        "url": "https://x.com/OpenAIDevs/status/2109716341490106869",
+        "summary": "WebMCP annotations demo: custom annotation controls and suggested prompts let agents edit scenes and update expenses in ChatGPT's browser.",
+        "why": "WebMCP pattern could extend our MCP-based agent tooling; annotations give agents better UI affordances.",
+        "source": "x"
+      }
+    ]
+  },
+  "closing": "Research: arxiv feed had zero items in the window, so this section is thin today.",
+  "window": {
+    "since": "2026-10-12T04:31:41+00:00",
+    "until": "2026-10-13T04:31:41+00:00"
+  },
+  "thin_sections": ["research"],
+  "generated_by": "botterfly/pulse"
+}
