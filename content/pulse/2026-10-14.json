@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-14",
+  "title": "The Pulse, Monday 14 October 2026",
+  "tldr": "New specialized models land on OpenRouter: LiquidAI's efficient reasoning-first tool-calling model, ScaleDown's 1M-context Extract and Summarize pair, and Pareto 26.9 for agentic coding. Anthropic publishes how they rebuilt source control for AI-generated code at scale. Character.ai files for Chapter 11.",
+  "sections": {
+    "models": [
+      {
+        "id": "liquid/lfm-2.5-24b-a2b",
+        "title": "LiquidAI: LFM2.5-24B-A2B",
+        "url": "https://openrouter.ai/liquid/lfm-2.5-24b-a2b",
+        "summary": "Mixture-of-experts reasoning model with 24B total and 2.45B active parameters, always reasons before answering, built for agents that call tools.",
+        "why": "Cost-effective reasoning model for tool-calling agents; small active parameter count means fast inference on our infrastructure.",
+        "source": "openrouter"
+      },
+      {
+        "id": "unbiased/pareto-26.9",
+        "title": "Pareto 26.9",
+        "url": "https://openrouter.ai/unbiased/pareto-26.9",
+        "summary": "Multimodal composite model built for research, coding, and agentic workflows, 262k context, $2.5/$7.5 per million tokens.",
+        "why": "Competitive pricing for agentic coding workflows; composite architecture worth evaluating against single-model approaches.",
+        "source": "openrouter"
+      },
+      {
+        "id": "scaledown/extract",
+        "title": "ScaleDown: Extract",
+        "url": "https://openrouter.ai/scaledown/extract",
+        "summary": "Description-driven entity extraction model with 1M context; callers describe wanted fields in plain English instead of a fixed schema.",
+        "why": "Relevant to structured data extraction from call transcripts and documents; flexible schema could simplify SalesKick and Pipeline data pipelines.",
+        "source": "openrouter"
+      },
+      {
+        "id": "scaledown/summarize",
+        "title": "ScaleDown: Summarize",
+        "url": "https://openrouter.ai/scaledown/summarize",
+        "summary": "Abstractive summarization model with 1M context that rewrites rather than lifting sentences from source text.",
+        "why": "Abstractive approach produces cleaner summaries for client-facing reports; 1M context handles full call transcripts and meetings.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "https://www.python.org/downloads/release/python-3160a1/",
+        "title": "Python 3.16.0a1",
+        "url": "https://www.python.org/downloads/release/python-3160a1/",
+        "summary": "First alpha of Python 3.16, released 2026-10-13.",
+        "why": "Signals the 3.16 release cycle has started; worth tracking for compatibility with our Python services.",
+        "source": "python.org"
+      },
+      {
+        "id": "411384308",
+        "title": "Langfuse v4.58.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.58.0",
+        "summary": "Turnstile on password-reset, per-project trace idle time, Topics now use project's own LLM connections, media upload pool with concurrency limits.",
+        "why": "We use Langfuse for observability; Topics on custom LLM connections and improved media handling strengthen our tracing workflows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50073633",
+        "title": "Redesigning source control at Anthropic",
+        "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+        "hn_url": "https://news.ycombinator.com/item?id=50073633",
+        "summary": "Anthropic's engineering deep dive on rebuilding source control for AI-generated code at scale; 619 points, 597 comments.",
+        "why": "Directly relevant to our Claude Code and Codex workflows; design patterns for handling high-volume agent-generated commits.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50069499",
+        "title": "11 year old unsoundness bugs found in Rust borrow checker",
+        "url": "https://github.com/rust-lang/rust/issues/164250",
+        "hn_url": "https://news.ycombinator.com/item?id=50069499",
+        "summary": "Long-standing soundness issues in Rust's borrow checker discovered; 694 points, 386 comments.",
+        "why": "Worth knowing if we adopt Rust for performance-critical service layers; undermines the \\\"if it compiles, it's safe\\\" claim.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50068036",
+        "title": "Character.ai has initiated voluntary Chapter 11 bankruptcy",
+        "url": "https://blog.character.ai/an-update-on-character-ai/",
+        "hn_url": "https://news.ycombinator.com/item?id=50068036",
+        "summary": "Character.ai files for bankruptcy; 312 points, 274 comments.",
+        "why": "AI company failure case study; underscores unit economics and retention challenges for consumer AI products.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50069318",
+        "title": "AWS Lambda Web Functions",
+        "url": "https://aws.amazon.com/blogs/aws/announcing-aws-lambda-web-functions-for-fast-consistent-web-app-performance-anywhere/",
+        "hn_url": "https://news.ycombinator.com/item?id=50069318",
+        "summary": "AWS announces Lambda Web Functions for consistent web app performance; 108 points, 101 comments.",
+        "why": "Alternative to Deno edge functions for Pipeline's clients; worth evaluating for latency-sensitive endpoints.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50069971",
+        "title": "We turned EmbeddingGemma 2 into a speech-to-text model",
+        "url": "https://eg2.haku.sh/",
+        "hn_url": "https://news.ycombinator.com/item?id=50069971",
+        "summary": "Community project adapts EmbeddingGemma 2 for speech-to-text; 408 points, 86 comments.",
+        "why": "Relevant to SalesKick's call transcription pipeline; embedding model repurposed for STT could be lighter than full ASR models.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2109962443850133930",
+        "title": "Avid runs 62 agents on Grok bot",
+        "handle": "Av1dlive",
+        "name": "Avid",
+        "url": "https://x.com/Av1dlive/status/2109962443850133930",
+        "summary": "Avid shares running a one-person company with 62 agents and 29 scheduled routines on Grok bot, calling it the closest thing to a real Jarvis.",
+        "why": "Real-world scale signal for multi-agent orchestration; 62 agents is a data point for our own agent management architecture.",
+        "source": "x"
+      },
+      {
+        "id": "2110050795890827756",
+        "title": "François Chollet on agent ROI",
+        "handle": "fchollet",
+        "name": "François Chollet",
+        "url": "https://x.com/fchollet/status/2110050795890827756",
+        "summary": "Chollet argues that if an agent saves an engineer 2 hours but costs the team 3 hours in alignment and review, the ROI is negative; isolated chats lack team context.",
+        "why": "Validates our focus on shared memory and review panels; agent value is net of coordination cost, not gross time saved.",
+        "source": "x"
+      },
+      {
+        "id": "2110058184320622632",
+        "title": "Serein: agentic browser harness",
+        "handle": "Av1dlive",
+        "name": "Avid",
+        "url": "https://x.com/Av1dlive/status/2110058184320622632",
+        "summary": "Avid and Ziwen Xu launch Serein, an agentic browser harness that lets Claude Code or Codex control your tabs and do work inside the browser.",
+        "why": "Browser automation pattern relevant to testing and UI workflows; agentic harness approach could extend our Hermes browser tooling.",
+        "source": "x"
+      },
+      {
+        "id": "2109998925037859091",
+        "title": "Mistral models in orbit",
+        "handle": "MistralAI",
+        "name": "Mistral AI",
+        "url": "https://x.com/MistralAI/status/2109998925037859091",
+        "summary": "Mistral joins Orbit Works and Loft Orbital's AI satellite constellation with NVIDIA AI infrastructure.",
+        "why": "Worth knowing; no direct use for us yet.",
+        "source": "x"
+      }
+    ]
+  },
+  "closing": "Research: arxiv feed had zero items in the window, so this section is thin today. Next.js v16.5.0-canary.10 appeared in GitHub releases but is not listed (canaries are skipped unless they introduce something we're waiting for).",
+  "window": {
+    "since": "2026-10-13T04:30:54+00:00",
+    "until": "2026-10-14T04:30:54+00:00"
+  },
+  "thin_sections": ["research"],
+  "generated_by": "botterfly/pulse"
+}

@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-15",
+  "title": "The Pulse, Tuesday 15 October 2026",
+  "tldr": "Next.js v16.4.1 and v15.5.28 ship CRITICAL RCE fixes for use cache and image optimization. Node v26.12.0 brings WebAssembly requirement enforcement and HTTP websocket masks. Overnight research focuses on distilling large reasoning models to small agents, agentic verification in clinics, and multi-agent floor control for voice systems.",
+  "sections": {
+    "models": [
+      {
+        "id": "microsoft/UserRepGen-4B",
+        "title": "Microsoft UserRepGen-4B",
+        "url": "https://huggingface.co/microsoft/UserRepGen-4B",
+        "summary": "4B parameter user representation and simulation model, multimodal (image-text-to-text), built for multi-turn user modeling.",
+        "why": "User simulation directly applies to SalesKick coaching scenarios and EverRaise call testing; modeling buyer behavior and objections.",
+        "source": "huggingface"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.19439",
+        "title": "Progress-Aware Distillation for Mitigating Stagnation in Small Language Model Agents",
+        "url": "https://arxiv.org/abs/2610.19439",
+        "summary": "Transfers agentic capabilities from large models to small ones using progress-aware distillation that addresses stagnation when the student gets stuck.",
+        "why": "Relevant to distilling Claude or GPT-6 to smaller models for cost-effective SalesKick agents that need to run at scale.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.19169",
+        "title": "Verification Turns Capability Gaps into Routing Decisions: Small Language Models for Clinical Documentation",
+        "url": "https://arxiv.org/abs/2610.19169",
+        "summary": "Agentic verification architecture makes small language models viable for clinical note generation by routing when the verifier catches hallucinations.",
+        "why": "Applicable to voice agent workflows where small models generate and verifiers route escalations; cost vs safety tradeoff we face in production.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.20172",
+        "title": "MultiPartyTurnBench: Benchmarking Floor Control in Multi-Party Spoken Dialogue",
+        "url": "https://arxiv.org/abs/2610.20172",
+        "summary": "Benchmark for deciding when to enter, hold, or relinquish conversational floor in multi-speaker environments with overlap and backchannels.",
+        "why": "EverRaise voice agents need multi-party turn-taking when a spouse joins the call; floor control is the missing piece for natural group conversations.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.19801",
+        "title": "Delta Tokenizer: Reference-Identical Tokenization of Session Deltas and Segment-Parallelism for Long Prompts on Multicore CPUs",
+        "url": "https://arxiv.org/abs/2610.19801",
+        "summary": "Tokenization shortcut for agentic sessions that only tokenizes the new turn instead of re-tokenizing the entire conversation each time.",
+        "why": "Latency and CPU savings for SalesKick and EverRaise agents with long multi-turn conversations; our agents resend full context every turn.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.18881",
+        "title": "Following the Flow the Law Requires: Training Voice Agents to Transfer to Unseen Regulated Procedures in Debt Collection",
+        "url": "https://arxiv.org/abs/2610.18881",
+        "summary": "Voice agent training for regulated conversational flows in debt collection, confirms debtor identity before mentioning the debt, states amount and creditor.",
+        "why": "Compliance-aware voice agent patterns; EverRaise agents handle sensitive financial conversations and need similar flow enforcement.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "407890570",
+        "title": "Next.js v16.4.1",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.1",
+        "summary": "CRITICAL security release: unauthenticated RCE in use cache functions returning typed arrays, unauthenticated RCE in Image Optimization with SVG, and HIGH severity DoS in Server Actions.",
+        "why": "Blocking our Next.js deployments; critical RCE is deploy-on-read for Chrysalis, Mackinac frontend, and any client Next.js apps.",
+        "source": "github"
+      },
+      {
+        "id": "407892775",
+        "title": "Next.js v15.5.28",
+        "url": "https://github.com/vercel/next.js/releases/tag/v15.5.28",
+        "summary": "CRITICAL security release: unauthenticated RCE in Image Optimization with SVG, HIGH severity DoS in Server Actions.",
+        "why": "Blocking for any v15 Next.js deployments; same critical RCE fix as v16.4.1.",
+        "source": "github"
+      },
+      {
+        "id": "412870039",
+        "title": "Node.js v26.12.0 (Current)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.12.0",
+        "summary": "Current release: throws on missing WebAssembly or regex extensions support, adds websocketMask() and websocketUnmask() to HTTP.",
+        "why": "Current track for our Node services; WebAssembly requirement enforcement and HTTP websocket utilities land in the release we'll eventually adopt.",
+        "source": "github"
+      },
+      {
+        "id": "412861056",
+        "title": "Node.js v24.22.0 'Krypton' (LTS)",
+        "url": "https://github.com/nodejs/node/releases/tag/v24.22.0",
+        "summary": "LTS release: adds crypto.parsePKCS12(), generic MAC API, discovers ciphers and hashes from OpenSSL providers, enables SIV and GCM-SIV modes in Cipher.",
+        "why": "LTS track for production services; crypto additions useful for SalesKick and Pipeline backend security requirements.",
+        "source": "github"
+      },
+      {
+        "id": "412994659",
+        "title": "LangChain 1.4.6",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.6",
+        "summary": "Adds opt-in per-call interrupts to HITL middleware.",
+        "why": "We use LangChain; HITL interrupts are relevant to SalesKick coaching flows where a human needs to override agent actions mid-call.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50091788",
+        "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
+        "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
+        "hn_url": "https://news.ycombinator.com/item?id=50091788",
+        "summary": "Security experts say frontier labs are skipping basic security controls, not that agents are going rogue; 854 points, 481 comments.",
+        "why": "Relevant to our agent security posture; containment and monitoring are things we control, not model capabilities we hope stay bounded.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50094994",
+        "title": "OpenCode 2.0",
+        "url": "https://anoma.ly/notes/opencode-2-0/",
+        "hn_url": "https://news.ycombinator.com/item?id=50094994",
+        "summary": "OpenCode 2.0 announcement from Anomaly; 409 points, 172 comments.",
+        "why": "We delegate to OpenCode for PR review and feature work; version 2.0 is a signal to revisit our opencode skill and integration.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50094694",
+        "title": "Anthropic's Scion is heavily inspired by Mononoke",
+        "url": "https://sunshowers.io/posts/anthropic-mononoke/",
+        "hn_url": "https://news.ycombinator.com/item?id=50094694",
+        "summary": "Analysis of Anthropic's Scion version control design and its relationship to Mononoke; 311 points, 119 comments.",
+        "why": "Engineering deep dive on handling AI-generated commits at scale; relevant to Botterfly's own git workflow and Claude Code integration patterns.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50086165",
+        "title": "Pg_vectorsearch: An index that is faster than pgvector's IVFFlat and HNSW",
+        "url": "https://github.com/timescale/pg_vectorsearch",
+        "hn_url": "https://news.ycombinator.com/item?id=50086165",
+        "summary": "Timescale's new Postgres vector index outperforms pgvector; 198 points, 49 comments.",
+        "why": "Relevant to Mackinac's hybrid retrieval and any future RAG work; Postgres vector performance matters for our architectural options.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50090369",
+        "title": "Better HTTP/1 connection reuse in Go 1.27",
+        "url": "https://go.dev/blog/http-connection-reuse",
+        "hn_url": "https://news.ycombinator.com/item?id=50090369",
+        "summary": "Go 1.27 improves HTTP/1.1 connection reuse; 217 points, 32 comments.",
+        "why": "Worth knowing if we adopt Go for latency-sensitive services; HTTP connection reuse affects backend-to-backend call latency.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2110445844675838148",
+        "title": "Claude Code desktop improvements",
+        "url": "https://x.com/ClaudeDevs/status/2110445844675838148",
+        "summary": "Claude Code desktop app improvements for running multiple sessions side by side: faster session starts, easier to split work, always see what each is doing.",
+        "why": "We use Claude Code for Botterfly and client work; multi-session improvements matter for our parallel ticket workflow.",
+        "source": "x"
+      }
+    ]
+  },
+  "thin_sections": ["models", "x_posts"],
+  "closing": "Models and X posts are thin today; only Microsoft UserRepGen and the Claude Code desktop update made the bar.",
+  "window": {
+    "since": "2026-10-14T04:30:57+00:00",
+    "until": "2026-10-15T04:30:57+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
