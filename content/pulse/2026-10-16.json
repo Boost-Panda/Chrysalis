@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-16",
+  "title": "The Pulse, Wednesday 16 October 2026",
+  "tldr": "Meta dropped Muse Spark Open, their largest open-weight model yet at 816B total parameters, built for coding and agentic work with a 1M context window. Claude Opus 5.5 fast mode is now out of research preview at 2.5x speed. Code Review just hit general availability for Claude Team and Enterprise with Quick, Standard, and Deep review levels per repo.",
+  "sections": {
+    "models": [
+      {
+        "id": "meta/muse-spark-open",
+        "title": "Meta: Muse Spark Open",
+        "url": "https://research.meta.ai/blog/muse-spark-open",
+        "summary": "816B total / 42B active MoE with 1M context, trained for coding and agentic workflows, delivering higher first-attempt accuracy and deep codebase understanding.",
+        "why": "Worth testing on EverRaise voice agent flows and Mackinac retrieval tasks; the massive context window could handle full codebase grounding for Claude Code and Codex agents.",
+        "source": "vendor"
+      },
+      {
+        "id": "nvidia/nemotron-3.5-super-vl",
+        "title": "NVIDIA: Nemotron 3.5 Super VL",
+        "url": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl",
+        "summary": "12B active / 120B total multimodal MoE handling text, images, documents, GUI screenshots, and video at 1M context, with up to 5x throughput vs similar local models.",
+        "why": "Could replace our vision calls for SalesKick call grading when we need document or screenshot analysis; Nous benchmarked it at 63.44 on Hermes Bench.",
+        "source": "openrouter"
+      },
+      {
+        "id": "moondream/moondream3.1-9b-a2b",
+        "title": "Moondream: Moondream 3.1",
+        "url": "https://openrouter.ai/moondream/moondream3.1-9b-a2b",
+        "summary": "9B total / 2B active vision-language MoE for visual QA, captioning, OCR, and reasoning at $0.30 prompt / $2.50 completion per million tokens.",
+        "why": "Cheap enough to run OCR and visual extraction at volume for client document pipelines; worth testing against our current GPT-4V calls.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.21165",
+        "title": "From Long Context to Selective Memory: A Survey of Memory-Centric Compression for Large Language Models",
+        "url": "https://arxiv.org/abs/2610.21165",
+        "summary": "Survey of prompt compression, KV-cache management, and retrieval augmentation techniques for LLM inference at scale, with a focus on memory-centric approaches.",
+        "why": "Maps the landscape of compression techniques we need for Hermes agents and EverRaise voice sessions when context grows past manageable windows.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.20776",
+        "title": "INFUSE: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems",
+        "url": "https://arxiv.org/abs/2610.20776",
+        "summary": "Benchmark for indirect prompt injection attacks on LLM agents executing shell commands, code modification, and remote service interaction.",
+        "why": "Directly relevant to Hermes agent security; we need to run this against our agent harness before deploying any client-facing automation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.22209",
+        "title": "Beyond Downstream QA: Rethinking How We Evaluate Agent Memory",
+        "url": "https://arxiv.org/abs/2610.22209",
+        "summary": "Challenges current agent memory benchmarks that conflate memory correctness with retrieval and generation quality, proposing episode-level evaluation protocols.",
+        "why": "Hits Mnemosyne design directly; we're measuring memory by QA accuracy when we should measure storage integrity and retrieval precision separately.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.20665",
+        "title": "The World Won't Wait: Evaluating and Teaching Agents Under a Live Clock",
+        "url": "https://arxiv.org/abs/2610.20665",
+        "summary": "RealtimeBench introduces 180 tasks across six game types evaluating agents in continuously changing environments where correct actions can arrive too late.",
+        "why": "Real-time pressure is the unsolved problem for voice agents; EverRaise needs to respond while the call is live, not after the caller hangs up.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.21184",
+        "title": "Beyond Retrieval Failure: Understanding Why LLMs Miss Evidence in Multi-Hop RAG",
+        "url": "https://arxiv.org/abs/2610.21184",
+        "summary": "Separates retrieval failures (passage not accessible) from agent failures (wrong query issued) in multi-hop RAG systems.",
+        "why": "Mackinac legislative research runs multi-hop retrieval; this gives us a framework to diagnose whether we're fixing the wrong part of the pipeline.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "414365323",
+        "title": "Next.js v16.4.2",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.2",
+        "summary": "Turbopack snapshot consistency fixes, Pages Router dev module graph chaining, and lazy dynamic-import chunk-list collision resolution.",
+        "why": "We're on Next.js for every client dashboard; stability fixes land before we hit the edge cases in production.",
+        "source": "github"
+      },
+      {
+        "id": "414140980",
+        "title": "LangChain Core 1.6.11",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.11",
+        "summary": "Accepts address inside LangChainTracer for remote tracing setups.",
+        "why": "We're running LangChain on EverRaise and Mackinac; remote tracing support lets us centralize Langfuse observability across Railway deploys.",
+        "source": "github"
+      },
+      {
+        "id": "413677682",
+        "title": "Langfuse v4.60.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.60.0",
+        "summary": "Organization-level connections, billable units ledger in ClickHouse, skill CLI import, evaluator gallery, and prompt cache hit rate display.",
+        "why": "Prompt cache hit rate is the metric we need to validate our Hermes agent caching strategy; org-level connections simplify multi-client observability.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50105647",
+        "title": "Neural networks are clean",
+        "url": "https://already-clean.goodfire.com/",
+        "hn_url": "https://news.ycombinator.com/item?id=50105647",
+        "summary": "562 points, 216 comments; Goodfire's argument that neural networks are interpretable and structured, challenging the 'black box' narrative.",
+        "why": "Interpretability matters for SalesKick when clients ask why a call scored the way it did; this frames the capabilities gap differently.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50101813",
+        "title": "AdFection: Targeted ads turned into a pipeline for zero-click mercenary spyware",
+        "url": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/",
+        "hn_url": "https://news.ycombinator.com/item?id=50101813",
+        "summary": "414 points, 577 comments; Citizen Lab report on zero-click spyware delivered through targeted advertising infrastructure.",
+        "why": "Security threat model for any web app; if ads can deliver zero-click payloads, we need to rethink client dashboard CSP policies.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50103630",
+        "title": "I know why the mathematicians weep",
+        "url": "https://www.derekthompson.org/p/i-know-why-the-mathematicians-weep",
+        "hn_url": "https://news.ycombinator.com/item?id=50103630",
+        "summary": "350 points, 577 comments; essay on AI's impact on mathematical research and the human experience of discovery.",
+        "why": "Worth knowing; captures the existential question every practitioner is asking about their craft, no direct use for us yet.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2110825294655562048",
+        "title": "Claude Opus 5.5 Fast Mode Out of Preview",
+        "handle": "ClaudeDevs",
+        "name": "ClaudeDevs",
+        "url": "https://x.com/ClaudeDevs/status/2110825294655562048",
+        "summary": "Opus 5.5 fast mode out of research preview at $8 / $40 per million tokens, up to 2.5x faster, available in Microsoft Foundry with Google Cloud coming soon.",
+        "why": "Fast mode at 2.5x speed changes the economics of Hermes agent runs; we should benchmark Opus 5.5 fast against Sonnet 4.5 for code review panels.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2110866210573386065",
+        "title": "Claude Code Review Now Generally Available",
+        "handle": "ClaudeDevs",
+        "name": "ClaudeDevs",
+        "url": "https://x.com/ClaudeDevs/status/2110866210573386065",
+        "summary": "Code Review is now generally available for Claude Team and Enterprise plans with Quick, Standard, and Deep review levels per repo.",
+        "why": "We're building wehshi PR review panels; this is the competitor benchmark, and we should compare our panel findings against Claude's Code Review output.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "One story pulled double duty today: Muse Spark Open ran in Models, Hacker News, and X; dedupe collapsed it to one Models entry and two citations. Opus 5.5 fast mode at 2.5x is the speed bump we've been waiting for.",
+  "window": {
+    "since": "2026-10-15T04:30:56+00:00",
+    "until": "2026-10-16T04:30:56+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
