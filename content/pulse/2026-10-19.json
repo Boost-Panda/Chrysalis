@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-19",
+  "title": "The Pulse, Monday 19 October 2026",
+  "tldr": "DeepSeek shipped V4.1 Flash 1017 with vision and 1M context for 15¢/60¢ per million tokens. Claude Code's team wrote about how they do code review when the agent writes 90% of the code. The weekend brought three days' worth of agentic memory papers, CLI benchmarks, and safety research.",
+  "sections": {
+    "models": [
+      {
+        "id": "deepseek/deepseek-v4.1-flash-1017",
+        "title": "DeepSeek: DeepSeek V4.1 Flash 1017",
+        "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017",
+        "summary": "DeepSeek V4.1 Flash 1017 is the October 17 snapshot of DeepSeek's sparse mixture-of-experts model, now with vision (text+image->text), 1M context, and improved reasoning.",
+        "why": "Matches Claude 3.7 performance on SWE-bench Verified at a tenth of the cost; the whole Pipeline stack runs through OpenRouter so this is immediately available for all our agentic call grading and retrieval workflows.",
+        "source": "openrouter"
+      },
+      {
+        "id": "elorian/glimpse",
+        "title": "Elorian: Glimpse",
+        "url": "https://openrouter.ai/elorian/glimpse",
+        "summary": "Glimpse is a visual reasoning model from Elorian built for physical-world understanding; it handles images and video (text+image+video->text) with 262K context.",
+        "why": "Video understanding for EverRaise's call recordings and Life International's training materials; the multimodal reasoning could help Meno's bill-tracking agents verify document changes across video briefings.",
+        "source": "openrouter"
+      },
+      {
+        "id": "reflection/beam-1.0-501b-a23b",
+        "title": "Reflection: Beam 1.0 501B A23B",
+        "url": "https://openrouter.ai/reflection/beam-1.0-501b-a23b",
+        "summary": "Beam 1.0 is Reflection's open-weight reasoning model for coding and long-horizon agentic workflows, 501B total with 23B active per token and 1M context.",
+        "why": "Built specifically for agentic coding workflows; worth testing on Botterfly's skill authoring and wehshi review panel tasks where reasoning depth matters more than raw speed.",
+        "source": "openrouter"
+      },
+      {
+        "id": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+        "title": "NVIDIA Nemotron Labs Dory1.0 4B",
+        "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+        "summary": "Dory1.0 is a 4B conversational model from NVIDIA's Nemotron Labs, released in BF16, MXFP8, NVFP4, and GGUF quantizations.",
+        "why": "Small enough to run on-device for SalesKick's call grading pilots on RTX laptops; the GGUF release means we can eval it in llama.cpp before committing to fine-tuning.",
+        "source": "huggingface"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.22511",
+        "title": "AuditKIT: A Unified Evaluation Spine for Benchmarking, Judging, and Comparing Large Language Models and Agentic Systems",
+        "url": "https://arxiv.org/abs/2610.22511",
+        "summary": "AuditKIT combines benchmark accuracy, judge-based assessment, runtime performance, tool-use behavior, and retrieval quality into one evaluation framework for LLM agents.",
+        "why": "Exactly what we need for systematic comparison of wehshi review models and EverRaise's Vapi-based voice agents; the unified trace format could feed our Langfuse observability stack.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.23134",
+        "title": "MetaCurate: Evolving Curation Filters for High-Quality Agentic Coding Data",
+        "url": "https://arxiv.org/abs/2610.23134",
+        "summary": "MetaCurate learns to filter agentic coding trajectories by distinguishing useful intermediate steps from noise, even in failed runs.",
+        "why": "Our wehshi panel and Claude Code sessions generate thousands of trajectories; this could help us curate the keepers for fine-tuning Botterfly's skill authoring and code review behavior.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.22959",
+        "title": "SAFE-Mem: Secure Agentic Memory with Fine-Grained Authority and Governance-Aware Retrieval",
+        "url": "https://arxiv.org/abs/2610.22959",
+        "summary": "SAFE-Mem prevents untrusted claims in LLM agent memory from being treated as authorized preferences or permissions.",
+        "why": "Hermes Agent's Mnemosyne memory lets agents store facts from external sources; this addresses the exact security gap we saw when a Pipeline client's scraped data was mistaken for a preference.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.23254",
+        "title": "Ignored, Not Refused: What Low Prompt-Injection Success Rates Hide in Small Tool-Using Agents",
+        "url": "https://arxiv.org/abs/2610.23254",
+        "summary": "Audit of 33K trajectories shows that prompt-injection defenses work by ignoring the attack, but the agent still exposes the injected content through other tool calls.",
+        "why": "Every Pipeline voice agent reads untrusted caller input and calls tools; if our defense is silent ignoring, the attack still leaks through context — this tells us what to test.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.22668",
+        "title": "From Relevant Memories to Sufficient Evidence: Rethinking Memory Utilization in LLM Agents",
+        "url": "https://arxiv.org/abs/2610.22668",
+        "summary": "Retrieving relevant memories doesn't guarantee sufficient evidence for reasoning; essential information stays fragmented across memory records, obscured by abstraction.",
+        "why": "Mnemosyne's hybrid recall pulls memories by similarity, but this shows why our agents still miss facts — relevance ≠ sufficiency; the paper's evidence-chaining method could improve Botterfly's decision recall.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "415309351",
+        "title": "LangChain Core 1.6.12",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.12",
+        "summary": "Fixes extra propagation on content-block-start events.",
+        "why": "We use LangChain Core across SalesKick's nurturing agents; the content-block-start fix unblocks streaming for Mackinac's research workflows where we show partial results.",
+        "source": "github"
+      },
+      {
+        "id": "415059008",
+        "title": "Langfuse 4.63.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.63.0",
+        "summary": "Ships skill management as a public v4 preview, AI gateway codex-model routing, and annotation queue UX improvements.",
+        "why": "We've been waiting for public skill management to systematize Botterfly's procedural memory; the codex-model routing lets us send slugless models to the OpenAI connection without manual mapping.",
+        "source": "github"
+      },
+      {
+        "id": "414800439",
+        "title": "Langfuse 4.62.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.62.0",
+        "summary": "Adds AI gateway per-connection model controls, request limit raised to 16 MiB, and OTEL third-party span metadata decoding.",
+        "why": "The 16 MiB request limit unblocks EverRaise's longer call transcripts through the gateway; per-connection model controls let us route client-specific provider credentials cleanly.",
+        "source": "github"
+      },
+      {
+        "id": "414708632",
+        "title": "Langfuse 4.61.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.61.0",
+        "summary": "Adds dedicated skills tab on traces, AI gateway connection-based routing, and skill usage metrics.",
+        "why": "Skills-on-traces visibility means we can finally see which Botterfly skills fired for each wehshi panel run; the metrics will show which skills are dead weight.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50122800",
+        "title": "Claude reveals ECDSA curve origins",
+        "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
+        "hn_url": "https://news.ycombinator.com/item?id=50122800",
+        "summary": "Anthropic used Claude to trace the provenance of the ECDSA P-256 curve constants back to deliberate parameter choices in 1991 NIST research, not unexplained magic numbers.",
+        "why": "Shows a reasoning model can reconstruct cryptographic design decisions from decades-old papers; the same investigative approach could help us audit black-box third-party SDKs in client stacks.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50122951",
+        "title": "How the Claude Code team does code review",
+        "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+        "hn_url": "https://news.ycombinator.com/item?id=50122951",
+        "summary": "Claude Code writes 90% of its own code; the team shifted code review from line-by-line diffs to automated verification, self-fixing agents, and human focus on design decisions only.",
+        "why": "Exactly the problem we're solving with wehshi: when agents write faster than we can review, verification becomes the bottleneck — their playbook (gate on tests, autofix lints, verify claims) directly informs our PR review pipeline.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50138531",
+        "title": "DeepSeek search and fetch – $0.75 per 1000 successful requests",
+        "url": "https://api-docs.deepseek.com/guides/search/",
+        "hn_url": "https://news.ycombinator.com/item?id=50138531",
+        "summary": "DeepSeek launched a search and fetch API at 75¢ per 1K successful requests; it returns search results as structured JSON for LLM consumption.",
+        "why": "Mackinac's legislative research and EverRaise's donor intelligence both need live web search; at 75¢ per thousand this undercuts our current Serper and Brave bills by 80% — test immediately.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50133401",
+        "title": "OpenCode Hacked: User credentials leaked",
+        "url": "https://twitter.com/opencode/status/2111516673953935833",
+        "hn_url": "https://news.ycombinator.com/item?id=50133401",
+        "summary": "OpenCode disclosed a breach that leaked user credentials; the service was temporarily shut down while the team rotated keys and notified users.",
+        "why": "OpenCode is referenced in our skills and deployment docs; we need to audit any OpenCode integrations across SalesKick and Pipeline for credential exposure and rotate affected keys.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2111209208012210409",
+        "title": "@ClaudeDevs on performance improvements",
+        "url": "https://x.com/ClaudeDevs/status/2111209208012210409",
+        "summary": "Claude Code now gzips the conversation before sending it to the model on every turn, making the agent start responding sooner; cloud sessions also start as soon as typing begins.",
+        "why": "Latency matters for interactive agents; we can borrow the gzip-before-send trick for Hermes sessions with long Mnemosyne recall or sprawling skill contexts.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2111507711653564543",
+        "title": "@fchollet on software engineering in 2026",
+        "url": "https://x.com/fchollet/status/2111507711653564543",
+        "summary": "François Chollet observes that there are more software engineers now than in 2025, demand is growing, they work harder than ever, and agents write ~100% of the code.",
+        "why": "Matches what we're seeing: Botterfly and wehshi write the code, but we're busier because the bottleneck moved to design, verification, and integrating what the agents built — no direct use for us yet.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2111130297907470840",
+        "title": "@NousResearch on Hermes Agent and NVIDIA RTX Spark",
+        "url": "https://x.com/NousResearch/status/2111130297907470840",
+        "summary": "Hermes Agent is a launch partner for NVIDIA's RTX Spark across the new generation of laptops; users can pick it in the built-in Windows agent setup flow.",
+        "why": "Hermes is our daily driver for Botterfly and all Pipeline work; RTX Spark partnership means clients buying new dev machines get Hermes out of the box — good for adoption, and Linus is impressed.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python releases: nothing notable in the window. DeepSeek and Claude Code dominated the weekend; expect a lot of teams testing V4.1 Flash this week.",
+  "window": {
+    "since": "2026-10-16T04:31:24+00:00",
+    "until": "2026-10-19T04:31:24+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
