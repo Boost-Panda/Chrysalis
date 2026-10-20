@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-20",
+  "title": "The Pulse, Sunday 20 October 2026",
+  "tldr": "Anthropic launched OSS Scanner: free vulnerability scans for open source projects using their strongest models, with proof-of-concept exploits and patches. OpenAI published research on improving ChatGPT for low-resource languages (SQLite, COBOL) with new software engineering evals. Overnight research brought 40 papers on agent memory, tool use, and coding benchmarks.",
+  "sections": {
+    "models": [],
+    "research": [
+      {
+        "id": "2610.26860",
+        "title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
+        "url": "https://arxiv.org/abs/2610.26860",
+        "summary": "Study on 22 benchmarks shows increasing inference budget yields modest gains; grounded perception and tool use are essential for visual reasoning tasks.",
+        "why": "Directly relevant to EverRaise voice agents needing visual context from uploaded documents; multimodal memory architecture could improve Hermes agents working with screenshots and diagrams.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.23892",
+        "title": "EMMA: Event-Driven Multimodal Memory System with Multi-Agent Retrieval",
+        "url": "https://arxiv.org/abs/2610.23892",
+        "summary": "Event-driven memory system for long video understanding that fragments video by events instead of fixed-length clips, reducing noisy retrieval.",
+        "why": "Applies to EverRaise call recordings and SalesKick coaching replays where we need event-based segmentation (objection, agreement, question) not arbitrary time slices.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.24264",
+        "title": "AM-Bench: A Unified Taxonomy and Evaluation Suite for Agentic Misalignment",
+        "url": "https://arxiv.org/abs/2610.24264",
+        "summary": "Benchmark for agentic misalignment where agents choose harmful actions over failure; existing safety benchmarks only test compliance with explicit harm instructions.",
+        "why": "Safety testing for Hermes agents and client-facing bots; we need to test whether agents fail safe or fail dangerous when uncertain.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.24206",
+        "title": "SWE-Bench Pro V2: A Cleaner, Harder-to-Game Coding Benchmark",
+        "url": "https://arxiv.org/abs/2610.24206",
+        "summary": "Revised SWE-Bench Pro split built to keep the benchmark accurate as agents improve and interact with the evaluation environment in unexpected ways.",
+        "why": "We use SWE-bench results to compare coding models for Botterfly and wehshi panel work; V2 addresses the gaming and contamination problems we've seen in public leaderboards.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.24628",
+        "title": "Muse Glimmer 30B: An On-Device Agentic Model",
+        "url": "https://arxiv.org/abs/2610.24628",
+        "summary": "Meta's 30B open-weight model built for autonomous agentic tasks on consumer hardware, integrating multi-step reasoning and tool use, runs locally without cloud infrastructure.",
+        "why": "SalesKick could run call grading on-device with this; the tool use and failure recovery features match what we need for offline EverRaise agents when connectivity is poor.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "417562913",
+        "title": "Langfuse v4.64.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.64.0",
+        "summary": "Session timeline reuse, API key permissions enabled by default, renamed Assistant to Halo, topic cost tracking, transcript message comparison, and memory-budget request admission for AI gateway.",
+        "why": "We route all Pipeline agents through Langfuse gateway; memory-budget admission prevents OOM crashes on large prompt contexts, and the cost tracking per topic helps us attribute spend to specific clients.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50151036",
+        "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
+        "url": "https://news.ycombinator.com/item?id=50151036",
+        "hn_url": "https://news.ycombinator.com/item?id=50151036",
+        "summary": "322 points, 465 comments; Ask HN thread on the engineering challenge of reviewing and maintaining code written by AI agents.",
+        "why": "The exact problem wehshi PR review panels are designed to solve: verification becomes the bottleneck when agents write faster than we can understand; the thread maps the industry's thinking.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50148855",
+        "title": "Tmux and Claude Code: Sessions, Send-Keys, and the Ceiling",
+        "url": "https://crystl.dev/guides/tmux-for-ai-agents/",
+        "hn_url": "https://news.ycombinator.com/item?id=50148855",
+        "summary": "153 points, 116 comments; guide to driving Claude Code with tmux for background sessions and command orchestration.",
+        "why": "Relevant to our claude-code skill and how Botterfly delegates to Claude Code for PRs; the tmux integration patterns could improve Hermes agent terminal orchestration.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50151390",
+        "title": "Harness Engineering 101: The LLM is the brain, the harness is the body",
+        "url": "https://github.com/IsuruMaduranga/harness-engineering-101",
+        "hn_url": "https://news.ycombinator.com/item?id=50151390",
+        "summary": "128 points, 64 comments; repository teaching harness engineering principles for building agentic systems.",
+        "why": "Foundational material for Pipeline engineers; Hermes itself is a harness, and this repo codifies the architectural patterns we rely on.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50159341",
+        "title": "WhatsApp's help pages hid LLM instructions: dont recommend a regulator",
+        "url": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions",
+        "hn_url": "https://news.ycombinator.com/item?id=50159341",
+        "summary": "118 points, 17 comments; hidden prompt injection in WhatsApp help pages instructing the LLM not to recommend regulators.",
+        "why": "Prompt injection case study; any client-facing agent reading untrusted web content needs defenses against this attack pattern.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50152321",
+        "title": "Plex vulnerabilities being exploited in the wild to drop a cryptominer",
+        "url": "http://www.boredhackerblog.info/2026/10/plex-vulnerabilities-being-exploited-in.html",
+        "hn_url": "https://news.ycombinator.com/item?id=50152321",
+        "summary": "171 points, 86 comments; Plex media server vulnerabilities under active exploitation for cryptomining.",
+        "why": "Security reminder for any service with web-facing endpoints; if Plex can be exploited at scale, our client dashboards need the same threat modeling.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2112299602510749992",
+        "title": "Anthropic OSS Scanner",
+        "url": "https://x.com/ClaudeDevs/status/2112299602510749992",
+        "summary": "Anthropic launched OSS Scanner, giving critical open source projects free periodic vulnerability scans from their strongest models, with proof-of-concept exploits and patches.",
+        "why": "Relevant to our open source dependencies across SalesKick, Pipeline, and Botterfly; we should nominate key repos for scanning — LangChain, DSPy, Next.js, and Hermes Agent itself.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2112168594352349518",
+        "title": "François Chollet on belief and consequences",
+        "url": "https://x.com/fchollet/status/2112168594352349518",
+        "summary": "\"When enough people believe something will happen, it doesn't need to happen at all for all of its consequences to be felt.\"",
+        "why": "No direct use for us yet; captures the AI hype cycle we're navigating with clients who expect AGI tomorrow and need practical tools today.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "thin_sections": ["models", "releases", "x_posts"],
+  "closing": "Models: none in the window. Releases: canaries skipped. X posts: thin after dedupe. OSS Scanner is the lead; we should nominate Hermes and client deps. OpenAI's legacy language work (SQLite, COBOL) matters for migration projects.",
+  "window": {
+    "since": "2026-10-19T04:31:21+00:00",
+    "until": "2026-10-20T04:31:21+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
