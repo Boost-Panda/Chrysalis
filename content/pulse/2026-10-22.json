@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-22",
+  "title": "The Pulse, Thursday 22 October 2026",
+  "tldr": "PHP shipped an emergency security release overnight for a critical RCE that AI discovered. OpenAI models are coming to Google Cloud, Anthropic versioned its API for the first time since 2023, and Jensen closed GTC Berlin with a Hermes Agent demo.",
+  "sections": {
+    "models": [
+      {
+        "id": "openai/gcp-partnership-20261021",
+        "title": "OpenAI models are coming to Google Cloud",
+        "url": "https://openai.com/index/openai-models-google-cloud",
+        "summary": "OpenAI and Google Cloud announced frontier models and Codex workflows will be available through Gemini's Model Garden and Google Cloud Marketplace.",
+        "why": "Deployment option for clients already on Google Cloud; OpenRouter remains cheaper for our multi-model routing needs.",
+        "source": "vendor"
+      },
+      {
+        "id": "recursive/flint-v1.0",
+        "title": "Recursive Flint (free)",
+        "url": "https://openrouter.ai/recursive/flint-v1.0",
+        "summary": "Open-weight 40B MoE with 2.5B active parameters per token, 512K context, built by Recursive's autoresearch system for coding agents.",
+        "why": "A free model with these specs could replace paid tiers in Botterfly's development workflows.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.27234",
+        "title": "EGI-BENCH: An Enterprise General Intelligence Benchmark Suite",
+        "url": "https://arxiv.org/abs/2610.27234",
+        "summary": "A unified benchmark covering CRM operations, retrieval, planning, tool use, and long-horizon software engineering for enterprise agentic workflows.",
+        "why": "Maps to our actual workload: Vapi call grading, Supabase retrieval, multi-step agent tasks.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.27377",
+        "title": "REM: What to Store, When to Recall, What to Forget in Experience Memory for Coding Agents",
+        "url": "https://arxiv.org/abs/2610.27377",
+        "summary": "Proposes a memory system for repository-level coding agents that observes the running agent to decide what experience to store, rather than just retrieving past trajectories.",
+        "why": "Experience replay is the missing piece for our multi-session Botterfly workflows.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.28364",
+        "title": "Context-Aware Prompt Injection Detection via Small Language Models in RAG Pipelines: nokast-secureRAG",
+        "url": "https://arxiv.org/abs/2610.28364",
+        "summary": "A ~0.5B parameter model acting as a semantic firewall between retrieval and generation in local RAG systems to detect indirect prompt injection.",
+        "why": "Direct application for the Pipeline clients running retrieval over user-controlled legislative and legal documents.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.27816",
+        "title": "RAG-NIMBF: A Non-Invasive, Modular Benchmarking Framework for Automated RAG Configuration Analysis",
+        "url": "https://arxiv.org/abs/2610.27816",
+        "summary": "A framework for systematically testing chunking, embedding, retrieval, and reranking choices in RAG without modifying the application.",
+        "why": "We run several hybrid retrieval stacks; this could isolate where each one breaks.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "https://www.python.org/downloads/release/python-31317/",
+        "title": "Python 3.13.17",
+        "url": "https://www.python.org/downloads/release/python-31317/",
+        "summary": "Python 3.13 maintenance release.",
+        "why": "Our services run 3.13 in production.",
+        "source": "python.org"
+      },
+      {
+        "id": "420082449",
+        "title": "langchain==1.4.7",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.7",
+        "summary": "Adds tool-call-delta streaming support in consumers and accepts LangSmith trace addresses inside LangChainTracer.",
+        "why": "We use LangChain tracing in several Langfuse-monitored flows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50180873",
+        "title": "PHP 8.2.35",
+        "url": "https://github.com/php/php-src/releases/tag/php-8.2.35",
+        "hn_url": "https://news.ycombinator.com/item?id=50180873",
+        "summary": "Emergency security release for a critical RCE vulnerability discovered by AI.",
+        "why": "Demonstrates that AI-assisted vulnerability research is now finding the kind of bugs that shut down national cybersecurity agencies.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50181114",
+        "title": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor",
+        "url": "https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/",
+        "hn_url": "https://news.ycombinator.com/item?id=50181114",
+        "summary": "The LiteLLM package on PyPI was compromised and shipped a credential-stealing backdoor.",
+        "why": "We run OpenRouter directly; supply chain compromise of a wrapper we could have adopted is a near miss.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50181136",
+        "title": "DuckDB 2.0.0 LTS \"Cinnamon Teal\"",
+        "url": "https://duckdb.org/2026/10/21/announcing-duckdb-200",
+        "hn_url": "https://news.ycombinator.com/item?id=50181136",
+        "summary": "DuckDB's first long-term support release.",
+        "why": "We considered DuckDB as the EverRaise analytics backend; the LTS makes that a safer bet.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50186037",
+        "title": "Claude Duet",
+        "url": "https://claude.com/product/claude-duet",
+        "hn_url": "https://news.ycombinator.com/item?id=50186037",
+        "summary": "Anthropic's new proactive agent app on Opus 5.5 with 6,000 connectors that keeps working when you step away.",
+        "why": "Worth knowing, no direct use for us yet — we build on the API and Hermes, not Anthropic's consumer apps.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2113010017645244623",
+        "title": "Jensen closed his GTC Berlin 2026 keynote with this Hermes Agent demo as the finale",
+        "url": "https://x.com/NousResearch/status/2113010017645244623",
+        "summary": "Nous reports Jensen demoed Hermes on stage at GTC Berlin, installing and customizing it in one prompt.",
+        "why": "Botterfly is Hermes, so a keynote demo by Jensen is visibility for the work we're building on.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2113013247209021918",
+        "title": "API version 2026-10-21 is now available",
+        "url": "https://x.com/ClaudeDevs/status/2113013247209021918",
+        "summary": "Anthropic's first versioned API release since 2023-06-01, with plans for more frequent version releases.",
+        "why": "We call Claude through OpenRouter; version stability means fewer surprises when Anthropic changes behavior.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": [],
+  "window": {
+    "since": "2026-10-21T12:02:29+00:00",
+    "until": "2026-10-22T12:02:29+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
