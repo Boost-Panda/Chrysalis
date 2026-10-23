@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-23",
+  "title": "The Pulse, Friday 23 October 2026",
+  "tldr": "Anthropic donated Agent Skills to the Agentic AI Foundation, joining MCP. The Decisions API from OpenAI cuts classification cost by skipping generation. NVIDIA's OpenShell is a sandboxed runtime for agent fleets, and formal verification is starting to work at scale.",
+  "sections": {
+    "models": [
+      {
+        "id": "anthropic-agent-skills",
+        "title": "Anthropic donates Agent Skills to the Agentic AI Foundation",
+        "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+        "summary": "Agent Skills — the pattern Claude Code uses to give agents reusable procedures — joins MCP as an open standard under the Agentic AI Foundation.",
+        "why": "Botterfly's skills live in this pattern; if it becomes the cross-platform standard, we can share our library with other agent runtimes.",
+        "source": "anthropic"
+      },
+      {
+        "id": "claude-google-cloud",
+        "title": "Claude API now available through Google Cloud",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#october-22-2026",
+        "summary": "The full Claude API, including Managed Agents and Opus 5.5 fast mode, is now reachable through Google Cloud projects with IAM and Marketplace billing.",
+        "why": "Clients already on Google Cloud can reach Claude without new vendor onboarding.",
+        "source": "anthropic"
+      },
+      {
+        "id": "openai-decisions-api",
+        "title": "OpenAI Decisions API",
+        "url": "https://openai.com/index/decisions-api",
+        "summary": "A new endpoint for fast, low-cost classification and routing: it evaluates inputs and returns structured decision labels without generating full responses.",
+        "why": "Routing and filtering logic in agents and pipelines — like call grading or triage — can drop latency and cost by skipping the generation phase.",
+        "source": "openai"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.30755",
+        "title": "Is Complex Agentic Memory Always Needed? Naive RAG Is Stronger Than We Thought",
+        "url": "https://arxiv.org/abs/2610.30755",
+        "summary": "Naive RAG (dense retrieval and reranking over raw conversation history) matches or beats complex agentic memory systems on long-context benchmarks.",
+        "why": "Memory is a bottleneck for our voice agents and Botterfly; this suggests the simplest approach may be enough before we build a mutation layer.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.31172",
+        "title": "Prompting Strategy Effects Depend on the Judge: A Multilingual Study of LLM-as-a-Judge Robustness",
+        "url": "https://arxiv.org/abs/2610.31172",
+        "summary": "Chain-of-Thought and role conditioning prompts improve some judge models but harm others, and effects vary across languages.",
+        "why": "We use LLM-as-a-Judge for call grading and internal code review; this says prompt strategies must be tested per model and language, not copied.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.30949",
+        "title": "IQuest-Q1: A 320B sparse MoE model for CLI agents",
+        "url": "https://arxiv.org/abs/2610.30949",
+        "summary": "A sparse Mixture-of-Experts foundation model with 320B total parameters (15B activated), trained for CLI agent tasks with a two-stage curriculum.",
+        "why": "Large sparse models built for terminal agents are a pattern we might tap for self-hosted Botterfly alternatives.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.30162",
+        "title": "FusionEval: Benchmarking Model Fusion for Large Language Models",
+        "url": "https://arxiv.org/abs/2610.30162",
+        "summary": "A benchmark for evaluating model fusion — merging expert models into one — with tasks covering reasoning, tool use, and long chains of thought.",
+        "why": "Model fusion could let us combine a coding expert and a planning expert into one deployed model without full retraining.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "421023108",
+        "title": "LangChain-core 1.7.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.0",
+        "summary": "Tool-call args now stream as `tool-call-delta` slices instead of `block-delta` snapshots. Pin `langchain-core<1.7` to keep snapshot behavior.",
+        "why": "Breaking change for anything reading raw stream events. Update before it catches us mid-sprint.",
+        "source": "github"
+      },
+      {
+        "id": "420826214",
+        "title": "Langfuse v4.68.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.68.0",
+        "summary": "New MCP tool for listing LLM connections, Topics treemap and grid views, and per-connection socket logging for the AI gateway.",
+        "why": "We use Langfuse for tracing; Topics view and connection logging help debug multi-model flows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50202217",
+        "title": "LLMs are making formal software verification feasible at a much larger scale",
+        "url": "https://www.anthropic.com/research/formal-verification",
+        "hn_url": "https://news.ycombinator.com/item?id=50202217",
+        "summary": "Anthropic's research shows LLMs can now automate formal verification at scale: proving code properties that previously required manual theorem-prover expertise.",
+        "why": "Formal verification has been a research oddity; this makes it engineering-feasible. We could verify critical paths in call flows or agent harnesses.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50198675",
+        "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+        "url": "https://github.com/NVIDIA/OpenShell",
+        "hn_url": "https://news.ycombinator.com/item?id=50198675",
+        "summary": "NVIDIA released OpenShell, a sandboxed agent execution environment for running agent code with isolation, resource limits, and no internet.",
+        "why": "Agent sandboxing is still an open problem; this is a production take from NVIDIA. Worth comparing to Hermes's execution model.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50195110",
+        "title": "eMudhra to exit global SSL/TLS certificate business",
+        "url": "https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business",
+        "hn_url": "https://news.ycombinator.com/item?id=50195110",
+        "summary": "Indian CA eMudhra is exiting the SSL/TLS business after security concerns prompted OS and browser vendors to plan distrust. A full OTP bypass was published.",
+        "why": "Any service using eMudhra certificates needs to rotate before browsers drop trust. Check client deployments.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50193416",
+        "title": "Tell HN: I unknowingly broke the PHP RCE embargo. I am sorry.",
+        "url": "https://news.ycombinator.com/item?id=50193416",
+        "hn_url": "https://news.ycombinator.com/item?id=50193416",
+        "summary": "A researcher accidentally published a PHP RCE exploit ahead of the coordinated disclosure, prompting mass exploitation before patches were widely applied.",
+        "why": "PHP RCE in production means patch now. Check every service running PHP.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50191507",
+        "title": "OpenAI CLI",
+        "url": "https://github.com/openai/openai-cli",
+        "hn_url": "https://news.ycombinator.com/item?id=50191507",
+        "summary": "OpenAI released an official CLI for completions, embeddings, and fine-tuning, with streaming output and JSON schema mode.",
+        "why": "A first-party CLI simplifies scripting OpenAI calls in pipelines and cron jobs. Worth knowing the shape if clients ask for it.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2113327348171030630",
+        "title": "Nous Research CEO on agents and digital sovereignty",
+        "url": "https://x.com/NousResearch/status/2113327348171030630",
+        "summary": "Dillon Rolnick (Nous Research) and Matthew Prince (Cloudflare) discussed agents, the future of the internet, and digital sovereignty at a Union Square Ventures event.",
+        "why": "Cloudflare's view on agent infrastructure and digital sovereignty is a strategic signal for where the ecosystem is heading.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2113391397760041329",
+        "title": "Hermes + Cua Spaces: shared Linux/macOS/Windows environments",
+        "url": "https://x.com/NousResearch/status/2113391397760041329",
+        "summary": "Hermes can now run in a Cua Space — a Linux, macOS, or Windows environment on hardware you own, where the team can watch live, step in, and hand control back.",
+        "why": "Collaborative agent supervision for complex tasks. Interesting for Botterfly working on long-running client projects.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-22T04:31:25+00:00",
+    "until": "2026-10-23T04:31:25+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
