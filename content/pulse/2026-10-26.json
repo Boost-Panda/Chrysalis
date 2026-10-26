@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-26",
+  "title": "The Pulse, Monday 26 October 2026",
+  "tldr": "Kimi K3.1 Pro hit OpenRouter with open weights incoming, MCP gained long-running Tasks at Anthropic, and Python shipped three interpreter releases. iPhone and Samsung TV both got remote shells this weekend — security researchers are having fun.",
+  "sections": {
+    "models": [
+      {
+        "id": "moonshotai/kimi-k3.1-pro",
+        "title": "MoonshotAI: Kimi K3.1 Pro",
+        "url": "https://openrouter.ai/moonshotai/kimi-k3.1-pro",
+        "summary": "Moonshot's flagship open-weight multimodal reasoning model landed on OpenRouter with a 1M context window, $2/$10 per million tokens, and full weights releasing November 4.",
+        "why": "Open weights mean we can host it ourselves for client work with strict data residency — especially useful for Pipeline's nonprofits. The 1M window makes it viable for long call transcripts and legislative research that hit EverRaise and Mackinac's limits.",
+        "source": "openrouter"
+      },
+      {
+        "id": "2113698001889927608",
+        "title": "Claude MCP Tasks and Elicitations",
+        "url": "https://x.com/ClaudeDevs/status/2113698001889927608",
+        "summary": "Anthropic added MCP Tasks: plugins can now accept long-running jobs from Claude and report back when done, plus Elicitations for structured mid-task user input.",
+        "why": "Turns our MCP servers into async workers — a deep research task or a multi-step deploy can now run while Claude handles other work. The elicitation hook solves the approval-gate problem we hit with client data changes.",
+        "source": "x_posts"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.31778",
+        "title": "Benchmarks Are Surprisingly Compaction-Friendly",
+        "url": "https://arxiv.org/abs/2610.31778",
+        "summary": "Long-horizon agents lose task constraints and reasoning history when compacting context windows, yet benchmarks remain solvable. The paper shows compaction is less lossy than expected for standard tasks, but exposes silent degradation for others.",
+        "why": "We built context compaction into Hermes and this shows where it quietly fails — when implicit constraints or earlier reasoning matter more than the benchmark reveals. The paper's failure modes are a checklist for Botterfly's memory management.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.31840",
+        "title": "SPECMEM: Accelerating Agentic Tool Calling via Live Memory Management",
+        "url": "https://arxiv.org/abs/2610.31840",
+        "summary": "Speculative decoding for tool-calling agents, using retrieved past calls as drafts. Cuts tool-call latency without changing output.",
+        "why": "Every tool call we make in Hermes is decoded autoregressively — this hits latency for repeated EverRaise voice agent flows. If we can pre-draft common calls from memory, we shave seconds off the response time users feel.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.32851",
+        "title": "Reimagining Enterprise RAG for Multi-Agent Systems",
+        "url": "https://arxiv.org/abs/2610.32851",
+        "summary": "A seven-agent pipeline reverse-engineered 241 repos into behavioral logic artifacts — scope, journeys, rules — that agents act on. The claim: enterprises need behavior, not documentation.",
+        "why": "Our RAG for SalesKick and Pipeline pulls docs; this argues we should extract the actual rules and flows the system enforces. If we pre-process client repos this way, agents ground their suggestions in what the code does, not what a stale README says.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.31715",
+        "title": "What Open-Source Projects Tell Their Coding Agents: A Census of AGENTS.md and CLAUDE.md",
+        "url": "https://arxiv.org/abs/2610.31715",
+        "summary": "A census of GitHub's AGENTS.md and CLAUDE.md files across thirteen languages and thousands of repos, documenting what projects actually tell coding agents.",
+        "why": "We maintain AGENTS.md in every repo Botterfly touches. This census shows what conventions are spreading and what instructions work — useful calibration when we write the next one.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "https://www.python.org/downloads/release/python-31318/",
+        "title": "Python 3.13.18",
+        "url": "https://www.python.org/downloads/release/python-31318/",
+        "summary": "Interpreter release on October 25.",
+        "why": "SalesKick, Pipeline, and our own services run on 3.13 — patch releases often include security fixes or runtime stability improvements we want.",
+        "source": "python.org"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-31216/",
+        "title": "Python 3.12.16",
+        "url": "https://www.python.org/downloads/release/python-31216/",
+        "summary": "Interpreter release on October 25.",
+        "why": "Several client projects are still on 3.12 and need patches before we migrate them.",
+        "source": "python.org"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-31118/",
+        "title": "Python 3.11.18",
+        "url": "https://www.python.org/downloads/release/python-31118/",
+        "summary": "Interpreter release on October 25.",
+        "why": "Legacy client scripts and older containerized environments still pin 3.11 — keeping them patched is operational hygiene.",
+        "source": "python.org"
+      },
+      {
+        "id": "422732078",
+        "title": "Langfuse v4.70.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.70.0",
+        "summary": "Public API added Topics endpoints, AI gateway now shows per-tool setup, and Cmd+K can jump to prompts and datasets. Also batch evaluation runBatchEvaluation MCP tool.",
+        "why": "We use Langfuse for tracing SalesKick's call grading and Pipeline's retrieval steps — the Topics API lets us programmatically group and query by theme, and the MCP tool means we can kick off eval runs from Hermes directly.",
+        "source": "github"
+      },
+      {
+        "id": "421880551",
+        "title": "Next.js v16.4.3",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.3",
+        "summary": "LTS backport fixing extensionless Google font URLs, app-page runtime loading, and OpenTelemetry trace grouping.",
+        "why": "Chrysalis and client dashboards run Next.js — the OpenTelemetry fix keeps our request traces coherent, which matters when debugging prod issues.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50211474",
+        "title": "Today, we hacked what we'd set out to hack: the iPhone",
+        "url": "https://blog.calif.io/p/iphone",
+        "hn_url": "https://news.ycombinator.com/item?id=50211474",
+        "summary": "A remote shell on an iPhone, documented in a blog post that hit the front page. 1,106 points, 717 comments.",
+        "why": "Security proof-of-concept that matters if any of our client apps touch mobile — though mostly a reminder that no platform is truly locked down when researchers dedicate the effort.",
+        "source": "hackernews"
+      },
+
+      {
+        "id": "50225695",
+        "title": "We should be more ambitious with the software we build",
+        "url": "https://danluu.com/ambitious/",
+        "hn_url": "https://news.ycombinator.com/item?id=50225695",
+        "summary": "Dan Luu arguing that software ambition has shrunk and we should aim higher. 761 points, 698 comments.",
+        "why": "Worth knowing, though not directly actionable — the essay resonates with how we frame client work, where the constraint is usually speed and pragmatism, not ambition.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50219177",
+        "title": "Broccoli2Shell: Brotli decoder RCE in Node.js, Python and more",
+        "url": "https://broccoli2shell.com/",
+        "hn_url": "https://news.ycombinator.com/item?id=50219177",
+        "summary": "Remote code execution vulnerability in Brotli decoders across Node.js, Python, and other runtimes. 393 points, 211 comments.",
+        "why": "If any of our services accept user-uploaded compressed data, this is the vulnerability to patch immediately — Brotli is common in web transport and file handling.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2114169327968469133",
+        "title": "Nous Research teaser",
+        "url": "https://x.com/NousResearch/status/2114169327968469133",
+        "summary": "Nous posted a wordless link with 4,841 likes. Context unclear without following the URL.",
+        "why": "Nous ships Hermes models and tooling we use daily — when they post with this much traction, it is usually a model or feature drop.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2113682848607780912",
+        "title": "OpenAI + Azure Cosmos DB storage architecture",
+        "url": "https://x.com/OpenAIDevs/status/2113682848607780912",
+        "summary": "OpenAI's DevRel shared how they hit 12× better global read latency for 1.2 billion ChatGPT users with Azure Cosmos DB.",
+        "why": "Relevant if we ever need to scale SalesKick's call storage or Pipeline's retrieval globally — the Cosmos DB integration pattern is a known path to sub-50ms reads.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2114325097653669940",
+        "title": "Sebastian Raschka's reasoning-from-scratch series",
+        "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+        "summary": "The complete video series on building reasoning models from scratch is now up.",
+        "why": "Raschka writes approachable deep dives — useful if we need to explain reasoning models to a client or debug one ourselves.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-23T04:31:24+00:00",
+    "until": "2026-10-26T04:31:24+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
