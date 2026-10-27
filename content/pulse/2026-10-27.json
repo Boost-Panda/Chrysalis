@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-27",
+  "title": "The Pulse, Tuesday 27 October 2026",
+  "tldr": "OpenAI's GPT-6.1 Terra brings fast computer use to OpenRouter at $1/$5 per million tokens, with a 'pro' reasoning mode at the same price. Research asks whether agent memory systems beat simple retrieval—turns out many don't. On Hacker News, OpenAI claims to have falsified the Exponential Time Hypothesis.",
+  "sections": {
+    "models": [
+      {
+        "id": "openai/gpt-6.1-terra",
+        "title": "OpenAI: GPT-6.1 Terra",
+        "url": "https://openrouter.ai/openai/gpt-6.1-terra",
+        "summary": "GPT-6.1 Terra is OpenAI's mid-tier agentic model, optimized for computer use and screenshot understanding, now on OpenRouter with 1M context at $1 in / $5 out. A 'pro' reasoning mode is available at the same price for complex tasks.",
+        "why": "Fast agentic actions at accessible pricing fit our voice agents and tooling use cases; worth testing against our current OpenRouter routing for EverRaise and Botterfly tasks. Pro mode gives us a quality dial without budget surprises.",
+        "source": "openrouter"
+      },
+      {
+        "id": "https://www.anthropic.com/news/s1-sec",
+        "title": "Anthropic s1 sec",
+        "url": "https://www.anthropic.com/news/s1-sec",
+        "summary": "Anthropic published a new announcement (title derived from URL; page details not yet public).",
+        "why": "Worth monitoring—Anthropic announcements typically signal model or safety updates relevant to our Claude-heavy stack.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.34073",
+        "title": "Memory Tax: Dissecting the Net Value of Agent Memory",
+        "url": "https://arxiv.org/abs/2610.34073",
+        "summary": "Large-scale evaluation finds many dedicated memory systems underperform naive RAG, indicating negative net value—memory overhead costs more than it saves.",
+        "why": "Direct challenge to Mnemosyne's design: we built tiered memory assuming structured systems outperform raw retrieval. This paper says test that assumption per use case.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.33312",
+        "title": "Responsibility Boundaries for Agentic Systems: A Comparative Evaluation of Probabilistic Agentic Programming",
+        "url": "https://arxiv.org/abs/2610.33312",
+        "summary": "Probabilistic Agentic Programming (PAP) makes responsibility boundaries explicit abstractions connecting mandate, authority, effects, and evidence in agent systems.",
+        "why": "Maps directly to Botterfly's prompt hierarchy and tool approval patterns; the PAP formalism could inform how we structure delegation and audit trails in Hermes.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.35138",
+        "title": "Co-Design Bench: Multimodal Collaborative Coding Evaluation for Agentic Models",
+        "url": "https://arxiv.org/abs/2610.35138",
+        "summary": "Benchmark of 273 tasks from 37K real user coding sessions, testing whether agents can translate multimodal requests into working application revisions.",
+        "why": "Our Claude Code and Codex workflows are exactly this loop; the benchmark's multimodal editing track is a calibration dataset we could run Botterfly against.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.34872",
+        "title": "Adaptive Retrieval, Selective Answers: Evaluating Conformal Factuality in Agentic RAG",
+        "url": "https://arxiv.org/abs/2610.34872",
+        "summary": "Examines claim-level conformal factuality in agentic RAG, where a language-model policy adaptively issues follow-up retrieval queries.",
+        "why": "Adaptive retrieval is Pipeline's Mackinac hybrid search pattern; this evaluates whether the adaptive loop actually improves grounding or just adds latency.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "424873978",
+        "title": "Next.js v16.5.0-canary.28",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.5.0-canary.28",
+        "summary": "Canary release fixing draft mode rendering with Cache Components, complete HTML after Server Actions, and performance improvements to static generation.",
+        "why": "Draft mode and Server Actions are Pipeline patterns; the fix to hanging HTML after 'use cache' errors could resolve issues we've seen in EverRaise's edge functions.",
+        "source": "github"
+      },
+      {
+        "id": "424864698",
+        "title": "langchain-openai 1.7.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.3",
+        "summary": "Patch release refreshing OpenAI model profile data, relaxing third-party dependency upper bounds, and patching vulnerable dependencies.",
+        "why": "We use langchain-openai in SalesKick's grading chains and Pipeline's retrieval; the model profile refresh ensures our routing sees the latest OpenAI catalog.",
+        "source": "github"
+      },
+      {
+        "id": "424199598",
+        "title": "Langfuse v3.225.14",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v3.225.14",
+        "summary": "Security rebuild pulling Node.js patches; skips Azure LLM connection tests until CI key is replaced.",
+        "why": "Security rebuild means CVE fixes landed in Node; we run Langfuse for tracing, so the patch applies to our observability stack.",
+        "source": "github"
+      },
+      {
+        "id": "424142335",
+        "title": "Langfuse v4.70.1",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.70.1",
+        "summary": "Bumps Node to 24.22.1, fixes mobile rendering for topics, renews expired signed URLs for media chips, and gives telemetry flush its own shutdown budget.",
+        "why": "The shutdown budget fix for telemetry flush matches a pattern we've hit in edge functions; worth reviewing for our own graceful-shutdown logic.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50251661",
+        "title": "The Exponential Time Hypothesis Is False [pdf]",
+        "url": "https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf",
+        "hn_url": "https://news.ycombinator.com/item?id=50251661",
+        "summary": "OpenAI preprint claims to have falsified ETH, a complexity conjecture stating that 3-SAT cannot be solved substantially faster than brute force.",
+        "why": "If valid, this is a landmark theoretical CS result; if not, it's a cautionary tale about LLM-generated proofs. Either way it signals where OpenAI is aiming its reasoning models.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50242870",
+        "title": "Fixing Tool-Call Accuracy in vLLM",
+        "url": "https://www.ubicloud.com/blog/fixing-tool-call-accuracy-in-vllm",
+        "hn_url": "https://news.ycombinator.com/item?id=50242870",
+        "summary": "Ubicloud documents how they patched vLLM to improve tool-calling accuracy, moving from schema hints in the prompt to constrained decoding.",
+        "why": "vLLM is our fallback serving stack for self-hosted models; their constrained-decoding fix is a pattern we'd apply if we move tool-heavy Botterfly tasks to local inference.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50246238",
+        "title": "Show HN: Hob - Open-source, on device alternative to Claude Cowork and ChatGPT",
+        "url": "https://github.com/FrigadeHQ/hob",
+        "hn_url": "https://news.ycombinator.com/item?id=50246238",
+        "summary": "Hob is an Electron app running local models (via Ollama or LM Studio) for on-device agentic workflows, positioned as an open alternative to cloud coding assistants.",
+        "why": "On-device agents are a recurring client ask for air-gapped or cost-sensitive environments; Hob's architecture is worth studying if we build a local Botterfly variant.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50248371",
+        "title": "Type Server Protocol",
+        "url": "https://github.com/microsoft/pylance-release/blob/main/docs/tsp/type-server-protocol.md",
+        "hn_url": "https://news.ycombinator.com/item?id=50248371",
+        "summary": "Microsoft announces Type Server Protocol, a language-agnostic protocol for type information retrieval, separating type services from LSP servers.",
+        "why": "TSP could improve Botterfly's Python and TypeScript introspection; decoupling type queries from LSP means faster tool-use schema generation without spinning up full language servers.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50246658",
+        "title": "Concerning behavior from a popular open-weight AI model",
+        "url": "https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model",
+        "hn_url": "https://news.ycombinator.com/item?id=50246658",
+        "summary": "Cohere reports concerning behavior (likely jailbreak or bias vulnerabilities) in a popular open-weight model, unnamed in the title.",
+        "why": "We route to open-weight models via OpenRouter; if the model in question is one we use, this is a prompt-injection or safety signal we need to audit.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2114753914939863260",
+        "title": "Hermes Agent's Advanced Delegation modes plugin",
+        "url": "https://x.com/NousResearch/status/2114753914939863260",
+        "summary": "Nous Research announces Advanced Delegation plugin, letting Hermes orchestrator pick a different model or profile for each subagent from configured routes.",
+        "why": "This is Botterfly's own tooling; the plugin makes multi-model orchestration (Terra for coding, Sol for review, etc.) declarative instead of prompt-driven.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2114837274550747603",
+        "title": "GPT-6.1 Sol is being used by CodeRabbit for security scanning",
+        "url": "https://x.com/OpenAIDevs/status/2114837274550747603",
+        "summary": "OpenAI highlights CodeRabbit's use of GPT-6.1 Sol to find security risks across complex codebases, with a security agent reviewing findings.",
+        "why": "We run similar review pipelines with wehshi; Sol's security-scan capability is a routing choice for Botterfly's pre-commit security checks.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2114726640571883592",
+        "title": "What people are building with hardware and Codex",
+        "url": "https://x.com/OpenAIDevs/status/2114726640571883592",
+        "summary": "OpenAI Devs thread showcasing projects combining Codex with hardware (robotics, embedded systems, physical interfaces).",
+        "why": "Worth knowing—Pipeline clients occasionally need hardware integrations (kiosks, IoT); Codex's hardware examples are reference architectures if we take one.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-26T04:31:20+00:00",
+    "until": "2026-10-27T04:31:20+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
