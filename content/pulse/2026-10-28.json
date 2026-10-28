@@ -1,0 +1,196 @@
+{
+  "date": "2026-10-28",
+  "title": "The Pulse, Wednesday 28 October 2026",
+  "tldr": "Google ships Genie 4, a real-time world simulation model that's HN's top story overnight. Research asks whether coding agents can build production AI infrastructure—turns out most benchmarks don't test that. Anthropic reportedly trained Claude on pirated books, and Amazon is restructuring its AI division after sustained underperformance.",
+  "sections": {
+    "models": [
+      {
+        "id": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+        "title": "Google DeepMind: Genie 4",
+        "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+        "summary": "Genie 4 is DeepMind's new world model for real-time simulation, unlocking unprecedented realism. The model simulates interactive environments from text or images.",
+        "why": "World models could inform agent testing environments for Pipeline's voice agents and Botterfly's tool use—simulated call flows, CRM state, or edge cases without real clients.",
+        "source": "vendor"
+      },
+      {
+        "id": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/",
+        "title": "Meta: Muse Personal AI Agent Launches in Singapore",
+        "url": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/",
+        "summary": "Meta announces Muse, billed as the first personal AI agent built for everyone, now available in Singapore after earlier US rollout.",
+        "why": "Consumer agent patterns (scheduling, task tracking, memory persistence) are reference architectures for the agent features clients ask us to build into their products.",
+        "source": "vendor"
+      },
+      {
+        "id": "https://openai.com/index/retell-ai",
+        "title": "OpenAI: Retell Powers 100M Monthly Voice Agent Calls",
+        "url": "https://openai.com/index/retell-ai",
+        "summary": "Retell uses GPT-6 Astra for voice agents handling 100M monthly calls, reaching $1.6M annual revenue run rate per employee. Astra tops Retell's voice agent benchmark.",
+        "why": "Direct comp for EverRaise's Vapi voice agents. Retell's revenue per employee and benchmark data are calibration points for our own voice stack performance and pricing.",
+        "source": "vendor"
+      },
+      {
+        "id": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/",
+        "title": "Google Gemini: 8 Examples of Gemini 4 Argon in Action",
+        "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/",
+        "summary": "Google showcases eight examples of Gemini 4 Argon capabilities, from deep research to interactive design. Argon is billed as their most intelligent model yet.",
+        "why": "Argon is on OpenRouter; these examples are prompt patterns we can test against our current routing for research-heavy tasks in Mackinac and Life International.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.36589",
+        "title": "InfraDev: Can Coding Agents Develop AI Infrastructure, and How Can We Tell?",
+        "url": "https://arxiv.org/abs/2610.36589",
+        "summary": "Benchmark of 36 production-grade AI infrastructure tasks from real-world pull requests. Existing benchmarks cover only single kernels or single-GPU tasks; InfraDev tests whether agents can patch distributed training, serving, and orchestration code.",
+        "why": "Botterfly codes against repos like Hermes, Langfuse, and our client stacks; this benchmark is the eval that matches what we actually do, not toy kernels.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.36153",
+        "title": "Stratum: Repository Memory for Coding Agents Beyond the Context Window",
+        "url": "https://arxiv.org/abs/2610.36153",
+        "summary": "Coding agents start every session with no memory of past work, re-reading files and retrying failed approaches. Stratum proposes persistent, experience-compounding memory architecture for agents working on codebases.",
+        "why": "We hit this daily with Claude Code and Codex: sessions forget root causes and retry dead ends. Stratum's memory design is directly applicable to Botterfly's session persistence.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.36308",
+        "title": "When Retrieval Is Not Enough: Obsolete Facts in Agent Memory",
+        "url": "https://arxiv.org/abs/2610.36308",
+        "summary": "Memory-agent benchmarks collapse retrieval and answer generation into one score, making it hard to tell whether failures come from missing an update or not using a retrieved update. The paper examines this on FactConsolidation.",
+        "why": "Mnemosyne's recall path has this exact issue—we don't separately measure 'did we retrieve the fresh fact' and 'did we use it'. This decomposition is a calibration test we should run.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.36335",
+        "title": "OA-RAG: Ontology-based Agentic RAG for Faithful LLM Reasoning",
+        "url": "https://arxiv.org/abs/2610.36335",
+        "summary": "Ontology-guided agentic RAG reduces hallucination in domains like biomedicine by grounding retrieval in structured knowledge. The approach addresses RAG overload from large, noisy corpuses.",
+        "why": "Mackinac's legislative research hits this: the corpus is noisy (bills, amendments, hearing transcripts) and retrieval overload is a known issue. Ontology grounding is a pattern worth testing.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "425609971",
+        "title": "Langfuse v4.71.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.71.0",
+        "summary": "Feature release adding AI gateway recording of model, key owner, byte counts, and upstream errors on generations. Also adds product analytics for gateway setup, credentials, invites, and model access.",
+        "why": "We use Langfuse for tracing; the AI gateway feature additions are observability enhancements that land in our stack once we pull this release.",
+        "source": "github"
+      },
+      {
+        "id": "425582225",
+        "title": "Langfuse v3.225.15",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v3.225.15",
+        "summary": "Security patch backporting invite validation, annotation queue checks, and webhook header encryption to the v3 line.",
+        "why": "Security fixes for invites and webhooks; we run v3 in production for some clients, so this patch applies to our observability stack.",
+        "source": "github"
+      },
+      {
+        "id": "426112142",
+        "title": "langchain-anthropic 1.7.7",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.7",
+        "summary": "Patch release tracing resolved reasoning effort, relaxing third-party dependency upper bounds, and bumping certifi to 2026.10.19.",
+        "why": "We use langchain-anthropic in SalesKick's grading chains and Pipeline retrieval; the tracing fix for reasoning effort gives us visibility into Claude's extended inference calls.",
+        "source": "github"
+      },
+      {
+        "id": "426091418",
+        "title": "Next.js v16.5.0-canary.29",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.5.0-canary.29",
+        "summary": "Canary release upgrading React to dc9aed36-20261027, fixing compressed HTTP responses in testmode, auto-detecting pnpm GVS, and persisting PPR static payloads in filesystem cache.",
+        "why": "Pipeline runs Next.js; the pnpm GVS auto-detection and PPR cache persistence are build performance wins if we move to canary for any client project.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50261319",
+        "title": "Genie 4",
+        "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+        "hn_url": "https://news.ycombinator.com/item?id=50261319",
+        "summary": "Google DeepMind's Genie 4 real-time world simulation model topped Hacker News overnight with 792 points and active discussion on applications and limitations.",
+        "why": "The HN thread covers engineer takes on simulation quality, latency, and practical use cases—calibration for whether world models belong in our agent testing roadmap.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50261998",
+        "title": "Ghostty 1.4",
+        "url": "https://ghostty.org/docs/install/release-notes/1-4-0",
+        "hn_url": "https://news.ycombinator.com/item?id=50261998",
+        "summary": "Ghostty 1.4 terminal emulator release, with major performance improvements and new rendering features. The release topped HN alongside Genie 4.",
+        "why": "Ghostty competes with our default terminal tooling; new rendering and performance wins are worth evaluating if team members report terminal latency in agent sessions.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50257419",
+        "title": "Python's experimental JIT to be removed",
+        "url": "https://lwn.net/SubscriberLink/1102102/0c00e4d550f25f8c/",
+        "hn_url": "https://news.ycombinator.com/item?id=50257419",
+        "summary": "Python's experimental JIT compiler, introduced in 3.13, is being removed. LWN covers the rationale: complexity, maintenance burden, and limited real-world performance gains.",
+        "why": "We run Python in production for SalesKick, Pipeline, and Botterfly; the JIT removal means 3.13 and beyond stay as-is for our performance baseline—no unexpected JIT wins or regressions.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50260814",
+        "title": "Anthropic trained Claude on illegally obtained Stanford professors' books",
+        "url": "https://stanforddaily.com/2026/10/27/professors-books-pirated-to-train-claude/",
+        "hn_url": "https://news.ycombinator.com/item?id=50260814",
+        "summary": "Stanford Daily reports Anthropic trained Claude on pirated copies of Stanford professors' books. The story resurfaced the training data copyright debate.",
+        "why": "We route heavily to Claude; the training data controversy is a client risk point if they ask about data provenance and model IP lineage.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50261589",
+        "title": "Amazon Is Gutting Its AI Division After Sustained Failure",
+        "url": "https://futurism.com/artificial-intelligence/amazon-ai-division-failure-nova",
+        "hn_url": "https://news.ycombinator.com/item?id=50261589",
+        "summary": "Futurism reports Amazon is restructuring its AI division following sustained underperformance of its Nova model line. Internal sources cite product-market fit issues.",
+        "why": "Market signal: even a hyperscaler with infinite capital can't brute-force model adoption. Reinforces our bet on OpenRouter multi-provider routing over betting on one vendor's roadmap.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2115120531611787323",
+        "title": "Hermes Agent Subscription Revamp",
+        "url": "https://x.com/NousResearch/status/2115120531611787323",
+        "summary": "Nous Research revamps Hermes Agent subscriptions: every plan now includes a cloud agent, and usage has daily and weekly limits instead of monthly credit blocks.",
+        "why": "This is Botterfly's own runtime; the new plan structure changes how we and clients budget agent usage, moving from monthly blocks to rate-limited daily budgets.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2114967833708732607",
+        "title": "Addy Osmani on When to Use Subagents",
+        "url": "https://x.com/addyosmani/status/2114967833708732607",
+        "summary": "Addy Osmani's rule of thumb for subagents: keep them when work is parallel, needs fresh context, or one model is materially better. A bloated system prompt is often the real issue; skills and tool search can fix that.",
+        "why": "Directly applicable to Botterfly's delegation decisions: we've over-delegated before when prompt compression would've worked. Osmani's heuristic matches our learned patterns.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2114972098515096036",
+        "title": "Voice-to-Text Dictation with T3 and Local Models",
+        "url": "https://x.com/shadcn/status/2114972098515096036",
+        "summary": "shadcn built a voice-to-text dictation app with live transcription, custom HUD, and local models via AI Gateway—'just T3 code + one prompt.'",
+        "why": "EverRaise runs voice-to-text in production; shadcn's T3 + AI Gateway pattern is a reference architecture if we rebuild any transcription component or add real-time dictation.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2115091901565313446",
+        "title": "Agents Choose Tasks, Write Proofs, Audit Each Other's Work",
+        "url": "https://x.com/svpino/status/2115091901565313446",
+        "summary": "Santiago describes a workflow where agents chose tasks, wrote proofs, audited each other, and merged contributions—'this is what software development looks like right now.'",
+        "why": "Matches our wehshi review panel pattern: agents select tasks, review each other, and merge after consensus. The theorem-proving framing is a calibration for how far we can push autonomous contribution.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "window": {
+    "since": "2026-10-27T04:31:19+00:00",
+    "until": "2026-10-28T04:31:19+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
