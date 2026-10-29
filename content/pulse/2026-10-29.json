@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-29",
+  "title": "The Pulse, Thursday 29 October 2026",
+  "tldr": "Gemini 4 Carbon launched with state-of-the-art cybersecurity and long-horizon capabilities. OpenAI will give Pro and Business subscribers up to $500/month in API credits for building agents. Node 26 enters LTS as Lithium.",
+  "sections": {
+    "models": [
+      {
+        "id": "particle-ai/particle-1-20261027",
+        "title": "Particle AI: Particle-1",
+        "url": "https://openrouter.ai/particle-ai/particle-1",
+        "summary": "Token-efficient agentic coding model post-trained on DeepSeek V4.1 Flash, 1M context, $0.25/$1 per million tokens.",
+        "why": "Another coding agent option at competitive pricing, worth evaluating against Claude and GPT-4 for terminal workflows and codebase changes.",
+        "source": "openrouter"
+      },
+      {
+        "id": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+        "title": "Gemini 4 Carbon: Our next frontier model",
+        "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+        "summary": "Google's strongest model with state-of-the-art cybersecurity and long horizon capabilities (848 points and 705 comments on HN).",
+        "why": "Cybersecurity capabilities matter for reviewing client code, and long-horizon reasoning helps with multi-step agent workflows.",
+        "source": "vendor"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "426947052",
+        "title": "Node.js 26.13.0 'Lithium' (LTS)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.13.0",
+        "summary": "Node 26 transitions to Long Term Support with the codename Lithium, supported through April 2029. Separately, Node 24.22.2 shipped with V8 backports and a stream fix for async context.",
+        "why": "Our primary runtime for services across SalesKick, Pipeline, and Botterfly; Node 26 LTS means we can upgrade confidently, and the Node 24 stream fix matters for Pipeline's event-driven flows.",
+        "source": "github"
+      },
+      {
+        "id": "426813353",
+        "title": "LangChain Core 1.7.1",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.1",
+        "summary": "Gateway tracing metadata preserved in v3 streams, Mermaid label escaping fix, relaxed third-party dependency bounds.",
+        "why": "We use LangChain for retrieval pipelines; tracing fixes help with debugging agent workflows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50273731",
+        "title": "The Agent SDK",
+        "url": "https://cursor.com/blog/agent-sdk",
+        "hn_url": "https://news.ycombinator.com/item?id=50273731",
+        "summary": "Cursor's SDK for building agents, 109 points and 116 comments.",
+        "why": "We build coding agents; Cursor's approach to agent APIs is worth studying for our own tooling.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50275626",
+        "title": "Dayjob: Tax – evaluating AI agents on 50 professional tax assignments",
+        "url": "https://surgehq.ai/blog/dayjob-tax",
+        "hn_url": "https://news.ycombinator.com/item?id=50275626",
+        "summary": "Benchmark evaluating agents on real professional tax work, 217 points and 139 comments.",
+        "why": "Real-world agent benchmarks help us calibrate expectations for our own agent deployments.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50282838",
+        "title": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5",
+        "url": "https://divagr.com/blog/qwenputer",
+        "hn_url": "https://news.ycombinator.com/item?id=50282838",
+        "summary": "Someone implemented a working RISC-V CPU using Qwen's transformer weights, 208 points.",
+        "why": "No direct use for us yet, but shows how far the interpretability-through-engineering frontier has moved.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50282454",
+        "title": "StackOverflow now gets fewer than 1000 questions a month",
+        "url": "https://data.stackexchange.com/stackoverflow/query/1926661#graph?t=1",
+        "hn_url": "https://news.ycombinator.com/item?id=50282454",
+        "summary": "Stack Overflow question volume has collapsed to under 1000/month, 211 points.",
+        "why": "Confirms the shift to LLM-first development; affects how we onboard engineers and expect them to learn.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50275128",
+        "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+        "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+        "hn_url": "https://news.ycombinator.com/item?id=50275128",
+        "summary": "Open multilingual ASR model from Nvidia, 116 points.",
+        "why": "EverRaise voice agents need accurate ASR; another option beyond what we're using on Vapi.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2115583698074755078",
+        "title": "OpenAI API credits for ChatGPT Pro and Business subscribers",
+        "url": "https://x.com/OpenAIDevs/status/2115583698074755078",
+        "summary": "ChatGPT Pro and Business subscribers can now claim up to $500/month in API credits for building apps and agents.",
+        "why": "We're building agents on OpenAI; $500/month reduces our API costs if we migrate agent development to those accounts.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2115443720371814478",
+        "title": "Mistral Responses API",
+        "url": "https://x.com/MistralAI/status/2115443720371814478",
+        "summary": "Mistral's new Responses API separates the model's answer, reasoning, and tool calls for easier agent building.",
+        "why": "Structured agent responses make tooling cleaner; worth evaluating for our DSPy and LangChain pipelines.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2115380768394379474",
+        "title": "Voxtral Mini Transcribe 3",
+        "url": "https://x.com/MistralAI/status/2115380768394379474",
+        "summary": "Ranks #2 on Voice Arena's Diarization + ASR leaderboard.",
+        "why": "EverRaise voice agents need accurate ASR; a competitive alternative to what we're using on Vapi.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2115420315606286608",
+        "title": "Automating code reviews",
+        "url": "https://x.com/svpino/status/2115420315606286608",
+        "summary": "Santiago argues everyone should focus on automating code reviews since agents can write infinite code but it's useless if it doesn't work.",
+        "why": "Directly relevant to our wehshi PR review panel; validates the investment in adversarial multi-model review.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "thin_sections": ["research"],
+  "closing": "Research: arXiv returned zero papers in the window.",
+  "window": {
+    "since": "2026-10-28T04:31:17+00:00",
+    "until": "2026-10-29T04:31:17+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
