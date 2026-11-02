@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-02",
+  "title": "The Pulse, Monday 2 November 2026",
+  "tldr": "The Claude Code VS Code extension was compromised with a backdoor distributed through the Cursor marketplace. OpenAI announced shared robots.txt signals for AI training opt-outs and released a community safety report. OpenRouter published tutorials on AI code review and always-on agents.",
+  "sections": {
+    "models": [
+      {
+        "id": "nvidia/DeepSeek-V4.1-Flash-1017-NVFP4",
+        "title": "NVIDIA: DeepSeek V4.1 Flash FP4 Quantized",
+        "url": "https://huggingface.co/nvidia/DeepSeek-V4.1-Flash-1017-NVFP4",
+        "summary": "NVIDIA released a 4-bit quantized version of DeepSeek V4.1 Flash using their Model Optimizer.",
+        "why": "FP4 quantization can reduce inference costs for vision-language workloads like EverRaise's call monitoring without materially affecting quality.",
+        "source": "huggingface"
+      },
+      {
+        "id": "microsoft/Mage-VL-Cowork",
+        "title": "Microsoft: Mage-VL-Cowork Vision-Language Model",
+        "url": "https://huggingface.co/microsoft/Mage-VL-Cowork",
+        "summary": "Microsoft released Mage-VL-Cowork, a vision-language model with computer-use and hybrid-agent capabilities.",
+        "why": "Computer-use models are directly relevant to our desktop automation experiments and Botterfly's computer-use skill.",
+        "source": "huggingface"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "430244148",
+        "title": "Next.js v16.5.0-canary.36",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.5.0-canary.36",
+        "summary": "Next.js v16.5.0-canary.36 upgrades React from a703ca64 to e84e1492.",
+        "why": "Canaries are usually skipped, but this one carries React dependency updates that could affect EverRaise and Pipeline's Next.js projects.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50300683",
+        "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+        "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+        "hn_url": "https://news.ycombinator.com/item?id=50300683",
+        "summary": "A backdoored Claude Code VS Code extension was distributed through the Cursor marketplace, giving attackers remote access to developer machines.",
+        "why": "We use Claude Code daily; every machine running the compromised extension needs immediate cleanup and credential rotation.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50319510",
+        "title": "HackerTube: YouTube built from videos recommended by HN",
+        "url": "https://karpathy.bearblog.dev/hacker-tube/",
+        "hn_url": "https://news.ycombinator.com/item?id=50319510",
+        "summary": "Andrej Karpathy built HackerTube, a YouTube client showing only videos recommended by Hacker News.",
+        "why": "A clean example of how to filter and curate content by collective signal; the pattern applies to any feed-assembly problem.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50320995",
+        "title": "Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard",
+        "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+        "hn_url": "https://news.ycombinator.com/item?id=50320995",
+        "summary": "Memdoor's five-model Qwen3.8-27B team beats Fable 5 on LiveCodeBench Hard.",
+        "why": "Multi-agent coding is a pattern we already use in the wehshi review panel; Memdoor's team-solve workflow could inform our next iteration.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50319143",
+        "title": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+        "url": "https://atlasum.net/blog/cve-2026-98432-linux-ipv4-tcp-uaf",
+        "hn_url": "https://news.ycombinator.com/item?id=50319143",
+        "summary": "A use-after-free in the Linux TCP stack (CVE-2026-98432, CVSS 9.8) allows remote code execution.",
+        "why": "Every Linux service we run is exposed; patches are urgent across SalesKick, Pipeline, and our own infra.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50314699",
+        "title": "Do the math: How we took over ChatGPT accounts",
+        "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+        "hn_url": "https://news.ycombinator.com/item?id=50314699",
+        "summary": "Researchers found a gap in ChatGPT's authentication that allowed account takeover by manipulating math verification.",
+        "why": "A reminder to never trust client-side validation alone, especially for anything involving user sessions or payments.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2116236188319453386",
+        "title": "OpenAI Developers: GPT-6 Astra controls robot arm",
+        "url": "https://x.com/OpenAIDevs/status/2116236188319453386",
+        "summary": "OpenAI Developers shared an experiment where GPT-6 Astra remotely controlled a robot arm in the Scav robotics community.",
+        "why": "Physical-world agent control is a logical next frontier after desktop automation; watching Scav's experiments tells us what works.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2116306164375863343",
+        "title": "OpenAI Developers: Agents API updates this week",
+        "url": "https://x.com/OpenAIDevs/status/2116306164375863343",
+        "summary": "OpenAI announced Agents API updates this week.",
+        "why": "The Agents API is a potential alternative to our current DSPy and LangChain patterns for stateful workflows; worth tracking for Pipeline.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2116986087390486816",
+        "title": "Addy Osmani: Claude Code 'ultrathink' tip",
+        "url": "https://x.com/addyosmani/status/2116986087390486816",
+        "summary": "Addy Osmani shared a Claude Code tip: typing 'ultrathink' mid-turn raises the effort level for the rest of that turn.",
+        "why": "A hidden steering command we can use when a task hits resistance; no need to cancel and rewrite the prompt.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2116634842746274148",
+        "title": "shadcn: Slack and Linear as AI harness UIs",
+        "url": "https://x.com/shadcn/status/2116634842746274148",
+        "summary": "shadcn predicts every AI harness will eventually build Slack and Linear UIs.",
+        "why": "We already see Slack as a control surface for Botterfly; Linear as a second interface would let the agent read, create, and move tickets.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Research: no new papers in our categories in the arXiv overnight listing (feed rebuilt Nov 1, 2026).",
+  "thin_sections": ["research"],
+  "window": {
+    "since": "2026-10-30T04:30:42+00:00",
+    "until": "2026-11-02T04:30:42+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
