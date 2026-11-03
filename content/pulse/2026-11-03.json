@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-03",
+  "title": "The Pulse, Tuesday 3 November 2026",
+  "tldr": "OpenAI Astra can now read and improve model weights directly. Claude's Messages API added server-side conversation threads that cut latency and request size. OpenAI published Pando, their Git backend that handles agent-scale monorepo traffic at petabyte scale.",
+  "sections": {
+    "models": [
+      {
+        "id": "anthropic/message-threads-2026-11-02",
+        "title": "Claude: Message Threads (Beta)",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#november-2-2026",
+        "summary": "The Messages API now caches conversations server-side in threads, so subsequent turns send only new messages instead of the full history.",
+        "why": "This halves latency and request size for EverRaise's long-running call-analysis agents and any Pipeline conversation bot.",
+        "source": "vendor"
+      },
+      {
+        "id": "z-ai/glm-5.3-flashx-legal",
+        "title": "Z.ai: GLM 5.3 FlashX Legal",
+        "url": "https://openrouter.ai/z-ai/glm-5.3-flashx-legal",
+        "summary": "Z.ai released GLM 5.3 FlashX Legal, a multimodal model (text, image, video) fine-tuned for legal-domain tasks, with a 1M token context.",
+        "why": "Legal-domain models are worth tracking for Mackinac's legislative research and any client work touching contracts or compliance.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2610.40738",
+        "title": "Apriel Voice 27B Preview: An Open Model for Speech, Reasoning, and Tool Use",
+        "url": "https://arxiv.org/abs/2610.40738",
+        "summary": "An open speech-language model that unifies voice input, reasoning, and tool use in a shared backbone while keeping text and image modalities.",
+        "why": "EverRaise's voice agents could gain from unified speech-and-tool models instead of chaining ASR to text LLMs; open weights let us run it.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.40966",
+        "title": "Better Retrievers, Worse Labels: How Incomplete Relevance Judgments Distort Abstention Evaluation in Conversational RAG",
+        "url": "https://arxiv.org/abs/2610.40966",
+        "summary": "Conversational RAG benchmarks treat contexts without gold documents as unanswerable, but better retrievers find relevant passages the benchmark labels missed, punishing strong systems.",
+        "why": "We use RAG abstention thresholds in Pipeline's research agents; this paper says our evals might penalize good retrieval.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.41124",
+        "title": "Confident Fools or Careful Searchers? A Behavioural Study of When LLMs Search Beyond Their Static Internal Memory",
+        "url": "https://arxiv.org/abs/2610.41124",
+        "summary": "Study of when LLM agents decide to call web search instead of answering from memory; unnecessary searches cost latency and money, missed ones yield unsupported answers.",
+        "why": "Botterfly and Pipeline agents decide this on every turn; quantifying the latency-accuracy tradeoff guides our tool-calling prompts.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2610.41998",
+        "title": "SecPO: Principled Adversarial Training for Prompt Injection Security",
+        "url": "https://arxiv.org/abs/2610.41998",
+        "summary": "Adversarial training method for prompt-injection defense; Meta-SecAlign with DPO still hits 100% ASR under adaptive attacks, but SecPO improves robustness.",
+        "why": "Every agent that reads email or documents is vulnerable; SecPO's training recipe could harden EverRaise's inbound-processing agents.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "431707035",
+        "title": "Next.js v16.4.4",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.4",
+        "summary": "Next.js v16.4.4 backports bug fixes (Turbopack CSS updates, PPR CSP nonce, fast-jwt swap) ahead of tomorrow's security release.",
+        "why": "We run Next.js across SalesKick, EverRaise, and our own tools; the security release tomorrow is mandatory.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50341174",
+        "title": "Astra can read and write weights to improve Qwen",
+        "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+        "hn_url": "https://news.ycombinator.com/item?id=50341174",
+        "summary": "OpenAI's Astra can now read a model's weights, reason about them, and write improved weights back, achieving measurable quality gains on Qwen.",
+        "why": "If models can directly optimize weights instead of prompts, fine-tuning becomes a conversation; this changes how we adapt models to client domains.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50337608",
+        "title": "WTF Ubuntu?",
+        "url": "https://chalmovsky.com/posts/wtf-ubuntu",
+        "hn_url": "https://news.ycombinator.com/item?id=50337608",
+        "summary": "A critique of Ubuntu's recent decisions around snaps, telemetry, and desktop experience degradation.",
+        "why": "Worth knowing, no direct use for us yet.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50339494",
+        "title": "Anthropic's internal AI use, at retail prices, now exceeds its employee pay",
+        "url": "https://www.businessinsider.com/anthropic-claude-internal-ai-use-exceeds-employee-pay-tokens-2026-11",
+        "hn_url": "https://news.ycombinator.com/item?id=50339494",
+        "summary": "Anthropic's internal token spend at retail pricing surpasses total employee compensation, signaling how AI use scales inside AI companies.",
+        "why": "A benchmark for what \\\"agent-first\\\" workflows cost at scale; helps frame our own infrastructure and API spend projections.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50337558",
+        "title": "We halved DNS build delay and cut memory use by 85%",
+        "url": "https://blog.cloudflare.com/dns-targeted-zone-builds/",
+        "hn_url": "https://news.ycombinator.com/item?id=50337558",
+        "summary": "Cloudflare optimized DNS zone builds by targeting incremental changes instead of rebuilding everything, cutting memory and delay.",
+        "why": "Incremental rebuild patterns apply to any system regenerating output from a large shared input; relevant for Pipeline's document indexing.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50338747",
+        "title": "Moving our warehouse off DuckDB",
+        "url": "https://posthog.com/blog/moving-off-duckdb",
+        "hn_url": "https://news.ycombinator.com/item?id=50338747",
+        "summary": "PostHog moved its data warehouse off DuckDB due to scaling and operational issues at high query volume.",
+        "why": "We use DuckDB for local analytics probes; understanding its limits before we hit them saves a migration later.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2117408792346509663",
+        "title": "OpenAI Developers: Pando, a Git backend for monorepo scale",
+        "url": "https://x.com/OpenAIDevs/status/2117408792346509663",
+        "summary": "OpenAI built Pando, a Git-compatible backend that cut push latency 80% and serves nearly a petabyte of Git data daily to handle agent-driven commits.",
+        "why": "Agent commit volume will eventually break normal Git; Pando shows how OpenAI solved it and signals what infrastructure we'll need if Codex scales.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2117315680119013865",
+        "title": "François Chollet on LLM writing style",
+        "url": "https://x.com/fchollet/status/2117315680119013865",
+        "summary": "François Chollet: \\\"The most grating aspect of LLM writing is that it tries to turn every single sentence into a punchline, a witty slogan.\\\"",
+        "why": "A clear articulation of why slop is slop; informs how we tune Botterfly's voice and review generated content for clients.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Releases: Next.js only; Python, Node, DSPy, LangChain core, and Langfuse were quiet in the window.",
+  "thin_sections": ["releases"],
+  "window": {
+    "since": "2026-11-02T04:30:37+00:00",
+    "until": "2026-11-03T04:30:37+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
