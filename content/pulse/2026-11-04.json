@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-04",
+  "title": "The Pulse, Wednesday 4 November 2026",
+  "tldr": "Next.js 16.4.5 and 15.5.29 ship seven moderate-severity security fixes. The largest thread overnight: Postman silently auto-installed AI plugins and tried to share all API data. Worth knowing.",
+  "sections": {
+    "models": [],
+    "research": [
+      {
+        "id": "2611.02430",
+        "title": "InteractionBench: Measuring Timing, Task Accuracy, Whisper and Volume, and Grounding in Real-Time Voice Systems",
+        "url": "https://arxiv.org/abs/2611.02430",
+        "summary": "A benchmark that measures four dimensions (turn-taking, instruction following, paralinguistic control, conversational memory) in real-time voice systems from the same recorded user audio.",
+        "why": "Voice agents on Vapi for EverRaise and other Pipeline clients need evaluation harnesses that measure more than transcription accuracy; this covers interaction behavior we implement.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.01022",
+        "title": "Jet-QSparse: Accelerating Agentic LLM Inference with 4-Bit Sparse Attention",
+        "url": "https://arxiv.org/abs/2611.01022",
+        "summary": "Training-free method combining 4-bit cache storage with native FP4 query-key computation on Blackwell tensor cores for long-horizon agentic workloads.",
+        "why": "Agentic workloads with long KV caches are the bottleneck for Botterfly and agents we build; 4-bit sparse attention deployment paths matter when hardware catches up.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.01700",
+        "title": "MemHarmBench: Evaluating Cross-Session Prompt Injection in Memory-Persistent AI Agents",
+        "url": "https://arxiv.org/abs/2611.01700",
+        "summary": "Benchmark for testing whether malicious instructions from messages, documents, or Web content can be retained in agent memory and influence future tasks after the original attack content is gone.",
+        "why": "Botterfly carries persistent memory across sessions; this benchmark measures the exact attack vector we guard against in memory writes and retrieval.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.00779",
+        "title": "Who Schedules Agent Memory? A Sidecar Approach to Long-Horizon Tasks",
+        "url": "https://arxiv.org/abs/2611.00779",
+        "summary": "Proposes decoupling memory scheduling from the main agent: a sidecar decides when to inject, update, and retrieve memory during long-horizon task execution.",
+        "why": "Botterfly's memory scheduling is implicit in tool calls; explicit memory orchestration could improve recall quality and reduce token waste in multi-step tasks.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "426571350",
+        "title": "Next.js 16.4.5",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.5",
+        "summary": "Security release patching seven moderate-severity advisories: cache leaks across tenants and root params, cache poisoning, binary argument disclosure, image optimization bypass, HttpOnly cookie exposure, and cross-client response injection.",
+        "why": "SalesKick, Pipeline clients, and Chrysalis all run Next.js; the cache-sharing vulnerabilities affect any app with user isolation or multi-tenant state.",
+        "source": "github"
+      },
+      {
+        "id": "426572098",
+        "title": "Next.js 15.5.29",
+        "url": "https://github.com/vercel/next.js/releases/tag/v15.5.29",
+        "summary": "Security release patching three moderate-severity advisories shared with 16.4.5: cross-client response injection, image optimization bypass, and HttpOnly cookie exposure.",
+        "why": "Apps we maintain on Next.js 15 need this update; the response injection issue affects self-hosted deployments forwarding fetched responses.",
+        "source": "github"
+      },
+      {
+        "id": "432757000",
+        "title": "Langfuse v4.74.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.74.0",
+        "summary": "Per-organization request and byte rate limits at AI Gateway /resolve, support access reads in audit logs, admin API for transferring projects between organizations, and Topics schema migrations.",
+        "why": "We use Langfuse for observability; AI Gateway rate limits and project transfer are operational tools we may need as usage scales.",
+        "source": "github"
+      },
+      {
+        "id": "433358543",
+        "title": "langchain-typesafe 0.0.1",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-typesafe%3D%3D0.0.1",
+        "summary": "Initial release of experimental LangChain partner package with TypeSafeClassifier, AutoModeMiddleware, and ModelRouterMiddleware for invocation-scoped routing.",
+        "why": "Pipeline clients use LangChain; typed routing middleware could replace ad-hoc model selection logic in DSPy hybrid flows.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50354960",
+        "title": "Postman silently auto-installs AI plugins and attempts to share all API data",
+        "url": "https://github.com/postmanlabs/postman-app-support/issues/14370",
+        "hn_url": "https://news.ycombinator.com/item?id=50354960",
+        "summary": "A GitHub issue reporting Postman's automatic installation of AI assistant plugins and attempted opt-in to sharing all API collections, history, and environments with no prior consent (1116 points, 363 comments).",
+        "why": "We use Postman for API development across clients; silent data-sharing defaults are a security and compliance concern.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50351111",
+        "title": "The 'Astra can read and write weights to improve Qwen' post is misleading",
+        "url": "https://honnibal.dev/blog/astra-read-write-misleading",
+        "hn_url": "https://news.ycombinator.com/item?id=50351111",
+        "summary": "Analysis arguing that claims about GPT-6 Astra's ability to read and modify model weights are overhyped; the experiments show standard fine-tuning, not live weight manipulation (932 points, 196 comments).",
+        "why": "Worth knowing when evaluating new model capabilities; hype around 'self-improving' models affects how we present agent limitations to clients.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50348962",
+        "title": "Nvidia – open-source auto-ontology",
+        "url": "https://github.com/NVIDIA/auto-ontology",
+        "hn_url": "https://news.ycombinator.com/item?id=50348962",
+        "summary": "Nvidia releases auto-ontology, a tool for automatically generating and maintaining ontologies from unstructured domain knowledge (266 points, 129 comments).",
+        "why": "Ontology construction from unstructured sources is a recurring challenge in retrieval systems we build for legislative research and CRM integrations.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50354336",
+        "title": "Gitbook Breached",
+        "url": "https://news.ycombinator.com/item?id=50354336",
+        "hn_url": "https://news.ycombinator.com/item?id=50354336",
+        "summary": "Reports of a Gitbook security breach affecting user accounts and documentation sites (148 points, 35 comments).",
+        "why": "We host internal documentation and client-facing runbooks on various platforms; breach aftermath and migration stories inform our hosting choices.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2117670658113155075",
+        "title": "Claude Code October recap",
+        "url": "https://x.com/ClaudeDevs/status/2117670658113155075",
+        "summary": "ClaudeDevs posts October 2026 recap: mods shipped, improved desktop session management, usage insights, and other updates (8088 likes).",
+        "why": "Claude Code is one of the agents we evaluate and occasionally delegate to; feature parity tracking helps us choose the right tool for coding tasks.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2117574509179900410",
+        "title": "Mistral Large 4 builds Orbital Trace 3D satellite tracker",
+        "url": "https://x.com/MistralAI/status/2117574509179900410",
+        "summary": "Mistral AI demonstrates Mistral Large 4 building a real-time 3D tracker for 19,000 satellites and debris, with testing and verification (989 likes).",
+        "why": "Shows coding agent quality bar for user-facing apps; relevant when evaluating which models can autonomously build and verify complex visualizations.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: nothing notable in the window. Python, Node.js, DSPy: no releases. One canary and two stable Next.js security patches instead.",
+  "thin_sections": ["models"],
+  "window": {
+    "since": "2026-11-03T04:30:36+00:00",
+    "until": "2026-11-04T04:30:36+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
