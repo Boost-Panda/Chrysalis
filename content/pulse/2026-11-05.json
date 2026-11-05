@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-05",
+  "title": "The Pulse, Thursday 5 November 2026",
+  "tldr": "OpenAI found and patched 948 Linux kernel privilege-escalation bugs with an autonomous pipeline. Anthropic published a formal-methods update for provable model inference.",
+  "sections": {
+    "models": [
+      {
+        "id": "ricursiveai/ripple-65b-preview",
+        "title": "Ripple-65B-Preview",
+        "url": "https://openrouter.ai/ricursiveai/ripple-65b-preview",
+        "summary": "65B open-weight model with native tool calling, tops SWE-bench Verified at 47.95% and claims U.S. SOTA on agentic coding.",
+        "why": "Open-weight models that approach frontier agentic performance let us self-host coding agents and reduce OpenRouter costs when latency is not the blocker.",
+        "source": "openrouter"
+      },
+      {
+        "id": "openai-images-2.6",
+        "title": "OpenAI Images 2.6",
+        "url": "https://openai.com/index/introducing-images-2-6/",
+        "summary": "Image-2.6 Flare and Sunburst generate images 50% faster than Image-2.5, with GIF creation and more consistent detail across edits.",
+        "why": "We use OpenAI image models for prototypes and client demos; faster generation improves iteration cycles in workshops.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.04390",
+        "title": "Do Multi-Turn Conversational Capabilities Carry Over from Text to Speech? A Parallel Multilingual Benchmark",
+        "url": "https://arxiv.org/abs/2611.04390",
+        "summary": "Tests whether models that handle multi-turn instructions and state tracking in text retain those abilities when the same turns are spoken.",
+        "why": "Voice agents for EverRaise and other Pipeline clients must track multi-turn state; this benchmark measures whether text-only eval is predictive.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.04867",
+        "title": "One Assistant, Many Memories: Benchmarking Real-World Group Assistance When Recall Is Not Enough",
+        "url": "https://arxiv.org/abs/2611.04867",
+        "summary": "Benchmark for assistants that integrate information from multiple participants in group conversations, without fixed answers or single-user assumptions.",
+        "why": "Botterfly operates in group channels; this benchmark tests the exact use case we have not yet built a harness for.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.04228",
+        "title": "DualWorldBench: Can Agents Plan Deliveries across Symbolic and Grounded Worlds?",
+        "url": "https://arxiv.org/abs/2611.04228",
+        "summary": "Multi-goal planning benchmark combining symbolic reasoning and embodied perception under temporal, physical, and multimodal constraints.",
+        "why": "Agentic planning that bridges symbolic and grounded state is the gap between our current task-level agents and full workflow automation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.05313",
+        "title": "MDSKILL: Learning to Internalize Skill Memory through Multi-View Distillation for Efficient Dynamic Agent Self-Evolution",
+        "url": "https://arxiv.org/abs/2611.05313",
+        "summary": "Self-distillation method that internalizes skill memories from textual prompts into agent weights, reducing reliance on external retrieval during RL.",
+        "why": "Botterfly's skills are external text; distilling them into model weights could reduce lookup overhead in long-running tasks.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "434616524",
+        "title": "LangChain Core 1.7.6",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.6",
+        "summary": "Performance improvements: merge streamed AIMessageChunk once per accumulation instead of per-token, and stop parse_partial_json from retrying one character at a time.",
+        "why": "We use LangChain for retrieval and agent flows in Pipeline clients; streaming performance matters for interactive voice and chat agents.",
+        "source": "github"
+      },
+      {
+        "id": "433736264",
+        "title": "Langfuse v4.75.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.75.0",
+        "summary": "AI Gateway limits raised to 10k req/min and 5 GiB/min for Pro/Team/Enterprise, Codex skill resource tracing, and a simplified setup for the gateway.",
+        "why": "Langfuse observability is how we debug agent runs; higher gateway limits and Codex tracing improve our monitoring story.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50364336",
+        "title": "AI is forcing us to pay off 40 years of technical debt",
+        "url": "https://spectrum.ieee.org/ai-in-cybersecurity-php2shell-vulnerability",
+        "hn_url": "https://news.ycombinator.com/item?id=50364336",
+        "summary": "IEEE Spectrum piece arguing AI-driven exploit discovery is surfacing decades-old architectural and API vulnerabilities faster than manual audits (1119 points, 655 comments).",
+        "why": "Botterfly and agents we ship interact with legacy APIs; the accelerated exploit timeline affects our attack surface assumptions.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50363461",
+        "title": "Tell HN: Gemini trains on chat history, even for subscribers (personal accounts)",
+        "url": "https://news.ycombinator.com/item?id=50363461",
+        "hn_url": "https://news.ycombinator.com/item?id=50363461",
+        "summary": "User report that Gemini trains on personal account chat history even with a paid subscription, contrary to workspace account policies (640 points, 166 comments).",
+        "why": "We use models from multiple vendors; understanding which accounts are opt-in vs. opt-out for training affects where we test prototypes.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50368626",
+        "title": "Progress on provable inference for large language models",
+        "url": "https://www.anthropic.com/research/provable-inference",
+        "hn_url": "https://news.ycombinator.com/item?id=50368626",
+        "summary": "Anthropic publishes an update on formal methods applied to LLM inference, verifying properties about what a model can and cannot output (191 points, 87 comments).",
+        "why": "Formal guarantees on model behavior are exactly what we need for safety-critical agent use cases; worth tracking as the methods mature.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50369106",
+        "title": "A new Go API for JSON",
+        "url": "https://go.dev/blog/jsonv2",
+        "hn_url": "https://news.ycombinator.com/item?id=50369106",
+        "summary": "Go blog introduces jsonv2, a new standard-library JSON API with streaming, custom marshalers, and better performance (252 points, 117 comments).",
+        "why": "Buzz and some backend services are written in Go; a better JSON API could simplify event marshaling and reduce allocations in high-throughput paths.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2118063143167693011",
+        "title": "Claude Code subagent status updates now 99% cheaper",
+        "url": "https://x.com/ClaudeDevs/status/2118063143167693011",
+        "summary": "Background subagents in Claude Code now write status lines from short notes instead of re-reading their whole conversation, reducing each update cost by ~99%.",
+        "why": "We delegate to Claude Code and run subagents in Hermes; this cost reduction means background work fits more use cases before hitting usage caps.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2118124753340756055",
+        "title": "OpenAI ships GPT-Image-2.6 Flare and Sunburst",
+        "url": "https://x.com/OpenAIDevs/status/2118124753340756055",
+        "summary": "Image-2.6 models generate images 50% faster, and Sunburst keeps details more consistent from one edit to the next at medium or high quality.",
+        "why": "Faster image generation and better edit consistency improve workshop prototyping; we can iterate in front of clients without waiting.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2118058453415371119",
+        "title": "Hermes Agent Marketplace launch",
+        "url": "https://x.com/NousResearch/status/2118058453415371119",
+        "summary": "Plugins, connectors, and skills for Hermes Agent are now unified in a single marketplace for easy browsing and installation.",
+        "why": "Botterfly runs on Hermes; the unified marketplace is where we look when we need a new integration or capability.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2118094256438936062",
+        "title": "Hermes Agent Plugin Hackathon starts",
+        "url": "https://x.com/NousResearch/status/2118094256438936062",
+        "summary": "7-day hackathon with $20,000 in prizes for Hermes Agent plugins, the most powerful way to extend Hermes.",
+        "why": "We contribute to Hermes skills and could build a plugin; the hackathon timeline and prize pool are worth noting for the team.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2117925908572991748",
+        "title": "Mistral Large 4 finds, proves, and patches a Django CVE",
+        "url": "https://x.com/MistralAI/status/2117925908572991748",
+        "summary": "133 agents map the code, hunt for vulnerabilities, test attack scenarios, confirm the bug, and then Le Chonk patches it, shown at 90x speed.",
+        "why": "Multi-agent security workflows are a use case we have not yet built; this demo shows the coordination and validation steps we would need.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python, Node.js, DSPy: no releases. Next.js v16.5.0-canary.41 shipped but it is a canary and the rubric says we skip those unless they introduce something we are waiting for.",
+  "thin_sections": [],
+  "window": {
+    "since": "2026-11-04T04:30:37+00:00",
+    "until": "2026-11-05T04:30:37+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
