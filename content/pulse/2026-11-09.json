@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-09",
+  "title": "The Pulse, Monday 9 November 2026",
+  "tldr": "OpenRouter rebuilt its Auto Router with live pricing and model health routing, Nous shipped Arete-27B to counter-steer Chinese open weights, and Claude Code now persists dev environments so you stop re-explaining dependencies every session. A security paper found 1,122 public repos with leaked credentials from agents that never asked twice.",
+  "sections": {
+    "models": [
+      {
+        "id": "liquid/lfm-3-1.7b",
+        "title": "LiquidAI: LFM3-1.7B",
+        "url": "https://openrouter.ai/liquid/lfm-3-1.7b",
+        "summary": "A 1.7B parameter model with 256K context, post-trained for agents, tool calling, and structured outputs.",
+        "why": "Small agent models matter for local dev; 256K context beats most larger models, and at $0.08 per M input tokens it's cheaper than running inference on our boxes for quick experiments.",
+        "source": "openrouter"
+      },
+      {
+        "id": "google/gemini-omni-1-2-flash",
+        "title": "Gemini Omni 1.2 Flash",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "summary": "Google's multimodal flash model refresh, optimized for speed and cost.",
+        "why": "Flash models compete on Pipeline work where latency and cost matter more than absolute ceiling — EverRaise SMS replies, Mackinac's quick-retrieval path.",
+        "source": "vendor"
+      },
+      {
+        "id": "openrouter/auto-router-v2",
+        "title": "OpenRouter Auto and Auto Code Routers",
+        "url": "https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/",
+        "summary": "Rebuilt Auto Router weighs eleven factors — pricing, provider health, benchmarks, cache state — per request, plus a new Auto Code router specialized for coding work.",
+        "why": "We use OpenRouter on every project; dynamic routing that respects governance policies and adapts to live provider health reduces the toil of pinning models and switching when a provider goes down.",
+        "source": "vendor"
+      }
+    ],
+    "research": [],
+    "releases": [],
+    "hackernews": [
+      {
+        "id": "50407882",
+        "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
+        "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+        "hn_url": "https://news.ycombinator.com/item?id=50407882",
+        "summary": "Security researchers found over 1,100 public repos with credentials leaked by coding agents after users selected \"don't ask again\" on prompts.",
+        "why": "We use Claude Code and Codex daily; this is a concrete reminder to audit prompt history and never let agents silently push secrets. The vault rule already says cite the env var name, never the value.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50399933",
+        "title": "Libghostty 1.0",
+        "url": "https://mitchellh.com/writing/libghostty-1-0",
+        "hn_url": "https://news.ycombinator.com/item?id=50399933",
+        "summary": "Mitchell Hashimoto shipped Ghostty's terminal emulator as a standalone library with C and Zig bindings, plus a stable ABI.",
+        "why": "Terminal emulator libraries matter when you build agent UIs that need real pty sessions; Hermes and Claude Code both rely on stable terminal backends. A clean library release with maintained bindings lowers the friction of embedding one.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50415628",
+        "title": "Goldman Sachs is pulling Claude Code from its bankers and traders",
+        "url": "https://www.thestateofai.com/news/goldman-sachs-claude-code-traders-bankers",
+        "hn_url": "https://news.ycombinator.com/item?id=50415628",
+        "summary": "Goldman Sachs removed access to Anthropic's coding agent after an internal review flagged policy and security concerns.",
+        "why": "Enterprise policy shapes what tools we can propose to clients; understanding why a major bank pulled a tool we use helps us anticipate objections and address them up front.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50406222",
+        "title": "MaxxBench – \"Nice DeepSWE score. But is it true?\"",
+        "url": "https://maxxbench.unlap.ai/research/why-maxxbench/",
+        "hn_url": "https://news.ycombinator.com/item?id=50406222",
+        "summary": "A new benchmark designed to catch agents gaming SWE-bench by checking that passing tests actually implement the requested feature, not just the test surface.",
+        "why": "We eval agents internally; a benchmark that measures real functionality versus test-passing theater is closer to the bar we apply before shipping a feature.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2118822925445050435",
+        "title": "Nous Research: Arete-27B",
+        "url": "https://x.com/NousResearch/status/2118822925445050435",
+        "summary": "Nous post-trained Qwen3.8-27B to counter state-aligned behavior in Chinese open models, with an 803-prompt eval across seven value categories.",
+        "why": "Open models from China are the strongest available right now, but their alignment can conflict with Western use cases. A post-trained variant that addresses this without sacrificing capability matters for projects where we control the weights.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2118795192090386454",
+        "title": "Claude Code: Persistent Dev Environments",
+        "url": "https://x.com/ClaudeDevs/status/2118795192090386454",
+        "summary": "Claude Code cloud sessions now persist dependencies, network access, and API keys between runs, so you stop re-explaining the setup every session.",
+        "why": "We use Claude Code Pro sessions for client work; persistent environments cut the time to first useful output and reduce the risk of accidentally leaking keys when re-typing them every run.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2119501958981857543",
+        "title": "Hermes Security Plugin",
+        "url": "https://x.com/NousResearch/status/2119501958981857543",
+        "summary": "Hermes Agent's new Security plugin maps attack surfaces, then splits the code across parallel subagents to check findings against the actual codebase.",
+        "why": "Hermes is our agent runtime; a security plugin that works at the same scale of parallelism we use for review panels gives us a tool to run before deploys.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2118742007438852125",
+        "title": "Omar Khattab: ARI and Test-Time Training for Retrievers",
+        "url": "https://x.com/lateinteraction/status/2118742007438852125",
+        "summary": "DSPy's lead describes ARI, a method that uses gradients from a reasoning model to teach a retriever where to look during search time, not just during training.",
+        "why": "We use DSPy on Mackinac and Life International; test-time training for retrievers could improve retrieval quality without retraining embeddings or rebuilding indexes, which matters when client data changes weekly.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Research: no papers in the 72-hour window. Releases: no notable releases per the rubric. The Cybertruck news ran everywhere, so you've seen it; back to engineering Monday.",
+  "thin_sections": ["research", "releases"],
+  "window": {
+    "since": "2026-11-06T04:30:40+00:00",
+    "until": "2026-11-09T04:30:40+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
