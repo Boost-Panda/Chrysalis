@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-10",
+  "tldr": "Anthropic shipped Claude Fable 5.2—up to 30% faster than 5.1, priced $8/$40, scoring 65 on Artificial Analysis—and a fast mode at $16/$80 that delivers 2.5x the tokens/sec. Meta launched Muse Ember, a small model built for agent work with a 1M token window. Strong agent memory and GraphRAG research from the overnight arXiv.",
+  "sections": {
+    "models": [
+      {
+        "id": "anthropic/claude-fable-5.2-20261109",
+        "title": "Claude Fable 5.2 and Mythos 5.2",
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+        "summary": "Claude Fable 5.2 is Anthropic's most capable model, with gains over Fable 5.1 in coding, reasoning, and vision. Up to 30% faster generation, $8/$40 per million tokens (down from $10/$50), and a fast mode at $16/$80 delivering 2.5x the output speed.",
+        "why": "Fable 5.2 is the strongest reasoning model on the market. We use Opus 5.5 daily, but Fable runs the hardest technical builds—autonomous agent work, multi-session debugging, and the wehshi PR review panel. The speed and price gains mean switching costs less and waits less."
+      },
+      {
+        "id": "meta/muse-ember-20261109",
+        "title": "Muse Ember: Our smallest, most efficient model",
+        "url": "https://research.meta.ai/blog/muse-ember",
+        "summary": "Meta launched Muse Ember, their smallest and most efficient model, designed for complex reasoning execution and agent workflows—tool calls, coding subtasks, routing—with a 1M-token context window, at $0.10/$0.50 per million tokens.",
+        "why": "Muse Ember's pricing and 1M context fit the subagent and tool-loop role in our harnesses. If it handles iterative grounding and tool calls reliably, it can run the repetitive agent work while Opus or Fable handles the plan."
+      },
+      {
+        "id": "nex-agi/nex-n2.6-20261110",
+        "title": "Nex AGI: Nex-N2.6",
+        "url": "https://openrouter.ai/nex-agi/nex-n2.6",
+        "summary": "Nex AGI released Nex-N2.6, a 321B-parameter agentic model built on GLM-5.3-Flash, suited for computer use, coding, and long-horizon tasks with tools, at $0.12/$0.40 per million tokens.",
+        "why": "Nex-N2.6 claims computer-use capability at near-Ember pricing. Worth probing on tool-heavy agent loops and SalesKick's grading harness if it can replace higher-cost models on structured agentic flows."
+      },
+      {
+        "id": "thinkingmachines/inkling-2-small-20261107",
+        "title": "Thinking Machines: Inkling 2 Small (free)",
+        "url": "https://openrouter.ai/thinkingmachines/inkling-2-small",
+        "summary": "Thinking Machines Lab launched Inkling 2 Small, a multimodal mixture-of-experts reasoning model with 17B active parameters out of 594B total, with a 1M token context—free on OpenRouter.",
+        "why": "A free multimodal reasoning model with a 1M context is a zero-cost probe for vision-heavy work like document extraction for EverRaise or visual grading experiments in SalesKick."
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.09807",
+        "title": "Compaction, decay and reinforcement in a two-tier conversational memory: a paired evaluation against retrieval-augmented generation",
+        "url": "https://arxiv.org/abs/2611.09807",
+        "summary": "This paper compares conversational memory strategies—retrieval-augmented generation versus compaction into atomic facts—on the LoCoMo benchmark (1,985 questions), showing that both arms return comparable results against the same stores with the same generator.",
+        "why": "Mnemosyne uses compaction (working memory to episodic summaries). This eval validates the compaction path against naive RAG, and the same-store design means we can benchmark our own approach without rebuilding the harness."
+      },
+      {
+        "id": "2611.09414",
+        "title": "Typed-Centrality Grounding for Agentic GraphRAG: A Symbolic Approach for Agentic Reasoning",
+        "url": "https://arxiv.org/abs/2611.09414",
+        "summary": "Typed-Centrality Grounding introduces a symbolic approach for agentic GraphRAG that retrieves relevant subgraphs via typed centrality scoring, improving structured context provision to LLMs for knowledge-graph-backed reasoning.",
+        "why": "EverRaise and Mackinac use hybrid retrieval (vector + metadata + graph). Typed-centrality grounding offers a sub-quadratic way to rank subgraphs for context, which directly addresses our 'how much of the graph fits in the prompt' problem."
+      },
+      {
+        "id": "2611.08718",
+        "title": "Memory-Aware Multi-Agent Architecture with LLM-based Orchestration for Conversational Recommendation",
+        "url": "https://arxiv.org/abs/2611.08718",
+        "summary": "This paper proposes a multi-agent architecture with LLM-based orchestration for conversational recommendation, integrating memory, retrieval, and decision-making across sessions rather than treating each session in isolation.",
+        "why": "SalesKick's coaching loop and EverRaise's multi-turn voice flows are conversational agents that need memory across sessions. The orchestration pattern here—multiple specialized agents with shared memory—maps to our subagent harness."
+      },
+      {
+        "id": "2611.09721",
+        "title": "MemoryDojo: Benchmarking Poisoning Through LLM Agent Memory",
+        "url": "https://arxiv.org/abs/2611.09721",
+        "summary": "MemoryDojo benchmarks agent memory poisoning: malicious instructions stored in one session propagate through memory systems and are retrieved and executed in later sessions. The benchmark tests how memory architectures differ in vulnerability.",
+        "why": "Every agent with a cross-session memory is vulnerable to this. Mnemosyne's BEAM tiering and validator hooks are partial defenses, but this benchmark gives us a structured way to probe the attack surface and tighten the gates."
+      }
+    ],
+    "releases": [
+      {
+        "id": "langchain-core==1.7.7",
+        "title": "langchain-core==1.7.7",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.7",
+        "summary": "LangChain Core 1.7.7 caps nesting depth in `load()` and patches security lock resolutions for newer Python versions.",
+        "why": "We use LangChain in the Mackinac retrieval pipeline. The nesting-depth cap is a safety guardrail; worth pulling into the next dependency refresh."
+      },
+      {
+        "id": "langfuse-v4.77.0",
+        "title": "v4.77.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.77.0",
+        "summary": "Langfuse v4.77.0 removes automatic tokenization (deprecated, no one should depend on it), adds proper Topics cost tracking, Amazon Bedrock upstream with API key auth, and runs per-trace Topics summaries on a dedicated queue.",
+        "why": "We use Langfuse for tracing SalesKick and EverRaise agent runs. The Topics queue change is a performance gain when trace volume is high; the Bedrock upstream matters if we route any calls through their gateway."
+      },
+      {
+        "id": "next-v16.4.6",
+        "title": "v16.4.6",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.4.6",
+        "summary": "Next.js v16.4.6 pins Tailwind to 4.3.3, compresses route handler responses automatically, and includes Turbopack garbage collection fixes for dev builds.",
+        "why": "SalesKick and Pipeline's client dashboards run Next. The route-handler compression is a free bandwidth win; the Turbopack GC fix addresses the long-session memory leak we hit in local dev."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50422069",
+        "title": "Is Opus 5.5 nerfed? Thinking patterns changed on November 3",
+        "url": "https://twitter.com/shanemelaugh/status/2119192075505893695",
+        "summary": "A thread claiming Opus 5.5 was nerfed on November 3 based on observed thinking-pattern changes (768 points, 483 comments). The discussion surfaces no official confirmation from Anthropic.",
+        "why": "We run Opus 5.5 on the daily agent loop and wehshi reviews. If there was a behavior change, we'd see it in the panel verdicts and the vault ingest quality. Worth a calibration check against our own panel logs."
+      },
+      {
+        "id": "50429426",
+        "title": "Google Gemini routes personal Drive files and emails to human annotators",
+        "url": "https://github.com/thisisme6598/gemini_files/",
+        "summary": "A GitHub repo documenting that Google Gemini routes personal Drive files and emails to human annotators (479 points, 114 comments). The discussion covers privacy implications and the AI training feedback loop.",
+        "why": "If we ever integrate Gemini into a client flow, this is a hard privacy boundary. The GitHub evidence means we reference this thread when evaluating vendor data policies for SalesKick and EverRaise."
+      },
+      {
+        "id": "50432831",
+        "title": "TPU 8tx and TPU 8i Max",
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+        "summary": "Google announced TPU 8tx and TPU 8i Max, new cloud TPU generations (228 points, 71 comments). The HN thread debates cost, availability, and whether TPUs still matter in the GPU-dominated market.",
+        "why": "We run inference on OpenRouter and occasionally bare GPUs. TPUs are a non-option for us today, but the 8i Max generation is Google's answer to H200 and B200; worth knowing when the cost comparison flips."
+      },
+      {
+        "id": "50427085",
+        "title": "The same H100 costs $2.69 or $12.29 an hour depending where you rent it",
+        "url": "https://github.com/datareceipts/data-receipts/tree/main/109-gpu-pricing",
+        "summary": "A data-receipts analysis showing H100 hourly rates vary from $2.69 to $12.29 depending on provider (168 points, 85 comments). The thread surfaces which providers offer the low end and what the catch is.",
+        "why": "If we ever need bare GPU time for fine-tuning or local serving, this pricing map is the starting point. A 4.6x spread means provider selection is not a rounding error."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2119868698613956992",
+        "title": "ClaudeDevs announces Fable 5.2 availability",
+        "url": "https://x.com/ClaudeDevs/status/2119868698613956992",
+        "summary": "ClaudeDevs announces Fable 5.2 availability in the Claude Platform and Claude Code, 30% faster than Fable 5.1, priced $8/$40 (down from $10/$50).",
+        "why": "Same Fable 5.2 launch as models and HN. Fastest reasoning model on the market; we switch the editorial-writing profile and the hardest agent loops."
+      },
+      {
+        "id": "2119898687803621427",
+        "title": "Which Claude model should you build with?",
+        "url": "https://x.com/ClaudeDevs/status/2119898687803621427",
+        "summary": "ClaudeDevs posts a new guide on which Claude model to build with, covering when to use Fable 5.2, Opus 5.5, Sonnet, or Haiku, and how to adjust effort instead of switching models.",
+        "why": "Model routing is a first-class problem in our harnesses—what runs the orchestrator versus the subagents, whether we pay for Fable on tool loops or drop to Haiku. This guide codifies the Anthropic-recommended pattern before we improvise one."
+      },
+      {
+        "id": "2119851439904510217",
+        "title": "Hermes Cloud agents open in browser tabs",
+        "url": "https://x.com/NousResearch/status/2119851439904510217",
+        "summary": "Nous announces Hermes Cloud agents now open in a browser tab with the same interface as Hermes Desktop, hosted 24/7 in their own container for scheduled jobs.",
+        "why": "We run Botterfly on pandybot in a headless session with cron jobs. The Hermes Cloud offering is the hosted equivalent; if we need another persistent agent without spinning our own box, this is the path."
+      }
+    ]
+  },
+  "closing": ""
+}
