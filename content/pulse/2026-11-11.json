@@ -1,0 +1,180 @@
+{
+  "date": "2026-11-11",
+  "title": "The Pulse, Wednesday 11 November 2026",
+  "tldr": "Gemini 4 Carbon is here: Google's new frontier model built for coding, agentic work, and complex reasoning, with 1M context and multimodal input. DSPy 3.5 landed with a 85% lighter install and 2x faster imports. Both matter if you're shipping agents this month.",
+  "sections": {
+    "models": [
+      {
+        "id": "google/gemini-4-carbon-20261110",
+        "title": "Gemini 4 Carbon",
+        "url": "https://openrouter.ai/google/gemini-4-carbon",
+        "summary": "Google's new frontier Gemini 4 model for coding, agentic and complex reasoning work, with 1M context, multimodal input (text, image, audio, video, files), and long decode support.",
+        "why": "Our most ambitious client agents (EverRaise call grading, Mackinac research retrieval) run against context limits. A 1M window that can handle files and audio natively opens paths we've been batching or truncating.",
+        "source": "openrouter"
+      },
+      {
+        "id": "2120335993643684315",
+        "title": "Qwen4 preview from Alibaba",
+        "url": "https://x.com/Alibaba_Qwen/status/2120335993643684315",
+        "summary": "Qwen4-Max is in preview on Alibaba's Token platform with deeper knowledge, stronger coding and agentic capabilities, and professional software workflow support.",
+        "why": "Qwen has been the strongest open-weight coder after Sonnet; if Qwen4 holds or improves that, it's an OpenRouter route we'd test for DSPy agents and Hermes workflows where we need volume at reasonable cost.",
+        "source": "x_posts"
+      },
+      {
+        "id": "baidu/ernie-5.5-flash-preview-20261110",
+        "title": "Baidu ERNIE 5.5 Flash Preview",
+        "url": "https://openrouter.ai/baidu/ernie-5.5-flash-preview",
+        "summary": "280B-parameter foundation model with 1M context, improved coding and agentic capabilities, knowledge work, and deep research at $0.28 per million prompt tokens.",
+        "why": "Priced below GPT-4o mini on OpenRouter and claims agentic improvements. Worth a probe on a non-critical agent task to see if quality holds at that cost.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.10845",
+        "title": "Inference for Reasoning Models: Practical Lessons from Evaluation and Serving",
+        "url": "https://arxiv.org/abs/2611.10845",
+        "summary": "How evaluation and serving choices move reasoning-model accuracy wildly: in one experiment, changing only max response length moved a math benchmark from 0.08% to 93.18%.",
+        "why": "We run reasoning models (o1, DeepSeek R1) on SalesKick call scoring and grading. If evaluation config produces 1000x swings, our benchmarks may be measuring the wrong thing.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.10982",
+        "title": "Think or Remember: The Exchange Rate of Agentic Inference",
+        "url": "https://arxiv.org/abs/2611.10982",
+        "summary": "Defines a cost model for agent transcripts: the client keeps or edits messages, the server decides what reasoning returns in the prompt and what the cache reuses, matching instrumented engine counts exactly.",
+        "why": "Botterfly and the EverRaise agent resend growing transcripts on every call. This paper's cost model would let us instrument actual cache behavior and decide when to prune history versus paying for re-reasoning.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.11319",
+        "title": "Verify Before You Fetch: Reliable KV Cache Compression for LLM Inference",
+        "url": "https://arxiv.org/abs/2611.11319",
+        "summary": "Long-context applications, long-lived agents, and multi-agent systems require large KV caches that exceed GPU HBM, forcing offload to host memory where CPU-to-GPU transfers dominate latency. Proposes verified compression before offload.",
+        "why": "The multi-agent call-grading panel we're building for SalesKick will have several simultaneously resident caches. Verified compression before offload is the engineering path to keeping latency under the 2s target.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.10170",
+        "title": "Where Did the Evidence Go? Diagnosing Proof-Set Loss in Long-Term Conversational Memory",
+        "url": "https://arxiv.org/abs/2611.10170",
+        "summary": "Long-term conversational QA can require separated dialogue turns that support an answer only together. Introduces EviCover, a retrieval approach that retains complementary evidence by converting questions into observable evidence requirements and checking coverage.",
+        "why": "Botterfly's memory and the EverRaise voice agent both do multi-turn retrieval. If EviCover's requirement-coverage approach beats our current semantic search, it's a DSPy module we'd test for the Mackinac legislative research agent.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "440542681",
+        "title": "DSPy 3.5.0",
+        "url": "https://github.com/stanfordnlp/dspy/releases/tag/3.5.0",
+        "summary": "Lighter, faster foundation: 85% smaller install (206 MB → 31 MB), 2x faster import (1.01s → 0.49s), graduated RLM/Flex/GEPA, ReActV2 replaces ReAct, rich tool results (images, files), RLM History, and the lightweight lm15 engine replacing LiteLLM as default.",
+        "why": "SalesKick agents and Mackinac retrieval both use DSPy. The import-time halving matters for cold starts, and the RLM History feature is what we'd been rebuilding ourselves. Breaking changes noted; re-eval needed.",
+        "source": "github"
+      },
+      {
+        "id": "440757645",
+        "title": "LangChain 1.4.10",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.10",
+        "summary": "Fixes middleware-internal model calls appearing on the messages stream, omits trace inputs from ModelRefusalMiddleware, and patches security lock resolutions.",
+        "why": "EverRaise uses LangChain for SMS campaign composition and the Vapi voice agent flow. The middleware fix keeps internal retry calls off the transcript, which was breaking our usage tracking.",
+        "source": "github"
+      },
+      {
+        "id": "440380422",
+        "title": "Langfuse v4.78.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.78.0",
+        "summary": "EmptyState illustrations, Topics trace filtering, RBAC USER api key scope, AI Gateway always visible at org level, external HTTP eval dispatcher, Bedrock in every environment, experiments cleanup.",
+        "why": "Pipeline's clients use Langfuse for agent observability. The external HTTP eval dispatcher and RBAC changes let us integrate the SalesKick custom scoring logic without forking Langfuse's eval system.",
+        "source": "github"
+      },
+      {
+        "id": "https://www.python.org/downloads/release/python-3160a2/",
+        "title": "Python 3.16.0a2",
+        "url": "https://www.python.org/downloads/release/python-3160a2/",
+        "summary": "Second alpha of Python 3.16, released 2026-11-10.",
+        "why": "We test alphas on dev boxes to catch breaking changes before they land in beta. No direct upgrade yet, but the release cycle is on schedule.",
+        "source": "python.org"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50439193",
+        "title": "AlphaProof Code",
+        "url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+        "hn_url": "https://news.ycombinator.com/item?id=50439193",
+        "summary": "DeepMind's AlphaProof Code agents wrote three million lines of Lean proofs to verify Signal's core encryption. A breakthrough in verifying complex software at depth.",
+        "why": "We're not verifying encryption, but the approach — agents writing formal proofs to verify existing code — is the engineering path to high-assurance agent-generated changes. Worth understanding before we need it.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50436640",
+        "title": "Amazon saves millions by replacing Sonnet 4.6 with Strands Decider",
+        "url": "https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/",
+        "hn_url": "https://news.ycombinator.com/item?id=50436640",
+        "summary": "Strands claims Amazon replaced Sonnet 4.6 with their Decider model, saving millions on a decision-making task. Vendor case study, numbers unverified.",
+        "why": "SalesKick and Pipeline both route multi-turn agent decisions through Sonnet. If a cheaper decision model holds quality, it's worth a side-by-side on routing logic and lead-scoring where we're not generating long text.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50443716",
+        "title": "Claude Whiteboards, Claude Sheets, and Claude Data",
+        "url": "https://claude.com/resources/articles/sheets-whiteboards-data",
+        "hn_url": "https://news.ycombinator.com/item?id=50443716",
+        "summary": "Anthropic launched Whiteboards (collaborative canvas), Sheets (structured data manipulation), and Data (file analysis and transformation) inside Claude.",
+        "why": "Botterfly's Chrysalis artifact publishing uses Claude for one-off builds. If Whiteboards or Data can produce shareable URLs like Artifacts do, they're delivery channels we'd test for internal dashboards and client reporting prototypes.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50447074",
+        "title": "After 7 months, Glasswing overwhelms maintainers with underwhelming findings",
+        "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
+        "hn_url": "https://news.ycombinator.com/item?id=50447074",
+        "summary": "VulnCheck reports that Anthropic's Glasswing AI vulnerability scanner sent 7 months of reports, many false positives or trivial findings, overwhelming open-source maintainers.",
+        "why": "We ran LLM-based security scans on client repos as an experiment. Glasswing's experience — high volume, low signal — matches what we saw. The lesson: AI scanning needs a human-in-the-loop gate before it reaches maintainers.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50443812",
+        "title": "Show HN: Get your coding agent off ~2019 JavaScript, onto modern web primitives",
+        "url": "https://github.com/GoogleChrome/modern-web-guidance",
+        "hn_url": "https://news.ycombinator.com/item?id=50443812",
+        "summary": "Google Chrome's guidance repo for coding agents: what modern web primitives to use instead of circa-2019 patterns many agents still generate.",
+        "why": "Botterfly and Claude Code both generate frontend code. This repo is a prompt artifact we'd inject into the Hermes coding-agent skill to steer away from jQuery and polyfills we don't need.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2120275296637321476",
+        "title": "Claude gives all Pro/Max/Ultra/Team users one free full reset",
+        "url": "https://x.com/ClaudeDevs/status/2120275296637321476",
+        "summary": "Anthropic gave all paid-tier users one free full usage reset, usable anytime before December 10, after fixing issues that consumed more limits than intended.",
+        "why": "The team uses Claude Max and Ultra for Botterfly, reviews, and agent coding. The reset buys breathing room for the wehshi panel experiments and the Pulse collector we're rebuilding.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2120227979041341943",
+        "title": "Claude now supports more of the MCP Apps extension",
+        "url": "https://x.com/ClaudeDevs/status/2120227979041341943",
+        "summary": "Claude added app tools and embedded sites to the MCP Apps extension, so full apps can run inside Claude. Docs at claude.com/docs/connectors/building/mcp-apps/getting-started.",
+        "why": "Hermes plugins wrap external tools as MCP servers. If Claude's MCP Apps extension can embed a live UI, that's a delivery path for client-facing agent interfaces that stays inside the Claude session instead of deploying to Chrysalis.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2120195760234844603",
+        "title": "DSPy 3.5 and efforts for DSPy 4 underway",
+        "url": "https://x.com/lateinteraction/status/2120195760234844603",
+        "summary": "Omar Khattab (DSPy lead) confirmed DSPy 3.5 shipped and work on DSPy 4 is underway.",
+        "why": "We use DSPy on SalesKick grading and Mackinac retrieval. Knowing that 4 is already in progress means the 3.5 migration is not a multi-quarter decision — it's the stable base until 4 lands, likely Q1.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "AlphaProof Code verified Signal's encryption with three million lines of machine-written Lean proofs. Not our current job, but the paradigm — agents that formally verify other agents' work — is where high-stakes agent-generated code is headed.",
+  "window": {
+    "since": "2026-11-10T04:30:44+00:00",
+    "until": "2026-11-11T04:30:44+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
