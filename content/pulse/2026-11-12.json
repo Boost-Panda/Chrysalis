@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-12",
+  "title": "The Pulse, Thursday 12 November 2026",
+  "tldr": "Tim Peters, author of the Zen of Python and core contributor for decades, has died. The Node.js LTS lines all shipped security updates for nine high-severity HTTP/2, TLS, and permissions vulnerabilities. LangChain drops Python 3.10 support across core, main, and typesafe packages.",
+  "sections": {
+    "models": [],
+    "research": [
+      {
+        "id": "2611.13696",
+        "title": "On Private Knowledge Retrieval and Private Inference for secure multi-agent systems",
+        "url": "https://arxiv.org/abs/2611.13696",
+        "summary": "Private retrieval and inference for secure multi-agent systems.",
+        "why": "Agent systems with private knowledge retrieval are directly relevant to our multi-agent work.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.14009",
+        "title": "Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation",
+        "url": "https://arxiv.org/abs/2611.14009",
+        "summary": "On-policy distillation to unlock memory control in coding agents with long-horizon tasks.",
+        "why": "Memory management for coding agents is a live problem for Botterfly and our agent workflows.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.13246",
+        "title": "ExpertCrowd-SWE: Measuring Frontier Coding Agents on Expert-Authored Engineering Tasks in Unfamiliar Codebases",
+        "url": "https://arxiv.org/abs/2611.13246",
+        "summary": "100 expert-authored tasks for autonomous coding agents in large, unfamiliar codebases.",
+        "why": "A benchmark for the exact scenario we run coding agents in: real repos, multi-file changes, expert-level tasks.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.13293",
+        "title": "Decode Token Parallelism: Memory-Efficient Distributed Attention Parallelism for Scalable LLM Decoding",
+        "url": "https://arxiv.org/abs/2611.13293",
+        "summary": "Memory-efficient distributed attention for scalable LLM decoding with long contexts.",
+        "why": "Relevant if we need to serve models ourselves at high concurrency and long context lengths.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "441952954",
+        "title": "Node.js v26.13.1, v24.22.3, and v22.23.5 (all LTS)",
+        "url": "https://github.com/nodejs/node/releases/tag/v26.13.1",
+        "summary": "All three LTS lines shipped security releases fixing nine high-severity CVEs in HTTP/2, TLS, and permissions.",
+        "why": "We run Node services; security updates in all LTS lines need attention.",
+        "source": "github"
+      },
+      {
+        "id": "441865647",
+        "title": "LangChain Core 1.8.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.0",
+        "summary": "Drops Python 3.10 support; minimum is now Python 3.11. Adds decision models.",
+        "why": "We use LangChain in several projects; this forces a Python upgrade if we want newer versions.",
+        "source": "github"
+      },
+      {
+        "id": "441893033",
+        "title": "LangChain 1.5.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.5.0",
+        "summary": "Also drops Python 3.10; pins Core 1.8.0. Adds model router and auto-mode middleware.",
+        "why": "The main package follows the core's Python cutoff; users on 3.10 stay on 1.4.x.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50450488",
+        "title": "Tim Peters has died",
+        "url": "https://discuss.python.org/t/in-memoriam-tim-peters-1952-2026/110028",
+        "hn_url": "https://news.ycombinator.com/item?id=50450488",
+        "summary": "Tim Peters, author of the Zen of Python and core contributor for decades, has died.",
+        "why": "A foundational loss for the Python community; his work shapes every Python codebase we touch.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50456631",
+        "title": "AWS emulator",
+        "url": "https://github.com/aws/aws-emulator",
+        "hn_url": "https://news.ycombinator.com/item?id=50456631",
+        "summary": "AWS released an emulator for local development: S3, DynamoDB, Lambda, and more, no cloud account needed.",
+        "why": "Faster local dev loops for AWS services; relevant for SalesKick and any AWS-based projects.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50456791",
+        "title": "Gemini Decisions API",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+        "hn_url": "https://news.ycombinator.com/item?id=50456791",
+        "summary": "A structured decision-making API separate from the generation models.",
+        "why": "Worth knowing; decision-focused APIs may fit routing or classifier use cases better than general chat models.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50455633",
+        "title": "Faster Retrieval for Better, More Efficient RAG",
+        "url": "https://machinelearning.apple.com/research/faster-retrieval",
+        "hn_url": "https://news.ycombinator.com/item?id=50455633",
+        "summary": "Apple research on faster retrieval for RAG: query rewriting, GPU-accelerated ANN search, and hybrid ranking.",
+        "why": "RAG performance matters for Pipeline's hybrid retrieval stacks and EverRaise's knowledge base.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2120715518243987685",
+        "title": "Hermes Agent Plugin Hackathon closed",
+        "url": "https://x.com/NousResearch/status/2120715518243987685",
+        "summary": "Nous Research closed the Hermes Agent Plugin Hackathon with nearly 1,000 submissions; judges are narrowing to the top 10.",
+        "why": "We use Hermes daily; the plugin ecosystem shapes what we can build.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2120489851615084876",
+        "title": "Voxtral Transcribe 3 at AI Engineer Paris",
+        "url": "https://x.com/MistralAI/status/2120489851615084876",
+        "summary": "Mistral used Voxtral Transcribe 3 for real-time transcription at AI Engineer Paris, with context biasing for names and technical terms.",
+        "why": "Real-time transcription with biasing is useful for EverRaise's voice agents; the production story is the signal.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2120673529951813985",
+        "title": "François Chollet on AI in education",
+        "url": "https://x.com/fchollet/status/2120673529951813985",
+        "summary": "Conversational AI can deliver personalized tutoring, but most tools optimize for the answer instead of learning to think.",
+        "why": "No direct use for us yet, but a useful framing if we ever build educational agents.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: nothing new in the window. OpenRouter published four new tutorials covering agent infinite loops, benchmarking, rate limits, and quantization tradeoffs. Google announced Gemini on Apple CarPlay and AlphaGenome 2 for DNA variant impact prediction.",
+  "window": {
+    "since": "2026-11-11T04:30:47+00:00",
+    "until": "2026-11-12T04:30:47+00:00"
+  },
+  "generated_by": "botterfly/pulse",
+  "thin_sections": ["models"]
+}
