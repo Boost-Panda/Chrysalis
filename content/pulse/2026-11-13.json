@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-13",
+  "title": "The Pulse — November 13, 2026",
+  "tldr": "Google shipped Gemini 4 Hydrogen, a new daily-driver model built for agentic coding workflows and high-throughput routing. Anthropic announced Claude 4 and filed for IPO. Self-hosted Claude Managed Agents entered private beta, letting teams run the full agent harness on their own infrastructure.",
+  "thin_sections": ["research"],
+  "closing": "Research: arXiv's overnight listing was empty; no papers in the window.",
+  "sections": {
+    "models": [
+      {
+        "id": "google/gemini-4-hydrogen-20261112",
+        "title": "Google: Gemini 4 Hydrogen",
+        "url": "https://openrouter.ai/google/gemini-4-hydrogen",
+        "summary": "Google's new workhorse model built for agentic coding, debugging, and high-throughput routing, with 1M token context at $1.50 per million input tokens.",
+        "why": "Directly competes with Claude Sonnet for our agent tooling and multi-step coding workflows; the pricing undercuts Sonnet 4 and the context window fits our EverRaise call processing pipeline that currently uses Claude."
+      },
+      {
+        "id": "anthropic-claude-4",
+        "title": "Claude 4",
+        "url": "https://www.anthropic.com/news/claude-4",
+        "summary": "Anthropic announced Claude 4 (details pending; announcement page live).",
+        "why": "We run Claude Sonnet across SalesKick grading, EverRaise agents, and Botterfly's review panels; any capability or pricing change affects every client."
+      },
+      {
+        "id": "anthropic-self-hosted-managed-agents",
+        "title": "Claude Self-Hosted Managed Agents",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#self-hosted-managed-agents",
+        "summary": "Private beta for running the full Claude Managed Agents service (harness, sandboxes, session history) on your own infrastructure, with configurable model routing.",
+        "why": "Solves data residency and compliance requirements for client work; EverRaise and Life International both asked about on-premises agent hosting."
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "442993876",
+        "title": "Node.js v27.0.0-alpha.0.1.0",
+        "url": "https://github.com/nodejs/node/releases/tag/v27.0.0-alpha.0.1.0",
+        "summary": "Node 27 alpha with crypto X.509 generation, CSR support, subprocess.timedOut, and coalesced DNS lookups.",
+        "why": "We run Node across Pipeline services and Chrysalis; alpha releases signal breaking changes to watch before they land in Current."
+      },
+      {
+        "id": "442741533",
+        "title": "Langfuse v4.79.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.79.0",
+        "summary": "Langfuse adds OpenRouter, xAI, and Vercel AI Gateway as generally-available AI gateway providers, plus audit logging for MCP tool read-access.",
+        "why": "We use Langfuse for tracing on SalesKick and EverRaise; OpenRouter gateway support means unified tracing across our multi-model routing."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50465829",
+        "title": "Anthropic IPO",
+        "url": "https://ipo.anthropic.com/us/",
+        "summary": "Anthropic filed for IPO; registration page live, 857 points and 825 comments on HN.",
+        "why": "We bet heavily on Claude across every client; an IPO means financial transparency and potentially more predictable pricing and service terms."
+      },
+      {
+        "id": "50474361",
+        "title": "Foundation Models framework",
+        "url": "https://developer.apple.com/foundation-models-framework/",
+        "summary": "Apple's new Foundation Models framework for integrating language models into iOS, iPadOS, and macOS apps (162 points).",
+        "why": "Worth knowing; no direct use for us yet, but if a client asks for on-device inference on Apple platforms, this is the native path."
+      },
+      {
+        "id": "50463899",
+        "title": "Humble Bundle security breach via AI-generated code",
+        "url": "https://forums.spacebattles.com/threads/humble-bundle-just-completely-killed-most-of-their-security-through-vibecoding.1346295/",
+        "summary": "Humble Bundle's security compromised after shipping AI-generated code without review (373 points, 222 comments).",
+        "why": "Cautionary tale for our wehshi review process; the thread documents how unchecked agent output reached production and broke auth."
+      },
+      {
+        "id": "50471761",
+        "title": "22-year-old Postgres type-confusion primitive turned into RCE",
+        "url": "https://mehmetince.net/part-3-6-how-i-ended-up-turning-a-22-year-old-postgresql-type-confusion-primitive-into-rce-cve-2026-6460/",
+        "summary": "Researcher turned a decades-old Postgres type mismatch into remote code execution (CVE-2026-6460, 156 points).",
+        "why": "We use Postgres on SalesKick and several Pipeline clients; check the CVE and patch if affected."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2120951116682682646",
+        "title": "shadcn introduces UI SDK for agents",
+        "url": "https://x.com/shadcn/status/2120951116682682646",
+        "summary": "shadcn introduced UI SDK (github.com/vercel-labs/ui): component abstractions for agents building and using interfaces, with shared logic for selection, focus, and keyboard navigation; upcoming 'agentic features' teased (3,226 likes).",
+        "why": "We build agent UIs for SalesKick and Pipeline clients; if UI SDK handles the repetitive accessibility and state logic, it could speed up our React work."
+      },
+      {
+        "id": "2120899453510942743",
+        "title": "Sebastian Raschka on Nemotron and open-weight training recipes",
+        "url": "https://x.com/rasbt/status/2120899453510942743",
+        "summary": "Raschka hopes Nvidia's Nemotron keeps going; notes that open training recipes and data would be harder to replace than the models themselves (610 likes).",
+        "why": "Worth knowing; no direct use for us yet, but training transparency is the moat for reproducible research."
+      }
+    ]
+  }
+}
