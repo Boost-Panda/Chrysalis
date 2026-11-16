@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-16",
+  "title": "The Pulse, Monday 16 November 2026",
+  "tldr": "Qwen4-Max landed on OpenRouter: 1M context, native vision/video, cheaper than Qwen3.8-Max and performing well on code and agent arenas. Claude Code got custom themes and a more proactive project coordinator. Microsoft's 12-hour Outlook outage ended up poisoning hotel guests when the automated pool system couldn't alert on high chlorine.",
+  "sections": {
+    "models": [
+      {
+        "id": "qwen/qwen4-max-20261115",
+        "title": "Qwen4-Max",
+        "url": "https://openrouter.ai/qwen/qwen4-max",
+        "summary": "Alibaba's new flagship on a MoE architecture with native vision and video input, 1M-token context, $1.50/$4.50 per million tokens — up to 50% fewer tokens per task than Qwen3.8-Max.",
+        "why": "We route Qwen through OpenRouter for DSPy agents and Hermes tasks where cost matters. Qwen4-Max ranks #6 on WebDev arena (+74 pts over 3.8) and #5 on Agent Arena (+7.5% net) at a lower per-task cost; worth testing on Pipeline's legislative research agent.",
+        "source": "openrouter"
+      },
+      {
+        "id": "inclusionai/ling-3.2-flash-20261113",
+        "title": "InclusionAI Ling 3.2 Flash (free)",
+        "url": "https://openrouter.ai/inclusionai/ling-3.2-flash",
+        "summary": "Hybrid reasoning model with 1M context, text and image input, up to 200 images per request, free on OpenRouter.",
+        "why": "No direct use for us yet — we haven't tested inclusionAI's models — but a free 1M-context reasoning model is worth a probe for low-stakes internal tooling.",
+        "source": "openrouter"
+      }
+    ],
+    "research": [],
+    "releases": [
+      {
+        "id": "446419000",
+        "title": "LangChain Mistral 1.2.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-mistralai%3D%3D1.2.0",
+        "summary": "Routes ChatMistralAI through LangSmith gateway, fixes streaming behavior for reasoning models, bumps deps, drops Python 3.10.",
+        "why": "EverRaise and SalesKick use LangChain; the LangSmith gateway routing matters for observability, and the reasoning-model streaming fix affects any future Mistral reasoning integration.",
+        "source": "github"
+      },
+      {
+        "id": "446391603",
+        "title": "LangChain Groq 1.2.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-groq%3D%3D1.2.0",
+        "summary": "Routes ChatGroq through LangSmith gateway, specifies reasoning_effort in integration tests, drops Python 3.10.",
+        "why": "Groq is a fast fallback provider; LangSmith routing improves tracing for the EverRaise voice agent and SalesKick call grading.",
+        "source": "github"
+      },
+      {
+        "id": "444481766",
+        "title": "LangChain OpenAI 1.8.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.0",
+        "summary": "Adds OpenAIClassifier for the GA Decisions API, drops Python 3.10, bumps minimum langchain-core to 1.8.0.",
+        "why": "SalesKick and Pipeline agents use langchain-openai. The Decisions API is the production decision-model endpoint; OpenAIClassifier gives us a first-party integration if we test o3 for call-classification tasks.",
+        "source": "github"
+      },
+      {
+        "id": "444097328",
+        "title": "Langfuse v4.80.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.80.0",
+        "summary": "Google AI Studio added to AI Gateway, Topics trace filtering, skill size limits now configurable, native OTLP envelope decoding without a document tree, drafts kept in sessionStorage.",
+        "why": "We use Langfuse for agent observability across Pipeline's clients. Topics filtering and configurable skill limits both matter for the Mackinac research agent where we're managing large trace sets.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50500963",
+        "title": "SpaceX catches the Starship to end Flight 15",
+        "url": "https://www.spacex.com/launches/starship-flight-15",
+        "hn_url": "https://news.ycombinator.com/item?id=50500963",
+        "summary": "SpaceX caught the returning booster with the launch tower's mechanical arms, ending the fifteenth Starship test flight.",
+        "why": "No direct engineering relevance, but the booster catch dominated HN (1661 points, 1242 comments) and shows what's possible when you iterate fast and tolerate early failures — a pattern we apply shipping agents in days.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50499017",
+        "title": "Lovable apps expose passport details and more than 200K private messages",
+        "url": "https://www.crissyfield.de/research/lovable-en/",
+        "hn_url": "https://news.ycombinator.com/item?id=50499017",
+        "summary": "Security researcher found Lovable's AI-generated apps leaking user data through publicly accessible API endpoints with no authentication, exposing passports, health records, and private chat logs.",
+        "why": "We build AI-generated tooling for clients. This is what happens when generated code ships with placeholder auth. Reminder: every API endpoint gets an auth check before it goes live, even in prototypes.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50493251",
+        "title": "Nvidia allegedly engineered scarcity by funding AI startups to buy its GPUs",
+        "url": "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+        "hn_url": "https://news.ycombinator.com/item?id=50493251",
+        "summary": "Nvidia reportedly gave AI startups funding deals where the money could only be spent buying Nvidia GPUs, keeping prices high through artificial demand. Multiple lawsuits now in play.",
+        "why": "Context for why our inference providers (OpenRouter, Replicate) have such volatile GPU pricing: the supply constraints may be deliberate. Reinforces the multi-provider routing strategy.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50509411",
+        "title": "Microsoft 365 outage leads to chlorine gas poisoning of 15 hotel guests",
+        "url": "https://www1.wdr.de/nrw/rheinland/rhein-erft-kreis/technischer-defekt-chlor-phantasialand-100.html",
+        "hn_url": "https://news.ycombinator.com/item?id=50509411",
+        "summary": "Outlook and M365 went down for 12 hours. A hotel's automated pool system couldn't send chlorine alerts via email, resulting in 15 guests hospitalized for chlorine gas exposure.",
+        "why": "Hard-learned lesson: never make a critical alerting path depend on a single SaaS. Our monitoring (for SalesKick, EverRaise, Mackinac) has Slack, email, and SMS redundancy; incidents like this show why.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50507303",
+        "title": "All AI-generated code should be Open Source",
+        "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+        "hn_url": "https://news.ycombinator.com/item?id=50507303",
+        "summary": "Argument that since AI-generated code derives from public training data, it should remain public. HN thread heavily debated: vendor claims around ownership, licensing practicality, and whether a company can own what a model wrote.",
+        "why": "Our client contracts already clarify code ownership, but this debate matters for Botterfly's generated PRs: we treat AI contributions as authored work subject to review, not as a separate legal entity's output.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2121392666244186327",
+        "title": "Claude Code custom themes with mods",
+        "url": "https://x.com/ClaudeDevs/status/2121392666244186327",
+        "summary": "Claude Code now supports custom themes: change colors, add animated backgrounds, or ask Claude to generate the whole theme. Ships with a theme-examples plugin to get started quickly.",
+        "why": "Botterfly runs on Claude Code. Custom themes aren't mission-critical, but signal that Anthropic is stabilizing the mods system — which we use for the review panel and task workflows.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2121375309287301360",
+        "title": "Claude Code Projects coordinator update",
+        "url": "https://x.com/ClaudeDevs/status/2121375309287301360",
+        "summary": "Projects in Claude Code got a more proactive coordinator: it now answers questions in the project chat and gives status updates on parallel threads without being asked.",
+        "why": "We use Claude Code projects for multi-thread work (Botterfly's skill authoring, multi-file refactors). A proactive coordinator that surfaces blockers and status without prompting should reduce the 'what's happening' overhead.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Research: the arXiv feed was fresh but had zero cs.AI/CL/LG papers in the 72-hour window.",
+  "thin_sections": ["research"],
+  "window": {
+    "since": "2026-11-13T04:30:33+00:00",
+    "until": "2026-11-16T04:30:33+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
