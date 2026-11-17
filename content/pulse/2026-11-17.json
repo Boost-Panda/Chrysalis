@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-17",
+  "title": "The Pulse, Tuesday 17 November 2026",
+  "tldr": "Langfuse v4.81 adds Vertex AI gateway support and dataset item filtering. Claude watermarks text from Opus/Sonnet/Haiku 4.5+ by default (non-default temperature strips it). Node 27 alpha starts notarizing macOS bins, and research focused heavily on agent evaluation, coding agents, and serving optimizations.",
+  "sections": {
+    "models": [
+      {
+        "id": "tencent/hy4-flash-20261116",
+        "title": "Tencent Hy4 Flash",
+        "url": "https://openrouter.ai/tencent/hy4-flash",
+        "summary": "Cost-efficient variant of Hy4 with ~25% of the flagship's parameters, 1M context, text+image input, $0.035/$0.14 per million tokens—targets code assistance, agent use, and document work.",
+        "why": "Nous Portal offers it free for two weeks. At $0.035 input, worth testing against our OpenRouter routing for EverRaise lead nurture and Mackinac drafting tasks where Qwen4-Max is overkill.",
+        "source": "openrouter"
+      },
+      {
+        "id": "anthropic/claude-opus-4-6-sonnet-4-5-haiku-4-5-watermark",
+        "title": "Claude text watermark (Opus 4.6, Opus 4.5, Sonnet 4.5, Haiku 4.5)",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#text-watermark-claude-opus-4-6-and-4-5-models",
+        "summary": "Text from Claude Opus 4.6, Opus 4.5, Sonnet 4.5, and Haiku 4.5 now carries Anthropic's text watermark by default. Non-default temperature, top_p, or top_k may strip it.",
+        "why": "Botterfly uses Sonnet 4.5. The watermark doesn't affect functionality, but if we need to detect whether a piece of text came from Claude in a client workflow (SalesKick content moderation, EverRaise compliance logs), the watermark API exists.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.18067",
+        "title": "Agent-as-a-Judge",
+        "url": "https://arxiv.org/abs/2611.18067",
+        "summary": "LLM-as-a-Judge extended with agentic capabilities: tool use, multi-turn verification, and decomposed evaluation for complex tasks where a single prompt falls short.",
+        "why": "SalesKick grades calls, EverRaise classifies lead intent — both judge workflows. Agent-as-Judge could improve our evaluators when the rubric itself needs context retrieval or multi-step checks.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.18459",
+        "title": "Callo: Serving Cache-Miss Requests with Speculative Decoding on Invalidated KV",
+        "url": "https://arxiv.org/abs/2611.18459",
+        "summary": "Disaggregated serving that uses stale KV cache for speculative drafts while re-prefill happens in parallel, then verifies against exact KV before committing tokens.",
+        "why": "Agents with frequent context edits (EverRaise voice sessions, Mackinac multi-turn research) could hit invalidated-cache latency. Callo's pattern is a blueprint if we ever run our own inference or work with a provider building this.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.17797",
+        "title": "Vision-as-a-Tool: Visual Harness for Multimodal Agentic Coding",
+        "url": "https://arxiv.org/abs/2611.17797",
+        "summary": "Decouples an agent's intrinsic vision from visual tool use, letting a weaker vision model call specialized visual tools rather than depending on its own multimodal reasoning for every visual task.",
+        "why": "Botterfly uses computer-use for UI tests and screenshot verification. If gating vision through tools cuts cost or latency without sacrificing quality, this architecture is directly relevant.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.18392",
+        "title": "VelServe: Taming Decode Jitters in LLM Inference with Tail-Calibrated Scheduling",
+        "url": "https://arxiv.org/abs/2611.18392",
+        "summary": "Identifies decode jitter as a latency source in disaggregated serving and proposes tail-calibrated scheduling to meet TBT (time-between-tokens) and TTFT (time-to-first-token) SLOs.",
+        "why": "EverRaise voice agents and SalesKick real-time call coaching need predictable streaming. If our providers adopt tail-calibrated scheduling, this paper explains what got better and why.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "448092812",
+        "title": "Node.js v27.0.0-alpha.0.1.1",
+        "url": "https://github.com/nodejs/node/releases/tag/v27.0.0-alpha.0.1.1",
+        "summary": "Alpha release notarizes the macOS darwin tarball bin/node, enables PIE on Linux, updates nghttp3 to 1.19.0, backports a V8 fix.",
+        "why": "Pipeline services and Botterfly's Chrysalis run on Node. Notarizing the macOS binary matters for local dev boxes; the PIE change affects Linux deploys if we move to address-space layout hardening.",
+        "source": "github"
+      },
+      {
+        "id": "447734182",
+        "title": "Next.js v16.5.0-canary.53",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.5.0-canary.53",
+        "summary": "Canary with experimental native Go proxy support, duplicate useServerInsertedHTML fix for cacheComponents, better Turbopack HMR coalescing, and new lint rules against unsafe 'as any' casts.",
+        "why": "We run Chrysalis on Next. The Go proxy is experimental and we don't use it yet; the HMR coalescing fix could reduce restart churn if we upgrade soon. Skip until stable unless the cacheComponents bug affects us.",
+        "source": "github"
+      },
+      {
+        "id": "447293231",
+        "title": "Langfuse v4.81.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.81.0",
+        "summary": "Adds Google Vertex AI as an AI Gateway provider, filters dataset items by status, supports Gemini decision models in evaluators, custom session view persistence, and OTEL model pricing for owned events.",
+        "why": "We use Langfuse across Pipeline's clients. Vertex AI gateway and Gemini evaluators both matter if we test Gemini for call grading or legislative summarization; dataset filtering streamlines the Mackinac eval workflow.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50522980",
+        "title": "Carnegie Mellon is putting computer science courses on YouTube for free",
+        "url": "https://www.cs.cmu.edu/learn/",
+        "hn_url": "https://news.ycombinator.com/item?id=50522980",
+        "summary": "CMU launched a public catalog of CS courses on YouTube: algorithms, systems, databases, compilers, and more, taught by the faculty who wrote the textbooks.",
+        "why": "Great onboarding resource when a new engineer joins BoostPanda and needs to ramp on a domain we haven't built for yet (compilers, distributed systems). Beats hunting scattered tutorials.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50524736",
+        "title": "Windows 11 Is Collecting Data on Which Coding Agents and Developer Tools You Use",
+        "url": "https://xusheng.dev/posts/windows-coding-agent-telemetry/",
+        "hn_url": "https://news.ycombinator.com/item?id=50524736",
+        "summary": "Windows 11 telemetry now tracks coding-agent usage (Claude Code, Codex, others) and sends process names, timestamps, and tool metadata to Microsoft. No opt-out for these fields on Pro and below.",
+        "why": "Botterfly runs on Linux boxes, but this matters for any teammate on Windows: their local agent workflows are now in Microsoft's telemetry. Reminder to review what runs in WSL and what runs natively.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50523459",
+        "title": "OpenCode Browse",
+        "url": "https://opencode.ai/product/browse",
+        "hn_url": "https://news.ycombinator.com/item?id=50523459",
+        "summary": "OpenCode added Browse, a web research and screenshot agent that understands page content and can navigate multi-step workflows—positioning against Claude Code's computer-use mode.",
+        "why": "We use OpenCode for PR review. Browse extends it to web research; if it's solid, we could offload dogfooding and integration-test workflows that currently need a separate browser harness.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50519744",
+        "title": "Jiff 1.0: A datetime library for Rust",
+        "url": "https://burntsushi.net/jiff/",
+        "hn_url": "https://news.ycombinator.com/item?id=50519744",
+        "summary": "Rust datetime library from the author of ripgrep, designed around ergonomics and correctness—opinionated replacements for chrono with better timezone handling and fewer footguns.",
+        "why": "No direct use for us yet—we don't maintain Rust services—but if we build one (e.g., a Buzz relay or an edge function runtime), Jiff is the datetime library to reach for.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50524167",
+        "title": "Optimizely compromised, served malware on Zoom, GitLab",
+        "url": "https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/",
+        "hn_url": "https://news.ycombinator.com/item?id=50524767",
+        "summary": "Optimizely's CDN was compromised and served a crypto-stealing skimmer to sites embedding its analytics script, including Zoom, CNN, Fox News, and GitLab. Lasted several hours before detection.",
+        "why": "Reminder to review third-party scripts on Chrysalis and Pipeline client sites. Every inline script is a supply-chain risk. CSP headers with script-src hashes or nonces prevent this class of attack.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2122439098740674839",
+        "title": "Claude Code supports iPhone Duo in the iOS simulator",
+        "url": "https://x.com/ClaudeDevs/status/2122439098740674839",
+        "summary": "Claude Code desktop beta can now run apps on the iPhone Duo simulator, fold and unfold the device during development, and test dual-screen layouts live next to the conversation.",
+        "why": "No direct use for us yet—we don't build native iOS apps—but shows how far agentic dev tools have come. If a client asks for dual-screen work, we know the harness exists.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2122457608963395586",
+        "title": "How the Claude Code team thinks about verification",
+        "url": "https://x.com/ClaudeDevs/status/2122457608963395586",
+        "summary": "Claude Code team published a post on verification: tests, benchmarks, and end-to-end runs are now cheap enough to run on every change, so agents should verify work before claiming it's done.",
+        "why": "Botterfly runs on Claude Code and applies the verification-first pattern: tests before merge, panels before approval. This post explains the philosophy behind it—useful when onboarding new agents.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "",
+  "thin_sections": [],
+  "window": {
+    "since": "2026-11-16T04:30:42+00:00",
+    "until": "2026-11-17T04:30:42+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
