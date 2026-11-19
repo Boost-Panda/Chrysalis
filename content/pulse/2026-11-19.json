@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-19",
+  "title": "The Pulse, Thursday 19 November 2026",
+  "tldr": "Google shipped Gemini 4 Neon overnight, a fast mid-priced model for coding and agentic work at $3/$15 per million tokens. The overnight arXiv listing ran strong on agentic memory and RAG: minimal memory beats reflection and graph synthesis in new benchmarks, and several teams showed that surface-level retrieval misses the real problem. Microsoft dropped seven new models and Anthropic priced its IPO.",
+  "sections": {
+    "models": [
+      {
+        "id": "google/gemini-4-neon-20261118",
+        "title": "Gemini 4 Neon",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+        "summary": "Google released Gemini 4 Neon, a fast mid-priced model in the Gemini 4 family built for coding and agentic work.",
+        "why": "Price point and multimodal context matter for voice agent and coding tooling cost structure. $3 prompt/$15 completion per million, 1M context, text+image+file+audio+video modalities. Available on OpenRouter.",
+        "source": "openrouter"
+      },
+      {
+        "id": "microsoft-ignite-models",
+        "title": "Microsoft Ignite 2026: Seven new models at scalable price-performance",
+        "url": "https://microsoft.ai/news/microsoft-ignite-2026/",
+        "summary": "Microsoft announced seven new models and updates across its AI portfolio at Ignite 2026.",
+        "why": "Microsoft's model releases influence Azure pricing and service availability for enterprise clients; worth tracking for hosting and inference cost planning.",
+        "source": "vendor"
+      },
+      {
+        "id": "qwen4-max-nous-portal",
+        "title": "Qwen4-Max free in Nous Portal for 5 days",
+        "url": "https://portal.nousresearch.com",
+        "summary": "Nous Research partnered with Inferact and Alibaba Qwen to offer Qwen4-Max for free for 5 days — built for long-horizon work with native vision and 1M context.",
+        "why": "Free tier for a flagship model lets us test long-context retrieval and vision work without spend. Relevant for call transcript and document analysis prototypes.",
+        "source": "vendor"
+      },
+      {
+        "id": "microsoft/aion-1.0-instruct-2.3b",
+        "title": "Microsoft Aion 1.0 Instruct 2.3B",
+        "url": "https://huggingface.co/microsoft/Aion-1.0-Instruct-2.3B",
+        "summary": "Microsoft released Aion 1.0 Instruct 2.3B, a small text-generation model for summarization, rewriting, and chat, with ONNX-WebGPU quantized variants.",
+        "why": "Small on-device model for edge summarization and rewriting tasks. Qwen3-based, INT4 quantization available.",
+        "source": "huggingface"
+      },
+      {
+        "id": "daisyrose-27b",
+        "title": "DaisyRose-27B",
+        "url": "https://www.radixark.com/blog/daisyrose-27b",
+        "summary": "RadixArk released DaisyRose-27B, a 27B-parameter model with strong reasoning and instruction-following.",
+        "why": "Small enough for local inference, large enough for serious reasoning tasks. Worth benchmarking for private client deployments.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.22179",
+        "title": "RAG in a Trenchcoat: When Minimal Memory Is Enough for Agentic Systems",
+        "url": "https://arxiv.org/abs/2611.22179",
+        "summary": "A Berkeley/ETH team tested minimal RAG (chained observation notes + hybrid BM25) against extraction, reflection, and graph synthesis on memory benchmarks and found almost none of the complex primitives earned their cost.",
+        "why": "Direct test of whether our memory stack needs the complexity we've added. If the paper's benchmarks match our workload, simpler is cheaper to run and debug.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.22425",
+        "title": "LMMR: Learned Multigranular Memory Retrieval for Small Language Model Agents",
+        "url": "https://arxiv.org/abs/2611.22425",
+        "summary": "Small agents have limited space to read the memory needed for multi-hop questions. LMMR selects both the next source and how much of it to read, linking paragraphs across records.",
+        "why": "Multi-hop retrieval across call transcripts and CRM records is a Pipeline workflow pattern. Selective read depth could lower cost without sacrificing accuracy.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.22766",
+        "title": "StitchRAG: Constructing Compact and Evidence-Preserving Contexts for RAG",
+        "url": "https://arxiv.org/abs/2611.22766",
+        "summary": "Long retrieved contexts incur overhead and often hurt performance. StitchRAG constructs compact context via diffusion-based stitching that keeps evidence while discarding noise.",
+        "why": "Retrieval bloat is real: we've hit token limits on legislative and CRM retrieval. Compacting context without losing the answer is valuable.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.22245",
+        "title": "Multi-Agent Memory Inconsistency: Where Factual Conflicts Disappear in LLM Agents",
+        "url": "https://arxiv.org/abs/2611.22245",
+        "summary": "Multi-agent delegation creates memory inconsistency: facts retrieved by workers may be missing from the lead's evidence. The paper introduces a benchmark and evidence-flow profiler.",
+        "why": "We delegate research and retrieval across subagents in the review panel and long-task flows. If memory inconsistency is systematic, we need to inspect the evidence trail before trusting the conclusion.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.22238",
+        "title": "Context Has a Price: Adding and Removing Context for LLM Coding Agents under Prefix Caching",
+        "url": "https://arxiv.org/abs/2611.22238",
+        "summary": "Coding agents send their history to the model repeatedly. Adding useful code may reduce search, removing old outputs may shorten prompts — but do these changes reduce task cost? Measured on 20k+ SWE-bench runs.",
+        "why": "We run coding agents daily. Knowing whether to prune history or preserve it for prefix caching could cut token spend on Claude Code and Codex workflows.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "450732826",
+        "title": "langchain-openai 1.8.3",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.3",
+        "summary": "LangChain's OpenAI integration added Codex prompt caching support for GPT-6.2 and fixed an async HTTP client leak.",
+        "why": "Prompt caching on OpenAI's latest models cuts repeat-call costs. Relevant for Pipeline's agent workflows and SalesKick's LangChain-based coaching flows.",
+        "source": "github"
+      },
+      {
+        "id": "450284543",
+        "title": "langchain-openai 1.8.2",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.2",
+        "summary": "Added support for GPT-6.2 Astra and Sol, plus LangSmith gateway header forwarding.",
+        "why": "GPT-6 models are entering production. LangSmith header support means distributed tracing works end-to-end in Langfuse-adjacent setups.",
+        "source": "github"
+      },
+      {
+        "id": "450169202",
+        "title": "langchain-anthropic 1.7.11",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.11",
+        "summary": "LangChain's Anthropic integration added Claude Fable and Mythos 5.2 support, LangSmith gateway headers, and a fix for empty thinking-block chunk emission.",
+        "why": "Fable and Mythos 5.2 are the new reasoning models. Gateway headers support distributed tracing. The thinking-block fix prevents streaming rendering bugs.",
+        "source": "github"
+      },
+      {
+        "id": "450674444",
+        "title": "Next.js v16.5.0-canary.55",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.5.0-canary.55",
+        "summary": "Canary release with Turbopack production chunking improvements, React upgrade to a8342585-20261117, and Navigation Inspector dark mode contrast fix.",
+        "why": "Chrysalis and client web apps run Next.js; Turbopack chunking affects build time and bundle size. Canary: waiting for stable unless a feature blocks us.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50547374",
+        "title": "Unauthenticated remote code execution in Nginx",
+        "url": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+        "hn_url": "https://news.ycombinator.com/item?id=50547374",
+        "summary": "Wiz disclosed unauthenticated RCE vulnerabilities in Nginx's HTTP/2 implementation. 1215 points, 537 comments.",
+        "why": "Nginx is a critical dependency across Pipeline, SalesKick, and TRA deployments. Patch immediately if any exposed instance runs HTTP/2.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50543989",
+        "title": "Energy-Based Reasoners: 385x more efficient inference",
+        "url": "https://energy-based-reasoners.github.io/",
+        "hn_url": "https://news.ycombinator.com/item?id=50543989",
+        "summary": "A new reasoning architecture claims 385x inference efficiency over standard approaches. 306 points, 52 comments.",
+        "why": "Efficiency gains of this magnitude are worth investigating for cost-sensitive reasoning tasks. Check the paper and implementation before citing the headline number.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50547777",
+        "title": "AI agents ask better questions than KPMG accountants in audit trial",
+        "url": "https://europeanbusinessmagazine.com/ai-agents-better-questions-kpmg/",
+        "hn_url": "https://news.ycombinator.com/item?id=50547777",
+        "summary": "KPMG trial showed AI agents asking better audit questions than human accountants. 404 points, 175 comments.",
+        "why": "Audit-quality question generation is adjacent to call coaching, where question quality determines the grading rubric. Worth following the methodology.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50542705",
+        "title": "AI is killing All About Berlin",
+        "url": "https://nicolasbouliane.com/blog/death-by-ai",
+        "hn_url": "https://news.ycombinator.com/item?id=50542705",
+        "summary": "Operator of All About Berlin describes traffic collapse from AI answer engines surfacing information without attribution. 766 points, 688 comments.",
+        "why": "Search traffic dynamics affect client SEO and content strategy. The economics of content production are shifting; clients ask us for advice here.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2123188195202617408",
+        "title": "OpenAI Developers: GPT-6.2 background mode pricing",
+        "url": "https://x.com/OpenAIDevs/status/2123188195202617408",
+        "summary": "OpenAI introduced background mode for GPT-6.2 Astra and Sol: 40% discount per token for workflows with 2h or 8h target response time via the Responses API.",
+        "why": "Async workflows (email campaigns, legislative research digests, overnight call summaries) can wait. 40% off is meaningful at our monthly token volume.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123073168659141119",
+        "title": "Mistral AI: Mistral Vibe desktop agent launcher",
+        "url": "https://x.com/MistralAI/status/2123073168659141119",
+        "summary": "Mistral launched Mistral Vibe for macOS and Windows: run agents locally or remotely, with a free Pro plan coupon for teams building in Europe.",
+        "why": "Desktop agent launchers are multiplying. If Mistral's API access and sandboxing are solid, it's another hosting option for European client work.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123034938211815730",
+        "title": "shadcn: UI SDK agent-first with WebMCP",
+        "url": "https://x.com/shadcn/status/2123034938211815730",
+        "summary": "shadcn announced UI SDK with first-class WebMCP support: agents read components and call actions directly. Benchmark shows ~50% (thread cut off).",
+        "why": "Agent-first UI means less screenshot-and-click, more semantic action invocation. If the SDK works with our Next.js + Carbon setup, it could simplify Chrysalis agent interactions.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123129469447880885",
+        "title": "OpenAI Developers: Codex sandbox network and filesystem limits",
+        "url": "https://x.com/OpenAIDevs/status/2123129469447880885",
+        "summary": "OpenAI explained Codex's sandbox: commands run in your existing environment within filesystem and network limits you control.",
+        "why": "Codex is our primary coding agent. Understanding its sandbox model matters for security review and deciding which repos it can touch.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Anthropic priced its IPO overnight (HN: 133 points). Python and zAI had no releases in the window. The arXiv feed was rebuilt on time.",
+  "window": {
+    "since": "2026-11-18T04:30:39+00:00",
+    "until": "2026-11-19T04:30:39+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
