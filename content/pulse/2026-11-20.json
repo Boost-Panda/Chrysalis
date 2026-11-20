@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-20",
+  "title": "The Pulse, Friday 20 November 2026",
+  "tldr": "Anthropic's Nasdaq debut dominated yesterday—1,004 HN points and 1,958 comments, plus a claim that Claude solved two open problems in black hole physics. Overnight arXiv ran unusually strong on coding agents: cost reduction, execution-free evaluation, and metrics-in-the-loop complexity feedback. Nous partnered with Microsoft to bring Hermes Enterprise to Teams and the Store.",
+  "sections": {
+    "models": [
+      {
+        "id": "mistralai/pixtral-large-2502",
+        "title": "Mistral: Pixtral Large 2502",
+        "url": "https://openrouter.ai/mistralai/pixtral-large-2502",
+        "summary": "Mistral released Pixtral Large 2502, the February 2025 refresh of its large multimodal model accepting text and images including documents and charts, 128k context.",
+        "why": "Vision on documents matters for Pipeline's legislative and CRM work. $2 prompt/$6 completion per million, available now on OpenRouter.",
+        "source": "openrouter"
+      },
+      {
+        "id": "gemini-computer-use-mac",
+        "title": "Gemini app for Mac gets computer use",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/",
+        "summary": "Google shipped computer use to the Gemini app for Mac to handle repetitive tasks.",
+        "why": "Computer use is spreading across vendors. Worth testing against Anthropic's implementation for GUI automation workflows in client demos.",
+        "source": "vendor"
+      },
+      {
+        "id": "gemini-transfer-history",
+        "title": "Gemini imports chat history from other AI apps",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/switch-ai-assistants-transfer-history/",
+        "summary": "Gemini now imports ZIP exports and AI summaries from other assistants, letting users move their conversation history.",
+        "why": "Friction to switching assistants just dropped. Clients experimenting with multiple vendors can consolidate without losing context.",
+        "source": "vendor"
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.24324",
+        "title": "Reducing Inference Cost of Coding Agents with Timeout Cascades",
+        "url": "https://arxiv.org/abs/2611.24324",
+        "summary": "Coding agents cost GPU time. This paper tests whether smaller, cheaper models can cut costs without sacrificing accuracy by cascading from cheap to expensive models via timeout signals.",
+        "why": "We run Claude Code and Codex daily. If cascading from smaller models works, we lower token spend on routine tasks and reserve frontier models for the hard stuff.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.23309",
+        "title": "Repository-Grounded Rubrics for Execution-Free Evaluation of Coding Agents",
+        "url": "https://arxiv.org/abs/2611.23309",
+        "summary": "Coding agents are usually evaluated by running tests, but tests may be missing or incomplete. This paper adapts agentic rubrics into an execution-free measure of how far a patch satisfies a task's requirements.",
+        "why": "Running tests in every repo requires working environments. Execution-free evaluation could speed wehshi panel reviews by catching obvious misses before invoking test suites.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.23817",
+        "title": "Metrics-in-the-Loop: Complexity Feedback Reshapes Agent-Written Code",
+        "url": "https://arxiv.org/abs/2611.23817",
+        "summary": "Coding agents write whole codebases in long autonomous runs guided mainly by whether tests pass, but passing tests don't reveal accumulating complexity. Metrics-in-the-loop gives agents in-flight cyclomatic complexity and test coverage feedback.",
+        "why": "Complexity debt is real in agent-written code. If in-loop metrics prevent it without manual review, we get maintainable output from long runs.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.24294",
+        "title": "KnowledgeClaw: Towards Agentic Knowledge Engineering via Omnimodal Hypergraphs",
+        "url": "https://arxiv.org/abs/2611.24294",
+        "summary": "Knowledge engineering turns raw files into a reasoning-ready knowledge base. KnowledgeClaw proposes an omnimodal hypergraph approach with a closed-loop lifecycle for agentic KE.",
+        "why": "We build knowledge bases from call transcripts, legislative documents, and CRM exports. If the approach beats chunk-and-graph RAG, it's worth prototyping for Pipeline clients.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.24357",
+        "title": "Semantic Context Handoff with On-Demand Evidence for Long-Horizon Agents",
+        "url": "https://arxiv.org/abs/2611.24357",
+        "summary": "Long-horizon agents often hand off context through full-history prompting, which grows unbounded. This paper proposes semantic handoff with on-demand evidence retrieval instead.",
+        "why": "Long-running agent sessions hit context limits fast. Semantic handoff could keep Hermes and coding agents running longer without history truncation or degraded accuracy.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "452048967",
+        "title": "langchain-openai 1.8.5",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.5",
+        "summary": "LangChain's OpenAI integration fixed streamed Responses tool call argument preservation and standardized finish reasons on message-finish events.",
+        "why": "Tool call streaming bugs break agentic workflows. The fix matters for Pipeline's LangChain-based agents if they stream OpenAI tool calls.",
+        "source": "github"
+      },
+      {
+        "id": "452037029",
+        "title": "langchain-anthropic 1.7.12",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.12",
+        "summary": "LangChain's Anthropic integration standardized finish reasons, preserved caller on tool_search_tool_result blocks, and fixed async HTTP client sharing between models.",
+        "why": "The async HTTP client fix prevents resource leaks in concurrent agent runs. Relevant for Pipeline workflows invoking multiple Claude instances.",
+        "source": "github"
+      },
+      {
+        "id": "451505049",
+        "title": "langchain-openrouter 0.3.0",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-openrouter%3D%3D0.3.0",
+        "summary": "LangChain's OpenRouter integration dropped Python 3.10 support (now requires 3.11+) and bumped minimum langchain-core to 1.8.3.",
+        "why": "We run Python 3.11 on pandybot and client boxes. The drop confirms Python 3.10 is EOL; client environments should migrate if they haven't already.",
+        "source": "github"
+      },
+      {
+        "id": "451188762",
+        "title": "Langfuse v4.83.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.83.0",
+        "summary": "Langfuse shipped new Scatter view for topics, per-key spend limits in the AI gateway, navigation between annotation queue items, and native OTEL integration groundwork.",
+        "why": "Per-key spend limits protect client budgets in shared Langfuse instances. Scatter view and queue navigation improve tracing UX. OTEL integration is long-awaited.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50562754",
+        "title": "Anthropic's Nasdaq debut",
+        "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
+        "hn_url": "https://news.ycombinator.com/item?id=50562754",
+        "summary": "Anthropic's IPO priced and traded on Nasdaq yesterday. 1,004 points, 1,958 comments.",
+        "why": "Anthropic is our primary model provider. IPO means public financials, analyst scrutiny, and pressure to monetize. Pricing and API stability matter for budget planning.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50563148",
+        "title": "Claude solves two open problems in the physics of black holes",
+        "url": "https://www.anthropic.com/research/claude-black-hole-physics",
+        "hn_url": "https://news.ycombinator.com/item?id=50563148",
+        "summary": "Anthropic claims Claude solved two open problems in black hole physics. 431 points, 196 comments.",
+        "why": "Worth knowing, no direct use for us yet. It signals Claude's reasoning depth but doesn't inform which client workflows we deploy it on.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50568130",
+        "title": "Gemini 4 Neon is the new #1 on the Models Engineering Index",
+        "url": "https://git-aarvin.github.io/mei/",
+        "hn_url": "https://news.ycombinator.com/item?id=50568130",
+        "summary": "Gemini 4 Neon topped the Models Engineering Index overnight. 265 points, 160 comments.",
+        "why": "MEI ranks models on engineering tasks. If Gemini 4 Neon outperforms Claude and GPT-6, it's worth testing on coding and agent workflows.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50558906",
+        "title": "Someone reported java4shell bug in September 2026",
+        "url": "https://github.com/openjdk/jdk/pull/32781",
+        "hn_url": "https://news.ycombinator.com/item?id=50558906",
+        "summary": "A Java vulnerability was reported three months ago and is now public. 391 points, 106 comments.",
+        "why": "Java is not in our stack, but the timeline—report to public disclosure—matters for understanding vendor patch cycles when we advise clients.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50556287",
+        "title": "Ruby2ßhell: Pre-authentication RCE on stock Rails",
+        "url": "https://verialabs.com/ruby2shell/",
+        "hn_url": "https://news.ycombinator.com/item?id=50556287",
+        "summary": "Veria Labs disclosed a pre-authentication RCE in stock Rails. 389 points, 167 comments.",
+        "why": "Rails runs none of our or our clients' production services, but RCE on a default install is significant. Clients ask us about framework risk; this is the current example.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2123535954946257096",
+        "title": "Nous Research: Hermes Enterprise in Microsoft Teams and Azure",
+        "url": "https://x.com/NousResearch/status/2123535954946257096",
+        "summary": "Nous Research partnered with Microsoft to bring Hermes Agent to the enterprise. Hermes Enterprise now works inside Teams, the Microsoft Store, and Azure.",
+        "why": "Hermes is Botterfly's runtime. The Microsoft partnership means enterprise clients can deploy the agent stack we build with through their existing Teams and Azure footprint.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123471880292299171",
+        "title": "OpenAI: Performance Factory keeps ChatGPT fast",
+        "url": "https://x.com/OpenAIDevs/status/2123471880292299171",
+        "summary": "OpenAI introduced Performance Factory: Codex-powered workflows that investigate regressions, propose fixes for engineers to review, and verify fixes in production.",
+        "why": "Codex autonomously debugging production performance issues is a blueprint for self-healing infrastructure. Worth following the methodology for client deployments.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123506733524136446",
+        "title": "OpenAI: GPT-Live-1.1 now available",
+        "url": "https://x.com/OpenAIDevs/status/2123506733524136446",
+        "summary": "OpenAI released GPT-Live-1.1 with more natural accents, a standby option for lower idle costs, and improved task reliability.",
+        "why": "Voice quality matters for Pipeline's Vapi-based voice agents. Standby mode could lower idle costs on always-on IVR flows for EverRaise and Life International.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123566018866151579",
+        "title": "OpenAI: GPT-6.2 reasoning builds on conversation history",
+        "url": "https://x.com/OpenAIDevs/status/2123566018866151579",
+        "summary": "Agents using GPT-6.2 in the Responses API can now build on earlier reasoning to deliver better results with fewer tokens and more cache hits. Each reasoning item ties to prior conversation history.",
+        "why": "Conversational reasoning chains reduce token spend on multi-turn workflows. If editing earlier messages invalidates downstream reasoning, we need to test whether full re-runs are still required.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Python had no releases in the window. DSPy, Node.js, and Anthropic platform feeds were quiet. The arXiv feed was rebuilt on time.",
+  "window": {
+    "since": "2026-11-19T04:30:42+00:00",
+    "until": "2026-11-20T04:30:42+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
