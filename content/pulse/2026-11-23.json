@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-23",
+  "title": "The Pulse, Monday 23 November 2026",
+  "tldr": "The weekend brought two claimed proofs of the Generalized Riemann Hypothesis—one from Levent Alpöge, one from Alessandro Masullo—both dominating Hacker News with over 2,900 and 2,400 points respectively. Thinking Machines Lab released Inkling 2 Mini, a 3.4B-active-parameter MoE model with a 1M context window now on OpenRouter. OpenAI published three research pieces covering perplexity as an intelligence metric, adversarial distillation defenses, and a new drug discovery benchmark.",
+  "sections": {
+    "models": [
+      {
+        "id": "thinkingmachines/inkling-2-mini-20261120",
+        "title": "Thinking Machines: Inkling 2 Mini",
+        "url": "https://thinkingmachines.ai/news/inkling-2-mini/",
+        "summary": "Thinking Machines Lab released Inkling 2 Mini, an open-weight multimodal looped transformer with 3.4B active parameters out of 26.4B total (MoE), 1M context window, now available on OpenRouter.",
+        "why": "Small active parameter count with large context is ideal for on-device or low-latency retrieval tasks. Worth testing for call transcript summarization and legislative research where speed and privacy matter. Hacker News thread (1,457 points) shows strong quantization results.",
+        "source": "openrouter"
+      },
+      {
+        "id": "openrouter-security-incident",
+        "title": "OpenRouter: Data Processing Incidents on Inference Providers",
+        "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+        "summary": "Security researchers found that some inference providers did not uphold their data policies. OpenRouter confirmed no breach on their side and detailed their response.",
+        "why": "OpenRouter is our primary model gateway. Provider data handling affects client contract compliance. The disclosure shows OpenRouter's audit posture but signals risk in the upstream supply chain.",
+        "source": "vendor"
+      }
+    ],
+    "research": [],
+    "releases": [],
+    "hackernews": [
+      {
+        "id": "50574968",
+        "title": "Levent Alpöge claims proof of the Generalized Riemann Hypothesis [pdf]",
+        "url": "https://alpo.ge/remark.pdf",
+        "hn_url": "https://news.ycombinator.com/item?id=50574968",
+        "summary": "Levent Alpöge published a claimed proof of the Generalized Riemann Hypothesis. 2,909 points, 2,091 comments.",
+        "why": "Worth knowing, no direct use for us yet. Millennium Prize problem claims are rare; this one drew massive HN engagement and credible mathematical scrutiny in the thread.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50579568",
+        "title": "Hurried Announcement: Alessandro Masullo GRH",
+        "url": "https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/",
+        "hn_url": "https://news.ycombinator.com/item?id=50579568",
+        "summary": "Alessandro Masullo announced a second claimed proof of the Generalized Riemann Hypothesis within hours of Alpöge's. 2,448 points, 1,201 comments.",
+        "why": "The timing and independent claims make this a significant mathematical event. Lean verification efforts (1,217 points in a third HN thread) are already underway, showing how proof assistants accelerate peer review.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50572503",
+        "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
+        "url": "https://architectlabs.com/blog/frostbite",
+        "hn_url": "https://news.ycombinator.com/item?id=50572503",
+        "summary": "ArchitectLabs announced Frostbite, a new CPU architecture discovered, designed, and verified entirely by AI. 678 points, 362 comments.",
+        "why": "AI-designed hardware is a frontier signal. The HN discussion covers verification depth and whether AI-discovered architectures are truly novel or search-based recombinations.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50601525",
+        "title": "Perplexity and Intelligence",
+        "url": "https://openai.com/index/perplexity-and-intelligence/",
+        "hn_url": "https://news.ycombinator.com/item?id=50601525",
+        "summary": "OpenAI published a research piece on perplexity as a metric for intelligence, proposing a shared evaluation approach. 525 points, 360 comments.",
+        "why": "Evaluation metrics shape model selection. If perplexity correlates with task success on our workloads, it's a cheaper proxy than full benchmark runs for vendor bakeoffs.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50577265",
+        "title": "Language Models Can Rewrite Their Own Weights",
+        "url": "https://arxiv.org/abs/2611.21885",
+        "hn_url": "https://news.ycombinator.com/item?id=50577265",
+        "summary": "A paper showed language models can rewrite their own weights during inference, enabling self-modification. 491 points, 145 comments.",
+        "why": "Self-modifying models change the deployment and safety model. If weight updates persist across invocations, we need to rethink agent sandboxing and rollback strategies.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2123898321647571442",
+        "title": "François Chollet: Flashback to June 2024",
+        "url": "https://x.com/fchollet/status/2123898321647571442",
+        "summary": "Chollet reflected on the gap between June 2024—when frontier models had zero fluid intelligence—and today, when reasoning models and coding agents exist. 7,811 likes, 575 retweets.",
+        "why": "Perspective on the pace of capability gains. Relevant for setting client expectations on what agents can do now versus six months ago.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2124241007780999196",
+        "title": "Nous Research: The revolution will not be privatized",
+        "url": "https://x.com/NousResearch/status/2124241007780999196",
+        "summary": "Nous Research signaled a commitment to open-source models and agent tooling. 5,515 likes, 495 retweets.",
+        "why": "Nous builds Hermes, our runtime. Their open-source stance means the agent stack we build on stays accessible even as vendors consolidate.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2123882430620733742",
+        "title": "Nous Research: Hermes Agent Plugin Hackathon winners",
+        "url": "https://x.com/NousResearch/status/2123882430620733742",
+        "summary": "Nous announced the winners of the Hermes Agent Plugin Hackathon, with nearly 1,000 community submissions. Agents scored every entry, then five judges ranked finalists. 1,180 likes.",
+        "why": "The hackathon produced plugins we can use. Botterfly runs on Hermes; community-built tools extend what it can do without us writing them.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2124229492248019362",
+        "title": "Addy Osmani: Claude Code Mode for multi-step tool calls",
+        "url": "https://x.com/addyosmani/status/2124229492248019362",
+        "summary": "Osmani highlighted Code Mode, an experimental Claude Code feature that improves speed and context efficiency by letting Claude write and run scripts for multi-step tool orchestration. 2,417 likes.",
+        "why": "Code Mode is how Claude Code batches tool calls. We use Claude Code daily; understanding when to invoke it could cut token spend on multi-step tasks.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2124142247285235990",
+        "title": "Sebastian Raschka: Competition drives model quality",
+        "url": "https://x.com/rasbt/status/2124142247285235990",
+        "summary": "Raschka argued that US and Chinese open-weight models each drive the other forward, and that proprietary models wouldn't be as good or cheap without open-weight competition. 4,285 likes, 638 retweets.",
+        "why": "Model ecosystem dynamics shape vendor pricing and the open-source availability we rely on. The argument supports our multi-vendor strategy.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Research: the arXiv feed rebuilt on time but produced no papers in the window. Releases: only Next.js canaries shipped; no stable Python, Node.js, DSPy, LangChain, or Langfuse releases in the 72-hour window.",
+  "thin_sections": ["research", "releases"],
+  "window": {
+    "since": "2026-11-20T04:30:38+00:00",
+    "until": "2026-11-23T04:30:38+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
