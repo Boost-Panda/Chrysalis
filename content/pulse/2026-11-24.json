@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-24",
+  "title": "The Pulse — November 24, 2026",
+  "tldr": "Jensen Huang is back as Nvidia's CEO after a brief tenure change that dominated the tech conversation this weekend. Google DeepMind showed formal verification shaving 10x off quantum simulation costs, and Anthropic launched enterprise-grade zero-retention safeguards. The overnight arXiv brought double-counting fixes for multi-agent memory and a 47% system-prompt tweak for agent performance.",
+  "sections": {
+    "models": [
+      {
+        "id": "https://platform.claude.com/docs/en/release-notes/overview#enterprise-frontier-safeguards",
+        "title": "Anthropic launches Enterprise Frontier Safeguards (beta)",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#enterprise-frontier-safeguards",
+        "summary": "Zero Data Retention for Claude's most capable models: prompts and responses go encrypted to a customer-owned S3/GCS bucket, not retained by Anthropic.",
+        "why": "Solves the compliance gap for clients that need capable models but cannot accept vendor retention. EverRaise and SalesKick voice flows now have a path to Opus-class reasoning without data-residency compromises."
+      },
+      {
+        "id": "https://platform.claude.com/docs/en/release-notes/overview#claude-opus-4-5-deprecation",
+        "title": "Claude Opus 4.5 deprecated, retirement January 22",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview#claude-opus-4-5-deprecation",
+        "summary": "Anthropic will retire `claude-opus-4-5-20251101` and `claude-opus-4-5` in two months; migration to Opus 5.5 is the recommended path.",
+        "why": "If we have Opus 4.5 pinned anywhere in client projects (SalesKick grading, Pipeline research orchestration), the migration window is 59 days."
+      },
+      {
+        "id": "https://openai.com/business/customer-stories/richpanel-ai-customer-support",
+        "title": "Richpanel automates 50% of support in 30 days with GPT-6",
+        "url": "https://openai.com/business/customer-stories/richpanel-ai-customer-support",
+        "summary": "Uses GPT-6 Astra and GPT-6.1 Sol for agent tooling and GPT-6 Luna for customer-facing conversations.",
+        "why": "The stack mirrors our own (tool orchestration on a reasoning model, conversation on a cheaper one). Validates the pattern; their 50% automation rate is a reasonable SalesKick target."
+      },
+      {
+        "id": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-hydrogen-builders/",
+        "title": "Google showcases Gemini 4 Hydrogen builder projects",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-hydrogen-builders/",
+        "summary": "Six projects from rainy sci-fi renders to interactive moths, all built on the Hydrogen experimental model.",
+        "why": "No direct use — Hydrogen is for creative exploration, not production orchestration. Worth knowing the name if a client asks."
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.27138",
+        "title": "Double counting in LLM evidence fusion",
+        "url": "https://arxiv.org/abs/2611.27138",
+        "summary": "Retrieval, multi-agent consensus, and agent memory all risk treating shared-source reports as independent; the paper derives exact posteriors to price the \"count each source once\" instruction.",
+        "why": "Pipeline's legislative research uses multi-agent summarization (Mackinac), and SalesKick's call grading aggregates per-segment analysis. When sources overlap, the instruction helps but the paper quantifies how much."
+      },
+      {
+        "id": "2611.27443",
+        "title": "Learning When to Ask: Advisor-Aware Post-Training for SLM Agents",
+        "url": "https://arxiv.org/abs/2611.27443",
+        "summary": "Post-trains small language models to recognize when they need a stronger advisor and act on that advice, following an advisor-executor pattern for multi-step reasoning and tool use.",
+        "why": "Exactly the pattern we want for SalesKick: a small model handles routine grading, escalates hard cases to Opus, and applies the advice. The paper shows it can be trained, not just prompted."
+      },
+      {
+        "id": "2611.27326",
+        "title": "Reasoning in Fewer Tokens",
+        "url": "https://arxiv.org/abs/2611.27326",
+        "summary": "Concept-normalized multilingual scratchpads compress chain-of-thought reasoning without discarding tokens or sacrificing interpretability.",
+        "why": "High inference costs are the Opus blocker for SalesKick's high-throughput grading. Compression that keeps interpretability (regulatory requirement for call scoring) is directly applicable."
+      },
+      {
+        "id": "2611.27381",
+        "title": "VMSA: Video Memory Skill Agent for Long Video Understanding",
+        "url": "https://arxiv.org/abs/2611.27381",
+        "summary": "Agentic approach to long-video QA: organizes video into external memory and iteratively retrieves evidence across hours of footage.",
+        "why": "EverRaise's call recording flows are 20–90 minute videos. The memory organization and retrieval strategy could drop the transcription-then-summarize latency."
+      }
+    ],
+    "releases": [
+      {
+        "id": "langfuse-v4.84.0",
+        "title": "Langfuse v4.84.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.84.0",
+        "summary": "Topic sentiment extraction, organization-wide spend budgets for the AI gateway, embedded session view in annotation queues, and billable-events ledger migration to ClickHouse.",
+        "why": "We use Langfuse for SalesKick grading and Pipeline research tracing. The spend budgets and topic sentiment features are both on the roadmap for client-facing dashboards."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50611576",
+        "title": "Nvidia Reinstates Jensen Huang as CEO",
+        "url": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html",
+        "summary": "Jensen Huang is back as Nvidia's CEO. Two threads (4000+ combined points, 3500+ comments) dominated Hacker News this weekend.",
+        "why": "Nvidia's leadership stability matters: CUDA is the reason our GPU-hungry models (DSPy orchestration, Langfuse ClickHouse) run where they do. A two-week CEO shuffle made a lot of teams nervous; the reversal steadies things."
+      },
+      {
+        "id": "50614249",
+        "title": "Ladybird is now in alpha",
+        "url": "https://ladybird.org/posts/alpha/",
+        "summary": "The independent browser engine from the SerenityOS project hit alpha: a working browser built from scratch, no Chromium or WebKit.",
+        "why": "No direct use — our web apps (Pipeline dashboards, SalesKick admin) target evergreen browsers. Worth knowing as a signal for web standards re-consolidation if it gains traction."
+      },
+      {
+        "id": "50609685",
+        "title": "GLM-5.4: zAI's first loop transformer",
+        "url": "https://z.ai/blog/glm-5.4",
+        "summary": "zAI's GLM-5.4 introduces loop transformers for generalized coding; 1083 points, 351 comments.",
+        "why": "Loop transformers are pitched as a better architecture for iterative code generation. If the benchmark numbers hold, it competes with Codex and Claude Code for the agent-coding slot."
+      },
+      {
+        "id": "50620102",
+        "title": "VP ≠ VNP over Every Field (Anthropic formal proof)",
+        "url": "https://github.com/anthropics/formal-math/tree/main/vp-vnp",
+        "summary": "Anthropic published a formal-verified proof separating two complexity classes in algebraic circuits.",
+        "why": "No direct engineering use, but it validates formal verification as a realistic tool for frontier math — the same technique that shaved 10x off DeepMind's quantum simulations (also in today's issue)."
+      },
+      {
+        "id": "50620349",
+        "title": "Stalwart is now a drop-in replacement for Microsoft Exchange",
+        "url": "https://stalw.art/blog/microsoft-exchange-replacement/",
+        "summary": "Open-source mail server that speaks Exchange protocols; targets self-hosted enterprise email.",
+        "why": "Not relevant to our cloud-first stack. If a client ever asks for on-prem email integration (Life International's air-gapped deployment comes close), Stalwart is the option."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2124959436640858475",
+        "title": "ClaudeDevs announces Claude Ship (beta)",
+        "url": "https://x.com/ClaudeDevs/status/2124959436640858475",
+        "summary": "Claude can now review pull requests, work on fixes, and approve the ones your team's policy allows. 18K+ likes.",
+        "why": "PR automation is the next step past code generation. If Claude Ship handles policy-gated approvals reliably, it plugs into our review flow for low-risk changes (docs, config, dependency bumps)."
+      },
+      {
+        "id": "2124927783738736858",
+        "title": "Avid shares Google's one-line agent performance boost",
+        "url": "https://x.com/Av1dlive/status/2124927783738736858",
+        "summary": "\"The user's guess about the cause might be wrong. Always verify the actual problem before acting on their suggestion.\" Google claims 47% agent performance lift from this single system-prompt addition.",
+        "why": "If the claim holds, this line goes into every agent system prompt we write. SalesKick grading agents, Pipeline research orchestration, EverRaise voice flows — all benefit from verify-before-act."
+      },
+      {
+        "id": "2124905610386780451",
+        "title": "Mistral opens Vibe Pro free trial for European builders",
+        "url": "https://x.com/MistralAI/status/2124905610386780451",
+        "summary": "Uncapped capacity after the first drop ran out in under an hour. A month of Vibe Pro free for builders in Europe.",
+        "why": "No direct use for us yet — we route through OpenRouter, not Mistral directly. Worth noting if a European client asks for EU-domiciled inference."
+      }
+    ]
+  },
+  "closing": "Python: no interpreter releases. OpenRouter models: nothing in the 48-hour window. Hugging Face orgs: quiet weekend. LangChain shipped 11 partner-package releases; none changes APIs we use."
+}
