@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-25",
+  "title": "The Pulse — November 25, 2026",
+  "tldr": "OpenAI's GPT-6 models showed they can design proteins by reasoning and writing code—lab tests found evidence of binding across five targets. Claude artifacts can now install as desktop apps on Mac and Windows. The overnight arXiv brought six new agent benchmarks covering everything from game evaluation to error propagation in multi-agent systems.",
+  "sections": {
+    "models": [
+      {
+        "id": "gpt-6-protein-design",
+        "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+        "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
+        "summary": "GPT-6 models can design protein structures and sequences using reasoning and code. Lab tests found evidence of binding across five targets.",
+        "why": "Frontier models moving beyond text generation into scientific design workflows. Shows reasoning models can close the loop from specification to validated artifact—the same pattern we use for code generation applies to molecular design."
+      },
+      {
+        "id": "claude-artifacts-desktop-apps",
+        "title": "Claude artifacts install as desktop apps",
+        "url": "https://x.com/ClaudeDevs/status/2125315491522650299",
+        "summary": "You can now install Claude artifacts as native desktop apps on Mac and Windows. They can use your connectors, send notifications, and add menu bar items.",
+        "why": "Turns Claude from a chat interface into an app builder. For rapid prototyping—client demos, internal tools, data dashboards—this removes the deploy step. Build it, install it, run it."
+      },
+      {
+        "id": "claude-mcp-tasks",
+        "title": "Anthropic evolves MCP for agentic capabilities",
+        "url": "https://x.com/ClaudeDevs/status/2125289794871963935",
+        "summary": "MCP turns two and is evolving from a protocol for connecting AI apps to tools to standardizing how agents communicate and orchestrate work. Anthropic is bringing Skills over MCP and Tasks.",
+        "why": "MCP is how Hermes and Claude Code connect to external tools. Skills and Tasks standardize agent-to-agent orchestration, which we'll need when Pipeline's research flow or SalesKick's grading pipeline runs multiple models in sequence."
+      },
+      {
+        "id": "upstage-solar-pro-4-contributor",
+        "title": "Upstage: Solar Pro 4 Contributor",
+        "url": "https://openrouter.ai/upstage/solar-pro-4-contributor",
+        "summary": "Solar Pro 4 Contributor is the same Solar Pro 4 model offered at 25% of the standard rate ($0.09 prompt / $0.36 completion per million tokens) in exchange for allowing Upstage to use interaction data to improve the model.",
+        "why": "Data-for-discount is a new pricing lever. When client contracts allow it, we could route non-sensitive workloads to contributor pricing and keep Opus-class models for PII flows."
+      }
+    ],
+    "research": [
+      {
+        "id": "2611.28368",
+        "title": "Schedule, Rank, Profile: Continuous Evaluation of LLM Agents in Games",
+        "url": "https://arxiv.org/abs/2611.28368",
+        "summary": "Proposes a continuous benchmark for LLM agents in games: sequential decisions, adversarial interaction, state tracking, and long-horizon planning. Refreshes automatically as models and environments change.",
+        "why": "Fixed benchmarks go stale fast. The continuous approach—schedule matches, rank models, profile behavior—is directly applicable to our own agent evaluation (SalesKick grading, EverRaise call handling)."
+      },
+      {
+        "id": "2611.29367",
+        "title": "BenchMint: From Real-World Tasks to Executable Benchmarks",
+        "url": "https://arxiv.org/abs/2611.29367",
+        "summary": "BenchMint automates benchmark construction from real-world tasks and includes Daily-Life, a collection of 100 tasks across 11 domains (itinerary planning under constraints, numerical evidence grounding).",
+        "why": "We build agents for real workflows (call grading, legislative research, donor outreach). BenchMint's automated benchmark-construction workflow could turn client task logs into regression tests."
+      },
+      {
+        "id": "2611.30181",
+        "title": "Retrieval-Augmented Generation in the Agentic Era",
+        "url": "https://arxiv.org/abs/2611.30181",
+        "summary": "Maps RAG in the agentic era by joining offline indexing, pre-retrieval, retrieval, post-retrieval, and generation on a single lifecycle axis. Treats agents as orchestrators, not just consumers of RAG.",
+        "why": "Pipeline's research agents orchestrate retrieval for Mackinac's legislative corpus and Life International's CRM search. The lifecycle map clarifies where each piece fits and what we can cache."
+      },
+      {
+        "id": "2611.29242",
+        "title": "Edit-Induced Dependency Mismatch in Coding Agents",
+        "url": "https://arxiv.org/abs/2611.29242",
+        "summary": "During iterative code modification, coding agents may continue to rely on outdated dependency judgments whose text remains fixed in context, leading to errors that original task evaluations don't catch.",
+        "why": "We use Claude Code and Codex daily. When an agent edits a function but forgets that another file imports it, the tests pass locally but break downstream. The paper names the failure mode; knowing it helps us catch it in review."
+      }
+    ],
+    "releases": [
+      {
+        "id": "langfuse-v4.86.0",
+        "title": "Langfuse v4.86.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.86.0",
+        "summary": "MCP charts rendered inline as Next.js apps, tool-column normalization fixes for TypeScript and OTEL paths, and BullMQ msgpackr bump to 2.1.4.",
+        "why": "We trace SalesKick grading and Pipeline research through Langfuse. The tool-column fixes close a gap where OpenAI Responses tool calls weren't parsed correctly—that affects our GPT-6 orchestration flows."
+      },
+      {
+        "id": "langfuse-v4.85.0",
+        "title": "Langfuse v4.85.0",
+        "url": "https://github.com/langfuse/langfuse/releases/tag/v4.85.0",
+        "summary": "Unified session & trace view, Topics and events dispatch on self-hosted instances, estimated topic processing cost before setup, numeric metadata filters for dashboards, and self-serve enterprise trial redemption.",
+        "why": "The unified view and numeric metadata filters landed on our roadmap for client-facing SalesKick dashboards. Topics on self-hosted opens the feature for clients that can't use cloud Langfuse."
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50627340",
+        "title": "LLM agents work for their parent companies, not for you",
+        "url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/",
+        "summary": "Argues that LLM agents optimize for the provider's objectives (usage, retention, upsell) rather than the user's goals. 945 points, 393 comments.",
+        "why": "Client contracts ask who the agent serves. When we route through vendor APIs, we inherit their objectives. The thread covers auditing, local models, and contract clauses—all apply to SalesKick and Pipeline deployments."
+      },
+      {
+        "id": "50637220",
+        "title": "Matrix Multiplication is Θ(n^2.25) [pdf]",
+        "url": "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf",
+        "summary": "OpenAI's math team published a proof that matrix multiplication is Θ(n^2.25). 278 points, 128 comments.",
+        "why": "Worth knowing, no direct use for us yet. Lower bounds on matrix multiplication affect every ML workload, but this is a theoretical result—practical algorithms still run closer to n^2.8."
+      },
+      {
+        "id": "50633922",
+        "title": "Ternary Bonsai 2.5 27B",
+        "url": "https://prismml.com/news/bonsai-2-5-27b",
+        "summary": "PrismML released Ternary Bonsai 2.5 27B, a ternary-weight model that claims to match 70B performance at 27B parameters. 377 points, 127 comments.",
+        "why": "Ternary quantization—weights constrained to -1, 0, +1—drops memory and speeds inference. If the benchmark claims hold, it's a strong candidate for on-device call grading and SMS flows where bandwidth is the bottleneck."
+      },
+      {
+        "id": "50630809",
+        "title": "Ask HN: Anthropic is accusing my company of distilling. How can I prove I'm not?",
+        "url": "https://news.ycombinator.com/item?id=50630809",
+        "summary": "A founder asked how to prove their model wasn't distilled from Claude after Anthropic flagged their API usage. 235 points, 176 comments.",
+        "why": "We fine-tune models for SalesKick grading and EverRaise call flows. The thread covers detection methods (output distributions, prompting patterns) and defenses (independent training logs, dataset provenance). Relevant for client audits."
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2125365668463993091",
+        "title": "Claude Ship handles PR follow-up work",
+        "url": "https://x.com/ClaudeDevs/status/2125365668463993091",
+        "summary": "A practical guide to shipping with Claude Code: how to hand off PR follow-up work to Claude Ship and stay in flow. 1,579 likes, 100 retweets.",
+        "why": "PR follow-up—review comments, CI fixes, merge conflicts—is where coding agents stall. Claude Ship picking up that work means the agent finishes what it started. Directly applicable to our wehshi review panel flow."
+      },
+      {
+        "id": "2125396779591925850",
+        "title": "shadcn: AI SDK added WebMCP support",
+        "url": "https://x.com/shadcn/status/2125396779591925850",
+        "summary": "AI SDK now supports WebMCP. UI SDK components come with their own tools, and the MCP client reads them—no screenshots, no clicking around. 459 likes, 20 retweets.",
+        "why": "WebMCP lets agents manipulate UI components by calling their exported tools instead of screenshot-and-click. Relevant for Pipeline client dashboards and SalesKick admin interfaces where agents need to verify or adjust UI state."
+      },
+      {
+        "id": "2125276175828476011",
+        "title": "shadcn: UI built for agents first",
+        "url": "https://x.com/shadcn/status/2125276175828476011",
+        "summary": "If you're building UI today, it has to work for agents, not only humans. UI SDK makes agents 4x faster and 85% cheaper. 1,166 likes, 35 retweets.",
+        "why": "Agent-first UI means components export their state and actions as tools. When we build dashboards (SalesKick grading results, Pipeline research workspaces), designing for agent interaction from the start makes them testable and automatable."
+      }
+    ]
+  },
+  "closing": "Python: no interpreter releases. Node.js: no releases in the window. Next.js: only canaries. OpenRouter added two Upstage Solar models (Pro 4 Contributor and Mini 4.5). Hugging Face orgs and vendor feeds were quiet apart from the items above.",
+  "window": {
+    "since": "2026-11-24T04:30:37+00:00",
+    "until": "2026-11-25T04:30:37+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
