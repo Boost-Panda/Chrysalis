@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-26",
+  "title": "The Pulse, Thursday 26 November 2026",
+  "tldr": "A wave of formal math results landed overnight—Anthropic's GRH verification, OpenAI disproving the polynomial Hirsch conjecture, and chatter about factoring breakthroughs. On the engineering side, Anthropic showed how agent teams verified their Python-to-Rust migration, and agent evaluation papers dominate the arXiv. No model or release news in the window.",
+  "sections": {
+    "models": [],
+    "research": [
+      {
+        "id": "2611.31254",
+        "title": "The Date You Didn't Set: The System-Prompt Date as a Hidden Variable in LLM Evaluation",
+        "url": "https://arxiv.org/abs/2611.31254",
+        "summary": "Many instruction-tuned models carry a date in the system prompt, updated daily, so an unchanged eval sends a different prompt each day and can produce different outcomes.",
+        "why": "We run Hermes and agent evals daily—if the system date drifts our benchmarks, we need to either freeze it or treat it as a known input.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.32918",
+        "title": "InstructReplay: Replaying Assistant Turns to Preserve General Behavior During Factual Fine-Tuning",
+        "url": "https://arxiv.org/abs/2611.32918",
+        "summary": "Fine-tuning on new facts erodes instruction-following, reasoning, and coding by ~35 points on average; the paper finds response length collapses and proposes replaying assistant turns to preserve it.",
+        "why": "If we fine-tune a model for client-specific facts (like SalesKick's product catalog), we need to preserve its coding and reasoning—InstructReplay is a candidate mitigation.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.31266",
+        "title": "Agentic Systems Need Multi-Run Evaluation: A Study of Retrieval and Response Variability in a Deployed Enterprise RAG System",
+        "url": "https://arxiv.org/abs/2611.31266",
+        "summary": "Agentic RAG makes non-deterministic retrieval and generation choices, so single-run eval misses variation; the paper shows measured run-to-run differences in a production system.",
+        "why": "If we're measuring Botterfly's review panels or multi-agent coding runs, one eval per prompt is not enough—we need N-run distributions.",
+        "source": "arxiv"
+      },
+      {
+        "id": "2611.31839",
+        "title": "Spec-Test Coverage Gap: Detecting Overspecified Tests in SWE-Bench-Style Benchmarks",
+        "url": "https://arxiv.org/abs/2611.31839",
+        "summary": "SWE-bench tasks are tested with the fix's original test, which can enforce details the task never stated, failing correct alternative solutions; the paper detects such overspecified tests.",
+        "why": "When we eval coding agents on SWE-bench Verified or Pro, a false negative from a too-strict test looks like the agent failed, so we should filter overspecified ones.",
+        "source": "arxiv"
+      }
+    ],
+    "releases": [
+      {
+        "id": "458690245",
+        "title": "langchain-core==1.8.5",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.5",
+        "summary": "Fixes message ID reuse on stream chunks and clarifies v3 runtime warning behavior.",
+        "why": "SalesKick and Pipeline's agents use LangChain streaming—message ID bugs can break conversation state or logs.",
+        "source": "github"
+      },
+      {
+        "id": "458681507",
+        "title": "langchain-anthropic==1.7.13",
+        "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.13",
+        "summary": "Adds support for custom HTTP and SDK clients in the Anthropic integration.",
+        "why": "Lets us inject custom retry logic, logging, or SDK overrides—useful when we need observability above what LangChain ships.",
+        "source": "github"
+      }
+    ],
+    "hackernews": [
+      {
+        "id": "50644817",
+        "title": "1Password Security Incident",
+        "url": "https://1password.com/blog/update-on-nov-2026-security-incident",
+        "hn_url": "https://news.ycombinator.com/item?id=50644817",
+        "summary": "1Password disclosed a November 2026 security incident; details on the post.",
+        "why": "We use 1Password for credential management across teams—worth reading what happened and whether we need to rotate anything.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50646108",
+        "title": "Holy shit holy shit holy shit holy shit: The magnitude of what's now happening",
+        "url": "https://scottaaronson.blog/?p=10379",
+        "hn_url": "https://news.ycombinator.com/item?id=50646108",
+        "summary": "Scott Aaronson reacts to a wave of formal theorem results (GRH verification, factoring speculation, polynomial Hirsch conjecture disproof).",
+        "why": "The formal-proof line is moving fast—if agents can verify theorems humans couldn't settle, the same infrastructure could verify large codebases.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50642086",
+        "title": "Google releases Cogentic papers on integer factorization, discrete logs and more",
+        "url": "https://github.com/google-research/google-research/tree/master/cogentic_research_papers",
+        "hn_url": "https://news.ycombinator.com/item?id=50642086",
+        "summary": "Google published a batch of Cogentic research papers on factorization, discrete logs, and other hardness results.",
+        "why": "If factoring or discrete log hardness changes, every key exchange and signature we rely on needs rotation—worth tracking even as a long-tail risk.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50648050",
+        "title": "Much shorter version of GRH Lean verification from Anthropic",
+        "url": "https://github.com/lsernau/grh-lean",
+        "hn_url": "https://news.ycombinator.com/item?id=50648050",
+        "summary": "A shorter Lean proof of the Generalized Riemann Hypothesis verification, following Anthropic's recent announcement.",
+        "why": "Formal verification at this scale is an existence proof that agents can do theorem work—applicable to contract verification and critical code paths.",
+        "source": "hackernews"
+      },
+      {
+        "id": "50647161",
+        "title": "Nfs2root: A 12-year-old pre-auth remote root in the Linux kernel's NFS server",
+        "url": "https://opensec.in/blog/nfs2root-cve-2026-99362",
+        "hn_url": "https://news.ycombinator.com/item?id=50647161",
+        "summary": "A pre-authentication remote root vulnerability in the Linux kernel NFS server, present for 12 years.",
+        "why": "If any of our Supabase or edge deployments expose NFS (unlikely but worth checking), patch immediately.",
+        "source": "hackernews"
+      }
+    ],
+    "x_posts": [
+      {
+        "id": "2125628717263372512",
+        "title": "Anthropic engineering blog: Python to Rust migration verified by agent teams",
+        "url": "https://x.com/ClaudeDevs/status/2125628717263372512",
+        "summary": "Anthropic's engineering blog describes migrating the Claude Messages API from Python to Rust, with agent teams tracking down differences between the two implementations.",
+        "why": "We're building multi-agent review panels—this is a real-world case of agents verifying an entire service rewrite, which is exactly the use case wehshi targets.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2125650883761332700",
+        "title": "shadcn on agent-first UI",
+        "url": "https://x.com/shadcn/status/2125650883761332700",
+        "summary": "shadcn argues some work still needs UI even when agents can do it, like tweaking a design or filling a form with live feedback.",
+        "why": "When we build demos or client-facing agent tools, this is the hybrid UX question: what stays in the UI, what moves to agentic delegation.",
+        "source": "x_posts"
+      },
+      {
+        "id": "2125798914490249411",
+        "title": "Qwen-Audio-3.1 enhanced multilingual capabilities for Chinese dialects",
+        "url": "https://x.com/Alibaba_Qwen/status/2125798914490249411",
+        "summary": "Qwen released enhanced multilingual speech capabilities for Qwen-Audio-3.1, with a focus on Chinese dialects.",
+        "why": "EverRaise's voice agents are English-only now; if a client needs Chinese dialect support, Qwen-Audio is the first place to look.",
+        "source": "x_posts"
+      }
+    ]
+  },
+  "closing": "Models: nothing new in the window. Python, Node.js, Next.js, DSPy, Langfuse: no releases.",
+  "thin_sections": ["models"],
+  "window": {
+    "since": "2026-11-25T04:30:36+00:00",
+    "until": "2026-11-26T04:30:36+00:00"
+  },
+  "generated_by": "botterfly/pulse"
+}
